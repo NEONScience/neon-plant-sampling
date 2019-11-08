@@ -1,0 +1,602 @@
+\documentclass[]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\usepackage{fixltx2e} % provides \textsubscript
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+\else % if luatex or xelatex
+  \ifxetex
+    \usepackage{mathspec}
+    \usepackage{xltxtra,xunicode}
+  \else
+    \usepackage{fontspec}
+  \fi
+  \defaultfontfeatures{Mapping=tex-text,Scale=MatchLowercase}
+  \newcommand{\euro}{€}
+\fi
+% use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+% use microtype if available
+\IfFileExists{microtype.sty}{%
+\usepackage{microtype}
+\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\usepackage[margin=1in]{geometry}
+\usepackage{longtable,booktabs}
+\ifxetex
+  \usepackage[setpagesize=false, % page size defined by xetex
+              unicode=false, % unicode breaks when used with xetex
+              xetex]{hyperref}
+\else
+  \usepackage[unicode=true]{hyperref}
+\fi
+\hypersetup{breaklinks=true,
+            bookmarks=true,
+            pdfauthor={Report prepared by Cody Flagg and Katie Jones},
+            pdftitle={Site Characterization Data Quality Report},
+            colorlinks=true,
+            citecolor=blue,
+            urlcolor=blue,
+            linkcolor=magenta,
+            pdfborder={0 0 0}}
+\urlstyle{same}  % don't use monospace font for urls
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt plus 2pt minus 1pt}
+\setlength{\emergencystretch}{3em}  % prevent overfull lines
+\setcounter{secnumdepth}{5}
+
+%%% Use protect on footnotes to avoid problems with footnotes in titles
+\let\rmarkdownfootnote\footnote%
+\def\footnote{\protect\rmarkdownfootnote}
+
+%%% Change title format to be more compact
+\usepackage{titling}
+\setlength{\droptitle}{-2em}
+  \title{Site Characterization Data Quality Report}
+  \pretitle{\vspace{\droptitle}\centering\huge}
+  \posttitle{\par}
+  \author{Report prepared by Cody Flagg and Katie Jones}
+  \preauthor{\centering\large\emph}
+  \postauthor{\par}
+  \date{}
+  \predate{}\postdate{}
+
+
+
+
+\begin{document}
+
+\maketitle
+
+
+{
+\hypersetup{linkcolor=black}
+\setcounter{tocdepth}{2}
+\tableofcontents
+}
+\section{Overview}\label{overview}
+
+This data quality report is based on data files received from ARCADIS on
+2/3/2015 forthe five sites at which vegetation characterization field
+work occurred (over the period November 10th - January 21st). The
+quality checks contained in this report represent the extent of what we
+are capable of assessing without field checking contractor performance.
+An additional quality report may still be filed for field work. For the
+purpose of this summary, we have divided our concerns into two general
+areas - issues related to \textbf{species identification} and issues
+related to \textbf{data entry}:
+
+\textbf{Species ID} - Two issues arose with respect to species
+identifications:
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  Incomplete identification - At three sites, HARV, SCBI and TALL, only
+  a portion of the dataset includes values in the
+  ``\texttt{scientificName}'' field (29\% complete at HARV, 67\%
+  complete at SCBI and 16\% complete at TALL). Field work at all of
+  these sites was initiated following fall senescence. In recognition of
+  increased difficulty in positively identifying individuals to species,
+  we relaxed the acceptable resolution to genus level at HARV and SCBI
+  (10/30/14 Git issue \#3). This was reiterated in our 11/31/14
+  conference call as species ID should be to ``\emph{Finest resolution
+  possible given the conditions}'' (see meeting notes posted on GitHub).
+  \textbf{In no instance did we agree that identification was not
+  necessary}.
+\item
+  Use of incorrect data type in \texttt{scientificName} field - NEON
+  uses USDA Plants as the taxonomic authority for naming/coding
+  conventions but the data entry field for species is
+  \texttt{scientificName}, which is defined in the Access DB
+  \texttt{vstFieldSummary} table as `Binomial latin name', this is
+  reinforced through the constrained set of values available as a
+  dropdown list in the \texttt{scientificName} field in the
+  \texttt{vst\_perindividual\_in} table (See guidance in Data
+  Transcription protocol section 8.3.2.e.iii).
+\end{enumerate}
+
+Nonetheless, all \texttt{scientificName} entries in the HARV and JERC
+datasets are codes. For JERC, converting from USDA code to
+\texttt{scientificName} should be simple to update as all codes appear
+to be valid USDA Plants accepted codes. On the other hand, in the HARV
+dataset, most of the codes used \emph{are not} USDA codes, we have no
+way to confidently assign a \texttt{scientificName} to most of these
+records. See the print out of unique values in the
+\texttt{scientificName} field (section 3.1, below) to identify
+additional errors; \textbf{most of these are avoidable by utilizing the
+drop down list in the Access DB}.
+
+\textbf{Data entry} - Some of these errors may be attributable to data
+transcription, others may be errors that originate in field data
+collection. In either case, data with these errors cannot be ingested
+into the NEON database.
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \texttt{Numeric values in remarks field}. \textbf{Are these values
+  data?} Remarks are not machine readable, as such, we are unable to
+  make use of essential information if it is included in this field.
+\item
+  \texttt{Invalid pointIDs}, NEON cannot generate georeferenced stem
+  maps if stems are mapped from points other than those identified in
+  the protocol
+\item
+  \texttt{Invalid growthForms}, only growthForms listed in the protocol
+  will be recognized by our ingest algorithms.\\
+\item
+  \texttt{Invalid Azimuth values}, individuals are plotted as being
+  outside of the designated plot boundaries.
+\end{itemize}
+
+\textbf{See site specific summaries below and supplemental error reports
+(in folder ``\texttt{QA\_Files}'') for more details.}
+
+\section{Plot Completion}\label{plot-completion}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Provides a summary for which data are reported at each site \#\# Plot
+  Count
+\item
+  Quick check: How many plots were visited?
+\item
+  HARV, SCBI and JERC have blank entries in field: \texttt{plotID}.
+\end{itemize}
+
+\begin{longtable}[c]{@{}lr@{}}
+\caption{Plot Count by Site}\tabularnewline
+\toprule
+Site & PlotCount\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+Site & PlotCount\tabularnewline
+\midrule
+\endhead
+HARV & 18\tabularnewline
+SCBI & 20\tabularnewline
+JERC & 20\tabularnewline
+OSBS & 15\tabularnewline
+TALL & 20\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsection{Missing Plots}\label{missing-plots}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  These plots are in the provided NEON Excel files for each site, but
+  were not found in the data files received from Arcadis.
+\item
+  Git issue \#9 documents that NEON Field Ops completed
+  \texttt{HARV\_036 and HARV\_050}, please verify if this is also the
+  case for missing plots at OSBS. SCBI appears to be a data entry error,
+  please fix.
+\end{itemize}
+
+\begin{verbatim}
+## [1] "HARV_050" "HARV_036" "OSBS_025" "OSBS_036" "OSBS_042" "OSBS_043"
+## [7] "OSBS_044"
+\end{verbatim}
+
+\subsection{Extra Plots}\label{extra-plots}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  This lists plots that were found in the received files from Arcadis
+  that are not included in the lists provided by NEON.
+\item
+  This appears to be a data entry error.
+\end{itemize}
+
+\begin{verbatim}
+## character(0)
+\end{verbatim}
+
+\section{Duplicate and Unique Tags}\label{duplicate-and-unique-tags}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  This summarizes the number of duplicate \texttt{tagID} entries per
+  site.
+\item
+  See the supplemental .csv files (File suffix:
+  \texttt{\_duplicateTags}) for lists of specific duplicate tag IDs by
+  site.
+\item
+  The first row in this table (with a blank \texttt{siteID}) indicates
+  that 8 entries are missing a \texttt{plotID}.
+\end{itemize}
+
+\begin{longtable}[c]{@{}lr@{}}
+\caption{Duplicate Tags by Site}\tabularnewline
+\toprule
+siteID & Count\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+siteID & Count\tabularnewline
+\midrule
+\endhead
+& 4\tabularnewline
+HARV & 120\tabularnewline
+JERC & 3\tabularnewline
+OSBS & 9\tabularnewline
+SCBI & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+\subsection{Unique species list by site
+(\texttt{scientificName})}\label{unique-species-list-by-site-scientificname}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  Some unique records may be attributable to spelling and capitalization
+  errors during data transcription
+\end{itemize}
+
+\begin{verbatim}
+## [1] "HARV"
+## 
+## *  
+## * Betula 
+## * Fagus grandifolia 
+## * Kalmia latifolia 
+## * Pinus 
+## * Quercus 
+## * Tsuga canadensis 
+## 
+## <!-- end of list -->
+## 
+## [1] "SCBI"
+## 
+## *  
+## * Acer 
+## * Acer negundo 
+## * Acer rubrum 
+## * Berberis 
+## * Berberis thunbergii 
+## * Carya 
+## * Carya tomentosa 
+## * Celtis occidentalis 
+## * Cornus florida 
+## * Diospyros virginiana 
+## * fraxinus 
+## * Fraxinus 
+## * Fraxinus americana 
+## * Fraxinus americana var. microcarpa 
+## * Fraxinus pennsylvanica 
+## * Juglans nigra 
+## * Lindera benzoin 
+## * Liquidambar styraciflua 
+## * Liriodendron tulipifera 
+## * Platanus occidentalis 
+## * Prunus serotina 
+## * Quercus 
+## * Quercus alba 
+## * Quercus rubra 
+## * Rosa multiflora 
+## * Rubus 
+## * Rubus phoedalibarda 
+## * Rubus phoenicolasius 
+## * Sassafras albidum 
+## * Sassafras albidum var. molle 
+## * Symphoricarpos orbiculatus 
+## * Ulmus 
+## * Ulmus americana 
+## * Vitis 
+## 
+## <!-- end of list -->
+## 
+## [1] "JERC"
+## 
+## *  
+## * Acer floridanum 
+## * Aesculus pavia 
+## * Bignonia capreolata 
+## * Bignonia capreolataBignonia capreolata 
+## * Campsis radicans 
+## * Carya glabra 
+## * Celtis laevigata 
+## * Celtis occidentalis 
+## * Cercis canadensis 
+## * Cocculus carolinus 
+## * Cornus florida 
+## * Crataegus flava 
+## * Crataegus flava Aiton 
+## * Crataegus spathulata 
+## * Diospyros virginiana 
+## * Fraxinus americana 
+## * Gelsemium sempervirens 
+## * Ilex glabra 
+## * Ilex vomitoria 
+## * Juniperus virginiana 
+## * Liquidambar styraciflua 
+## * Malus angustifolia 
+## * Morus rubra 
+## * Nyssa sylvatica 
+## * Parthenocissus quinquefolia 
+## * Pinus clausa 
+## * Pinus echinata 
+## * Pinus palustris 
+## * Prunus americana 
+## * Prunus serotina 
+## * Quercus falcata 
+## * Quercus geminata 
+## * Quercus hemisphaerica 
+## * Quercus hemispherica 
+## * Quercus incana 
+## * Quercus laevis 
+## * Quercus lyrata 
+## * Quercus margaretta 
+## * Quercus minima 
+## * Quercus nigra 
+## * Quercus virginiana 
+## * Rhus copallinum 
+## * Sassafras albidum 
+## * Sideroxylon languinosum 
+## * Sideroxylon lanuginosum 
+## * Smilax bona-nox 
+## * Smilax rotundifolia 
+## * Smilax smallii 
+## * Taxodium distichum 
+## * Tilia americana 
+## * Toxicodendron radicans 
+## * Ulmus alata 
+## * Unknown 
+## * Vaccinium arboreum 
+## * VIBURNUM 
+## * Viburnum prunifolium 
+## * Viburnum sp. 
+## * Vitis rotundifola 
+## * Vitis rotundifolia 
+## 
+## <!-- end of list -->
+## 
+## [1] "OSBS"
+## 
+## *  
+## * Asimina incana 
+## * Diospyros virginiana 
+## * Pinus palustris 
+## * Quercus geminata 
+## * Quercus geminata Small 
+## * Quercus laevis 
+## * Quercus margarettae 
+## * Vaccinium arboreum 
+## 
+## <!-- end of list -->
+## 
+## [1] "TALL"
+## 
+## *  
+## * Acer rubrum 
+## * Carya 
+## * Cornus 
+## * Ilex opaca 
+## * Liquidambar styraciflua 
+## * Liriodendron tulipifera 
+## * Pinus 
+## * Pinus palustris 
+## * Pinus taeda 
+## * Quercus 
+## * Quercus alba 
+## * Rhus 
+## * Symplocos tinctoria 
+## * Vaccinium arboreum 
+## 
+## <!-- end of list -->
+\end{verbatim}
+
+\subsection{Unique growth forms list by
+site}\label{unique-growth-forms-list-by-site}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  \textbf{Acceptable values} : lia, sbt, mbt, sms, sis, smt, sap
+\end{itemize}
+
+\begin{verbatim}
+## $HARV
+## [1] ""    "mbt" "sap" "sbt" "sis" "smt"
+## 
+## $SCBI
+## [1] ""    "lia" "mbt" "sap" "sbt" "sis" "sms" "smt"
+## 
+## $JERC
+## [1] "lia" "mbt" "sap" "sbt" "sis" "sms" "smt"
+## 
+## $OSBS
+## [1] ""    "mbt" "sap" "sbt" "sis" "sms" "smt"
+## 
+## $TALL
+## [1] "lia" "mbt" "sap" "sbt" "sis" "sms" "smt" "snt"
+\end{verbatim}
+
+\section{Point and Azimuth
+Validation}\label{point-and-azimuth-validation}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  This checks that all pointIDs are valid for plot dimensions and
+  azimuth values are within pre-defined ranges for specific pointID.
+\item
+  See supplemental .csv files (file suffix:
+  \texttt{pointID\_azimuth\_QF}) for specific details regarding where
+  \texttt{pointID} and \texttt{stemAzimuth} errors occur.\\
+\item
+  ``\texttt{pointIDQF}'' and ``\texttt{azimuthQF}'' fields flag errors
+  for each row in the supplemental files; ``\textbf{1}'' = no error,
+  ``\textbf{-9999}'' = potential error.
+\end{itemize}
+
+\begin{longtable}[c]{@{}llrr@{}}
+\caption{Point/Azimuth Errors by Site}\tabularnewline
+\toprule
+& siteID & pointID.error & azimuth.error\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+& siteID & pointID.error & azimuth.error\tabularnewline
+\midrule
+\endhead
+2 & HARV & 0 & 3\tabularnewline
+3 & JERC & 0 & 0\tabularnewline
+4 & OSBS & 0 & 9\tabularnewline
+5 & SCBI & 0 & 6\tabularnewline
+6 & TALL & 0 & 8\tabularnewline
+\bottomrule
+\end{longtable}
+
+\pagebreak
+
+\subsection{Growth Form Measurements by
+Site}\label{growth-form-measurements-by-site}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  This table summarizes the types of growth forms that have stem
+  distance and azimuth measurements.
+\item
+  Note that a blank in the ``growthForm'' column suggests there is a
+  missing entry.
+\end{itemize}
+
+\begin{longtable}[c]{@{}llr@{}}
+\caption{Growth Form Measurements by Site}\tabularnewline
+\toprule
+siteID & growthForm & Count\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+siteID & growthForm & Count\tabularnewline
+\midrule
+\endhead
+& & 5\tabularnewline
+HARV & & 1\tabularnewline
+HARV & mbt & 562\tabularnewline
+HARV & sap & 352\tabularnewline
+HARV & sbt & 2213\tabularnewline
+HARV & sis & 8\tabularnewline
+HARV & smt & 1339\tabularnewline
+JERC & lia & 160\tabularnewline
+JERC & mbt & 23\tabularnewline
+JERC & sap & 1096\tabularnewline
+JERC & sbt & 455\tabularnewline
+JERC & sis & 59\tabularnewline
+JERC & sms & 379\tabularnewline
+JERC & smt & 347\tabularnewline
+OSBS & & 3\tabularnewline
+OSBS & mbt & 14\tabularnewline
+OSBS & sap & 113\tabularnewline
+OSBS & sbt & 659\tabularnewline
+OSBS & sis & 4\tabularnewline
+OSBS & sms & 373\tabularnewline
+OSBS & smt & 318\tabularnewline
+SCBI & & 1\tabularnewline
+SCBI & lia & 63\tabularnewline
+SCBI & mbt & 53\tabularnewline
+SCBI & sap & 488\tabularnewline
+SCBI & sbt & 930\tabularnewline
+SCBI & sis & 512\tabularnewline
+SCBI & sms & 288\tabularnewline
+SCBI & smt & 290\tabularnewline
+TALL & lia & 5\tabularnewline
+TALL & mbt & 21\tabularnewline
+TALL & sap & 544\tabularnewline
+TALL & sbt & 732\tabularnewline
+TALL & sis & 93\tabularnewline
+TALL & sms & 111\tabularnewline
+TALL & smt & 276\tabularnewline
+TALL & snt & 1\tabularnewline
+\bottomrule
+\end{longtable}
+
+\pagebreak
+
+\section{Missing Scientific Names}\label{missing-scientific-names}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  This table summarizes how many scientific names are missing
+  (i.e.~blanks, NA, unknown, unk etc.).
+\end{itemize}
+
+\begin{longtable}[c]{@{}lrrrr@{}}
+\caption{Missing Scientific Names by Site}\tabularnewline
+\toprule
+siteID & NA & Blank & Unknown & Blank\%\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+siteID & NA & Blank & Unknown & Blank\%\tabularnewline
+\midrule
+\endhead
+HARV & 0 & 3425 & 0 & 76.468\tabularnewline
+SCBI & 0 & 851 & 0 & 32.419\tabularnewline
+JERC & 0 & 1 & 1 & 0.040\tabularnewline
+OSBS & 0 & 2 & 0 & 0.135\tabularnewline
+TALL & 0 & 1499 & 0 & 84.072\tabularnewline
+\bottomrule
+\end{longtable}
+
+\section{Tagged Plants by Site}\label{tagged-plants-by-site}
+
+\begin{itemize}
+\itemsep1pt\parskip0pt\parsep0pt
+\item
+  This table summarizes the number of tags per plot per site.
+\end{itemize}
+
+\begin{longtable}[c]{@{}lrrr@{}}
+\caption{Tags Used by Site}\tabularnewline
+\toprule
+siteID & minTags & maxtags & meanTags\tabularnewline
+\midrule
+\endfirsthead
+\toprule
+siteID & minTags & maxtags & meanTags\tabularnewline
+\midrule
+\endhead
+HARV & 4 & 380 & 236\tabularnewline
+SCBI & 54 & 247 & 131\tabularnewline
+JERC & 48 & 331 & 126\tabularnewline
+OSBS & 1 & 145 & 93\tabularnewline
+TALL & 36 & 151 & 89\tabularnewline
+\bottomrule
+\end{longtable}
+
+\end{document}

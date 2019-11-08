@@ -1,0 +1,8 @@
+siteid,taxonid,decayClass,sizeCategory,relativeAbundance,cumulativeAbundance,sampledDiskNum,cumulativeDiskNum
+DEJU,PIMA,2,5-10cm,40,40,5,5
+DEJU,PIMA,2,2-5cm,16,56,5,10
+DEJU,PIMA,3,5-10cm,16,72,5,15
+DEJU,POTR5,2,5-10cm,12,84,5,20
+DEJU,PIMA,2,>=10cm,8,92,10,30
+DEJU,POTR5,2,2-5cm,4,96,5,35
+DEJU,PIMA,3,2-5cm,4,100,5,40

@@ -1,0 +1,285 @@
+Plot_ID,Type,Sub_type,Taxa
+CPER_011,Distributed,Base,"Plant diversity, plant productivity"
+CPER_012,Distributed,Base,"Plant diversity, plant productivity"
+CPER_013,Distributed,Base,"Plant diversity, plant productivity"
+CPER_014,Distributed,Base,"Plant diversity, plant productivity"
+CPER_015,Distributed,Base,"Plant diversity, plant productivity"
+CPER_016,Distributed,Base,"Plant diversity, plant productivity"
+CPER_017,Distributed,Base,"Plant diversity, plant productivity"
+CPER_018,Distributed,Base,"Plant diversity, plant productivity"
+CPER_019,Distributed,Base,"Plant diversity, plant productivity"
+CPER_020,Distributed,Base,"Plant diversity, plant productivity"
+CPER_021,Distributed,Base,"Plant diversity, plant productivity"
+CPER_022,Distributed,Base,"Plant diversity, plant productivity"
+CPER_023,Distributed,Base,"Plant diversity, plant productivity"
+CPER_024,Distributed,Base,"Plant diversity, plant productivity"
+CPER_025,Distributed,Base,"Plant diversity, plant productivity"
+CPER_026,Distributed,Base,"Plant diversity, plant productivity"
+CPER_027,Distributed,Base,"Plant diversity, plant productivity"
+CPER_028,Distributed,Base,"Plant diversity, plant productivity"
+CPER_029,Distributed,Base,"Plant diversity, plant productivity"
+CPER_030,Distributed,Base,"Plant diversity, plant productivity"
+CPER_031,Distributed,Base,"Plant diversity, plant productivity"
+CPER_033,Distributed,Base,"Plant diversity, plant productivity"
+CPER_034,Distributed,Base,"Plant diversity, plant productivity"
+CPER_035,Distributed,Base,"Plant diversity, plant productivity"
+CPER_036,Distributed,Base,"Plant diversity, plant productivity"
+CPER_037,Distributed,Base,"Plant diversity, plant productivity"
+CPER_038,Distributed,Base,"Plant diversity, plant productivity"
+CPER_039,Distributed,Base,"Plant diversity, plant productivity"
+CPER_040,Distributed,Base,"Plant diversity, plant productivity"
+CPER_041,Distributed,Base,"Plant diversity, plant productivity"
+CPER_001,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant diversity, Plant Productivity"
+CPER_002,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant diversity, Plant Productivity"
+CPER_003,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant diversity, Plant Productivity"
+CPER_004,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant diversity, Plant Productivity"
+CPER_005,Distributed,Base,"Beetles, Plant diversity, plant productivity"
+CPER_006,Distributed,Base,"Beetles, Plant diversity, plant productivity"
+CPER_007,Distributed,Base,"Beetles, Plant diversity, plant productivity"
+CPER_008,Distributed,Base,"Beetles, plant diversity, plant productivity"
+CPER_009,Distributed,Base,"Beetles, Plant diversity, plant productivity"
+CPER_010,Distributed,Base,"Beetles, Plant diversity, plant productivity"
+CPER_077,Tower,Tower B,PlantPhenology
+CPER_045,Tower,Tower A,PlantProductivity
+CPER_046,Tower,Tower A,PlantProductivity
+CPER_047,Tower,Tower A,PlantProductivity
+CPER_048,Tower,Tower A,PlantProductivity
+CPER_049,Tower,Tower A,PlantProductivity
+CPER_050,Tower,Tower A,PlantProductivity
+CPER_051,Tower,Tower A,PlantProductivity
+CPER_052,Tower,Tower A,PlantProductivity
+CPER_053,Tower,Tower A,PlantProductivity
+CPER_054,Tower,Tower A,PlantProductivity
+CPER_055,Tower,Tower A,PlantProductivity
+CPER_056,Tower,Tower A,PlantProductivity
+CPER_057,Tower,Tower A,PlantProductivity
+CPER_058,Tower,Tower A,PlantProductivity
+CPER_060,Tower,Tower A,PlantProductivity
+CPER_061,Tower,Tower A,PlantProductivity
+CPER_062,Tower,Tower A,PlantProductivity
+CPER_063,Tower,Tower A,PlantProductivity
+CPER_064,Tower,Tower A,PlantProductivity
+CPER_065,Tower,Tower A,PlantProductivity
+CPER_066,Tower,Tower A,PlantProductivity
+CPER_067,Tower,Tower A,PlantProductivity
+CPER_068,Tower,Tower A,PlantProductivity
+CPER_069,Tower,Tower A,PlantProductivity
+CPER_070,Tower,Tower A,PlantProductivity
+CPER_071,Tower,Tower A,PlantProductivity
+CPER_072,Tower,Tower A,PlantProductivity
+CPER_073,Tower,Tower A,PlantProductivity
+CPER_074,Tower,Tower A,PlantProductivity
+CPER_509,Tower,Tower A,PlantProductivity
+DSNY_001,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_002,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_003,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_004,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_005,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_006,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_007,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_008,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_009,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_010,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_011,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_012,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_013,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_014,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_015,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_016,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_017,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_018,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_019,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_020,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_021,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_022,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_023,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_024,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_025,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_026,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_027,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_028,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_029,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_030,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_031,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_032,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_033,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_034,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_035,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_036,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_037,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_038,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_039,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_073,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_074,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+DSNY_071,Tower-Phenology,Type B,Phenology
+DSNY_072,Tower-Phenology,Type B,Phenology
+DSNY_041,Tower,Type A,Plant productivity
+DSNY_042,Tower,Type A,Plant productivity
+DSNY_043,Tower,Type A,Plant productivity
+DSNY_044,Tower,Type A,Plant productivity
+DSNY_045,Tower,Type A,Plant productivity
+DSNY_046,Tower,Type A,Plant productivity
+DSNY_047,Tower,Type A,Plant productivity
+DSNY_048,Tower,Type A,Plant productivity
+DSNY_049,Tower,Type A,Plant productivity
+DSNY_050,Tower,Type A,Plant productivity
+DSNY_051,Tower,Type A,Plant productivity
+DSNY_052,Tower,Type A,Plant productivity
+DSNY_053,Tower,Type A,Plant productivity
+DSNY_054,Tower,Type A,Plant productivity
+DSNY_055,Tower,Type A,Plant productivity
+DSNY_056,Tower,Type A,Plant productivity
+DSNY_057,Tower,Type A,Plant productivity
+DSNY_058,Tower,Type A,Plant productivity
+DSNY_059,Tower,Type A,Plant productivity
+DSNY_060,Tower,Type A,Plant productivity
+DSNY_061,Tower,Type A,Plant productivity
+DSNY_062,Tower,Type A,Plant productivity
+DSNY_063,Tower,Type A,Plant productivity
+DSNY_064,Tower,Type A,Plant productivity
+DSNY_065,Tower,Type A,Plant productivity
+DSNY_066,Tower,Type A,Plant productivity
+DSNY_067,Tower,Type A,Plant productivity
+DSNY_068,Tower,Type A,Plant productivity
+DSNY_069,Tower,Type A,Plant productivity
+DSNY_070,Tower,Type A,Plant productivity
+HARV_001,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_002,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_004,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_005,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_006,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_008,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_010,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_011,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_012,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_013,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_014,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_015,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_016,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_017,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_018,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_020,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_021,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_022,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_023,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_024,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_025,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_026,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_027,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_028,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_029,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_030,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_031,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_032,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+HARV_053,Tower,Type B,Phenology
+HARV_054,Tower,Type B,Phenology
+HARV_033,Tower,Type A,Plant Productivity
+HARV_034,Tower,Type A,Plant Productivity
+HARV_035,Tower,Type A,Plant Productivity
+HARV_036,Tower,Type A,Plant Productivity
+HARV_037,Tower,Type A,Plant Productivity
+HARV_038,Tower,Type A,Plant Productivity
+HARV_039,Tower,Type A,Plant Productivity
+HARV_040,Tower,Type A,Plant Productivity
+HARV_041,Tower,Type A,Plant Productivity
+HARV_042,Tower,Type A,Plant Productivity
+HARV_043,Tower,Type A,Plant Productivity
+HARV_044,Tower,Type A,Plant Productivity
+HARV_045,Tower,Type A,Plant Productivity
+HARV_046,Tower,Type A,Plant Productivity
+HARV_047,Tower,Type A,Plant Productivity
+HARV_048,Tower,Type A,Plant Productivity
+HARV_049,Tower,Type A,Plant Productivity
+HARV_050,Tower,Type A,Plant Productivity
+HARV_051,Tower,Type A,Plant Productivity
+HARV_052,Tower,Type A,Plant Productivity
+JERC_001,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_002,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_003,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_004,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_005,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_006,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_007,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_008,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_009,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_010,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_011,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_012,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_013,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_014,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_015,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_016,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_017,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_018,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_019,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_020,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_021,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_022,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_023,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_024,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_025,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_027,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_028,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_029,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_030,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_031,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_032,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_033,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_034,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_035,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_036,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_038,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_040,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_041,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_042,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+JERC_044,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Mosquitoes, Plant Diversity, Plant Productivity"
+OSBS_001,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_002,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_003,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_004,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_005,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_006,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_007,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_008,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_009,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_010,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_011,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_012,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_013,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_014,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_015,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_016,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_017,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_018,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_019,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_020,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_021,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_022,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_023,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_024,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_025,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_026,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_027,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_028,Distributed,Base,"Beetles, Biogeochemistry, Microbes, Plant Diversity, Plant Productivity"
+OSBS_045,Tower,Type B,Phenology
+OSBS_046,Tower,Type B,Phenology
+OSBS_025,Tower,Type A,Plant productivity
+OSBS_026,Tower,Type A,Plant productivity
+OSBS_027,Tower,Type A,Plant productivity
+OSBS_028,Tower,Type A,Plant productivity
+OSBS_029,Tower,Type A,Plant productivity
+OSBS_030,Tower,Type A,Plant productivity
+OSBS_031,Tower,Type A,Plant productivity
+OSBS_032,Tower,Type A,Plant productivity
+OSBS_033,Tower,Type A,Plant productivity
+OSBS_034,Tower,Type A,Plant productivity
+OSBS_035,Tower,Type A,Plant productivity
+OSBS_036,Tower,Type A,Plant productivity
+OSBS_037,Tower,Type A,Plant productivity
+OSBS_038,Tower,Type A,Plant productivity
+OSBS_039,Tower,Type A,Plant productivity
+OSBS_040,Tower,Type A,Plant productivity
+OSBS_041,Tower,Type A,Plant productivity
+OSBS_042,Tower,Type A,Plant productivity
+OSBS_043,Tower,Type A,Plant productivity
+OSBS_044,Tower,Type A,Plant productivity

@@ -1,0 +1,21 @@
+
+# Overview
+This data quality report is based on data files received from ARACDIS on 1/19/2015 for four of the five sites at which vegetation characterization field work occurred over the period from November 10th - January 10th.  The quality checks contained in this report represent the extent of what we are capable of assessing without field checking contractor performance. An additional quality report may still be filed for field work. For the purpose of this summary, we have divided our concerns into two general areas - issues related to species identification and issues related to data entry: 
+
+*Species ID* - Two issues arose with respect to species identifications
+
+1.  Incomplete identification - At two sites, HARV and SCBI only a portion of the dataset includes values in the scientificName field (23% complete at HARV, 68% complete at SCBI). Field work at both of these sites was initiated following fall senescence. In recognition of increased difficulty in positively identifying individuals to species, we relaxed the acceptable resolution to genus level (10/30/14 Git issue #3). This was reiterated in our 11/31/14 conference call as species ID should be to "Finest resolution possible given the conditions" (see meeting notes posted on GitHub). 
+
+2.  Use of incorrect data type in scientificName field - NEON uses USDA Plants as the taxonomic authority for naming/coding conventions but the data entry field for species is scientificName, which is defined in the Access DB vstFieldSummary table as 'Binomial latin name', this is reinforced through the constrained set of values available as a dropdown list in the scientificName field in the `vst_perindividual_in` table (See guidance in Data Transcription protocol section 8.3.2.e.iii). Nonetheless, all scientificName entries in the HARV and JERC datasets are codes. For JERC, converting from code to scientificName can be updated as all codes appear to be valid USDA Plants accepted codes however, in the HARV dataset, most of the codes used are not USDA codes, we have no way to confidently assign a scientificName to these records.  See the print out of unique values in the scientificName field (section 3.2, below) to identify additional errors, most of which are avoidable by utilizing the drop down list in the Access DB _in tables.
+
+*Data entry* - Some of these errors may be attributable to data transcription, others may be errors that originate in field data collection. In either case, data with these errors cannot be ingested into the NEON database.
+
+* Numeric values in remarks field. Are these values data? Remarks are not machine readable, as such, we are unable to make use of essential information if it is included in this field. 
+
+* invalid pointIDs, NEON cannot generate georeferenced  stem maps if stems are mapped from points other than those identified in the protocol
+
+* invalid growthForms, only growthForms listed in the protocol will be recognized by our ingest algorithms  
+
+* invalid Azimuth values, individuals are plotted as being outside of the designated plot boundaries
+
+*See site specific summaries below and supplemental error reports for more details.*

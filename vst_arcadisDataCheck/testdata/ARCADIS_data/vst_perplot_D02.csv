@@ -1,0 +1,31 @@
+"uid","measuredBy","recordedBy","date","plotID","nestedSubplotAreaShrubSapling","nestedSubplotAreaLiana","nestedSubplotAreaOther","nameAccordingToID","remarks"
+1,"D02TRC10","D02MRM22",20141118,"SCBI_062",25,25,25,,
+2,"D02TRC10","D02MRM22",20141119,"SCBI_062",25,25,25,,
+3,"D02TRC10","D02MRM22",20141120,"SCBI_062",25,25,25,,
+4,"D02TRC10","D02MRM22",20141124,"SCBI_062",25,25,25,,
+5,"D02TRC10","D02MRM22",20141120,"SCBI_063",100,100,100,,
+6,"D02TRC10","D02MRM22",20141121,"SCBI_063",100,100,100,,
+8,"D02MRM22","D02MRM22",20141124,"SCBI_047",25,25,25,,
+11,"D02EAP19","D02TRC10",20141125,"SCBI_067",25,25,25,,
+12,"D02MRM22","D02MRM22",20141125,"SCBI_067",25,25,25,,
+13,"D02EAP19","D02TRC101",20141125,"SCBI_048",100,100,100,,
+14,"D02MSC28","D02MRM22",20141201,"SCBI_048",100,100,100,,
+15,"D02MSC28","D02MRM22",20141202,"SCBI_046",,,,,"Entire 400 square meter subplot was mapped and tagged"
+16,"D02MSC28","D02MRM22",20141202,"SCBI_049",,,,,"Entire 400 square meter subplot was mapped and tagged"
+17,"D02MSC28","D02MRM22",20141203,"SCBI_055",,,,,"Entire 400 square meter subplot was mapped and tagged"
+18,"D02MSC28","D02MRM22",20141204,"SCBI_055",,,,,"Entire 400 square meter subplot was mapped and tagged"
+19,"D02MSC28","D02MRM22",20141203,"SCBI_066",25,25,25,,"Only Subplots 21 and 39 were mapped and tagged"
+20,"D02MSC28","D02MRM22",20141204,"SCBI_064",25,25,25,,"Only Subplots 39 and 41 were mapped and tagged"
+21,"D02MSC28","D02EAP19",20141208,"SCBI_045",10,10,10,,"Only Subplots 21 and 39 were mapped and tagged"
+22,"D02MSC28","D02EAP19",20141209,"SCBI_045",10,10,10,,"Only Subplots 21 and 39 were mapped and tagged"
+23,"D02MSC28","D02EAP19",20141210,"SCBI_058",10,10,10,,"Only Subplots 23 and 39 were mapped and tagged"
+24,"D01RTF20","D02EAP19",20141218,"SCBI_054",25,25,25,,"Only Subplots 39 and 41 were mapped and tagged"
+25,"D02MSC28","D02EAP19",20141211,"SCBI_056",25,25,25,,"Only Subplots 21 and 23 were mapped and tagged; D02MSC28 also on field team"
+26,"D02MSC28","D02EAP19",20141215,"SCBI_056",25,25,25,,"Only Subplots 21 and 23 were mapped and tagged; D02MSC28 also on field team"
+27,"D01RTF20","D02EAP19",20141215,"SCBI_057",25,25,25,,"Only Subplots 21 and 23 were mapped and tagged; D02MSC28 also on field team"
+28,"D01RTF20","D02EAP19",20141216,"SCBI_057",25,25,25,,"Only Subplots 21 and 23 were mapped and tagged; D02MSC28 also on field team"
+30,"D01RTF20","D02EAP19",20141217,"SCBI_061",10,10,10,,"Only Subplots 23 and 39 were mapped and tagged"
+31,"D01RTF20","D02EAP19",20141217,"SCBI_050",10,10,10,,"Only Subplots 23 and 39 were mapped and tagged"
+32,"D01RTF20","D02EAP19",20141216,"SCBI_051",100,100,100,,"Only Subplots 39 and 41 were mapped and tagged; D02MSC28 also on field team"
+33,"D01RTF20","D02EAP19",20141218,"SCBI_052",25,25,25,,"Only Subplots 23 and 41 were mapped and tagged"
+34,"D01RTF20","D02EAP19",20141217,"SCBI_053",10,10,10,,"Only Subplots 23 and 39  were mapped and tagged"

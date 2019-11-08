@@ -1,0 +1,38 @@
+---
+title: "Photosynthesis pathways to .xlsx"
+author: "Courtney Meier"
+date: "19 April 2016"
+output: html_document
+---
+
+### Get list of files
+```{r}
+setwd("~/Documents/neonScienceDocs/gitRepositories/neonPlantSampling/photosynthesis_pathways/pathways_byDomain")
+
+# Grab list of all .csv output files, one per each domain plus some other ancillary files, and retain only those files beginning with 'D' for the domain level files.
+fileGrab <- list.files(getwd())
+dList <- fileGrab[grepl("D", fileGrab)]
+
+```
+
+### Read in .csv, write out .xlsx
+``` {r}
+# Required libraries
+library(xlsx)
+library(stringr)
+
+# Use a 'for' loop to read each element of 'dList', and write out to a .xlsx file.
+for (i in 1:length(dList)){
+  df <- read.csv(dList[i], header=T, stringsAsFactors = F)
+  # Remove column of row names
+  df <- df[,-1]
+  # Get domainID, make a new name for the output file, write to .xlsx format
+  dID <- str_sub(dList[i], start=1, end=3)
+  outputName <- paste(dID, "photoPathways.xlsx", sep="_")
+  write.xlsx2(df, outputName, sheetName="Sheet1", col.names=TRUE, row.names=FALSE, showNA=TRUE)
+  
+}
+
+```
+
+

@@ -1,0 +1,121 @@
+---
+title: "CDW Tally Analysis: D11"
+author: "Cody Flagg, Courtney Meier"
+date: "8th January 2017"
+output: pdf_document
+---
+
+```{r setup, results='hold', warning=FALSE, message=FALSE}
+## Windows paths
+# inpath <- "C:/Users/cflagg/Documents/GitHub/neonPlantSampling/cdw_tally_analysis/D07/"
+# outpath <- inpath
+
+##  macOS inputs
+inpath <- "~/Documents/workDocuments/gitRepositories/neonPlantSampling/cdw_tally_analysis/fulcrumData_20170107/"
+domain <- "D11"
+outpath <- paste("~/Documents/workDocuments/gitRepositories/neonPlantSampling/cdw_tally_analysis/", domain, sep="")
+
+
+## import libraries
+library(plyr)
+library(dplyr)
+library(ggplot2)
+
+## import data
+parent_cdw <- read.csv(paste(inpath,"tos_coarse_downed_wood_tally_prod.csv",sep=""), header=TRUE)
+child_cdw <- read.csv(paste(inpath,"tos_coarse_downed_wood_tally_prod_per_plot_azimuth_log.csv",sep=""), header=TRUE)
+
+```
+
+
+```{r data_processing, results='hold'}
+## filter out parent fields that are unneeded
+parent_cdw_fil <- dplyr::select(parent_cdw, 
+                            fulcrum_id, domainid, siteid, plotid_parent, tallydate, volumefactor, particle_count)
+## filter out child fields that are unneeded
+child_cdw_fil <- dplyr::select(child_cdw, 
+                           fulcrum_parent_id, lidsazimuth, logdiameter, taxonid, decayclass, logid_ingest, logdistance, loglength, acceptedtaxonid, targettaxapresent)
+
+## join parent to child via parent::fulcrum_id to child::fulcrum_parent_id
+cdw <- merge(x = parent_cdw_fil, y = child_cdw_fil, by.x = "fulcrum_id", by.y = "fulcrum_parent_id", all.y = TRUE)
+
+## filter to the selected domain only
+cdw <- dplyr::filter(cdw, domainid == domain)
+
+## create diameter class factor
+cdw$diameterClass <- ifelse(cdw$logdiameter >= 10, '>=10cm', 
+                            ifelse(cdw$logdiameter <5, "2-5cm", "5-10cm"))
+ 
+## simplify decayclass to numeric value wrapped inside sapply(decayClassNum, "[[", 1) e.g. 'return first element of each list member'
+cdw$decayClassNum <- sapply(stringr::str_split(cdw$decayclass, pattern = " "),"[[", 1)
+
+
+## write file
+write.csv(cdw, file = paste(outpath, paste0("merged_",domain,"_cdw_rawdata.csv", sep=""), sep = "/"))
+
+```
+
+```{r summary_table, results='hold', echo=FALSE}
+#names(cdw)
+## table 1 -- count of taxonIDs, report top 10?
+## order ascending output by totalTaxa length() will count length of a vector
+
+## Filter out 'blank' transects where TTP = NO
+cdw_fil <- dplyr::filter(cdw, targettaxapresent == "Y")
+t1 <- ddply(cdw_fil, ~siteid+taxonid+decayClassNum+diameterClass, summarize, counts = length(taxonid))
+
+# an alternative to ddply call, returns similar result but output column name is defaulted
+# plyr::count(cdw, c("siteid","taxonid", "decayClassNum", "diameterClass"))
+
+## Sort rows by siteID then by descending number of counts
+t1 <- dplyr::arrange(t1, siteid, desc(counts), diameterClass, decayClassNum, taxonid)
+
+## Calculate relative abundances
+t1$totalLogs <- nrow(cdw_fil)
+t1$relativeAbundance <- round((t1$counts/t1$totalLogs)*100,2)
+t1$cumulativeAbundance <- round(cumsum(t1$relativeAbundance),2)
+
+## determine raw ranking by count of DST combo within siteid
+t1 <- plyr::ddply(t1, ~siteid, mutate, DSTrank = as.numeric(paste(1:length(counts))), DSTcombo = paste0(taxonid,"_", decayClassNum,"_",diameterClass))
+t2 <- ddply(cdw, ~siteid+taxonid, summarize, counts = length(taxonid))
+
+##  Determine required sample size per DST combo, and cumulative sample size
+t1$sampledDiskNum <- ifelse(t1$diameterClass == ">=10cm", 10,5)
+t1$cumulativeDiskNum <- cumsum(t1$sampledDiskNum)
+
+```
+
+`r knitr::kable(t1)`
+
+```{r rank_abundance_plots, results='hold', echo=FALSE}
+## species abundance/total abundance
+ggplot(data = t1, aes(x = DSTrank, y = counts, color = taxonid, shape = diameterClass, size = decayClassNum)) + geom_point() + facet_wrap(~siteid) + labs(title = "Rank Abundance of decayClass x sizeCategory x taxonID (DST)")
+```
+
+### Code
+
+```{r write_files, echo=FALSE}
+##  Prepare t1 for output to protocol appendix
+# Filter columns from t1 that are not required by Field Ops, and not needed in protocol appendix
+t1 %>% select(-DSTrank, -DSTcombo, -totalLogs) -> t1
+
+# Reorder columns
+t1 <- t1[c("siteid", "taxonid", "decayClassNum", "diameterClass", "relativeAbundance", "cumulativeAbundance", "sampledDiskNum", "cumulativeDiskNum")]
+
+# Rename columns
+t1 %>% rename(decayClass=decayClassNum, sizeCategory=diameterClass) -> t1
+
+write.csv(t1, file = paste(outpath, paste0(domain,"_tally_abundance.csv"), sep = "/"), row.names = F)
+```
+
+```{r setup2, ref.label="setup", eval=FALSE}
+```
+
+```{r dataprocess, ref.label="data_processing", eval=FALSE}
+```
+
+```{r table, ref.label="summary_table", eval=FALSE}
+```
+
+```{r rank_abundance, ref.label="rank_abundance_plots", eval=FALSE}
+```

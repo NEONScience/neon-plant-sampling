@@ -1,0 +1,16 @@
+"uid","measuredBy","recordedBy","date","plotID","nestedSubplotAreaShrubSapling","nestedSubplotAreaLiana","nestedSubplotAreaOther","nameAccordingToID","remarks"
+1,"D03ROC04","D03SOR06",20141124,"OSBS_026",100,100,100,,
+2,"D03ROC04","D03SOR06",20141125,"OSBS_027",100,100,100,,
+3,"D03ROC04","D03SOR06",20141210,"OSBS_028",100,100,100,,
+4,"D03ROC04","D03SOR06",20141118,"OSBS_029",100,100,100,,
+5,"D02EAP19","D03SOR06",20141202,"OSBS_030",,,,,"Number of stems in nested subplots were under required minimums."
+6,"D02EAP19","D03SOR06",20141204,"OSBS_031",100,100,100,,
+7,"D02EAP19","D03SOR06",20141205,"OSBS_032",,,,,"Number of stems in nested subplots were under required minimums."
+8,"D03CS12","D03SOR06",20141209,"OSBS_033",100,100,100,,
+9,"D03ROC04","D03SOR06",20141124,"OSBS_034",100,100,100,,
+10,"D03ROC04","D03SOR06",20141201,"OSBS_035",100,100,100,,
+11,"D03SOR06","D02EAP19",20141203,"OSBS_037",100,100,100,,
+12,"D03ROC04","D03SOR06",20141124,"OSBS_038",100,100,100,,
+13,"D03SOR06","D03ROC04",20141121,"OSBS_039",100,100,100,,
+14,"D03CS12","D03SOR06",20141210,"OSBS_040",,,,,"Number of stems in nested subplots were under required minimums."
+15,"D03ROC04","D03SOR06",20141202,"OSBS_041",,,,,"Number of stems in nested subplots were under required minimums."

@@ -1,0 +1,114 @@
+---
+title: "CDW Tally Analysis: D01 HARV"
+author: "Cody Flagg, Courtney Meier"
+date: "26th January 2017"
+output: pdf_document
+---
+
+```{r setup, results='hold', warning=FALSE, message=FALSE}
+## Windows paths
+# inpath <- "C:/Users/cflagg/Documents/GitHub/neonPlantSampling/cdw_tally_analysis/D07/"
+# outpath <- inpath
+
+##  macOS inputs
+if(file.exists("~/Documents/workDocuments")){
+  inpath <- "~/Documents/workDocuments/gitRepositories/neonPlantSampling/cdw_tally_analysis/fulcrumData_20170107/"
+  domain <- "D02"
+  site <- "SERC"
+  outpath <- paste("~/Documents/workDocuments/gitRepositories/neonPlantSampling/cdw_tally_analysis/", domain, sep="")
+}
+
+if(file.exists("~/Documents/neonScienceDocs")){
+  inpath <- "~/Documents/neonScienceDocs/gitRepositories/neonPlantSampling/cdw_tally_analysis/fulcrumData_20170107/"
+  domain <- "D01"
+  site <- "HARV"
+  outpath <- paste("~/Documents/neonScienceDocs/gitRepositories/neonPlantSampling/cdw_tally_analysis/", domain, sep="")
+}
+
+## import libraries
+library(plyr)
+library(dplyr)
+library(ggplot2)
+
+## import data
+input_cdw <- read.csv(paste(outpath, "cdw_tally_D01_2015.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+```
+
+
+```{r data_processing, results='hold'}
+##  filter to the selected domain, then site only
+cdw <- dplyr::filter(input_cdw, siteID==site)
+
+##  create diameter class factor
+cdw$diameterClass <- ifelse(cdw$logDiameter >= 10, '>=10cm', 
+                            ifelse(cdw$logDiameter <5, "2-5cm", "5-10cm"))
+ 
+##  Remove transects from dataset with taxonID = 'NOTARGETTAXA'
+cdw %>% dplyr::filter(taxonID!="NOTARGETTAXA") -> cdw_fil
+
+## write file
+write.csv(cdw_fil, file = paste(outpath, paste(domain, site, "cdw_rawdata.csv", sep="_"), sep = "/"))
+
+```
+
+```{r summary_table, results='hold', echo=FALSE}
+## Create summary table from filtered data
+t1 <- ddply(cdw_fil, ~siteID+taxonID+decayClass+diameterClass, summarize, counts = length(taxonID))
+
+## Sort rows by siteID then by descending number of counts
+t1 <- dplyr::arrange(t1, siteID, desc(counts), diameterClass, decayClass, taxonID)
+
+## Calculate relative abundances
+t1$totalLogs <- nrow(cdw_fil)
+t1$relativeAbundance <- round((t1$counts/t1$totalLogs)*100,2)
+t1$cumulativeAbundance <- round(cumsum(t1$relativeAbundance),2)
+
+## determine raw ranking by count of DST combo within siteid
+t1 <- plyr::ddply(t1, ~siteID, mutate, DSTrank = as.numeric(paste(1:length(counts))), DSTcombo = paste0(taxonID,"_", decayClass,"_",diameterClass))
+t2 <- ddply(cdw, ~siteid+taxonid, summarize, counts = length(taxonid))
+
+##  Determine required sample size per DST combo, and cumulative sample size
+t1$sampledDiskNum <- ifelse(t1$diameterClass == ">=10cm", 10,5)
+t1$cumulativeDiskNum <- cumsum(t1$sampledDiskNum)
+
+```
+
+`r knitr::kable(t1)`
+
+```{r rank_abundance_plots, results='hold', echo=FALSE}
+## species abundance/total abundance
+ggplot(data = t1, aes(x = DSTrank, y = counts, color = taxonid, shape = diameterClass, size = decayClassNum)) + geom_point() + facet_wrap(~siteid) + labs(title = "Rank Abundance of decayClass x sizeCategory x taxonID (DST)")
+```
+
+### Code
+
+```{r write_files, echo=FALSE}
+##  Prepare t1 for output to protocol appendix
+# Filter columns from t1 that are not required by Field Ops, and not needed in protocol appendix
+t1 %>% select(-DSTrank, -DSTcombo, -totalLogs, -counts) -> t1
+
+# Reorder columns
+t1 <- t1[c("siteID", "taxonID", "decayClass", "diameterClass", "relativeAbundance", "cumulativeAbundance", "sampledDiskNum", "cumulativeDiskNum")]
+
+# Rename columns
+t1 %>% rename(sizeCategory=diameterClass) -> t1
+
+# In taxonID field, replace 'Hardwood spp.' and 'Softwood spp.' with USDA codes
+t1$taxonID[t1$taxonID=="Hardwood spp."] <- "2Plant-H"
+t1$taxonID[t1$taxonID=="Softwood spp."] <- "2Plant-S"
+
+write.csv(t1, file = paste(outpath, paste(domain, site, "tally_abundance.csv", sep = "_"), sep = "/"), row.names = F)
+```
+
+```{r setup2, ref.label="setup", eval=FALSE}
+```
+
+```{r dataprocess, ref.label="data_processing", eval=FALSE}
+```
+
+```{r table, ref.label="summary_table", eval=FALSE}
+```
+
+```{r rank_abundance, ref.label="rank_abundance_plots", eval=FALSE}
+```

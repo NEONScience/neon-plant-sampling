@@ -1,0 +1,241 @@
+---
+title: "Selection of sites for bryophyte sampling"
+author: "FSU"
+date: \today
+output: pdf_document
+---
+
+
+
+```{r loadLibraries, echo=F, message=F}
+
+library(dplyr)
+library(knitr)
+
+```
+
+```{r filePaths, echo=F, message=F}
+
+if(file.exists(
+  'C:/Users/kjones')){
+  myPathToData<- 'C:/Users/kjones/SharePoint/Veg. Characterization - Documents/Data/Output CSVs/ready for dodobase'
+  myPathToRepo <- 'C:/Users/kjones/Documents/GitHub/neonPlantSampling'
+}
+
+```
+
+```{r function, echo=FALSE, message=FALSE}
+
+mossCheck <- function(ID){
+  df <- read.csv(paste(myPathToData, '/div_', ID, '_merged.csv', sep=""), stringsAsFactors = F)
+  df <- tbl_df(df)
+  # despite best efforts, column names vary in some div files, occasionally, moss cover values are in a single column labled 'moss' or mossCover
+  # look for keyword 'moss' in any of the column names, if found, subset this way
+  if(any(grepl('moss',names(df)))){
+    sub <- df%>%
+      #rename 'moss' field to percentCover
+      select(siteID, plotID, percentCover=contains("moss"))%>%
+      # remove rows with no moss data
+      filter(!is.na(percentCover))
+    #create taxonID = moss
+    sub$taxonID <- 'moss'
+  }else{
+  sub <- filter(df, taxonID=='moss')
+  }
+  
+  #empty dataFrame to hold results
+  out <- data.frame(site=ID,
+                    numPlots=length(unique(sub$plotID)),
+                    numMoss=nrow(sub),
+                    expectedNumMoss=length(unique(sub$plotID))*8,
+                    meanMoss=mean(sub$percentCover),
+                    result = ifelse(mean(sub$percentCover)>=20, 'sample', 'don\'t sample'))
+  
+  #print output
+ pOut <- kable(out, format="markdown", digits=1)
+ print(pOut)
+ 
+  if(out$result=='sample'){
+    plots <- group_by(sub, plotID)
+    out2 <- summarize(plots, count=n(), meanMoss=mean(percentCover),
+                      sampleBry=ifelse(mean(percentCover)>=20, 'Yes', 'No')) 
+
+    ## BARR and TOOL plotIDs = mOrder, need to reassign
+
+    plotData <- read.csv(paste(myPathToRepo, 'EAB_quarantine/mOrder_plots.csv', sep='/'), stringsAsFactors = F)
+    
+out2$mortonOrder <- NA
+out2$siteID <- NA
+
+    for(i in 1:nrow(out2)){
+      out2$siteID[i] <- substr(out2$plotID[i], 1, 4)
+      if(out2$siteID[i]=="TOOL" | out2$siteID[i]=="BARO"){
+        out2$mortonOrder[i] <- strsplit(out2$plotID[i], '_')[[1]][2]
+      }
+    }
+
+out2$siteID <- gsub("BARO", "BARR", out2$siteID)
+
+if(any(grepl("BARR", out2))){
+  out2 <- select(out2, -plotID)
+  plotType <- select(plotData, siteID, plotID, plotType, mortonOrder)
+  plotType$mortonOrder <- as.character(plotType$mortonOrder)
+  out2 <- left_join(out2, plotType)
+}else{
+  if(any(grepl("TOOL", out2))){
+  out2 <- select(out2, -plotID)
+  plotType <- select(plotData, siteID, plotID, plotType, mortonOrder)
+  plotType$mortonOrder <- as.character(plotType$mortonOrder)
+  out2 <- left_join(out2, plotType)
+}else{
+  plotType <- select(plotData, plotID, plotType)
+  out2 <- left_join(out2, plotType)
+}
+}
+   out2 <- out2 %>%
+    filter(plotType=='tower')%>%
+    select(plotID, count, meanMoss, sampleBry)
+   
+   #print output
+    kable(out2, format="markdown", digits=1)
+  }
+}
+
+
+```
+
+
+
+#Summary of Analysis
+
+For all sites presented in this report, except UNDERC (details below), data used for analysis of bryophyte abundance came from site characterization diversity surveys conducted within vegetation plots located in the NEON tower airshed. For each plot surveyed, percent cover of mat-forming bryophytes was estimated at each of 8 1m\textsuperscript{2} sampling areas.  
+
+The first table in each site specific section below indicates whether a site qualifies for bryophyte sampling. A qualifying site must have a mean percent cover of 20% bryophytes across all plots; if this threshold is not met, implementation of the bryophyte protocol will not occur at the specified site. 
+
+If a site qualifies (i.e., result = "sample"), each plot surveyed is assessed for bryophyte abundance. A plot with $<$ 20% bryophyte cover is disqualified from sampling (sampleBry = "no"), and plots with $\geq$ 20% bryophyte cover are accepted (sampleBry = "yes").
+
+
+# Treehaven (TREE)
+
+```{r TREE, echo=F, message=F, results="asis"}
+
+ID <- 'TREE'
+
+mossCheck(ID)
+
+```
+
+
+
+# UNDERC (UNDE)
+
+Site characterization was conducted according to a differen protocol than was utilized for all other sites in this report, percent cover of moss was recorded in diversity sureveys of tower plots. Anaysis of moss abundance has been completed on 2015 diversity sampling bout. These results represt estimated moss abundence across the entire site rather than just within the Tower airshed.  
+
+```{r UNDE, echo=F, message=F, results="asis"}
+
+ID <- 'UNDE'
+
+  df <- read.csv(paste(myPathToRepo, 'bryophyte_sampling', ID, 'UNDE20151m2Data.csv', sep="/"), stringsAsFactors = F)
+  df <- tbl_df(df)
+
+  sub <- df%>%
+    select(plotID, subplotID, otherVariables, percentCover)%>%
+    filter(otherVariables=='moss')
+  
+  #empty dataFrame to hold results
+  out <- data.frame(site=ID,
+                    numPlots=length(unique(sub$plotID)),
+                    numMoss=nrow(sub),
+                    expectedNumMoss=length(unique(sub$plotID))*8,
+                    meanMoss=mean(sub$percentCover),
+                    result = ifelse(mean(sub$percentCover)>=20, 'sample', 'don\'t sample'))
+  
+  #print output#
+
+pOut <- kable(out, format="markdown", digits=1)
+
+print(pOut)
+ 
+  if(out$result=='sample'){
+    plots <- group_by(sub, plotID)
+    out2 <- summarize(plots, count=n(), meanMoss=mean(percentCover),
+                      sampleBry=ifelse(mean(percentCover)>=20, 'Yes', 'No')) 
+    
+plotData <- read.csv(paste(myPathToRepo, 'EAB_quarantine/mOrder_plots.csv', sep='/'), stringsAsFactors = F)
+plotType <- select(plotData, plotID, plotType)
+out2 <- left_join(out2, plotType)
+out2 <- out2 %>%
+  filter(plotType=='tower')%>%
+  select(-plotType)
+    
+    #print output
+    kable(out2, format="markdown", digits=1)
+  }
+
+```
+
+
+
+
+# Steigerwaldt Land Services (STEI)
+
+```{r STEI, echo=F, message=F, results="asis"}
+
+ID <- 'STEI'
+
+mossCheck(ID)
+
+```
+
+
+# Healy (HEAL)
+```{r HEAL, echo=F, message=F, results="asis"}
+
+ID <- 'HEAL'
+
+mossCheck(ID)
+
+```
+
+
+# Delta Junction (DEJU)
+```{r DEJU, echo=F, message=F, results="asis"}
+
+ID <- 'DEJU'
+
+mossCheck(ID)
+
+```
+
+
+# Toolik Lake (TOOL)
+```{r TOOL, echo=F, message=F, results="asis"}
+
+ID <- 'TOOL'
+
+mossCheck(ID)
+
+```
+
+
+# Caribou Creek - Poker Flats Watershed (BONA)
+Site characterization has not yet been completed at this site. Analysis for bryophyte abundance and recommendations for sampling will be completed once data are avalilable.
+```{r BONA, echo=F, message=F, results="asis"}
+
+ID <- 'BONA'
+
+#mossCheck(ID)
+
+```
+
+
+# Barrow Environmental Observatory (BARR)
+```{r BARO, echo=F, message=F, results="asis"}
+
+ID <- 'BARO'
+#Old siteID used in veg characterization data
+
+mossCheck(ID)
+
+```
+

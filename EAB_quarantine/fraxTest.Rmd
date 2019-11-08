@@ -1,0 +1,298 @@
+---
+title: "EAB quarantine"
+author: "FSU"
+date: \today
+output: pdf_document
+---
+
+# Summary of analyses
+
+An Observatory wide approach to addressing sites under quarantine for Emerald Ash Borer is still under development; until guidance is available, implementation of the Litterfall and Fine Woody Debris protocol (NEON.DOC.001710) will only occur in plots where \textit{Fraxinus sp.} is not present. Data for summary tables of \textit{Fraxinus sp.} presence/absence comes from the vegetation characterization effort and implementation of the vegetation structure protocol. Though a plot may indicate that it is safe to collect material, this is intended to be general guidance; if Ash species are present in the plot, please discontinue litter sampling. 
+
+
+```{r loadLibraries, echo=F, message=F}
+
+
+library(plyr)
+library(dplyr)
+library(knitr)
+library(stringr)
+library(readr)
+
+```
+
+```{r filePaths, echo=F, message=F}
+
+if(file.exists(
+  'C:/Users/kjones')){
+  myPathToData<- 'C:/Users/kjones/SharePoint/Veg. Characterization - Documents/Data/Output CSVs/ready for dodobase'
+  myPathToRepo <- 'C:/Users/kjones/Documents/GitHub/neonPlantSampling/EAB_quarantine'
+  myPathToDev <- 'C:/Users/kjones/Documents/GitHub/devTOS'
+  myPathtoIPTrepo<-'C:/Users/kjones/Documents/GitHub/organismalIPT/'
+}
+
+# taxFile<-'N:/common/TOS/ATBDs/Lookups/pla_names_status_list3.csv'
+# taxTable<-read.table(taxFile, na.strings='', sep=',', fileEncoding='UTF-8')
+# titles<-read.csv(paste(myPathtoIPTrepo, 
+#                        'scienceDev/lookupTablesShared/taxonomyTemplate.csv', sep=''))
+# names(taxTable)<-titles$fieldName[1:95]
+#
+
+species <- read.csv(paste(myPathToRepo, 'fraxSpecies.csv', sep='/'), stringsAsFactors = F)
+for (i in 1:nrow(species)){
+  if (species$taxonID[i]==""){
+  species$taxonID[i] <- species$acceptedTaxonID[i]
+  }
+}
+species <- select(species, taxonID, scientificName)
+
+plotData <- read.csv(paste(myPathToRepo, 'mOrder_plots.csv', sep='/'), stringsAsFactors = F)
+plotType <- select(plotData, siteID, plotID, plotType)
+
+nsTrees <- read.csv('N:/Science/FSU/SiteCharacterization/2013 Site Characterization/2013_siteChar_veg data/NatureServe/cleaned by CSP 20150504/site_characterization_trees.csv', stringsAsFactors=F)
+
+
+```
+
+
+```{r mergeDataFunctions, message=F, echo=F}
+##### copied from ~GitHub\codingSupportGroup\FSUTools\file_merging\pull_all_filepaths_in_folderDirectory.R ##############
+
+multipleCombine <- function(input, ply = llply){
+  ply(input, function(x){
+    t <- read.csv(x, header=TRUE, sep=",",stringsAsFactors = FALSE) # read the csv
+    t1 <- rbind(t) # rbind it to a temporary variable
+    return(t1) # return the full variable
+  }
+  )
+}
+
+# a re-usable function - outputType can be 'vector' or 'list'
+fileParser <- function(directoryList, outputType = "vector"){
+  # need to dive into each folder, decide if it's a .csv or .xlsx, then read the rows
+  fullFilenameList <- list() # initialize a list object to populate
+  counter = 0
+  for (folder in directoryList){
+    # browser() # this is the interactive debugger, its scope is global & local
+    # list all files in a particular folder
+    folder_content <- list.files(folder, full.names = TRUE)
+    for (fileN in folder_content){
+      # iterate the file count for tracking and for indexing the list
+      counter = counter + 1
+      fullFilenameList[[counter]] <- fileN
+      print(fileN)
+    }
+  }
+  # what kind of output should be returned?
+  ifelse(outputType == "vector", 
+         # return a vector
+         return(unlist(fullFilenameList)),
+         # return a list
+         return(fullFilenameList))
+}
+##
+
+```
+
+```{r charDataMerge, echo=F, message=F}
+
+
+directory <- myPathToData
+
+#list all files
+folderList <- list.files(directory, full.names = TRUE)
+
+# grep VST files 
+vstList2 <- grep(pattern = "VST|vst", x = folderList, value = TRUE)
+
+# grep VST mapping and tagging only
+mappingList3 <- grep(pattern = "mapping", x = vstList2, value = TRUE)
+
+# grep .csv 
+mappingList4 <- grep(pattern = ".csv", x = mappingList3, value = TRUE)
+
+# save the stack
+char <- multipleCombine(mappingList4, ply = ldply)
+char <- left_join(char, species)
+char <- select(char, siteID, plotID, taxonID, scientificName)
+
+```
+
+```{r vstData, message=F, echo=F}
+
+pre2016 <- read.csv(paste(myPathToDev, 'fulcrum/fulcrum_table_data/vst_lookups/pre2016_dataMerge_mapping_apparentInds/vst_mapping_tagging_L0.csv', sep='/'), stringsAsFactors = F) 
+
+pre2016 <- select(pre2016, -scientificName)
+pre2016 <- left_join(pre2016, species)
+pre2016 <- select(pre2016, siteID, plotID, taxonID, scientificName)
+
+unde <- filter(nsTrees, Site_abbrev=='UNDE')
+#unde data on dropbox contains distributed plots only, must use NatureServe data and reassign plot_IDs
+IDmatch <- select(plotData, mortonOrder, siteID, plotID)
+IDmatch$mortonOrder <-   as.character(IDmatch$mortonOrder)
+unde <- select(unde, siteID=Site_abbrev, mortonOrder=Plot, taxonID=Taxon_Symbol, scientificName=Scientific.Name)
+unde <- left_join(unde, IDmatch)
+
+
+ornl <- read.csv('Z:/2015data/D07/VegStructure/VST_ORNL_2015/vst_ORNL_mapping_in_2014_2015.csv', stringsAsFactors=F)
+
+ornl$siteID <- toupper(substr(ornl$plotID, 1, 4))
+ornl$taxonID <- NA
+ornl <- select(ornl, siteID, plotID, taxonID, scientificName)
+
+new <- bind_rows(pre2016, char, unde, ornl)
+tower <- filter(plotType, plotType=='tower')
+new <- left_join(new, tower)
+new <- filter(new, !is.na(plotType))
+
+```
+
+
+
+```{r function, echo=FALSE, message=FALSE}
+
+fraxCheck <- function(ID=ALL, df=NULL){
+    df <- tbl_df(df)
+    # sub <- df%>%
+    #   select(siteID, plotID, taxonID, scientificName)
+    sub <- df[!duplicated(df), ]
+ #error if siteID is not contained in specified df
+    if(!(ID %in% unique(df$siteID))){
+      message(paste("df does not contain tower plot data for", ID))
+    }else{
+   sub2 <- filter(sub, siteID==ID)
+  #empty dataFrame to hold results
+  frax <- data.frame(plotID=unique(sub2$plotID),
+                    fraxPresent= NA) 
+  #remove rows with invalid plotIDs
+  frax <- filter(frax, grepl('_', plotID))
+  for(i in 1:nrow(frax)){
+    frax$fraxPresent[i] <- ifelse(any(grepl("Fraxinus", sub2$scientificName[frax$plotID[i]])), "yes", "no")
+  }
+  frax <- frax[!duplicated(frax), ]
+  frax <- frax %>% 
+    arrange(plotID)
+
+   if(all(frax$fraxPresent=='no')){
+     message("According to available data, there are no tower plots at ", ID, " that contain Fraxinus sp.", sep=' ')
+     message("Litterfall sampling may occur in all plots as directed in the protocol.")
+   }else{
+#     frax2 <- filter(frax, fraxPresent=='yes')
+    #print output
+ kable(frax, format="markdown", digits=1)
+   }
+   }
+}
+
+
+```
+
+## D01 - HARV
+
+
+
+```{r HARV, echo=F, comment=NA}
+
+fraxCheck(ID="HARV", df=new)
+
+```
+
+
+##D01 - BART
+```{r BART, echo=F, comment=NA}
+
+fraxCheck(ID="BART", df=new)
+
+```
+
+
+
+##D02 - SCBI
+```{r SCBI, echo=F, comment=NA}
+
+fraxCheck(ID="SCBI", df=new)
+
+```
+
+
+
+##D02 - SERC
+```{r SERC, echo=F, comment=NA}
+
+fraxCheck(ID="SERC", df=new)
+
+```
+
+
+##D05 - UNDE
+
+```{r UNDE, echo=F, comment=NA}
+
+fraxCheck(ID="UNDE", df=new)
+
+```
+
+
+##D05 - STEI
+
+```{r STEI, echo=F, comment=NA}
+
+fraxCheck(ID="STEI", df=new)
+
+```
+
+
+##D05 - TREE
+
+```{r TREE, echo=F, comment=NA}
+
+fraxCheck(ID="TREE", df=new)
+
+```
+
+
+##D06 - UKFS
+
+```{r UKFS, echo=F, comment=NA}
+
+fraxCheck(ID="UKFS", df=new)
+
+```
+
+##D06 - KONZ
+
+```{r KONZ, echo=F, comment=NA}
+
+fraxCheck(ID="KONZ", df=new)
+
+```
+
+
+##D07 - ORNL
+
+```{r ORNL, echo=F, comment=NA}
+
+data <- read.csv('Z:/2015data/D07/VegStructure/VST_ORNL_2015/vst_ORNL_mapping_in_2014_2015.csv', stringsAsFactors=F)
+
+data$siteID <- toupper(substr(data$plotID, 1, 4))
+data$taxonID <- NA
+
+fraxCheck(ID="ORNL", df=new)
+
+```
+
+##D07 - GRSM
+
+```{r GRSM, echo=F, comment=NA}
+
+fraxCheck(ID="GRSM", df=new)
+
+```
+
+##D07 - MLBS
+
+```{r MLBS, echo=F, comment=NA}
+
+fraxCheck(ID="MLBS", df=new)
+
+```

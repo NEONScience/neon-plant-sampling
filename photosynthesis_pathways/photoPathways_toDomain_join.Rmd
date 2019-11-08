@@ -1,0 +1,78 @@
+---
+title: "photoPathway_toDomain_join"
+author: "Cody Flagg"
+date: "Wednesday, April 15, 2015"
+output: pdf_document
+---
+
+
+### Load Data
+```{r}
+
+setwd("N:/common/TOS/FOPSDataEntry/2015/taxonTables/plantList_byDomain_2015")
+
+fileGrab = list.files(getwd(), full.names=TRUE)
+
+prefix1 = 'photo_'
+prefix2 = '_plant.csv'
+
+# sometimes embedding functions can be dangerous...but not here -- WOULD ALSO WORK WITH A DAMN PIPE, LEARN DAT
+pathways = read.csv(fileGrab[grep(prefix1,fileGrab)],header=TRUE, sep=",",stringsAsFactors = FALSE)
+
+plantList = fileGrab[grep(prefix2,fileGrab)]
+
+library(dplyr) # for joining
+library(plyr) # for plying across files
+library(stringr) # for grabbing strings
+```
+
+### test code
+
+* 
+```{r}
+# take the first .csv to test
+test1 <- read.csv(plantList[1], header=TRUE, sep=",", stringsAsFactors = FALSE)
+
+# keep track of the number of rows
+plantRows <- nrow(test1)
+pathwayRows <- nrow(pathways)
+
+# check structure
+tail(test1)
+head(pathways)
+
+# an inner join with no duplicates; inner_join returns dupes
+# using head to minimize the number of records returned
+store.test1 = inner_join(test1, pathways, by = "taxonID")
+nrow(store.test1)
+
+names(store.test1)
+
+plantList2 = plantList[1:2]
+
+str_sub(plantList2[1],-14,-11)
+
+subset(store.test1, select = c("taxonID","acceptedTaxonID","family.x","genus.x","species", "pathway", "scientificName.x", "commonName","reference","nativeStatusCode"))
+
+names(store.test1)
+```
+
+
+### plyr() function
+```{r}
+# for each file in this list...
+ldply(plantList, function(input){
+  # read in the plant list
+  t <- read.csv(input,header=TRUE, sep=",",stringsAsFactors = FALSE)
+  # join with the pathway list stored in memory
+  t2 <- inner_join(t, pathways, by ="taxonID")
+  # subset by the necessary columns, x = plant dataframe, y = pathway dataframe 
+  t3 <- subset(t2, select = c("taxonID","acceptedTaxonID","family.x","genus.x","species", "pathway", "scientificName.y", "commonName","reference","nativeStatusCode"))
+  # write to a new file
+  domainName <- str_sub(input,-14,-11) # grab the domain name
+  write.csv(t3, file = paste(domainName,"pathways",".csv"))
+})
+
+```
+
+

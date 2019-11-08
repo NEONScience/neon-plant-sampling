@@ -1,0 +1,1789 @@
+"uid","date","plotID","subplotID","nestedSubplotID","tagID","supportingStemTagID","pointID","stemAzimuth","stemDistance","scientificName","identificationQualifier","growthForm","remarks"
+1,20150106,"TALL_051",39,1,"2158",,,,,"Rhus copallinum",,"smt","no transcription errors found"
+2,20150106,"TALL_051",39,1,"2159",,,,,"Cynoxylon floridum",,"smt",
+3,20150106,"TALL_051",39,1,"2175",,,,,"Carya alba",,"smt","dead"
+4,20150106,"TALL_051",39,1,"2168",,,,,"Quercus nigra",,"smt","no transcription errors found"
+5,20150106,"TALL_051",39,1,"2170",,,,,"Quercus rubra",,"sap",
+6,20150106,"TALL_051",39,1,"2162",,,,,"Carya",,"sap",
+7,20150106,"TALL_051",39,1,"2164",,,,,"Carya microcarpa",,"sap",
+8,20150106,"TALL_051",39,1,"2160",,,,,"Liquidambar styraciflua",,"smt",
+9,20150106,"TALL_051",39,1,"2173",,,,,"Liquidambar styraciflua",,"sap",
+10,20150106,"TALL_051",39,1,"2161",,,,,"Liquidambar styraciflua",,"smt","no transcription errors found"
+11,20150106,"TALL_051",21,4,"2190",,,,,"Liquidambar styraciflua",,"sis",
+12,20150106,"TALL_051",21,4,"2193",,,,,"Quercus","cf. species","sap",
+13,20150106,"TALL_051",21,4,"2192",,,,,"Quercus","cf. species","sms",
+14,20150106,"TALL_051",21,4,"2182",,,,,"Liquidambar styraciflua",,"sap",
+15,20150106,"TALL_051",21,4,"2189",,,,,"Quercus","cf. species","sap",
+16,20150106,"TALL_051",21,1,"2194",,,,,"Liquidambar styraciflua",,"sap",
+17,20150106,"TALL_051",21,1,"1901",,,,,"Oxydendrum arboreum",,"sis",
+18,20150106,"TALL_051",39,,"1903",,39,"35.4","17.6","Pinus taeda",,"sbt",
+19,20150106,"TALL_051",39,,"1904",,39,"49.4","19.6","Pinus palustris",,"sbt",
+20,20150106,"TALL_051",39,,"1906",,39,"62.4","14.9","Pinus taeda",,"sbt","no transcription errors found"
+21,20150106,"TALL_051",39,,"1907",,39,"41.8","5.8","Quercus alba",,"sbt","dead"
+22,20150106,"TALL_051",39,,"1913",,39,"22","7.4","Quercus","cf. species","sbt",
+23,20150106,"TALL_051",21,,"1918",,39,"171.4","13.2","Quercus alba",,"sbt",
+24,20150106,"TALL_051",21,,"1919",,41,"207.1","13.5","Pinus","cf. species","sbt","no transcription errors found"
+25,20150106,"TALL_051",21,,"1920",,41,"192","15.8","Pinus","cf. species","sbt",
+26,20150106,"TALL_051",21,,"1922",,41,"193.7","18.3","Pinus","cf. species","sbt",
+27,20150106,"TALL_051",39,3,"2151",,,,,"Rhus copallinum",,"smt","no transcription errors found"
+28,20150106,"TALL_051",39,3,"1612",,,,,"Cynoxylon floridum",,"sis",
+29,20150106,"TALL_051",39,3,"2152",,,,,"Quercus falcata",,"smt",
+30,20150106,"TALL_051",39,3,"1613",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+31,20150106,"TALL_051",39,3,"2153",,,,,"Rhus copallinum",,"smt",
+32,20150106,"TALL_051",39,3,"1614",,,,,"Carya microcarpa",,"smt",
+33,20150106,"TALL_051",39,3,"2154",,,,,"Liquidambar styraciflua",,"sis",
+34,20150106,"TALL_051",39,3,"2156",,,,,"Rhus copallinum",,"smt",
+35,20150106,"TALL_051",39,3,"1502",,,,,"Rhus copallinum",,"sap","dead"
+36,20150106,"TALL_051",39,3,"2157",,,,,"Liquidambar styraciflua",,"sis",
+37,20150106,"TALL_050",41,1,"1615",,,,,,,"sap",
+38,20150106,"TALL_050",41,1,"1685",,,,,,,"sap",
+39,20150106,"TALL_050",41,1,"1681",,,,,,,"sap",
+40,20150106,"TALL_050",41,1,"1627",,,,,,,"sap","no transcription errors found"
+41,20150106,"TALL_050",41,1,"1616",,,,,,,"sap",
+42,20150106,"TALL_050",41,1,"1617",,,,,,,"sap",
+43,20150106,"TALL_050",41,1,"1618",,,,,,,"sap",
+44,20150106,"TALL_050",41,1,"165",,,,,,,"sap",
+45,20150106,"TALL_050",41,1,"1634",,,,,,,"sap",
+46,20150106,"TALL_050",41,1,"1649",,,,,,,"sms",
+47,20150106,"TALL_050",41,1,"1660",,,,,,,"sms",
+48,20150106,"TALL_050",41,1,"1666",,,,,,,"sap",
+49,20150106,"TALL_050",41,1,"1661",,,,,,,"sap",
+50,20150106,"TALL_050",41,1,"1667",,,,,,,"sap","no transcription errors found"
+51,20150106,"TALL_050",41,1,"1665",,,,,,,"sap",
+52,20150106,"TALL_050",41,1,"1669",,,,,,,"sap",
+53,20150106,"TALL_050",41,1,"1674",,,,,,,"sms",
+54,20150106,"TALL_050",41,1,"1668",,,,,,,"sap",
+55,20150106,"TALL_050",41,1,"1675",,,,,"Liquidambar styraciflua",,"sms",
+56,20150106,"TALL_050",41,1,"1676",,,,,,,"sap",
+57,20150106,"TALL_050",41,1,"1680",,,,,,,"sap",
+58,20150106,"TALL_050",41,4,"1702",,,,,,,"sap",
+59,20150106,"TALL_050",41,4,"1700",,,,,,,"sms",
+60,20150106,"TALL_050",41,4,"1699",,,,,,,"sap","no transcription errors found"
+61,20150106,"TALL_050",41,4,"1695",,,,,"Quercus","cf. genus","smt",
+62,20150106,"TALL_050",41,4,"1696",,,,,,,"sap",
+63,20150106,"TALL_050",41,4,"1697",,,,,,,"sms",
+64,20150106,"TALL_050",41,4,"1686",,,,,"Quercus","cf. genus","smt",
+65,20150106,"TALL_050",41,4,"1703",,,,,,,"sms",
+66,20150106,"TALL_050",41,4,"1704",,,,,,,"sap",
+67,20150106,"TALL_050",41,4,"1705",,,,,,,"sap",
+68,20150106,"TALL_050",41,4,"1706",,,,,,,"sap",
+69,20150106,"TALL_050",41,4,"1707",,,,,,,"sap",
+70,20150106,"TALL_050",21,4,"1712",,,,,,,"sms","no transcription errors found"
+71,20150106,"TALL_050",21,4,"1711",,,,,,,"sap",
+72,20150106,"TALL_050",21,4,"1709",,,,,,,"sms",
+73,20150106,"TALL_050",21,4,"1708",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+74,20150106,"TALL_050",21,4,"1726",,,,,"Vaccinium arboreum",,"sap",
+75,20150106,"TALL_050",21,4,"1725",,,,,"Oxydendrum arboreum",,"sap",
+76,20150106,"TALL_050",21,4,"1731",,,,,"Vaccinium arboreum",,"sms",
+77,20150106,"TALL_050",21,4,"1724",,,,,"Vaccinium arboreum",,"sms",
+78,20150106,"TALL_050",21,4,"1729",,,,,"Vaccinium arboreum",,"sap",
+79,20150106,"TALL_050",21,4,"1727",,,,,"Vaccinium arboreum",,"sap",
+80,20150106,"TALL_050",21,4,"1728",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+81,20150106,"TALL_050",21,4,"1721",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+82,20150106,"TALL_050",21,4,"1722",,,,,"Vaccinium arboreum",,"sap",
+83,20150106,"TALL_050",21,4,"1723",,,,,"Oxydendrum arboreum",,"sms",
+84,20150106,"TALL_050",21,4,"1720",,,,,"Oxydendrum arboreum",,"sms",
+85,20150106,"TALL_050",21,1,"1732",,,,,"Oxydendrum arboreum","cf. species","sis",
+86,20150106,"TALL_050",21,1,"1739",,,,,"Vaccinium arboreum",,"sis",
+87,20150106,"TALL_050",21,1,"1740",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+88,20150106,"TALL_050",21,1,"1741",,,,,"Cynoxylon floridum",,"sis",
+89,20150106,"TALL_050",21,1,"1742",,,,,"Vaccinium arboreum",,"sap",
+90,20150106,"TALL_050",21,1,"1743",,,,,"Vaccinium arboreum",,"sms","no transcription errors found"
+91,20150106,"TALL_050",21,1,"1744",,,,,"Vaccinium arboreum",,"sap",
+93,20150106,"TALL_050",21,1,"1747",,,,,"Vitis rotundifolia",,"sap",
+94,20150106,"TALL_050",21,1,"1748",,,,,"Vaccinium arboreum",,"sms","no transcription errors found"
+95,20150106,"TALL_050",21,1,"1749",,,,,"Rhus copallinum",,"sap",
+96,20150106,"TALL_050",21,1,"1750",,,,,"Vaccinium arboreum",,"sap",
+97,20150106,"TALL_050",21,1,"1751",,,,,"Vaccinium arboreum",,"sap",
+98,20150106,"TALL_050",41,,"1752",,43,"302.5","7.2","Pinus palustris",,"sbt",
+99,20150106,"TALL_050",41,,"1753",,43,"319.9","5.6","Pinus palustris",,"sbt","no transcription errros found"
+100,20150106,"TALL_050",41,,"1754",,43,"331.3","7.1","Pinus palustris",,"sbt","no transcription errors found"
+101,20150106,"TALL_050",41,,"1755",,43,"359.7","9","Pinus palustris",,"sbt",
+102,20150106,"TALL_050",41,,"1756",,43,"332.8","13.4","Pinus palustris",,"sbt",
+103,20150106,"TALL_050",41,,"1757",,43,"339","14.7","Pinus palustris",,"sbt",
+104,20150106,"TALL_050",41,,"1758",,43,"324.3","14.6","Pinus palustris",,"sbt",
+105,20150106,"TALL_050",41,,"1797",,43,"319.3","14.7","Pinus palustris",,"sbt",
+106,20150106,"TALL_050",41,,"1798",,43,"317.9","15.2","Pinus palustris",,"sbt",
+107,20150106,"TALL_050",41,,"1799",,43,"308.7","19.3","Pinus palustris",,"sbt",
+108,20150106,"TALL_050",41,,"2101",,43,"292","14.5","Pinus palustris",,"sbt","no transcription errors found"
+109,20150106,"TALL_050",41,,"2102",,41,"359.8","9.1","Pinus palustris",,"sbt","No error in data transcription;No error in stemAzimuth transcription"
+110,20150106,"TALL_050",41,,"2103",,41,"8.8","17.4","Pinus palustris",,"sbt","no transcription errors found"
+111,20150106,"TALL_050",41,,"2104",,41,"2.3","19.8","Pinus palustris",,"sbt",
+112,20150106,"TALL_050",41,,"2105",,41,"19.3","19","Pinus palustris",,"sbt","no transcription errors found"
+113,20150106,"TALL_050",21,,"2106",,21,"44","6","Pinus palustris",,"sbt",
+114,20150106,"TALL_050",21,,"2107",,21,"37.2","9.5","Pinus palustris",,"sbt",
+115,20150106,"TALL_050",21,,"2108",,21,"22.2","12.1","Pinus palustris",,"sbt",
+116,20150106,"TALL_050",21,,"2109",,21,"41","13.2","Pinus palustris",,"sbt","no transcription errors found"
+117,20150106,"TALL_050",21,,"2110",,21,"48.2","15.6","Pinus palustris",,"sbt",
+118,20150106,"TALL_050",21,,"2113",,21,"81.1","15.2","Pinus palustris",,"sbt",
+119,20150106,"TALL_050",21,,"2114",,21,"56.3","18.9","Pinus palustris",,"sbt",
+120,20150106,"TALL_050",21,,"2116",,21,"38.8","18.4","Pinus palustris",,"sbt","no transcription errors found"
+121,20150106,"TALL_050",21,,"2117",,21,"31.7","15.7","Pinus palustris",,"sbt",
+122,20150106,"TALL_050",21,,"2118",,21,"16.4","17.2","Pinus palustris",,"sbt",
+123,20150106,"TALL_050",21,,"2120",,21,"16.4","17.8","Pinus palustris",,"sbt",
+124,20150106,"TALL_050",21,,"2140",,39,"145.3","2.9","Pinus palustris",,"sbt","no transcription errors found"
+125,20150106,"TALL_050",21,,"2145",,41,"220.6","4.6","Pinus palustris",,"sbt",
+126,20150106,"TALL_050",21,,"2146",,41,"231.5","2.3","Pinus palustris",,"sbt","dead"
+127,20150106,"TALL_050",21,,"2149",,41,"265.7","4.1","Pinus palustris",,"sbt",
+128,20150106,"TALL_050",21,,"2150",,41,"264.5","5.6","Pinus palustris",,"sbt",
+129,20150107,"TALL_061",21,1,"2579",,,,,"Vaccinium arboreum",,"sap",
+130,20150107,"TALL_061",21,1,"2580",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+131,20150107,"TALL_061",21,1,"2581",,,,,"Vaccinium arboreum",,"sap",
+132,20150107,"TALL_061",21,1,"2584",,,,,"Rhus copallinum",,"sap",
+133,20150107,"TALL_061",21,1,"2585",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+134,20150107,"TALL_061",21,1,"2586",,,,,"Vaccinium arboreum",,"sap",
+135,20150107,"TALL_061",21,1,"2589",,,,,"Vaccinium arboreum",,"sap",
+136,20150107,"TALL_061",21,1,"2590",,,,,"Vaccinium arboreum",,"sms",
+137,20150107,"TALL_061",21,1,"2591",,,,,"Vaccinium arboreum",,"sms",
+138,20150107,"TALL_061",21,1,"2195",,,,,"Vaccinium arboreum",,"sms",
+139,20150107,"TALL_061",21,1,"2196",,,,,"Vaccinium arboreum",,"sms",
+140,20150107,"TALL_061",21,,"2197",,21,"80.1","5.9","Pinus","cf. species","sbt","dead, no transcription errors found"
+141,20150107,"TALL_061",21,,"2198",,21,"80","9.4","Pinus palustris",,"sbt",
+142,20150107,"TALL_061",21,,"2199",,21,"57.4","7.7","Pinus taeda",,"sbt",
+143,20150107,"TALL_061",21,,"2200",,21,"63.2","13.3","Pinus palustris",,"sbt",
+144,20150107,"TALL_061",21,,"2502",,21,"42.4","11","Pinus palustris",,"sbt",
+145,20150107,"TALL_061",21,,"1923",,21,"37.2","10.9","Pinus palustris",,"sbt",
+146,20150107,"TALL_061",21,,"1924",,21,"23.7","11.8","Pinus palustris",,"sbt",
+147,20150107,"TALL_061",21,,"1925",,21,"31.9","15.3","Pinus palustris",,"sbt",
+148,20150107,"TALL_061",21,,"1926",,21,"41","14.6","Pinus palustris",,"sbt",
+149,20150107,"TALL_061",39,,"1928",,39,"22.9","5.5","Pinus palustris",,"sbt",
+150,20150107,"TALL_061",39,,"1929",,39,"72.2","15.6","Pinus palustris",,"sbt","no transcription errors found"
+151,20150107,"TALL_061",39,,"1930",,39,"81.4","18.9","Pinus palustris",,"sbt",
+152,20150107,"TALL_061",39,,"1934",,57,"160.2","2.7","Pinus palustris",,"sbt",
+153,20150107,"TALL_061",39,,"1935",,57,"98.6","19.9","Pinus palustris",,"sbt",
+154,20150107,"TALL_061",39,,"1949",,57,"107.5","18.9","Pinus palustris",,"sbt",
+155,20150107,"TALL_061",39,1,"2503",,,,,"Vaccinium arboreum",,"sms","no transcription errors found"
+156,20150107,"TALL_061",39,1,"2504",,,,,"Symplocos tinctoria",,"sms",
+157,20150107,"TALL_061",39,1,"2505",,,,,"Symplocos tinctoria",,"sap",
+158,20150107,"TALL_061",39,1,"2506",,,,,"Symplocos tinctoria",,"sap",
+159,20150107,"TALL_061",39,1,"2507",,,,,"Symplocos tinctoria",,"sms",
+160,20150107,"TALL_061",39,1,"2512",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+161,20150107,"TALL_061",39,1,"2513",,,,,"Vaccinium arboreum",,"sms",
+162,20150107,"TALL_061",39,1,"2514",,,,,"Rhus copallinum",,"sap",
+163,20150107,"TALL_061",39,1,"2516",,,,,"Rhus copallinum",,"sap",
+164,20150107,"TALL_061",39,1,"2517",,,,,"Vaccinium arboreum",,"sap",
+165,20150107,"TALL_061",39,1,"2518",,,,,"Rhus copallinum",,"sms",
+166,20150107,"TALL_061",39,1,"2519",,,,,"Rhus copallinum",,"sap",
+167,20150107,"TALL_061",39,1,"2520",,,,,"Vaccinium arboreum",,"sap",
+168,20150107,"TALL_061",39,1,"2521",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+169,20150107,"TALL_061",39,3,"2522",,,,,"Rhus copallinum",,"sap",
+170,20150107,"TALL_061",39,3,"2523",,,,,"Oxydendrum arboreum",,"sis","no transcription errors found"
+171,20150107,"TALL_061",39,3,"2524",,,,,"Oxydendrum arboreum",,"sis","no transcription errors found"
+172,20150107,"TALL_061",39,3,"2525",,,,,"Oxydendrum arboreum",,"smt",
+173,20150107,"TALL_061",39,3,"2526",,,,,"Liquidambar styraciflua",,"smt",
+174,20150107,"TALL_061",39,3,"2527",,,,,"Oxydendrum arboreum",,"sis",
+175,20150107,"TALL_061",39,3,"2528",,,,,"Oxydendrum arboreum",,"smt","no transcription errors found"
+176,20150107,"TALL_061",39,3,"2533",,,,,"Symplocos tinctoria",,"sap",
+177,20150107,"TALL_061",39,3,"2535",,,,,"Rhus copallinum",,"sap",
+178,20150107,"TALL_061",21,4,"2539",,,,,"Liquidambar styraciflua",,"sis",
+179,20150107,"TALL_061",21,4,"2540",,,,,"Liquidambar styraciflua",,"sap",
+180,20150107,"TALL_061",21,4,"2541",,,,,"Vaccinium arboreum",,"sms","no transcription errors found"
+181,20150107,"TALL_061",21,4,"2542",,,,,"Rhus copallinum",,"sap",
+182,20150107,"TALL_061",21,4,"2543",,,,,"Liquidambar styraciflua",,"sis",
+183,20150107,"TALL_061",21,1,"2544",,,,,"Vaccinium arboreum",,"sap",
+184,20150107,"TALL_061",21,1,"2556",,,,,"Rhus copallinum",,"sap",
+185,20150107,"TALL_061",21,1,"2557",,,,,"Rhus copallinum",,"sap",
+186,20150107,"TALL_061",21,1,"2560",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+187,20150107,"TALL_061",21,1,"2562",,,,,"Rhus copallinum",,"sms",
+188,20150107,"TALL_061",21,1,"2563",,,,,"Symplocos tinctoria",,"sap",
+189,20150107,"TALL_061",21,1,"2564",,,,,"Vaccinium arboreum",,"sms",
+190,20150107,"TALL_061",21,1,"2565",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+191,20150107,"TALL_061",21,1,"2566",,,,,"Rhus copallinum",,"sap",
+192,20150107,"TALL_061",21,1,"2570",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+193,20150107,"TALL_061",21,1,"2571",,,,,"Vaccinium arboreum",,"sap",
+194,20150107,"TALL_061",21,1,"2572",,,,,"Symplocos tinctoria",,"sap",
+195,20150107,"TALL_061",21,1,"2574",,,,,"Vaccinium arboreum",,"sap",
+196,20150107,"TALL_061",21,1,"2577",,,,,"Vaccinium arboreum",,"sap",
+197,20150107,"TALL_061",21,1,"2578",,,,,"Vaccinium arboreum",,"sap",
+198,20150107,"TALL_055",39,3,"1806",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+199,20150107,"TALL_055",39,3,"1807",,,,,"Liquidambar styraciflua",,"sap",
+200,20150107,"TALL_055",39,1,"1808",,,,,"Hamamelis virginiana var. parvifolia",,"smt","no transcription errors found"
+201,20150107,"TALL_055",39,1,"1809",,,,,"Liquidambar styraciflua",,"smt",
+202,20150107,"TALL_055",39,1,"1810",,,,,"Liquidambar styraciflua",,"smt",
+203,20150107,"TALL_055",41,1,"1811",,,,,"Plantago",,"sms",
+204,20150107,"TALL_055",41,1,"1812",,,,,,,"sap",
+205,20150107,"TALL_055",41,4,"1813",,,,,"Quercus alba",,"sap",
+206,20150107,"TALL_055",41,4,"1814",,,,,"Acer rubrum",,"sap",
+207,20150107,"TALL_055",41,4,"1815",,,,,"Acer rubrum",,"sap",
+208,20150107,"TALL_055",41,4,"1816",,,,,"Acer rubrum",,"sap",
+209,20150107,"TALL_055",39,,"1817",,59,"265.4","16.5","Pinus","cf. species","sbt",
+210,20150107,"TALL_055",39,,"1818",,59,"243.4","15.4","Pinus","cf. species","sbt","no transcription errors found"
+211,20150107,"TALL_055",39,,"1819",,59,"221.6","13.3","Quercus falcata","cf. species","mbt","no transcription errors found"
+212,20150107,"TALL_055",39,,"1819A",,59,"221.6","13.3","Quercus falcata","cf. species","mbt",
+213,20150107,"TALL_055",39,,"1820",,59,"240.1","21.2","Quercus alba",,"sbt",
+214,20150107,"TALL_055",39,,"1821",,59,"233.6","23.2","Quercus alba",,"sbt",
+215,20150107,"TALL_055",39,,"1827",,59,"228.6","28","Quercus alba",,"sbt","dead"
+216,20150107,"TALL_055",39,,"1828",,59,"227.6","24.7","Liquidambar styraciflua",,"sbt",
+217,20150107,"TALL_055",39,,"1829",,59,"223.2","22.5","Quercus alba",,"sbt",
+218,20150107,"TALL_055",39,,"1830",,59,"225.9","20.5","Quercus falcata",,"sbt",
+219,20150107,"TALL_055",39,,"1831",,59,"202.7","18.2","Quercus falcata",,"sbt",
+220,20150107,"TALL_055",39,,"1832",,59,"209.6","11.2","Quercus","cf. species","sbt","no transcription errors found"
+221,20150107,"TALL_055",39,,"1833",,59,"224.6","5.9","Quercus",,"sbt",
+222,20150107,"TALL_055",39,,"1835",,59,"202.2","4.4","Quercus",,"sbt",
+223,20150107,"TALL_055",39,,"1836",,59,"199.1","11.1","Liquidambar styraciflua",,"sbt",
+224,20150107,"TALL_055",39,,"1837",,41,"328.1","9.1","Quercus alba",,"sbt","dead"
+225,20150107,"TALL_055",39,,"1838",,41,"311.1","6.2","Carya alba",,"sbt",
+226,20150107,"TALL_055",39,,"1839",,41,"290.7","6.9","Liquidambar styraciflua","cf. species","sbt",
+227,20150107,"TALL_055",39,,"1840",,41,"270.3","3.8","Liquidambar styraciflua","cf. species","sbt","no transcription errors found"
+228,20150107,"TALL_055",41,,"1841",,41,"88.9","10.6","Quercus",,"sbt","dead"
+229,20150107,"TALL_055",41,,"1842",,41,"87.3","9.5","Quercus alba",,"mbt",
+230,20150107,"TALL_055",41,,"1842A",,41,"87.3","9.5","Quercus alba",,"mbt","Dead, no transcription errors found"
+231,20150107,"TALL_055",39,3,"1950",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+232,20150107,"TALL_055",39,3,"1951",,,,,"Vaccinium arboreum",,"sap",
+233,20150107,"TALL_055",39,3,"1952",,,,,"Quercus falcata",,"sap",
+234,20150107,"TALL_055",39,3,"1953",,,,,"Liquidambar styraciflua",,"sap",
+235,20150107,"TALL_055",39,3,"1958",,,,,"Vaccinium arboreum",,"sap",
+236,20150107,"TALL_055",39,3,"1959",,,,,"Vaccinium arboreum",,"sap",
+237,20150107,"TALL_055",39,3,"1960",,,,,"Vaccinium arboreum",,"sms",
+238,20150107,"TALL_055",39,3,"1968",,,,,"Vaccinium arboreum",,"sms",
+239,20150107,"TALL_055",39,3,"1971",,,,,"Vaccinium arboreum",,"sap",
+240,20150107,"TALL_055",39,3,"1972",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+241,20150107,"TALL_055",39,3,"1974",,,,,"Vaccinium arboreum",,"sap",
+242,20150107,"TALL_055",39,3,"1976",,,,,"Magnolia",,"smt",
+243,20150107,"TALL_055",39,3,"1984",,,,,"Rhus copallinum",,"sap",
+244,20150107,"TALL_055",39,3,"1985",,,,,"Vaccinium arboreum",,"sap",
+245,20150107,"TALL_055",39,3,"1987",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+246,20150107,"TALL_055",39,3,"1989",,,,,"Liquidambar styraciflua",,"smt",
+247,20150107,"TALL_055",39,3,"1990",,,,,"Liquidambar styraciflua",,"smt",
+248,20150107,"TALL_055",39,3,"1991",,,,,"Liquidambar styraciflua",,"sap",
+249,20150107,"TALL_055",39,3,"1992",,,,,"Liquidambar styraciflua",,"smt",
+250,20150107,"TALL_055",39,3,"1800",,,,,"Liquidambar styraciflua",,"smt","no transcription errors found"
+251,20150107,"TALL_055",39,3,"1804",,,,,"Liquidambar styraciflua",,"sap",
+252,20150107,"TALL_055",39,3,"1805",,,,,"Liquidambar styraciflua",,"sap",
+253,20150107,"TALL_055",41,,"1843",,41,"57.2","8.3","Quercus alba",,"sbt",
+254,20150107,"TALL_055",41,,"1844",,41,"50.6","6.6","Oxydendrum arboreum",,"sbt",
+255,20150107,"TALL_055",41,,"1845",,41,"43.5","4.8","Quercus alba",,"sbt",
+256,20150107,"TALL_055",41,,"1846",,59,"147","19.5","Quercus alba",,"sbt",
+257,20150107,"TALL_055",41,,"1847",,59,"144.3","19.5","Carya alba",,"sbt",
+258,20150107,"TALL_055",41,,"1848",,59,"131.4","19.4","Liquidambar styraciflua",,"sbt","no transcription errors found"
+259,20150107,"TALL_055",41,,"1849",,59,"139.4","25.8","Carya",,"sbt",
+260,20150107,"TALL_055",41,,"1850",,59,"133","25.7","Pinus",,"sbt","dead, no transcription errors found"
+261,20150107,"TALL_055",41,,"1851",,59,"129.9","24.2","Liriodendron tulipifera",,"sbt",
+262,20150107,"TALL_055",41,,"1855",,59,"118","19.3","Cornus","cf. species","sbt",
+263,20150107,"TALL_055",41,,"1857",,59,"119.7","20.6","Quercus pagoda",,"sbt",
+264,20150107,"TALL_055",41,,"1858",,59,"95.3","18.1","Quercus alba",,"sbt",
+265,20150107,"TALL_055",41,,"1859",,59,"100.9","15.7","Liriodendron tulipifera",,"sbt",
+266,20150107,"TALL_055",41,,"1860",,59,"107","11.1","Cornus","cf. species","sbt",
+267,20150107,"TALL_055",41,,"1861",,59,"114.2","10.3","Oxydendrum arboreum",,"sbt",
+268,20150107,"TALL_055",41,,"1862",,59,"100.8","11.9","Liquidambar styraciflua",,"sbt","no transcription errors found"
+269,20150107,"TALL_055",41,,"1863",,59,"156.4","9.4","Liquidambar styraciflua",,"sbt",
+270,20150107,"TALL_055",41,,"1864",,59,"176.2","5.2","Quercus alba",,"sbt","no transcription errors found"
+271,20150107,"TALL_055",41,,"1865",,59,"118","3.8","Cornus","cf. species","sbt",
+272,20150107,"TALL_055",41,,"1866",,59,"93.6","2.9","Quercus","cf. species","sbt",
+273,20150107,"TALL_054",21,4,"1867",,,,,"Pinus palustris",,"smt",
+274,20150107,"TALL_054",21,4,"1868",,,,,"Pinus palustris",,"smt",
+275,20150107,"TALL_054",21,4,"1869",,,,,"Pinus palustris",,"smt",
+276,20150107,"TALL_054",21,4,"1870",,,,,"Pinus palustris",,"smt",
+277,20150107,"TALL_054",21,4,"1871",,,,,"Vaccinium arboreum",,"sap",
+278,20150107,"TALL_054",21,4,"1872",,,,,"Vaccinium arboreum",,"sap",
+279,20150107,"TALL_054",21,4,"1873",,,,,"Vaccinium arboreum",,"sap",
+280,20150107,"TALL_054",21,4,"1874",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+281,20150107,"TALL_054",21,4,"1875",,,,,"Vaccinium stamineum var. candicans",,"sap",
+282,20150107,"TALL_054",21,4,"1876",,,,,"Vaccinium arboreum",,"sap",
+283,20150107,"TALL_054",21,4,"1877",,,,,"Vaccinium arboreum",,"sap",
+284,20150107,"TALL_054",21,4,"1878",,,,,"Pinus palustris",,"smt",
+285,20150107,"TALL_054",21,4,"1879",,,,,"Rhus copallinum",,"sap",
+286,20150107,"TALL_054",21,4,"1880",,,,,"(dead)",,"sap",
+287,20150107,"TALL_054",21,1,"1881",,,,,"Vaccinium arboreum",,"sms",
+288,20150107,"TALL_054",21,1,"1882",,,,,"Vaccinium arboreum",,"sms",
+289,20150107,"TALL_054",21,1,"1883",,,,,"Vaccinium arboreum",,"sms",
+290,20150107,"TALL_054",21,1,"1884",,,,,"Vaccinium arboreum",,"sis","no transcription errors found"
+291,20150107,"TALL_054",21,1,"1885",,,,,,,"sms",
+292,20150107,"TALL_054",21,1,"1886",,,,,"Vaccinium arboreum",,"sms",
+293,20150107,"TALL_054",21,1,"1888",,,,,"Vaccinium arboreum",,"sap",
+294,20150107,"TALL_054",21,1,"1890",,,,,"Vaccinium arboreum",,"sap",
+295,20150107,"TALL_054",21,1,"1891",,,,,"Vaccinium arboreum",,"sap",
+296,20150107,"TALL_054",21,1,"1892",,,,,"Vaccinium arboreum",,"sap",
+297,20150107,"TALL_054",21,1,"1893",,,,,,,"sms",
+298,20150107,"TALL_054",21,1,"1894",,,,,"Vaccinium arboreum",,"sap",
+299,20150107,"TALL_054",21,1,"1895",,,,,"Vaccinium arboreum",,"sms",
+300,20150107,"TALL_054",21,1,"2301",,,,,,,"sis","no transcription errors found"
+301,20150107,"TALL_054",21,1,"2302",,,,,"Vaccinium arboreum",,"sis",
+302,20150107,"TALL_054",39,1,"2303",,,,,"Liquidambar styraciflua",,"sms",
+303,20150107,"TALL_054",39,1,"2304",,,,,"Rhus copallinum",,"sap",
+304,20150107,"TALL_054",39,1,"2305",,,,,"Liquidambar styraciflua",,"smt","no transcription errors found"
+305,20150107,"TALL_054",39,1,"2306",,,,,"Liquidambar styraciflua",,"smt",
+306,20150107,"TALL_054",39,1,"2307",,,,,"Pinus palustris",,"smt",
+307,20150107,"TALL_054",39,1,"2308",,,,,"Pinus palustris",,"smt",
+308,20150107,"TALL_054",39,1,"2309",,,,,"Pinus palustris",,"smt",
+309,20150107,"TALL_054",39,1,"2310",,,,,"Pinus palustris",,"smt","no transcription errors found"
+310,20150107,"TALL_054",39,1,"2311",,,,,"Pinus palustris",,"smt","no transcription errors found"
+311,20150107,"TALL_054",39,1,"2312",,,,,"Pinus palustris",,"smt",
+312,20150107,"TALL_054",39,1,"2313",,,,,"Liquidambar styraciflua",,"sap",
+313,20150107,"TALL_054",39,1,"2314",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+314,20150107,"TALL_054",39,1,"2315",,,,,"Pinus palustris",,"smt",
+315,20150107,"TALL_054",39,1,"2316",,,,,,,"smt",
+316,20150107,"TALL_054",39,3,"2317",,,,,,,"sap",
+317,20150107,"TALL_054",39,3,"2318",,,,,,,"sap",
+318,20150107,"TALL_054",39,3,"2319",,,,,"Quercus montana",,"smt",
+319,20150107,"TALL_054",39,3,"2320",,,,,"Quercus",,"sap",
+320,20150107,"TALL_054",39,3,"2321",,,,,"Acer rubrum",,"sms","no transcription errors found"
+321,20150107,"TALL_054",39,3,"2322",,,,,"Carya alba",,"sap",
+322,20150107,"TALL_054",39,,"2323",,57,"162.8","5.8","Pinus palustris",,"sbt","no transcription errors found"
+323,20150107,"TALL_054",39,,"2324",,57,"104","9.9","Pinus palustris",,"sbt",
+324,20150107,"TALL_054",39,,"2325",,57,"113.8","14.6","Pinus","cf. species","sbt",
+325,20150107,"TALL_054",39,,"2326",,57,"143","14.9","Pinus","cf. species","sbt",
+326,20150107,"TALL_054",39,,"2327",,57,"153.1","15.3","Pinus","cf. species","sbt",
+327,20150107,"TALL_054",39,,"2328",,57,"152.1","17.5","Pinus palustris",,"sbt",
+328,20150107,"TALL_054",39,,"2329",,57,"174.8","14.5","Liriodendron tulipifera",,"sbt",
+329,20150107,"TALL_054",39,,"2330",,39,"87.9","14.3","Pinus palustris",,"sbt",
+330,20150107,"TALL_054",39,,"2331",,39,"87.6","17.2","Pinus palustris",,"sbt","no transcription errors found"
+331,20150107,"TALL_054",39,,"2332",,39,"88.8","18.2","Pinus palustris",,"sbt","no transcription errors found"
+332,20150107,"TALL_054",21,,"2333",,39,"118.8","13.7","Pinus palustris",,"sbt",
+333,20150107,"TALL_054",21,,"2334",,39,"118.7","12.8","Pinus palustris",,"sbt",
+334,20150107,"TALL_054",21,,"2335",,39,"119.5","10.3","Pinus palustris",,"sbt",
+335,20150107,"TALL_054",21,,"2336",,39,"130.6","11.1","Pinus palustris",,"sbt",
+336,20150107,"TALL_054",21,,"2337",,39,"138.4","11.6","Pinus palustris",,"sbt",
+337,20150107,"TALL_054",21,,"2338",,39,"115.2","7.5","Pinus palustris",,"sbt",
+338,20150107,"TALL_054",21,,"2339",,39,"106.9","10.3","Pinus palustris",,"sbt",
+339,20150107,"TALL_054",21,,"2340",,39,"136.8","4.8","Pinus palustris",,"sbt","no transcription errors found"
+340,20150107,"TALL_054",21,,"2341",,39,"153.2","5.6","Pinus palustris",,"sbt","no transcription errors found"
+341,20150107,"TALL_054",21,,"2342",,39,"97.5","3.5","Pinus palustris",,"sbt",
+342,20150107,"TALL_054",21,,"2343",,41,"222.8","12.2","Pinus palustris",,"sbt",
+343,20150107,"TALL_054",21,,"2344",,41,"224.7","10.9","Pinus palustris",,"sbt",
+344,20150107,"TALL_054",21,,"2345",,41,"225","10.2","Pinus palustris",,"sbt",
+345,20150107,"TALL_054",21,,"2346",,41,"214.6","11.1","Pinus palustris",,"sbt","no transcription errors found"
+346,20150107,"TALL_054",21,,"2347",,41,"212.6","8.7","Pinus palustris",,"sbt",
+347,20150107,"TALL_054",21,,"2348",,41,"201.7","8.7","Pinus palustris",,"sbt",
+348,20150107,"TALL_054",21,,"2349",,41,"208.6","6.2","Pinus palustris",,"sbt",
+349,20150107,"TALL_054",21,,"2350",,41,"223.1","6.8","Pinus palustris",,"sbt",
+350,20150107,"TALL_054",21,,"2351",,41,"244.8","4.9","Pinus palustris",,"sbt","no transcription errors found"
+351,20150107,"TALL_054",21,,"2352",,23,"348.3","8.1","Pinus palustris",,"sbt",
+352,20150107,"TALL_054",21,,"2353",,23,"303.2","11.9","Pinus palustris",,"sbt",
+353,20150107,"TALL_054",21,,"2354",,23,"286.4","0.9","Pinus palustris",,"sbt",
+354,20150107,"TALL_054",21,,"2355",,23,"280.2","14.2","Pinus palustris",,"sbt",
+355,20150107,"TALL_054",21,,"2356",,21,"1.5","5.6","Pinus palustris",,"sbt",
+356,20150107,"TALL_054",21,,"2357",,21,"23.7","1.3","Pinus palustris",,"sbt","no transcription errors found"
+357,20150108,"TALL_056",21,,"2633",,21,"86.9","2.6","Pinus palustris",,"sbt",
+358,20150108,"TALL_056",21,,"2639",,21,"35.4","5.2","Pinus palustris",,"sbt",
+359,20150108,"TALL_056",21,,"2643",,21,"33.1","10","Pinus palustris",,"sbt",
+360,20150108,"TALL_056",21,,"2645",,21,"28.7","15.9","Pinus palustris",,"sbt","no transcription errors found"
+361,20150108,"TALL_056",21,,"2650",,21,"59.8","12.5","Pinus palustris",,"sbt","no transcription errors found"
+362,20150108,"TALL_056",21,,"2652",,21,"88.6","13.2","Pinus palustris",,"sbt",
+363,20150108,"TALL_056",21,,"2653",,21,"89.3","13.6","Pinus palustris",,"sbt",
+364,20150108,"TALL_056",21,,"2654",,21,"72","17.4","Pinus palustris",,"sbt",
+365,20150108,"TALL_056",21,,"2700",,23,"359.1","4.8","Pinus",,"sbt","dead"
+366,20150108,"TALL_056",21,,"2701",,23,"284.2","2","Acer rubrum",,"sbt",
+367,20150108,"TALL_056",21,,"2702",,23,"344.1","13.9","Pinus palustris",,"sbt",
+368,20150108,"TALL_056",41,,"2703",,41,"49.9","1.6","Pinus","cf. species","sbt","dead"
+369,20150108,"TALL_056",41,,"2704",,59,"158.3","15.5","Nyssa sylvatica",,"sbt",
+370,20150108,"TALL_056",41,,"2705",,59,"145.3","17.2","Pinus palustris",,"sbt","no transcription errors found"
+371,20150108,"TALL_056",41,,"2706",,59,"143.9","18.2","Pinus palustris",,"sbt",
+372,20150108,"TALL_056",41,,"2707",,59,"135.3","16.8","Pinus palustris",,"sbt",
+373,20150108,"TALL_056",41,,"2708",,59,"134.1","10.9","Pinus palustris",,"sbt",
+374,20150108,"TALL_056",41,,"2709",,59,"174.5","5.9","Pinus palustris",,"sbt",
+375,20150108,"TALL_056",41,,"2710",,59,"106.2","8.4","Pinus palustris",,"sbt",
+376,20150108,"TALL_056",41,,"2711",,59,"100.3","12","Pinus palustris",,"sbt",
+377,20150108,"TALL_056",41,,"2712",,59,"98","15.4","Pinus palustris",,"sbt","no transcription errors found"
+378,20150108,"TALL_056",41,,"2713",,59,"136.4","20.6","Pinus palustris",,"sbt",
+379,20150108,"TALL_056",41,,"2714",,59,"139.3","23.8","Pinus palustris",,"sbt",
+380,20150108,"TALL_056",41,,"2715",,59,"137.5","26.3","Pinus palustris",,"sbt","no transcription errors found"
+381,20150108,"TALL_056",41,4,"2494",,,,,"Pinus palustris",,"smt","no transcription errors found"
+382,20150108,"TALL_056",41,4,"2495",,,,,"Pinus palustris",,"smt",
+383,20150108,"TALL_056",41,4,"2496",,,,,"Vaccinium arboreum",,"sap",
+384,20150108,"TALL_056",41,4,"2497",,,,,"Vaccinium arboreum",,"sap",
+385,20150108,"TALL_056",41,4,"2607",,,,,"Vaccinium arboreum",,"sms",
+386,20150108,"TALL_056",41,4,"2606",,,,,"Vaccinium arboreum",,"sms",
+387,20150108,"TALL_056",41,4,"2608",,,,,"Vaccinium arboreum",,"sap",
+388,20150108,"TALL_056",41,4,"2609",,,,,"Vaccinium arboreum",,"sap",
+389,20150108,"TALL_056",41,4,"2610",,,,,"Vaccinium arboreum",,"sap",
+390,20150108,"TALL_056",41,4,"2611",,,,,"Vaccinium arboreum",,"sms","no transcription errors found"
+391,20150108,"TALL_056",41,4,"2612",,,,,"Vaccinium arboreum",,"sms",
+392,20150108,"TALL_056",41,4,"2613",,,,,"Vaccinium arboreum",,"sms",
+393,20150108,"TALL_056",41,4,"2614",,,,,"Vaccinium arboreum",,"sap",
+394,20150108,"TALL_056",41,4,"2615",,,,,"Vaccinium arboreum",,"sms",
+395,20150108,"TALL_056",41,4,"2616",,,,,"Vaccinium arboreum",,"sms",
+396,20150108,"TALL_056",41,4,"2617",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+397,20150108,"TALL_056",41,4,"2618",,,,,"Vaccinium arboreum",,"sms",
+398,20150108,"TALL_056",41,4,"2619",,,,,"Vaccinium arboreum",,"sap",
+399,20150108,"TALL_056",41,4,"2625",,,,,"Vaccinium arboreum",,"sap",
+400,20150108,"TALL_056",41,1,"2626",,,,,"Pinus palustris",,"sap","no transcription errors found"
+401,20150108,"TALL_056",41,1,"2627",,,,,"Pinus palustris",,"sap",
+402,20150108,"TALL_056",41,1,"2628",,,,,"Pinus palustris",,"sap",
+403,20150108,"TALL_056",41,1,"2630",,,,,"Pinus palustris",,"sap",
+404,20150108,"TALL_056",41,1,"2631",,,,,"Pinus palustris",,"sap",
+405,20150108,"TALL_056",41,1,"2656",,,,,"Pinus palustris",,"sap",
+406,20150108,"TALL_056",41,1,"2658",,,,,"Pinus palustris",,"sap",
+407,20150108,"TALL_056",41,1,"2655",,,,,"Pinus palustris",,"sap",
+408,20150108,"TALL_056",41,1,"2659",,,,,"Pinus palustris",,"sap",
+409,20150108,"TALL_056",41,1,"2660",,,,,"Pinus palustris",,"smt","no transcription errors found"
+410,20150108,"TALL_056",21,4,"2661",,,,,"Vaccinium pallidum",,"sap","no transcription errors found"
+411,20150108,"TALL_056",21,4,"2662",,,,,"Vaccinium pallidum",,"sap",
+412,20150108,"TALL_056",21,4,"2663",,,,,"Pinus palustris",,"smt",
+413,20150108,"TALL_056",21,4,"2665",,,,,"Pinus palustris",,"smt",
+414,20150108,"TALL_056",21,4,"2666",,,,,"Pinus palustris",,"sap",
+415,20150108,"TALL_056",21,4,"2667",,,,,"Vaccinium arboreum",,"sap",
+416,20150108,"TALL_056",21,4,"2668",,,,,"Pinus palustris",,"smt","no transcription errors found"
+417,20150108,"TALL_056",21,4,"2669",,,,,"Pinus palustris",,"sap",
+418,20150108,"TALL_056",21,4,"2670",,,,,"Pinus palustris",,"smt",
+419,20150108,"TALL_056",21,4,"2671",,,,,"Vaccinium arboreum",,"sms",
+420,20150108,"TALL_056",21,4,"2672",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+421,20150108,"TALL_056",21,4,"2673",,,,,"Pinus palustris",,"smt",
+422,20150108,"TALL_056",21,4,"2674",,,,,"Vaccinium arboreum",,"sap",
+423,20150108,"TALL_056",21,4,"2675",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+424,20150108,"TALL_056",21,4,"2676",,,,,"Vaccinium arboreum",,"sap",
+425,20150108,"TALL_056",21,4,"2677",,,,,"Pinus palustris",,"smt",
+426,20150108,"TALL_056",21,4,"2678",,,,,"Pinus palustris",,"smt",
+427,20150108,"TALL_056",21,4,"2679",,,,,"Vaccinium arboreum",,"sap",
+428,20150108,"TALL_056",21,1,"2680",,,,,"Vaccinium pallidum",,"sms",
+429,20150108,"TALL_056",21,1,"2681",,,,,"Vaccinium pallidum",,"sap",
+430,20150108,"TALL_056",21,1,"2682",,,,,"Vaccinium pallidum",,"sap","no transcription errors found"
+431,20150108,"TALL_056",21,1,"2683",,,,,,,"sap",
+432,20150108,"TALL_056",21,1,"2684",,,,,"Vaccinium pallidum",,"sms","no transcription errors found"
+433,20150108,"TALL_056",21,1,"2685",,,,,"Vaccinium pallidum",,"sap",
+434,20150108,"TALL_056",21,1,"2686",,,,,"Vaccinium pallidum",,"sms",
+435,20150108,"TALL_056",21,1,"2687",,,,,"Quercus","cf. species","sap",
+436,20150108,"TALL_056",21,1,"2688",,,,,"Vaccinium pallidum",,"sap",
+437,20150108,"TALL_056",21,1,"2689",,,,,"Vaccinium pallidum",,"sms",
+438,20150108,"TALL_056",21,1,"2690",,,,,"Vaccinium pallidum",,"sms",
+439,20150108,"TALL_056",21,1,"2692",,,,,"Vaccinium pallidum",,"sap",
+440,20150108,"TALL_056",21,1,"2693",,,,,"Vaccinium pallidum",,"sms","no transcription errors found"
+441,20150108,"TALL_056",21,1,"2694",,,,,"Vaccinium pallidum",,"sap",
+442,20150108,"TALL_056",21,1,"2695",,,,,"Liquidambar styraciflua",,"sap",
+443,20150108,"TALL_056",21,1,"2696",,,,,"Vaccinium pallidum",,"sap",
+444,20150108,"TALL_056",21,1,"2697",,,,,"Vaccinium pallidum",,"sms",
+445,20150108,"TALL_056",21,1,"2698",,,,,"Vaccinium pallidum",,"sap",
+446,20150108,"TALL_056",21,1,"2699",,,,,"Vaccinium pallidum",,"sap","no transcription errors found"
+447,20150108,"TALL_056",21,1,"2632",,,,,"Vaccinium pallidum",,"sap",
+448,20150108,"TALL_058",39,3,"2421",,,,,"Vaccinium stamineum var. candicans",,"sap",
+449,20150108,"TALL_058",39,3,"2422",,,,,"Vaccinium stamineum var. candicans",,"sap",
+450,20150108,"TALL_058",39,3,"2423",,,,,"Vaccinium stamineum var. candicans",,"sms","no transcription errors found"
+451,20150108,"TALL_058",39,3,"2424",,,,,"Rhus copallinum",,"sap",
+452,20150108,"TALL_058",39,3,"2425",,,,,"Carya",,"smt",
+453,20150108,"TALL_058",39,3,"2426",,,,,"Cynoxylon floridum",,"sis",
+454,20150108,"TALL_058",39,3,"2427",,,,,"Cynoxylon floridum",,"sap",
+455,20150108,"TALL_058",39,3,"2428",,,,,"Vaccinium arboreum",,"sap",
+456,20150108,"TALL_058",39,3,"2429",,,,,"Quercus rubra",,"sap",
+457,20150108,"TALL_058",39,3,"2430",,,,,"Pinus palustris",,"smt",
+458,20150108,"TALL_058",39,3,"2431",,,,,"Quercus alba",,"sap","no transcription errors found"
+459,20150108,"TALL_058",39,3,"2432",,,,,"Quercus alba",,"smt",
+460,20150108,"TALL_058",39,3,"2433",,,,,"Quercus nigra",,"sap","no transcription errors found"
+461,20150108,"TALL_058",39,3,"2434",,,,,"Quercus laevis",,"sap",
+462,20150108,"TALL_058",39,3,"2435",,,,,"Acer rubrum",,"sap",
+463,20150108,"TALL_058",39,3,"2436",,,,,"Acer rubrum",,"smt",
+464,20150108,"TALL_058",39,3,"2437",,,,,"Quercus nigra",,"smt",
+465,20150108,"TALL_058",39,3,"2438",,,,,"Sassafras variifolium",,"sap",
+466,20150108,"TALL_058",39,3,"2439",,,,,"Quercus marilandica",,"sap",
+467,20150108,"TALL_058",39,3,"2440",,,,,"Quercus marilandica",,"sap",
+468,20150108,"TALL_058",39,3,"2441",,,,,"Rhus copallinum",,"sap",
+469,20150108,"TALL_058",39,3,"2442",,,,,"Carya",,"sap","no transcription errors found"
+470,20150108,"TALL_058",39,3,"2443",,,,,"Quercus","cf. species","sap","no transcription errors found"
+471,20150108,"TALL_058",21,4,"2444",,,,,,,"sis",
+472,20150108,"TALL_058",21,1,"2445","2453",,,,"Smilax laurifolia",,"lia",
+473,20150108,"TALL_058",21,1,"2446",,,,,"Ilex opaca",,"sis",
+474,20150108,"TALL_058",21,1,"2447",,,,,"Acer rubrum",,"smt",
+475,20150108,"TALL_058",21,1,"2448",,,,,"Ilex opaca",,"smt",
+476,20150108,"TALL_058",21,1,"2449",,,,,"Ilex opaca",,"sap",
+477,20150108,"TALL_058",21,1,"2450",,,,,"Ilex opaca",,"sms",
+478,20150108,"TALL_058",21,1,"2451",,,,,"Nyssa sylvatica",,"smt","no transcription errors found"
+479,20150108,"TALL_058",21,,"2452",,21,"14.6","3.5","Ilex opaca",,"sbt",
+480,20150108,"TALL_058",21,,"2453",,21,"36.9","2.8","Ilex opaca",,"sbt","no transcription errors found"
+481,20150108,"TALL_058",21,,"2454",,21,"6.6","5.4","Oxydendrum arboreum",,"sbt",
+482,20150108,"TALL_058",21,,"2455",,21,"13.2","6.6","Acer rubrum",,"sbt",
+483,20150108,"TALL_058",21,,"2456",,21,"14.1","7.3","Oxydendrum arboreum",,"sbt",
+484,20150108,"TALL_058",21,,"2457",,21,"53.3","9.1","Nyssa sylvatica",,"sbt",
+485,20150108,"TALL_058",21,,"2458",,21,"56.9","11.2","Ilex opaca",,"sbt",
+486,20150108,"TALL_058",21,,"2459",,21,"60.3","11.9","Acer rubrum",,"sbt","dead"
+487,20150108,"TALL_058",21,,"2459A",,21,"60.3","11.9","Acer rubrum",,"sbt","alive"
+488,20150108,"TALL_058",21,,"2460",,21,"31.5","11.1","Liquidambar styraciflua",,"sbt",
+489,20150108,"TALL_058",21,,"2461",,21,"81.7","6.5","Marsilea uncinata",,"sbt",
+490,20150108,"TALL_058",21,,"2462",,23,"279.7","3","Acer rubrum",,"sbt","no transcription errors found"
+491,20150108,"TALL_058",21,,"2463",,23,"311","3.4","Nyssa sylvatica",,"sbt",
+492,20150108,"TALL_058",21,,"2464",,23,"322.2","5.4","Magnolia cordata",,"sbt",
+493,20150108,"TALL_058",21,,"2465",,23,"335.7","7","Nyssa sylvatica",,"sbt","no transcription errors found"
+494,20150108,"TALL_058",21,,"2466",,23,"346.1","15.7","Marsilea uncinata",,"sbt",
+495,20150108,"TALL_058",21,,"2467",,41,"269.4","5.7","Liquidambar styraciflua",,"sbt",
+496,20150108,"TALL_058",21,,"2468",,41,"259.4","8.4","Oxydendrum arboreum",,"mbt",
+497,20150108,"TALL_058",21,,"2468A",,41,"259.4","8.4","Oxydendrum arboreum",,"mbt","dead"
+498,20150108,"TALL_058",21,,"2469",,41,"248.8","14.3","Liriodendron tulipifera",,"sbt",
+499,20150108,"TALL_058",21,,"2470",,41,"250.4","15.1","Nyssa sylvatica",,"mbt",
+500,20150108,"TALL_058",21,,"2470A",,41,"250.4","15.1","Nyssa sylvatica",,"mbt","no transcription errors found"
+501,20150108,"TALL_058",21,,"2471",,41,"243.5","16","Nyssa sylvatica",,"sbt","no transcription errors found"
+502,20150108,"TALL_058",21,,"2472",,41,"236.5","15.5","Nyssa sylvatica",,"sbt","dead"
+503,20150108,"TALL_058",21,,"2473",,39,"156.7","10.3","Liquidambar styraciflua",,"sbt",
+504,20150108,"TALL_058",21,,"2474",,39,"180.2","7.1","Nyssa sylvatica",,"sbt","no error in data transcription;No error in stemAzimuth transcription"
+505,20150108,"TALL_058",21,,"2475",,39,"101.1","4.7","Carya alba",,"sbt",
+506,20150108,"TALL_058",21,,"2476",,39,"95.7","6","Liquidambar styraciflua",,"sbt",
+507,20150108,"TALL_058",39,,"2477",,39,"89","4.5","Cynoxylon floridum",,"sbt",
+508,20150108,"TALL_058",39,,"2478",,39,"87.2","4.9","Cynoxylon floridum",,"sbt",
+509,20150108,"TALL_058",39,,"2479",,39,"62.7","7.8","Cynoxylon floridum",,"sbt",
+510,20150108,"TALL_058",39,,"2480",,39,"30","8.3","Carya alba",,"sbt","no transcription errors found"
+511,20150108,"TALL_058",39,,"2481",,39,"3","8.6","Cynoxylon floridum",,"sbt",
+512,20150108,"TALL_058",39,,"2482",,39,"10.3","13.4","Pinus taeda",,"sbt",
+513,20150108,"TALL_058",39,,"2483",,39,"25.9","14.7","Pinus taeda",,"sbt","no transcription errors found"
+514,20150108,"TALL_058",39,,"2484",,39,"32.9","16","Carya alba",,"sbt",
+515,20150108,"TALL_058",39,,"2485",,39,"45.5","12.3","Cynoxylon floridum",,"sbt",
+516,20150108,"TALL_058",39,,"2486",,39,"59.3","11.5","Liquidambar styraciflua",,"sbt",
+517,20150108,"TALL_058",39,,"2487",,39,"47.5","16","Carya",,"sbt","no transcription errors found"
+518,20150108,"TALL_058",39,,"2488",,39,"72.2","18.7","Pinus","cf. species","sbt",
+519,20150108,"TALL_058",39,,"2489",,59,"199.7","10.1","Liriodendron tulipifera",,"sbt",
+520,20150108,"TALL_058",39,,"2490",,59,"232.2","5.9","Liriodendron tulipifera",,"sbt","dead, no transcription errors found"
+521,20150108,"TALL_058",39,,"2491",,59,"257","1.3","Carya","cf. genus","sbt",
+522,20150108,"TALL_058",39,,"2492",,59,"259.1","7.4","Pinus","cf. species","sbt","no transcription errors found"
+523,20150108,"TALL_058",39,,"2493",,59,"261.7","20.4","Pinus palustris",,"sbt",
+524,20150108,"TALL_058",39,1,"2415",,,,,"Quercus rubra",,"sap",
+525,20150108,"TALL_058",39,1,"2416",,,,,"Quercus nigra",,"smt",
+526,20150108,"TALL_058",39,1,"2417",,,,,"Liquidambar styraciflua",,"sms",
+527,20150108,"TALL_058",39,1,"2418",,,,,"Quercus rubra",,"sap",
+528,20150108,"TALL_058",39,1,"2419",,,,,"Quercus rubra",,"sap",
+529,20150108,"TALL_058",39,3,"2420",,,,,"Vaccinium stamineum var. candicans",,"sap",
+530,20150108,"TALL_057",41,4,"2358",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+531,20150108,"TALL_057",41,4,"2359",,,,,"Vaccinium arboreum",,"sms",
+532,20150108,"TALL_057",41,4,"2360",,,,,"Vaccinium arboreum",,"sms",
+533,20150108,"TALL_057",41,4,"2361",,,,,"Vaccinium arboreum",,"sap",
+534,20150108,"TALL_057",41,4,"2362",,,,,"Vaccinium arboreum",,"sap",
+535,20150108,"TALL_057",41,4,"2363",,,,,"Vaccinium arboreum",,"sap",
+536,20150108,"TALL_057",41,4,"2364",,,,,"Vaccinium arboreum",,"sap",
+537,20150108,"TALL_057",41,4,"2365",,,,,"Vaccinium arboreum",,"sap",
+538,20150108,"TALL_057",41,1,"2370",,,,,"Liriodendron tulipifera",,"sap",
+539,20150108,"TALL_057",41,1,"2371",,,,,"Oxydendrum arboreum",,"sap",
+540,20150108,"TALL_057",41,1,"2372",,,,,"Pinus taeda",,"smt","no transcription errors found"
+541,20150108,"TALL_057",41,1,"2373",,,,,"Oxydendrum arboreum",,"sap",
+542,20150108,"TALL_057",41,1,"2374",,,,,"Liriodendron tulipifera",,"smt","no transcription errors found"
+543,20150108,"TALL_057",41,1,"2375",,,,,"Oxydendrum arboreum",,"sap",
+544,20150108,"TALL_057",41,1,"2376",,,,,"Oxydendrum arboreum",,"sms",
+545,20150108,"TALL_057",41,1,"2377",,,,,"Oxydendrum arboreum",,"sap",
+546,20150108,"TALL_057",23,2,"2378",,,,,"CornusCynoxylon floridum",,"smt",
+547,20150108,"TALL_057",23,4,"2379",,,,,"Acer rubrum",,"sap",
+548,20150108,"TALL_057",23,4,"2380",,,,,"Rhus copallinum",,"sap",
+549,20150108,"TALL_057",23,4,"2381",,,,,"Rhus copallinum",,"smt",
+550,20150108,"TALL_057",23,4,"2382",,,,,"Acer rubrum",,"sap","no transcription errors found"
+551,20150108,"TALL_057",23,4,"2383",,,,,"Quercus alba",,"sap",
+552,20150108,"TALL_057",23,4,"2384",,,,,"Quercus alba",,"sap",
+553,20150108,"TALL_057",23,4,"2385",,,,,"Liquidambar styraciflua",,"sap",
+554,20150108,"TALL_057",23,4,"2386",,,,,"Pinus palustris",,"smt",
+555,20150108,"TALL_057",41,,"2387",,61,"223","8.8","Pinus palustris",,"sbt","no transcription errors found"
+556,20150108,"TALL_057",41,,"2388",,61,"240.9","17.2","Pinus palustris",,"sbt",
+557,20150108,"TALL_057",41,,"2389",,61,"262","19.9","Pinus palustris",,"sbt",
+558,20150108,"TALL_057",41,,"2390",,41,"67","4","Pinus palustris",,"sbt",
+559,20150108,"TALL_057",41,,"2391",,41,"86.3","8.4","Oxydendrum arboreum",,"sbt","dead"
+560,20150108,"TALL_057",41,,"2392",,41,"92.8","12.4","Pinus palustris",,"sbt","no transcription errors found; no error in data transcription;No error in stemAzimuth transcription"
+561,20150108,"TALL_057",41,,"2393",,41,"87","11.6","Pinus palustris",,"sbt","no transcription errors found"
+562,20150108,"TALL_057",23,,"2394",,41,"109.1","7.8","Oxydendrum arboreum",,"sbt",
+563,20150108,"TALL_057",23,,"2395",,41,"119.7","2.7","Pinus","cf. species","sbt",
+564,20150108,"TALL_057",23,,"2396",,41,"162.5","1","Liquidambar styraciflua",,"sbt",
+565,20150108,"TALL_057",23,,"2397",,41,"135.2","10.6","Quercus nigra",,"sbt",
+566,20150108,"TALL_057",23,,"2398",,41,"147.5","11.8","Nyssa sylvatica",,"sbt",
+567,20150108,"TALL_057",23,,"2399",,41,"176.3","9.3","Nyssa sylvatica",,"sbt",
+568,20150108,"TALL_057",23,,"2400",,41,"173.5","12.9","Nyssa sylvatica",,"sbt",
+569,20150108,"TALL_057",23,,"2401",,41,"169","14.2","Liquidambar styraciflua",,"sbt","dead"
+570,20150108,"TALL_057",23,,"2402",,41,"165.8","15.5","Quercus nigra",,"sbt","no transcription errors found"
+571,20150108,"TALL_057",23,,"2403",,25,"270.5","0.7","Pinus taeda",,"sbt","no transcription errors found"
+572,20150108,"TALL_057",23,,"2404",,25,"2.9","12.1","Pinus taeda",,"sbt","no error in data transcription 13.4 degrees from point ID 25 to PointID 43"
+573,20150108,"TALL_057",23,,"2405",,25,"342.9","6.9","Quercus rubra",,"sbt",
+574,20150108,"TALL_057",23,,"2406",,25,"315.4","8","Carya",,"sbt",
+575,20150108,"TALL_057",23,,"2407",,25,"277.9","8.6","Liquidambar styraciflua",,"sbt",
+576,20150108,"TALL_057",23,,"2408",,25,"274.9","13.8","Nyssa sylvatica",,"sbt",
+577,20150108,"TALL_057",23,,"2409",,25,"271.2","20.3","Quercus rubra",,"sbt","no transcription errors found"
+578,20150108,"TALL_057",23,,"2410",,25,"356.2","12.8","Cynoxylon floridum",,"sbt",
+579,20150108,"TALL_057",23,,"2411",,25,"349.6","13.6","Quercus",,"sbt",
+580,20150108,"TALL_057",23,,"2412",,25,"1.6","16.1","Pinus palustris",,"sbt","no error in data transcription 13.4 degrees from point ID 25 to PointID 43; Scientific name added as part of review"
+581,20150108,"TALL_057",23,,"2413",,25,"344","17.1","Pinus palustris",,"sbt","Scientific name added as part of review"
+582,20150108,"TALL_057",23,,"2414",,25,"338.3","18.2","Pinus palustris",,"sbt","Scientific name added as part of review; no transcription errors found"
+583,20150108,"TALL_057",41,4,"2366",,,,,"Vaccinium arboreum",,"sms",
+584,20150108,"TALL_057",41,4,"2367",,,,,"Pinus palustris",,"sap",
+585,20150108,"TALL_057",41,4,"2368",,,,,"Vaccinium arboreum",,"sap",
+586,20150108,"TALL_057",41,1,"2369",,,,,"Acer rubrum","cf. genus","smt",
+587,20150111,"TALL_042",39,,"3233",,39,"62.9","10.4","Quercus rubra",,"sbt",
+588,20150111,"TALL_042",39,,"3234",,39,"96.5","9.9","Liriodendron tulipifera",,"sbt","no error in data transcription;No error in stemAzimuth transcription"
+589,20150111,"TALL_042",39,,"3235",,39,"16.3","8.4","Liquidambar styraciflua",,"sbt",
+590,20150111,"TALL_042",39,,"3236",,39,"18.1","12.7","Quercus rubra",,"sbt","no transcription errors found"
+591,20150111,"TALL_042",39,,"3237",,39,"21.7","16","Pinus echinata",,"sbt",
+592,20150111,"TALL_042",39,,"3238",,39,"93.4","19.3","Quercus rubra",,"sbt","no error in data transcription;No error in stemAzimuth transcription"
+593,20150111,"TALL_042",39,,"3239",,59,"223.9","8.9","Cynoxylon floridum",,"sbt","dead"
+594,20150111,"TALL_042",39,,"3240",,59,"267.3","5.5","Quercus rubra",,"sbt",
+595,20150111,"TALL_042",39,,"3241",,59,"253.9","3.9","Pinus echinata",,"sbt",
+596,20150111,"TALL_042",39,,"3242",,59,"202.3","11.1","Pinus taeda",,"sbt",
+597,20150111,"TALL_042",39,,"3243",,59,"195.7","12.5","Quercus velutina var. missouriensis",,"sbt","dead; no transcription errors found"
+598,20150111,"TALL_042",39,,"3244",,59,"190.8","12.5","Pinus echinata",,"sbt",
+599,20150111,"TALL_042",39,,"3245",,41,"305.2","4.1","Pinus palustris",,"sbt",
+600,20150111,"TALL_042",23,2,"0793",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+601,20150111,"TALL_042",23,2,"0794",,,,,"Ilex",,"sap",
+602,20150111,"TALL_042",23,2,"0795",,,,,"Rhus copallinum",,"sap",
+603,20150111,"TALL_042",23,2,"0796",,,,,"Ilex",,"sap","no transcription errors found"
+604,20150111,"TALL_042",23,2,"0799",,,,,"Rhus copallinum",,"sap",
+605,20150111,"TALL_042",23,2,"0797",,,,,"Rhus copallinum",,"sap",
+606,20150111,"TALL_042",23,2,"0798",,,,,"Ilex",,"sap",
+607,20150111,"TALL_042",23,2,"0800",,,,,"Clethra",,"sap",
+608,20150111,"TALL_042",23,2,"3363",,,,,"Ilex",,"sap",
+609,20150111,"TALL_042",23,2,"3364",,,,,"Ilex",,"sap",
+610,20150111,"TALL_042",23,2,"3365",,,,,"Ilex",,"sap","no transcription errors found"
+611,20150111,"TALL_042",23,2,"3366",,,,,"Clethra",,"sap",
+612,20150111,"TALL_042",23,2,"3367",,,,,"Rhus copallinum",,"sap",
+613,20150111,"TALL_042",23,2,"3368",,,,,"Rhus copallinum",,"sap",
+614,20150111,"TALL_042",23,2,"3369",,,,,"Rhus copallinum",,"sap",
+615,20150111,"TALL_042",23,2,"3370",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+616,20150111,"TALL_042",23,2,"3371",,,,,"Pinus palustris",,"smt",
+617,20150111,"TALL_042",23,2,"3372",,,,,"Vaccinium arboreum",,"sms",
+618,20150111,"TALL_042",23,4,"3373",,,,,"Vaccinium arboreum",,"sap",
+619,20150111,"TALL_042",23,4,"3374",,,,,"Pinus palustris",,"smt",
+620,20150111,"TALL_042",23,4,"3375",,,,,"Pinus echinata",,"smt","no transcription errors found"
+621,20150111,"TALL_042",23,4,"3376",,,,,"Vaccinium arboreum",,"sis",
+622,20150111,"TALL_042",23,4,"3377",,,,,"Pinus echinata",,"smt",
+623,20150111,"TALL_042",23,4,"3378",,,,,"Vaccinium arboreum",,"sis",
+624,20150111,"TALL_042",39,1,"3379",,,,,"Liquidambar styraciflua",,"sap",
+625,20150111,"TALL_042",39,1,"3380",,,,,"Acer rubrum",,"sap","no transcription errors found"
+626,20150111,"TALL_042",39,1,"3381",,,,,"Acer rubrum",,"sap",
+627,20150111,"TALL_042",39,1,"3382",,,,,"Acer rubrum",,"sms",
+628,20150111,"TALL_042",39,1,"3383",,,,,"Acer rubrum",,"sis",
+629,20150111,"TALL_042",39,1,"3384",,,,,"Carya alba",,"sap",
+630,20150111,"TALL_042",39,3,"3385",,,,,"Quercus falcata",,"sap","no transcription errors found"
+631,20150111,"TALL_042",39,3,"3386",,,,,"Carya alba",,"smt",
+632,20150111,"TALL_042",39,3,"3387",,,,,"Liquidambar styraciflua",,"sis",
+633,20150111,"TALL_042",39,3,"3388",,,,,"Pinus taeda",,"smt",
+634,20150111,"TALL_042",39,3,"3389",,,,,"Liquidambar styraciflua",,"sms","no transcription errors found"
+635,20150111,"TALL_042",23,,"3390",,43,"192.7","4.6","Pinus palustris",,"sbt",
+636,20150111,"TALL_042",23,,"3391",,43,"231.4","7.5","Pinus taeda",,"sbt","no transcription errors found"
+637,20150111,"TALL_042",23,,"3392",,43,"217.5","10.2","Pinus echinata",,"sbt",
+638,20150111,"TALL_042",23,,"3393",,43,"218.8","10.6","Pinus taeda",,"sbt",
+639,20150111,"TALL_042",23,,"3394",,43,"229.3","11.7","Pinus taeda",,"sbt",
+640,20150111,"TALL_042",23,,"3395",,43,"241.6","10.4","Pinus taeda",,"sbt","no transcription errors found"
+641,20150111,"TALL_042",23,,"3396",,43,"252.8","10.9","Pinus taeda",,"sbt",
+642,20150111,"TALL_042",23,,"3397",,43,"256","12.3","Pinus palustris",,"sbt",
+643,20150111,"TALL_042",23,,"3398",,43,"253.4","8","Pinus taeda",,"sbt",
+644,20150111,"TALL_042",23,,"3399",,43,"264.6","10.8","Pinus taeda",,"sbt",
+645,20150111,"TALL_042",23,,"3400",,43,"269.7","14.7","Pinus taeda",,"sbt",
+646,20150111,"TALL_042",23,,"3203",,43,"263.7","14.7","Pinus taeda",,"sbt",
+647,20150111,"TALL_042",23,,"3204",,43,"264.3","17.8","Pinus palustris",,"sbt",
+648,20150111,"TALL_042",23,,"3205",,43,"256.2","19.5","Pinus palustris",,"sbt",
+649,20150111,"TALL_042",23,,"3206",,43,"252.3","15.6","Pinus taeda",,"sbt",
+650,20150111,"TALL_042",23,,"3207",,43,"251.1","16.7","Pinus taeda",,"sbt","no transcription errors found"
+651,20150111,"TALL_042",23,,"3208",,43,"244.9","16","Pinus palustris",,"sbt",
+652,20150111,"TALL_042",23,,"3209",,43,"240.5","13.3","Pinus palustris",,"sbt",
+653,20150111,"TALL_042",23,,"3210",,25,"291.2","3.4","Pinus palustris",,"sbt",
+654,20150111,"TALL_042",23,,"3211",,25,"341.6","3.3","Pinus palustris",,"sbt","no transcription errors found"
+655,20150111,"TALL_042",23,,"3212",,25,"310.9","6.9","Pinus palustris",,"sbt",
+656,20150111,"TALL_042",23,,"3213",,25,"331","9.5","Pinus palustris",,"sbt",
+657,20150111,"TALL_042",23,,"3214",,25,"326.1","11.2","Pinus palustris",,"sbt",
+658,20150111,"TALL_042",23,,"3215",,25,"321.7","11.7","Pinus palustris",,"sbt",
+659,20150111,"TALL_042",23,,"3216",,25,"303.3","14.3","Pinus echinata",,"sbt",
+660,20150111,"TALL_042",23,,"3217",,25,"295.8","14.5","Pinus taeda",,"sbt","no transcription errors found"
+661,20150111,"TALL_042",23,,"3218",,25,"287.6","14","Pinus palustris",,"sbt",
+662,20150111,"TALL_042",23,,"3219",,25,"283.2","14.6","Pinus palustris",,"sbt",
+663,20150111,"TALL_042",23,,"3220",,25,"279.6","12.7","Pinus palustris",,"sbt",
+664,20150111,"TALL_042",23,,"3221",,25,"272.6","7.8","Pinus palustris",,"sbt",
+665,20150111,"TALL_042",23,,"3222",,23,"57.8","9.7","Pinus taeda",,"sbt",
+666,20150111,"TALL_042",23,,"3223",,23,"81.1","5.3","Pinus palustris",,"sbt",
+667,20150111,"TALL_042",23,,"3224",,23,"26.9","4.6","Pinus taeda",,"sbt",
+668,20150111,"TALL_042",23,,"3225",,23,"39.4","1.5","Pinus taeda",,"sbt",
+669,20150111,"TALL_042",23,,"3226",,23,"20.2","6.3","Pinus taeda",,"sbt",
+670,20150111,"TALL_042",23,,"3227",,23,"31.5","10.9","Pinus palustris",,"sbt","no transcription errors found"
+671,20150111,"TALL_042",23,,"3228",,23,"9.7","11.7","Pinus palustris",,"sbt",
+672,20150111,"TALL_042",23,,"3229",,23,"3.6","10.8","Pinus palustris",,"sbt",
+673,20150111,"TALL_042",23,,"3230",,23,"8.1","8.4","Pinus palustris",,"sbt",
+674,20150111,"TALL_042",39,,"3231",,39,"79.7","9.5","Pinus echinata",,"sbt",
+675,20150111,"TALL_042",39,,"3232",,39,"62.4","9","Liquidambar styraciflua",,"sbt",
+676,20150111,"TALL_043",41,1,"3113",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+677,20150111,"TALL_043",41,1,"3301",,,,,"Rhus copallinum",,"sap",
+678,20150111,"TALL_043",41,1,"3201",,,,,"Quercus marilandica",,"smt",
+679,20150111,"TALL_043",41,1,"3202",,,,,"Rhus copallinum",,"sap",
+680,20150111,"TALL_043",41,1,"3100",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+681,20150111,"TALL_043",41,1,"3303",,,,,"Vaccinium arboreum",,"sap",
+682,20150111,"TALL_043",41,1,"3304",,,,,"Rhus copallinum",,"sap",
+683,20150111,"TALL_043",41,1,"3305",,,,,"Vaccinium arboreum",,"sap",
+684,20150111,"TALL_043",41,1,"3306",,,,,"Carya alba",,"sms",
+685,20150111,"TALL_043",41,1,"3307",,,,,"Carya alba",,"sap",
+686,20150111,"TALL_043",41,1,"3308",,,,,"Vaccinium arboreum",,"sap",
+687,20150111,"TALL_043",41,1,"3309",,,,,"Vaccinium arboreum",,"sap",
+688,20150111,"TALL_043",41,1,"3310",,,,,"Vaccinium arboreum",,"sap",
+689,20150111,"TALL_043",41,1,"3311",,,,,"Vaccinium arboreum",,"sap",
+690,20150111,"TALL_043",41,1,"3312",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+691,20150111,"TALL_043",41,1,"3313",,,,,"Pinus palustris",,"smt","no transcription errors found"
+692,20150111,"TALL_043",41,1,"3314",,,,,"Sassafras variifolium",,"sap",
+693,20150111,"TALL_043",41,1,"3315",,,,,"Rhus copallinum",,"sap",
+694,20150111,"TALL_043",41,1,"3316",,,,,"Vaccinium arboreum",,"sap",
+695,20150111,"TALL_043",41,1,"3317",,,,,"Rhus copallinum",,"smt",
+696,20150111,"TALL_043",41,1,"3318",,,,,"Carya alba",,"sap",
+697,20150111,"TALL_043",41,1,"3319",,,,,"Quercus rubra",,"sap","no transcription errors found"
+698,20150111,"TALL_043",41,1,"3320",,,,,"Vaccinium arboreum",,"sms",
+699,20150111,"TALL_043",23,4,"3321",,,,,"Pinus taeda",,"smt",
+700,20150111,"TALL_043",23,4,"3322",,,,,"Carya alba",,"sap","no transcription errors found"
+701,20150111,"TALL_043",23,4,"3323",,,,,"Rhus copallinum",,"sap",
+702,20150111,"TALL_043",23,4,"3324",,,,,"Diospyros virginiana var. pubescens",,"sap",
+703,20150111,"TALL_043",23,4,"3325",,,,,"Rhus copallinum",,"sap",
+704,20150111,"TALL_043",23,2,"3326",,,,,"Pinus echinata",,"smt","no transcription errors found"
+705,20150111,"TALL_043",23,,"3327",,25,"287.1","5.1","Pinus echinata",,"sbt",
+706,20150111,"TALL_043",23,,"3328",,25,"316.9","4.7","Pinus echinata",,"sbt",
+707,20150111,"TALL_043",23,,"3329",,25,"329.6","7.1","Pinus echinata",,"sbt",
+708,20150111,"TALL_043",23,,"3330",,25,"303.5","8.1","Pinus echinata",,"sbt",
+709,20150111,"TALL_043",23,,"3331",,25,"293.7","12.9","Cynoxylon floridum",,"sbt",
+710,20150111,"TALL_043",23,,"3332",,25,"284.8","14.1","Pinus taeda",,"sbt","no transcription errors found"
+711,20150111,"TALL_043",23,,"3333",,25,"293.7","16.8","Pinus echinata",,"sbt",
+712,20150111,"TALL_043",23,,"3334",,23,"78.8","4.1","Pinus echinata",,"sbt",
+713,20150111,"TALL_043",23,,"3335",,23,"34.8","2.9","Pinus echinata",,"sbt",
+714,20150111,"TALL_043",23,,"3336",,23,"21.1","11.1","Pinus taeda",,"sbt",
+715,20150111,"TALL_043",23,,"3337",,23,"46.9","16.2","Pinus echinata",,"sbt",
+716,20150111,"TALL_043",23,,"3338",,23,"48.5","16.6","Pinus echinata",,"sbt",
+717,20150111,"TALL_043",23,,"3339",,23,"7.7","16.1","Pinus palustris",,"sbt",
+718,20150111,"TALL_043",23,,"3340",,43,"266.2","17.5","Pinus taeda",,"sbt","no error in data transcription"
+719,20150111,"TALL_043",23,,"3341",,43,"189.9","6","Quercus falcata",,"sbt","no transcription errors found"
+720,20150111,"TALL_043",23,,"3342",,43,"188.9","7.6","Pinus echinata",,"sbt","no transcription errors found"
+721,20150111,"TALL_043",23,,"3343",,43,"183.3","9.9","Pinus palustris",,"sbt",
+722,20150111,"TALL_043",41,,"3344",,43,"288.9","3.4","Pinus echinata",,"sbt",
+723,20150111,"TALL_043",41,,"3345",,43,"300.8","4.7","Pinus palustris",,"sbt",
+724,20150111,"TALL_043",41,,"3346",,43,"300.4","6.5","Pinus palustris",,"sbt",
+725,20150111,"TALL_043",41,,"3347",,43,"305.5","11.1","Pinus echinata",,"sbt",
+726,20150111,"TALL_043",41,,"3348",,43,"291.4","10.7","Pinus palustris",,"sbt",
+727,20150111,"TALL_043",41,,"3349",,43,"300.1","13.6","Pinus echinata",,"sbt",
+728,20150111,"TALL_043",41,,"3350",,43,"305","13.4","Quercus falcata",,"sbt",
+729,20150111,"TALL_043",41,,"3351",,43,"323","11.6","Pinus echinata",,"sbt",
+730,20150111,"TALL_043",41,,"3352",,43,"334.8","13.6","Pinus palustris",,"sbt","no transcription errors found"
+731,20150111,"TALL_043",41,,"3353",,43,"347.1","13","Pinus echinata",,"sbt",
+732,20150111,"TALL_043",41,,"3354",,43,"345","14.9","Pinus palustris",,"sbt",
+733,20150111,"TALL_043",41,,"3355",,43,"348.9","20.5","Carya alba",,"sbt",
+734,20150111,"TALL_043",41,,"3356",,59,"93.5","7.3","Pinus palustris",,"sbt",
+735,20150111,"TALL_043",41,,"3357",,59,"157.4","8.5","Pinus echinata",,"sbt",
+736,20150111,"TALL_043",41,,"3358",,59,"178.1","6.8","Pinus echinata",,"sbt",
+737,20150111,"TALL_043",41,,"3359",,59,"169.1","11","Pinus taeda",,"sbt",
+738,20150111,"TALL_043",41,,"3360",,59,"173.3","13.8","Pinus taeda",,"sbt","no transcription errors found"
+739,20150111,"TALL_043",41,,"3361",,59,"178.5","15.8","Pinus echinata",,"sbt",
+740,20150111,"TALL_043",41,,"3362",,59,"166.9","17.9","Pinus echinata",,"sbt","no transcription errors found"
+741,20150111,,39,1,"3254",,,,,"Acer rubrum",,"sap",
+742,20150111,"TALL_044",39,1,"3255",,,,,"Vaccinium arboreum",,"sap",
+743,20150111,"TALL_044",39,1,"3256",,,,,"Vaccinium arboreum",,"sap",
+744,20150111,"TALL_044",39,1,"3257",,,,,"Vaccinium arboreum",,"smt","no transcription errors found"
+745,20150111,"TALL_044",39,1,"3258",,,,,"Carya",,"sap",
+746,20150111,"TALL_044",39,1,"3259",,,,,"Acer rubrum",,"sap",
+747,20150111,"TALL_044",39,1,"3260",,,,,"Vaccinium arboreum",,"sap",
+748,20150111,"TALL_044",39,1,"3261",,,,,"Acer rubrum",,"sap",
+749,20150111,"TALL_044",39,1,"3262",,,,,"Rhus copallinum",,"sap",
+750,20150111,"TALL_044",39,1,"3263",,,,,"Acer rubrum",,"sis","no transcription errors found"
+751,20150111,"TALL_044",39,3,"3264",,,,,"Pinus palustris",,"smt","no transcription errors found"
+752,20150111,"TALL_044",39,3,"3265",,,,,"Vaccinium arboreum",,"sap",
+753,20150111,"TALL_044",39,3,"3266",,,,,"Vaccinium arboreum",,"sap",
+754,20150111,"TALL_044",39,3,"3267",,,,,"Vaccinium arboreum",,"sms",
+755,20150111,"TALL_044",39,3,"3268",,,,,"Vaccinium arboreum",,"sap",
+756,20150111,"TALL_044",39,3,"3269",,,,,"Vaccinium arboreum",,"sap",
+757,20150111,"TALL_044",39,3,"3270",,,,,"Rhus copallinum",,"sap",
+758,20150111,"TALL_044",39,3,"3271",,,,,"Rhus copallinum",,"sap",
+759,20150111,"TALL_044",23,4,"3272",,,,,"Rhus copallinum",,"smt",
+760,20150111,"TALL_044",23,4,"3273",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+761,20150111,"TALL_044",23,4,"3274",,,,,"(tag removed)",,"sap",
+762,20150111,"TALL_044",23,4,"3275",,,,,"Acer saccharum var. leucoderme",,"sap",
+763,20150111,"TALL_044",23,2,"3276",,,,,"Pinus palustris",,"smt","no transcription errors found"
+764,20150111,"TALL_044",23,2,"3277",,,,,"Quercus montana",,"sap",
+765,20150111,"TALL_044",23,2,"3278",,,,,"Sassafras variifolium",,"sap",
+766,20150111,"TALL_044",23,2,"3279","3276",,,,"Vitis rotundifolia",,"lia",
+767,20150111,"TALL_044",23,2,"3280",,,,,"Quercus montana",,"sms",
+768,20150111,"TALL_044",23,2,"3281",,,,,"Rhus copallinum",,"sap",
+769,20150111,"TALL_044",23,2,"3282",,,,,"Rhus copallinum",,"sap",
+770,20150111,"TALL_044",23,2,"3283",,,,,"Sassafras variifolium",,"sap","no transcription errors found"
+771,20150111,"TALL_044",23,2,"3284",,,,,"Quercus montana",,"sap",
+772,20150111,"TALL_044",23,2,"3285",,,,,"Vaccinium stamineum var. interius",,"sap",
+773,20150111,"TALL_044",23,2,"3286",,,,,"Vaccinium stamineum var. interius",,"sap",
+774,20150111,"TALL_044",23,2,"3287",,,,,"Vaccinium arboreum",,"sms",
+775,20150111,"TALL_044",39,,"3288",,39,"40.7","4.8","Pinus echinata",,"sbt","no transcription errors found"
+776,20150111,"TALL_044",39,,"3289",,39,"18.3","5.7","Pinus taeda",,"sbt",
+777,20150111,"TALL_044",39,,"3290",,39,"49.4","7.3","Pinus taeda",,"sbt",
+778,20150111,"TALL_044",39,,"3291",,39,"49.1","9.3","Pinus palustris",,"sbt",
+779,20150111,"TALL_044",39,,"3292",,39,"38.8","9.3","Pinus echinata",,"sbt",
+780,20150111,"TALL_044",39,,"3293",,39,"6.2","8.3","Pinus taeda",,"sbt","no transcription errors found"
+781,20150111,"TALL_044",39,,"3294",,39,"0","6.7","Pinus taeda",,"sbt",
+782,20150111,"TALL_044",39,,"3295",,39,"23.5","12.8","Pinus echinata",,"sbt",
+783,20150111,"TALL_044",39,,"3296",,39,"33.8","13.6","Pinus palustris",,"sbt","no transcription errors found"
+784,20150111,"TALL_044",39,,"3297",,39,"50.3","13.2","Pinus echinata",,"sbt",
+785,20150111,"TALL_044",39,,"3298",,39,"55.7","11.7","Pinus echinata",,"sbt",
+786,20150111,"TALL_044",39,,"3299",,39,"65.1","12.3","Pinus echinata",,"sbt",
+787,20150111,"TALL_044",39,,"3401",,39,"69.6","13.8","Pinus taeda",,"sbt",
+788,20150111,"TALL_044",39,,"3402",,39,"76.7","11.8","Pinus taeda",,"sbt",
+789,20150111,"TALL_044",39,,"3403",,39,"78.3","6.4","Pinus taeda",,"sbt",
+790,20150111,"TALL_044",39,,"3404",,39,"85.3","13.9","Pinus echinata",,"sbt","no transcription errors found"
+791,20150111,"TALL_044",39,,"3405",,39,"86.6","14.2","Pinus echinata",,"sbt","no transcription errors found"
+792,20150111,"TALL_044",39,,"3406",,39,"88.5","16","Pinus taeda",,"sbt",
+793,20150111,"TALL_044",39,,"3407",,39,"79","18.8","Pinus taeda",,"sbt",
+794,20150111,"TALL_044",39,,"3408",,39,"62.9","16.4","Pinus echinata",,"sbt",
+795,20150111,"TALL_044",39,,"3409",,39,"63.9","19","Pinus echinata",,"sbt",
+796,20150111,"TALL_044",39,,"3410",,39,"37.2","17.3","Pinus palustris",,"sbt",
+797,20150111,"TALL_044",39,,"3411",,57,"148.2","5.5","Pinus palustris",,"sbt",
+798,20150111,"TALL_044",39,,"3412",,57,"150.7","4","Pinus palustris",,"sbt",
+799,20150111,"TALL_044",39,,"3413",,57,"111.6","4.7","Pinus taeda",,"sbt",
+800,20150111,"TALL_044",39,,"3414",,57,"95.9","17.6","Pinus taeda",,"mbt","no transcription errors found"
+801,20150111,"TALL_044",39,,"3114A",,57,"95.9","17.6","Pinus taeda",,"mbt",
+802,20150111,"TALL_044",39,,"3415",,57,"98.1","20","Pinus taeda",,"sbt","no transcription errors found"
+803,20150111,"TALL_044",39,,"3416",,57,"102.9","18.7","Pinus echinata",,"sbt",
+804,20150111,"TALL_044",39,,"3417",,57,"111.2","15.2","Pinus taeda",,"sbt",
+805,20150111,"TALL_044",39,,"3418",,57,"112.6","21","Pinus echinata",,"sbt",
+806,20150111,"TALL_044",39,,"3419",,57,"116.1","22","Pinus taeda",,"sbt",
+807,20150111,"TALL_044",39,,"3420",,57,"119","22.5","Pinus echinata",,"sbt",
+808,20150111,"TALL_044",23,,"3421",,41,"160.4","1.1","Pinus palustris",,"sbt",
+809,20150111,"TALL_044",23,,"3422",,41,"166.3","1.7","Pinus palustris",,"sbt",
+810,20150111,"TALL_044",23,,"3423",,41,"180.8","3.3","Pinus echinata",,"sbt","no transcription errors found; no error in data transcription;No error in stemAzimuth transcription"
+811,20150111,"TALL_044",23,,"3424",,41,"147.1","2.1","Pinus palustris",,"sbt",
+812,20150111,"TALL_044",23,,"3425",,41,"129","1.8","Pinus palustris",,"sbt",
+813,20150111,"TALL_044",23,,"3426",,43,"257.7","10","Liquidambar styraciflua",,"sbt",
+814,20150111,"TALL_044",23,,"3427",,43,"248.6","10.3","Pinus echinata",,"sbt",
+815,20150111,"TALL_044",23,,"3428",,43,"248.1","8.5","Quercus nigra",,"sbt",
+816,20150111,"TALL_044",23,,"3430",,43,"261.5","5.7","Pinus echinata",,"sbt",
+817,20150111,"TALL_044",23,,"3429",,43,"223.8","2.1","Pinus taeda",,"sbt",
+818,20150111,"TALL_044",23,,"3431",,43,"203.9","5.4","Pinus taeda",,"sbt",
+819,20150111,"TALL_044",23,,"3432",,43,"205.6","8.9","Pinus taeda",,"sbt",
+820,20150111,"TALL_044",23,,"3433",,43,"200.8","9.4","Quercus nigra",,"sbt","no transcription errors found"
+821,20150111,"TALL_044",23,,"3434",,43,"181","10.2","Pinus taeda",,"sbt",
+822,20150111,"TALL_044",23,,"3435",,43,"185.1","12.4","Acer rubrum",,"sbt","no transcription errors found"
+823,20150111,"TALL_044",23,,"3436",,43,"212.9","13.1","Pinus taeda",,"sbt",
+824,20150111,"TALL_044",23,,"3437",,25,"272.3","4.5","Pinus taeda",,"sbt",
+825,20150111,"TALL_044",23,,"3438",,25,"297","3.5","Pinus taeda",,"sbt",
+826,20150111,"TALL_044",39,1,"3246",,,,,"Vaccinium arboreum",,"sap",
+827,20150111,"TALL_044",39,1,"3247",,,,,"Quercus nigra",,"sap","no transcription errors found"
+828,20150111,"TALL_044",39,1,"3248",,,,,"Acer rubrum",,"sis",
+829,20150111,"TALL_044",39,1,"3249",,,,,"Acer rubrum",,"sis",
+830,20150111,"TALL_044",39,1,"3250",,,,,"Acer rubrum",,"sap","no transcription errors found"
+831,20150111,"TALL_044",39,1,"3251",,,,,"Acer rubrum",,"sap",
+832,20150111,"TALL_044",39,1,"3252",,,,,"Acer rubrum",,"smt",
+833,20150111,"TALL_044",39,1,"3253",,,,,"Acer rubrum",,"sms",
+834,20150111,"TALL_044",23,,"3439",,25,"281.7","10.5","Pinus taeda",,"sbt",
+835,20150111,"TALL_044",23,,"3440",,25,"285.9","11.5","Pinus taeda",,"sbt",
+836,20150111,"TALL_044",23,,"3441",,25,"272","9.5","Pinus taeda",,"sbt",
+837,20150111,"TALL_044",23,,"3442",,23,"40.2","8.7","Pinus palustris",,"sbt",
+838,20150111,"TALL_044",23,,"3443",,23,"47.8","7.4","Pinus palustris",,"sbt",
+839,20150111,"TALL_044",23,,"3444",,23,"38.1","9.4","Pinus palustris",,"sbt",
+840,20150111,"TALL_044",23,,"3445",,23,"31.3","8.2","Pinus taeda",,"sbt","no transcription errors found"
+841,20150111,"TALL_044",23,,"3446",,23,"23.9","6.7","Pinus taeda",,"sbt",
+842,20150111,"TALL_044",23,,"3447",,23,"38.8","6.3","Pinus palustris",,"sbt",
+843,20150111,"TALL_044",23,,"3448",,23,"60.1","6","Pinus palustris",,"sbt",
+844,20150111,"TALL_044",23,,"3449",,23,"72.9","5.5","Pinus palustris",,"sbt","no transcription errors found"
+845,20150111,"TALL_044",23,,"3450",,23,"12","9.4","Acer rubrum",,"sbt",
+846,20150111,"TALL_044",23,,"3451",,23,"20.5","9.6","Acer rubrum",,"sbt",
+847,20150111,"TALL_044",23,,"3452",,23,"30.6","17.2","Pinus palustris",,"sbt",
+848,20150111,"TALL_044",23,,"3453",,23,"22.8","15.7","Pinus palustris",,"sbt",
+849,20150110,"TALL_045",41,1,"3032",,,,,"Rhus copallinum",,"smt",
+850,20150110,"TALL_045",41,1,"3033",,,,,"Rhus copallinum",,"smt","no transcription errors found"
+851,20150110,"TALL_045",41,1,"3034",,,,,"Rhus copallinum",,"smt",
+852,20150110,"TALL_045",41,1,"3035",,,,,"Pinus palustris",,"smt",
+853,20150110,"TALL_045",41,,"3036",,43,"270","14.1","Pinus taeda",,"sbt",
+854,20150110,"TALL_045",41,,"3037",,43,"281.4","14.2","Pinus echinata",,"sbt",
+855,20150110,"TALL_045",41,,"3038",,43,"281.2","16.5","Pinus taeda",,"sbt",
+856,20150110,"TALL_045",41,,"3039",,43,"284.8","18.9","Pinus taeda",,"sbt",
+857,20150110,"TALL_045",41,,"3040",,43,"289.1","17.1","Pinus taeda",,"sbt",
+858,20150110,"TALL_045",41,,"3041",,43,"289.4","13.8","Pinus echinata",,"sbt",
+859,20150110,"TALL_045",41,,"3042",,43,"286.5","11.5","Pinus echinata",,"sbt",
+860,20150110,"TALL_045",41,,"3043",,43,"304.2","10.5","Pinus palustris",,"sbt","no transcription errors found"
+861,20150110,"TALL_045",41,,"3044",,43,"278.2","6.6","Pinus taeda",,"sbt",
+862,20150110,"TALL_045",41,,"3045",,43,"273.3","5.7","Pinus taeda",,"sbt",
+863,20150110,"TALL_045",41,,"3046",,43,"313.6","4.5","Pinus palustris",,"sbt","no transcription errors found"
+864,20150110,"TALL_045",41,,"3047",,43,"344","3.1","Pinus taeda",,"sbt",
+865,20150110,"TALL_045",41,,"3048",,43,"340","4.6","Pinus echinata",,"sbt",
+866,20150110,"TALL_045",41,,"3049",,43,"338.5","5.6","Pinus taeda",,"sbt",
+867,20150110,"TALL_045",41,,"3050",,43,"343.6","9","Pinus palustris",,"sbt",
+868,20150110,"TALL_045",41,,"3051",,43,"321.7","9.4","Pinus echinata",,"sbt","no transcription errors found"
+869,20150110,"TALL_045",41,,"3052",,43,"351.6","7.4","Pinus taeda",,"sbt",
+870,20150110,"TALL_045",41,,"3053",,43,"325.2","10.8","Pinus taeda",,"sbt","no transcription errors found"
+871,20150110,"TALL_045",41,,"3054",,43,"307.8","12.7","Pinus palustris",,"sbt",
+872,20150110,"TALL_045",41,,"3055",,43,"303.2","15.8","Pinus palustris",,"sbt",
+873,20150110,"TALL_045",41,,"3056",,43,"310.4","16.5","Pinus palustris",,"sbt",
+874,20150110,"TALL_045",41,,"3057",,61,"228.8","11.5","Pinus taeda",,"sbt","Revised pointID from 43 to 61"
+875,20150110,"TALL_045",41,,"3058",,61,"239.4","11.8","Pinus echinata",,"sbt","Revised pointID from 43 to 61"
+876,20150110,"TALL_045",41,,"3061",,61,"237.9","6.5",,,"sbt","Revised pointID from 43 to 61"
+877,20150110,"TALL_045",41,,"3059",,61,"225","3.7","Pinus taeda",,"sbt","Revised pointID from 43 to 61"
+878,20150110,"TALL_045",41,,"3060",,61,"223.7","4.4","Pinus echinata",,"sbt","Revised pointID from 43 to 61"
+879,20150110,"TALL_045",41,,"3062",,59,"115.5","5.9","Pinus echinata",,"sbt",
+880,20150110,"TALL_045",41,,"3063",,59,"103.5","5","Pinus palustris",,"sbt","no transcription errors found"
+881,20150110,"TALL_045",41,,"3064",,59,"128.3","8.7","Pinus palustris",,"sbt",
+882,20150110,"TALL_045",41,,"3065",,59,"143.3","11.2","Pinus palustris",,"sbt",
+883,20150110,"TALL_045",41,,"3066",,59,"147.3","4.4","Pinus palustris",,"sbt","no transcription errors found"
+884,20150110,"TALL_045",41,,"3067",,59,"175.6","2.7","Pinus echinata",,"sbt",
+885,20150110,"TALL_045",41,,"3068",,59,"179.5","8.4","Pinus echinata",,"sbt",
+886,20150110,"TALL_045",41,,"3069",,59,"176.3","8.4","Pinus echinata",,"sbt",
+887,20150110,"TALL_045",41,,"3070",,59,"180.8","10.8","Pinus taeda",,"sbt","no error in data transcription;No error in stemAzimuth transcription"
+888,20150110,"TALL_045",39,,"3072",,39,"64.8","2.9","Pinus echinata",,"sbt","no transcription errors found"
+889,20150110,"TALL_045",39,,"3071",,39,"86.7","6.7","Pinus echinata",,"sbt",
+890,20150110,"TALL_045",39,,"3073",,39,"64.7","6.7","Pinus palustris",,"sbt","no transcription errors found"
+891,20150110,"TALL_045",39,,"3074",,39,"53.5","5.8","Pinus echinata",,"sbt","no transcription errors found"
+892,20150110,"TALL_045",39,,"3075",,39,"51.8","6.9","Pinus echinata",,"sbt",
+893,20150110,"TALL_045",39,,"3076",,39,"40.5","6.7","Pinus echinata",,"sbt",
+894,20150110,"TALL_045",39,,"3077",,39,"20.1","8.5","Pinus taeda",,"sbt",
+895,20150110,"TALL_045",39,,"3078",,39,"45.7","9.7","Pinus taeda",,"sbt",
+896,20150110,"TALL_045",39,,"3079",,39,"43.1","9.8","Pinus echinata",,"sbt",
+897,20150110,"TALL_045",39,,"3080",,39,"66","9","Pinus taeda",,"sbt",
+898,20150110,"TALL_045",39,,"3081",,39,"85","11","Pinus palustris",,"sbt",
+899,20150110,"TALL_045",39,,"3082",,39,"82.5","11.9","Pinus echinata",,"mbt","no transcription errors found"
+900,20150110,"TALL_045",39,,"3082A",,39,"82.5","11.9","Pinus echinata",,"mbt","no transcription errors found"
+901,20150110,"TALL_045",39,,"3083",,39,"76.2","12.2","Pinus palustris",,"sbt",
+902,20150110,"TALL_045",39,,"3084",,39,"56.8","12.3","Pinus echinata",,"sbt",
+903,20150110,"TALL_045",39,,"3085",,39,"61.4","14.5","Pinus palustris",,"sbt",
+904,20150110,"TALL_045",39,,"3086",,39,"58","15.9","Pinus palustris",,"sbt",
+905,20150110,"TALL_045",39,,"3087",,39,"46.8","15","Pinus taeda",,"sbt","no transcription errors found"
+906,20150110,"TALL_045",39,,"3088",,39,"40.9","13.5","Pinus taeda",,"sbt",
+907,20150110,"TALL_045",39,,"3089",,39,"39.6","13.9","Pinus palustris",,"sbt",
+908,20150110,"TALL_045",39,,"3090",,39,"31.2","13.3","Pinus palustris",,"sbt",
+909,20150110,"TALL_045",39,,"3091",,39,"14.6","13.6","Quercus nigra",,"sbt",
+910,20150110,"TALL_045",39,,"3092",,39,"19.5","15.6","Pinus taeda",,"sbt","no transcription errors found"
+911,20150110,"TALL_045",39,,"3093",,57,"122.2","4.7","Cynoxylon floridum",,"sbt",
+912,20150110,"TALL_045",39,,"3094",,57,"92.5","3.1","Cynoxylon floridum",,"mbt",
+913,20150110,"TALL_045",39,,"3094A",,57,"92.5","3.1","Cynoxylon floridum",,"mbt",
+914,20150110,"TALL_045",39,,"3095",,57,"110.1","11.5","Pinus echinata",,"sbt",
+915,20150110,"TALL_045",39,,"3096",,57,"109.8","11.9","Pinus palustris",,"sbt","no transcription errors found"
+916,20150110,"TALL_045",39,,"3097",,57,"124.3","11","Pinus palustris",,"sbt",
+917,20150110,"TALL_045",39,,"3098",,59,"222.1","10.8","Pinus palustris",,"sbt",
+918,20150110,"TALL_045",39,,"3101",,59,"215.4","10.7","Pinus echinata",,"sbt",
+919,20150110,"TALL_045",39,,"3102",,59,"208.7","9","Pinus echinata",,"sbt",
+920,20150110,"TALL_045",39,,"3103",,59,"227","9.1","Pinus palustris",,"sbt","no transcription errors found"
+921,20150110,"TALL_045",39,,"3104",,59,"218.2","7.9","Pinus palustris",,"sbt",
+922,20150110,"TALL_045",39,,"3105",,59,"225.2","6.2","Pinus palustris",,"sbt",
+923,20150110,"TALL_045",39,,"3106",,59,"242","4.1","Pinus taeda",,"sbt",
+924,20150110,"TALL_045",39,,"3107",,59,"250","4.4","Pinus taeda",,"sbt",
+925,20150110,"TALL_045",39,,"3108",,59,"194.7","8.7","Pinus echinata",,"sbt","no transcription errors found"
+926,20150110,"TALL_045",39,,"3109",,59,"197.4","14.5","Pinus palustris",,"sbt",
+927,20150110,"TALL_045",39,,"3110",,59,"193.4","15","Pinus echinata",,"sbt",
+928,20150110,"TALL_045",39,,"3111",,59,"185.6","17","Pinus palustris",,"sbt",
+929,20150110,"TALL_045",39,,"3112",,59,"186.7","17.6","Pinus taeda",,"sbt","no transcription errors found"
+930,20150110,"TALL_045",39,3,"3001",,,,,"Vaccinium arboreum",,"sis","no transcription errors found"
+931,20150110,"TALL_045",39,3,"3002",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+932,20150110,"TALL_045",39,3,"3003",,,,,"Vaccinium arboreum",,"sms",
+933,20150110,"TALL_045",39,3,"3004",,,,,"Vaccinium arboreum",,"smt",
+934,20150110,"TALL_045",39,3,"3005",,,,,"Vaccinium arboreum",,"smt",
+935,20150110,"TALL_045",39,3,"3006",,,,,"Vaccinium arboreum",,"smt",
+936,20150110,"TALL_045",39,3,"3007",,,,,"Vaccinium arboreum",,"smt",
+937,20150110,"TALL_045",39,3,"3008",,,,,"Vaccinium arboreum",,"sis",
+938,20150110,"TALL_045",39,3,"3009",,,,,"Vaccinium arboreum",,"sap",
+939,20150110,"TALL_045",39,3,"3010",,,,,"Vaccinium arboreum",,"sms",
+940,20150110,"TALL_045",39,3,"3011",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+941,20150110,"TALL_045",39,3,"3012",,,,,"Vaccinium arboreum",,"sap",
+942,20150110,"TALL_045",39,3,"3013",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+943,20150110,"TALL_045",39,3,"3014",,,,,"Vaccinium arboreum",,"sap",
+944,20150110,"TALL_045",39,3,"3015",,,,,"Vaccinium arboreum",,"sap",
+945,20150110,"TALL_045",39,1,"3016",,,,,"Rhus copallinum",,"sap",
+946,20150110,"TALL_045",39,1,"3017",,,,,"Rhus copallinum",,"sap",
+947,20150110,"TALL_045",39,1,"3018",,,,,"Vaccinium arboreum",,"sap",
+948,20150110,"TALL_045",39,1,"3019",,,,,"Aesculus pavia",,"sms",
+949,20150110,"TALL_045",39,1,"3020",,,,,"Vaccinium arboreum",,"sms",
+950,20150110,"TALL_045",39,1,"3021",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+951,20150110,"TALL_045",39,1,"3022",,,,,"Pinus palustris",,"smt",
+952,20150110,"TALL_045",39,1,"3023",,,,,"Vaccinium arboreum",,"sap",
+953,20150110,"TALL_045",39,1,"3024",,,,,"Vaccinium arboreum",,"sap",
+954,20150110,"TALL_045",41,4,"3025",,,,,"Vaccinium arboreum",,"smt",
+955,20150110,"TALL_045",41,4,"3026",,,,,"Vaccinium arboreum",,"smt",
+956,20150110,"TALL_045",41,1,"3027",,,,,"Rhus copallinum",,"smt",
+957,20150110,"TALL_045",41,1,"3028",,,,,"Rhus copallinum",,"smt",
+958,20150110,"TALL_045",41,1,"3029",,,,,"Rhus copallinum",,"smt",
+959,20150110,"TALL_045",41,1,"3030",,,,,"Rhus copallinum",,"smt",
+960,20150110,"TALL_045",41,1,"3031",,,,,"Rhus copallinum",,"smt","no transcription errors found"
+961,20150110,"TALL_046",23,2,"3114",,,,,"Quercus",,"smt",
+962,20150110,"TALL_046",23,2,"3115",,,,,"Vaccinium arboreum",,"smt",
+963,20150110,"TALL_046",23,2,"3116",,,,,"Vaccinium arboreum",,"sis",
+964,20150110,"TALL_046",23,2,"3117",,,,,"Cynoxylon floridum",,"sis",
+965,20150110,"TALL_046",23,2,"3118",,,,,"Vaccinium arboreum",,"smt",
+966,20150110,"TALL_046",23,2,"3119",,,,,"Pinus taeda",,"smt",
+967,20150110,"TALL_046",23,2,"3120",,,,,"Pinus echinata",,"smt",
+968,20150110,"TALL_046",23,2,"3121",,,,,"Cynoxylon floridum",,"sis",
+969,20150110,"TALL_046",23,2,"3122",,,,,"Pinus taeda",,"smt",
+970,20150110,"TALL_046",23,2,"3123",,,,,"Pinus taeda",,"smt","no transcription errors found"
+971,20150110,"TALL_046",23,2,"3124",,,,,"Quercus nigra",,"smt",
+972,20150110,"TALL_046",23,2,"3125",,,,,"Cynoxylon floridum",,"smt",
+973,20150110,"TALL_046",23,2,"3126",,,,,"Pinus taeda",,"smt",
+974,20150110,"TALL_046",23,2,"3127",,,,,"Vaccinium arboreum",,"smt",
+975,20150110,"TALL_046",23,4,"3128",,,,,"Liquidambar styraciflua",,"smt","no transcription errors found"
+976,20150110,"TALL_046",23,4,"3129",,,,,"Cynoxylon floridum",,"smt",
+977,20150110,"TALL_046",23,4,"3130","3132",,,,"Vitis rotundifolia",,"lia",
+978,20150110,"TALL_046",23,4,"3132",,,,,"Liquidambar styraciflua",,"smt","no transcription errors found"
+979,20150110,"TALL_046",23,4,"3133",,,,,"Carya",,"smt",
+980,20150110,"TALL_046",23,4,"3134",,,,,,,"smt","dead, no transcription errors found"
+981,20150110,"TALL_046",23,4,"3135",,,,,"Cynoxylon floridum",,"smt","dead"
+982,20150110,"TALL_046",23,4,"3136",,,,,"Cynoxylon floridum",,"smt",
+983,20150110,"TALL_046",21,1,"3137",,,,,"Sassafras variifolium",,"smt",
+984,20150110,"TALL_046",21,1,"3138",,,,,"Carya alba",,"smt",
+985,20150110,"TALL_046",21,1,"3139",,,,,"Cynoxylon floridum",,"smt",
+986,20150110,"TALL_046",21,1,"3140",,,,,"Cynoxylon floridum",,"sis",
+987,20150110,"TALL_046",21,1,"3141",,,,,"Cynoxylon floridum",,"sis",
+988,20150110,"TALL_046",21,1,"3142",,,,,"Cynoxylon floridum",,"smt","no transcription errors found"
+989,20150110,"TALL_046",21,1,"3143",,,,,"Cynoxylon floridum",,"smt",
+990,20150110,"TALL_046",21,1,"3144",,,,,"Pinus palustris",,"smt","no transcription errors found"
+991,20150110,"TALL_046",21,4,"3145",,,,,"Pinus taeda",,"smt",
+992,20150110,"TALL_046",21,4,"3146",,,,,"Vaccinium arboreum",,"smt",
+993,20150110,"TALL_046",21,4,"3147",,,,,"Carya alba",,"smt","dead"
+994,20150110,"TALL_046",21,4,"3148",,,,,,,"smt","tag removed"
+995,20150110,"TALL_046",21,4,"3149",,,,,"Pinus",,"smt",
+996,20150110,"TALL_046",21,4,"3150",,,,,"Liquidambar styraciflua",,"smt","no transcription errors found"
+997,20150110,"TALL_046",21,4,"3151",,,,,"Pinus palustris",,"smt",
+998,20150110,"TALL_046",21,4,"3152",,,,,,,"smt","tag removed"
+999,20150110,"TALL_046",21,4,"3153",,,,,"Cynoxylon floridum",,"smt",
+1000,20150110,"TALL_046",21,4,"3154",,,,,"Acer rubrum",,"smt","no transcription errors found"
+1001,20150110,"TALL_046",21,4,"3155",,,,,"Quercus nigra",,"smt",
+1002,20150110,"TALL_046",21,,"3156",,21,"65.6","5.4","Cynoxylon floridum",,"sbt",
+1003,20150110,"TALL_046",21,,"3131",,21,"24.3","3","Cynoxylon floridum",,"sbt",
+1004,20150110,"TALL_046",21,,"3157",,21,"23.5","6.7",,,"sbt",
+1005,20150110,"TALL_046",21,,"3158",,21,"35.6","8.4","Pinus taeda",,"sbt","no transcription errors found"
+1006,20150110,"TALL_046",21,,"3159",,21,"55.1","9.3","Pinus taeda",,"sbt",
+1007,20150110,"TALL_046",21,,"3160",,21,"65.5","8.4","Pinus taeda",,"sbt",
+1008,20150110,"TALL_046",21,,"3161",,21,"68.6","10.5","Pinus palustris",,"sbt",
+1009,20150110,"TALL_046",21,,"3162",,21,"58.5","10.7","Pinus taeda",,"sbt",
+1010,20150110,"TALL_046",21,,"3163",,21,"50.1","11.3","Pinus palustris",,"sbt","no transcription errors found"
+1011,20150110,"TALL_046",21,,"3164",,21,"32.2","12.6","Quercus rubra",,"sbt","no transcription errors found"
+1012,20150110,"TALL_046",21,,"3165",,21,"20.8","14.8","Pinus taeda",,"sbt",
+1013,20150110,"TALL_046",21,,"3166",,21,"12.2","17.2","Quercus rubra",,"sbt",
+1014,20150110,"TALL_046",21,,"3167",,21,"5.6","19.1","Pinus taeda",,"sbt",
+1015,20150110,"TALL_046",21,,"3168",,21,"25","20.2","Pinus taeda",,"sbt",
+1016,20150110,"TALL_046",21,,"3169",,21,"49","20.5","Pinus palustris",,"sbt",
+1017,20150110,"TALL_046",21,,"3170",,21,"46.5","22.1","Pinus taeda",,"sbt",
+1018,20150110,"TALL_046",21,,"3171",,21,"47.8","22.9","Pinus taeda",,"sbt",
+1019,20150110,"TALL_046",21,,"3172",,23,"357.9","16.2","Pinus echinata",,"sbt",
+1020,20150110,"TALL_046",21,,"3173",,23,"346.8","10.9","Pinus palustris",,"sbt","no transcription errors found"
+1021,20150110,"TALL_046",21,,"3174",,23,"359","11.9","Pinus",,"sbt",
+1022,20150110,"TALL_046",21,,"3175",,23,"345.6","9.9","Pinus palustris",,"sbt",
+1023,20150110,"TALL_046",21,,"3176",,23,"328.3","13.1","Pinus palustris",,"sbt",
+1024,20150110,"TALL_046",21,,"3177",,23,"318.8","14.2","Quercus nigra",,"sbt",
+1025,20150110,"TALL_046",21,,"3178",,23,"316.4","12.4","Liquidambar styraciflua",,"sbt",
+1026,20150110,"TALL_046",21,,"3179",,23,"327.1","9.1","Pinus palustris",,"sbt",
+1027,20150110,"TALL_046",21,,"3180",,23,"338.7","8.8","Pinus taeda",,"sbt",
+1028,20150110,"TALL_046",21,,"3181",,23,"343.9","8.4","Pinus taeda",,"sbt",
+1029,20150110,"TALL_046",21,,"3182",,23,"327","7.6","Pinus taeda",,"sbt",
+1030,20150110,"TALL_046",21,,"3183",,23,"335.5","6.6","Pinus palustris",,"sbt","no transcription errors found"
+1031,20150110,"TALL_046",21,,"3184",,23,"325.6","4.6","Pinus taeda",,"sbt",
+1032,20150110,"TALL_046",21,,"3185",,23,"334.8","4.2","Pinus palustris",,"sbt",
+1033,20150110,"TALL_046",21,,"3186",,23,"345","2.6","Pinus taeda",,"sbt",
+1034,20150110,"TALL_046",21,,"3187",,23,"311","3.6","Pinus taeda",,"sbt",
+1035,20150110,"TALL_046",21,,"3188",,23,"305.8","4.2","Pinus taeda",,"sbt","no transcription errors found"
+1036,20150110,"TALL_046",21,,"3189",,23,"286.9","5.2","Cynoxylon floridum",,"sbt",
+1037,20150110,"TALL_046",21,,"3190",,23,"270.5","6.4","Pinus palustris",,"sbt",
+1038,20150110,"TALL_046",21,,"3191",,23,"293","8.9","Cynoxylon floridum",,"sbt",
+1039,20150111,"TALL_046",23,,"3193",,23,"27.8","1.3","Liquidambar styraciflua",,"sbt",
+1040,20150111,"TALL_046",23,,"3192",,23,"39","1.3","Pinus taeda",,"sbt","no transcription errors found"
+1041,20150111,"TALL_046",23,,"3194",,23,"39.8","3.7","Pinus taeda",,"sbt",
+1042,20150111,"TALL_046",23,,"3195",,23,"90.8","3.6","Pinus taeda",,"sbt","no error in data transcription;No error in stemAzimuth transcription"
+1043,20150111,"TALL_046",23,,"3196",,23,"86.3","4.2","Pinus taeda",,"sbt",
+1044,20150111,"TALL_046",23,,"3197",,23,"84.9","5","Pinus taeda",,"sbt",
+1045,20150111,"TALL_046",23,,"3198",,23,"90.4","5.4","Pinus taeda",,"sbt","no error in data transcription;No error in stemAzimuth transcription"
+1046,20150111,"TALL_046",23,,"3199",,23,"90.5","6.8","Pinus taeda",,"sbt","no error in data transcription;No error in stemAzimuth transcription"
+1047,20150111,"TALL_046",23,,"3200",,23,"87.1","7.8","Pinus taeda",,"sbt",
+1048,20150111,"TALL_046",23,,"0452",,23,"38.5","5.8","Pinus taeda",,"sbt",
+1049,20150111,"TALL_046",23,,"0453",,23,"23.5","6.4","Pinus echinata",,"sbt",
+1050,20150111,"TALL_046",23,,"0454",,23,"39.9","9","Pinus taeda",,"sbt","no transcription errors found"
+1051,20150111,"TALL_046",23,,"0455",,23,"51.1","9.5","Pinus taeda",,"sbt",
+1052,20150111,"TALL_046",23,,"0456",,23,"69.8","8.3","Pinus",,"sbt","dead"
+1053,20150111,"TALL_046",23,,"0457",,23,"52.2","12","Pinus taeda",,"sbt",
+1054,20150111,"TALL_046",23,,"0458",,23,"60.6","13.2","Pinus palustris",,"sbt",
+1055,20150111,"TALL_046",23,,"0460",,23,"57.1","14.3","Pinus taeda",,"sbt",
+1056,20150111,"TALL_046",23,,"0461",,23,"76","15.4","Pinus palustris",,"sbt","no transcription errors found"
+1057,20150111,"TALL_046",23,,"0462",,23,"82.9","13.3","Pinus palustris",,"sbt",
+1058,20150111,"TALL_046",23,,"0463",,23,"88","14.1","Pinus taeda",,"sbt",
+1059,20150111,"TALL_046",23,,"0464",,23,"88.9","14.1","Liquidambar styraciflua",,"sbt",
+1060,20150111,"TALL_046",23,,"0465",,23,"90","9.3","Pinus echinata",,"sbt","no transcription errors found"
+1061,20150111,"TALL_046",23,,"0466",,23,"50.4","14.5","Pinus echinata",,"sbt",
+1062,20150111,"TALL_046",23,,"0467",,43,"220","10.7","Pinus taeda",,"sbt",
+1063,20150111,"TALL_046",23,,"0473",,43,"204.4","10.6","Cynoxylon floridum",,"sbt",
+1064,20150111,"TALL_046",23,,"0475",,43,"217.3","8.7","Pinus taeda",,"sbt","no transcription errors found"
+1065,20150111,"TALL_046",23,,"0477",,43,"228.1","8.6","Pinus taeda",,"sbt",
+1066,20150111,"TALL_046",23,,"0478",,43,"223.9","7.1","Pinus taeda",,"sbt",
+1067,20150111,"TALL_046",23,,"0479",,43,"216","6.7","Pinus palustris",,"sbt",
+1068,20150111,"TALL_046",23,,"0468",,43,"214.2","5.1","Pinus palustris",,"sbt",
+1069,20150111,"TALL_046",23,,"0480",,43,"214.2","4.4","Pinus taeda",,"sbt",
+1070,20150111,"TALL_046",23,,"0481",,43,"255.6","1.8","Pinus taeda",,"sbt","no transcription errors found"
+1071,20150111,"TALL_046",23,,"0482",,43,"261.1","5.6","Liquidambar styraciflua",,"sbt",
+1072,20150111,"TALL_046",23,,"0483",,43,"263.6","7.3","Liquidambar styraciflua",,"sbt",
+1073,20150111,"TALL_046",23,,"0484",,43,"260.6","10.5","Acer rubrum",,"sbt","no transcription errors found"
+1074,20150111,"TALL_046",23,,"0485",,43,"259.3","10.8","Pinus taeda",,"sbt",
+1075,20150110,"TALL_047",41,1,"1474",,,,,"Quercus falcata",,"sap",
+1076,20150110,"TALL_047",41,1,"1475",,,,,"Sassafras variifolium",,"sap",
+1077,20150110,"TALL_047",41,1,"1476",,,,,"(pulled tag)",,"sap",
+1078,20150110,"TALL_047",41,1,"1477",,,,,"Quercus falcata",,"sms",
+1079,20150110,"TALL_047",41,1,"1478",,,,,"Aesculus pavia",,"sap",
+1080,20150110,"TALL_047",41,1,"1479",,,,,"Liquidambar styraciflua",,"smt","no transcription errors found"
+1081,20150110,"TALL_047",41,1,"1481",,,,,"Aesculus pavia",,"sap",
+1082,20150110,"TALL_047",41,1,"1482",,,,,"Aesculus pavia",,"sap",
+1083,20150110,"TALL_047",41,1,"1483",,,,,"Sassafras variifolium",,"sap","no transcription errors found"
+1084,20150110,"TALL_047",41,1,"1484",,,,,"Callicarpa americana",,"sap",
+1085,20150110,"TALL_047",41,1,"1485",,,,,"(pulled tag)",,"sap",
+1086,20150110,"TALL_047",41,1,"1486",,,,,"Quercus falcata",,"sap",
+1087,20150110,"TALL_047",41,1,"1487",,,,,"Quercus nigra",,"sap",
+1088,20150110,"TALL_047",41,1,"1488",,,,,"Quercus falcata",,"sap",
+1089,20150110,"TALL_047",41,1,"1489",,,,,"Quercus falcata",,"sap",
+1090,20150110,"TALL_047",41,1,"1490",,,,,"Quercus falcata",,"sap","no transcription errors found"
+1091,20150110,"TALL_047",41,1,"1491",,,,,"Carya microcarpa",,"smt",
+1092,20150110,"TALL_047",41,1,"1492",,,,,"Aesculus pavia",,"sap",
+1093,20150110,"TALL_047",41,1,"1494",,,,,,,"sap",
+1094,20150110,"TALL_047",41,1,"1497",,,,,"Quercus rubra",,"sap",
+1095,20150110,"TALL_047",41,1,"1500",,,,,"Aesculus pavia",,"sap",
+1096,20150110,"TALL_047",41,1,"1264",,,,,"Aesculus pavia",,"sap",
+1097,20150110,"TALL_047",41,1,"1265",,,,,"Aesculus pavia",,"sap",
+1098,20150110,"TALL_047",41,1,"1266",,,,,"Aesculus pavia",,"sap",
+1099,20150110,"TALL_047",41,1,"1267",,,,,"Aesculus pavia",,"sap",
+1100,20150110,"TALL_047",41,1,"1268",,,,,"Sassafras variifolium",,"sap","no transcription errors found"
+1101,20150110,"TALL_047",41,4,"1269",,,,,"Carya microcarpa",,"smt",
+1102,20150110,"TALL_047",41,4,"1270",,,,,"Carya microcarpa",,"smt",
+1103,20150110,"TALL_047",41,4,"1271",,,,,"Vaccinium arboreum",,"smt",
+1104,20150110,"TALL_047",41,4,"1272",,,,,"Pinus",,"smt",
+1105,20150110,"TALL_047",41,4,"1274",,,,,"Vaccinium arboreum",,"smt",
+1106,20150110,"TALL_047",41,4,"1275",,,,,"Vaccinium arboreum",,"smt",
+1107,20150110,"TALL_047",41,4,"1276",,,,,"Vaccinium arboreum",,"smt",
+1108,20150110,"TALL_047",41,4,"1289",,,,,"Cynoxylon floridum",,"smt",
+1109,20150110,"TALL_047",41,4,"1290",,,,,"Aesculus pavia",,"sap",
+1110,20150110,"TALL_047",21,4,"1293",,,,,"Aesculus pavia",,"sap","no transcription errors found"
+1111,20150110,"TALL_047",21,4,"1294",,,,,"Callicarpa americana",,"sap",
+1112,20150110,"TALL_047",21,4,"1295",,,,,"Quercus rubra",,"smt",
+1113,20150110,"TALL_047",21,4,"1296",,,,,"Quercus rubra",,"smt","no transcription errors found"
+1114,20150110,"TALL_047",21,4,"0067",,,,,"Quercus rubra",,"smt",
+1115,20150110,"TALL_047",21,4,"0115",,,,,"Carya ovata var. carolinae-septentrionalis",,"smt",
+1116,20150110,"TALL_047",21,4,"0126",,,,,"Carya ovata var. carolinae-septentrionalis",,"sap",
+1117,20150110,"TALL_047",21,4,"0130",,,,,"Aesculus pavia",,"sap",
+1118,20150110,"TALL_047",21,4,"0128",,,,,"(removed)",,"smt",
+1119,20150110,"TALL_047",21,4,"0125",,,,,"Carya ovata var. carolinae-septentrionalis",,"sap",
+1120,20150110,"TALL_047",21,4,"0127",,,,,"Aesculus pavia",,"sap","no transcription errors found"
+1121,20150110,"TALL_047",21,4,"0131",,,,,"(dead)",,"sms",
+1122,20150110,"TALL_047",21,4,"0132",,,,,"Callicarpa americana",,"sap",
+1123,20150110,"TALL_047",21,4,"0133",,,,,"Aesculus pavia",,"sap",
+1124,20150110,"TALL_047",21,4,"0134",,,,,"Aesculus pavia",,"sap",
+1125,20150110,"TALL_047",21,4,"0135",,,,,"(dead)",,"sap",
+1126,20150110,"TALL_047",21,4,"0136",,,,,"Sassafras variifolium",,"sap",
+1127,20150110,"TALL_047",21,4,"0137",,,,,"Callicarpa americana",,"sms",
+1128,20150110,"TALL_047",21,4,"0138",,,,,"Carya ovata var. carolinae-septentrionalis",,"sis",
+1129,20150110,"TALL_047",21,4,"0139",,,,,"Carya",,"smt","no transcription errors found"
+1130,20150110,"TALL_047",21,4,"0140",,,,,"Carya",,"sap","no transcription errors found"
+1131,20150110,"TALL_047",21,4,"0143",,,,,"Sassafras variifolium",,"sap",
+1132,20150110,"TALL_047",21,4,"0149",,,,,"Callicarpa americana",,"sms",
+1133,20150110,"TALL_047",21,4,"0144",,,,,"Aesculus pavia",,"sms",
+1134,20150110,"TALL_047",21,4,"0145",,,,,"Diospyros virginiana var. pubescens",,"sap",
+1135,20150110,"TALL_047",21,4,"0154",,,,,"Aesculus pavia",,"sap",
+1136,20150110,"TALL_047",21,4,"0155",,,,,"Aesculus pavia",,"sap","no transcription errors found"
+1137,20150110,"TALL_047",21,4,"0156",,,,,"Callicarpa americana",,"sap",
+1138,20150110,"TALL_047",21,4,"0157",,,,,"Rhus copallinum",,"smt",
+1139,20150110,"TALL_047",21,4,"0158",,,,,"Aesculus pavia",,"sap",
+1140,20150110,"TALL_047",21,4,"0162",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+1141,20150110,"TALL_047",21,4,"0169",,,,,"Rhus copallinum",,"sap",
+1142,20150110,"TALL_047",21,4,"0170",,,,,"Aesculus pavia",,"sap","no transcription errors found"
+1143,20150110,"TALL_047",21,4,"0171",,,,,"Quercus rubra",,"sap",
+1144,20150110,"TALL_047",21,4,"0173",,,,,"Callicarpa americana",,"sap",
+1145,20150110,"TALL_047",21,4,"0174",,,,,"Aesculus pavia",,"sap",
+1146,20150110,"TALL_047",21,4,"0175",,,,,"Cynoxylon floridum",,"smt","no transcription errors found"
+1147,20150110,"TALL_047",21,1,"0179",,,,,"Callicarpa americana",,"sap",
+1148,20150110,"TALL_047",21,1,"0182",,,,,"Quercus rubra",,"sap",
+1149,20150110,"TALL_047",21,1,"0186",,,,,"Carya ovata var. carolinae-septentrionalis",,"sap",
+1150,20150110,"TALL_047",21,1,"0189",,,,,"Oxydendrum arboreum",,"sis","no transcription errors found"
+1151,20150110,"TALL_047",21,1,"0197",,,,,"Carya",,"sms",
+1152,20150110,"TALL_047",21,1,"0204",,,,,"Carya ovata var. carolinae-septentrionalis",,"sap",
+1153,20150110,"TALL_047",21,1,"0211","0225",,,,"Vitis rotundifolia",,"lia",
+1154,20150110,"TALL_047",21,,"0213",,23,"339.5","14.2","Liquidambar styraciflua",,"sbt",
+1155,20150110,"TALL_047",21,,"0219",,23,"300.4","4.3","Pinus taeda",,"sbt",
+1156,20150110,"TALL_047",21,,"0214",,23,"309.7","7.6","Oxydendrum arboreum",,"sbt","no transcription errors found"
+1157,20150110,"TALL_047",21,,"0215",,23,"286.7","9.6","Pinus taeda",,"sbt",
+1158,20150110,"TALL_047",21,,"0217",,23,"298.8","11.9","Pinus taeda",,"sbt","no transcription errors found"
+1159,20150110,"TALL_047",21,,"0218",,23,"270","10.7","Oxydendrum arboreum",,"sbt",
+1160,20150110,"TALL_047",21,,"0220",,23,"272.6","12.9","Ilex opaca",,"sbt","dead, no transcription errors found"
+1161,20150110,"TALL_047",21,,"0221",,23,"270.1","14.9","Carya microcarpa",,"sbt",
+1162,20150110,"TALL_047",21,,"0223",,23,"271.5","18.6","Carya microcarpa",,"sbt",
+1163,20150110,"TALL_047",21,,"0225",,23,"281.7","17.2","Pinus taeda",,"sbt",
+1164,20150110,"TALL_047",21,,"0226",,23,"282.7","19.1","Carya ovata var. carolinae-septentrionalis",,"sbt",
+1165,20150110,"TALL_047",21,,"0227",,23,"287.5","20.5","Pinus taeda",,"sbt",
+1166,20150110,"TALL_047",21,,"0229",,23,"299.3","20.6","Pinus taeda",,"mbt",
+1167,20150110,"TALL_047",21,,"0229A",,23,"299.3","20.6","Pinus taeda",,"mbt","dead"
+1168,20150110,"TALL_047",21,,"0230",,23,"306.5","17.1","Liriodendron tulipifera",,"sbt","dead"
+1169,20150110,"TALL_047",21,,"0231",,23,"300.8","14.7","Pinus taeda",,"sbt","no transcription errors found"
+1170,20150110,"TALL_047",21,,"0233",,23,"310.6","17.4","Pinus taeda",,"sbt","no transcription errors found"
+1171,20150110,"TALL_047",21,,"0235",,23,"317.2","18.1","Pinus taeda",,"sbt",
+1172,20150110,"TALL_047",21,,"0236",,23,"347.4","19.6","Pinus taeda",,"sbt",
+1173,20150110,"TALL_047",41,,"0248",,61,"226.4","27.2","Liriodendron tulipifera",,"sbt",
+1174,20150110,"TALL_047",41,,"0256",,61,"223.5","24.9","Pinus taeda",,"sbt",
+1175,20150110,"TALL_047",41,,"0257",,61,"228.9","25.3","Pinus taeda",,"sbt",
+1176,20150110,"TALL_047",41,,"0258",,61,"205.2","20.8","Pinus taeda",,"sbt",
+1177,20150110,"TALL_047",41,,"0259",,61,"193.2","17","Pinus taeda",,"sbt",
+1178,20150110,"TALL_047",41,,"0260",,61,"183.8","18.6","Liriodendron tulipifera",,"sbt","no transcription errors found"
+1179,20150110,"TALL_047",41,,"0261",,61,"188","19.7","Pinus taeda",,"sbt",
+1180,20150110,"TALL_047",41,,"0262",,61,"221.1","16.6","Pinus taeda",,"sbt","no transcription errors found"
+1181,20150110,"TALL_047",41,,"0263",,61,"244.7","18.8","Pinus taeda",,"sbt",
+1182,20150110,"TALL_047",41,,"0264",,61,"250.9","17.2","Quercus",,"sbt",
+1183,20150110,"TALL_047",41,,"0265",,61,"268","18.6","Liriodendron tulipifera",,"sbt",
+1184,20150110,"TALL_047",41,,"0266",,61,"268.2","15.4","Liquidambar styraciflua",,"sbt",
+1185,20150110,"TALL_047",41,,"0271",,61,"268.1","9.4","Liriodendron tulipifera",,"sbt",
+1186,20150110,"TALL_047",41,,"0272",,61,"268.6","8.3",,,"sbt",
+1187,20150110,"TALL_047",41,,"0275",,61,"240.7","9.8","Pinus taeda",,"sbt","no transcription errors found"
+1188,20150110,"TALL_047",41,,"0276",,61,"221.8","6.4","Pinus echinata",,"sbt",
+1189,20150110,"TALL_047",41,,"0277",,61,"202.8","8.4","Pinus taeda",,"sbt",
+1190,20150110,"TALL_047",41,,"0278",,61,"205.8","3.1","Acer rubrum",,"sbt","no transcription errors found"
+1191,20150110,"TALL_047",41,1,"1469",,,,,"Carya ovata var. carolinae-septentrionalis",,"smt",
+1192,20150110,"TALL_047",41,1,"1470",,,,,"Quercus falcata",,"sap","no transcription errors found"
+1193,20150110,"TALL_047",41,1,"1471",,,,,"Diospyros virginiana var. pubescens",,"sap",
+1194,20150110,"TALL_047",41,1,"1472",,,,,"Carya alba",,"smt",
+1195,20150110,"TALL_047",41,1,"1473",,,,,"Smilax",,"smt","dead"
+1196,20150110,"TALL_048",21,1,"1376",,,,,"Rhus copallinum",,"smt","no transcription errors found"
+1197,20150110,"TALL_048",21,1,"1377",,,,,"Rhus copallinum",,"sap",
+1198,20150110,"TALL_048",21,1,"1378",,,,,"Rhus copallinum",,"sap",
+1199,20150110,"TALL_048",21,1,"1380",,,,,"Rhus copallinum",,"smt",
+1200,20150110,"TALL_048",21,4,"1381",,,,,"Quercus macnabiana",,"sap","no transcription errors found"
+1201,20150110,"TALL_048",21,4,"1382",,,,,"Pinus palustris",,"sap","no transcription errors found"
+1202,20150110,"TALL_048",41,1,"1383",,,,,,,"sap","Data collected from subplots that were removed under revised protocol 20141117"
+1203,20150110,"TALL_048",41,1,"1384",,,,,,,"sap","Data collected from subplots that were removed under revised protocol 20141117"
+1204,20150110,"TALL_048",41,4,"1385",,,,,,,"sap","Data collected from subplots that were removed under revised protocol 20141117"
+1205,20150110,"TALL_048",41,4,"1388",,,,,,,"sap","Data collected from subplots that were removed under revised protocol 20141117"
+1206,20150110,"TALL_048",41,4,"1389",,,,,,,"sap","Data collected from subplots that were removed under revised protocol 20141117"
+1207,20150110,"TALL_048",41,4,"1390",,,,,,,"sap","Data collected from subplots that were removed under revised protocol 20141117"
+1208,20150110,"TALL_048",41,4,"1391",,,,,,,"sap","Data collected from subplots that were removed under revised protocol 20141117"
+1209,20150110,"TALL_048",41,4,"1392",,,,,,,"sap","Data collected from subplots that were removed under revised protocol 20141117; Data collected from subplots that were removed under revised protocol 20141117"
+1210,20150110,"TALL_048",41,4,"1395",,,,,,,"sap","Data collected from subplots that were removed under revised protocol 20141117; no transcription errors found"
+1211,20150110,"TALL_048",41,4,"1402",,,,,,,"sms","Data collected from subplots that were removed under revised protocol 20141117"
+1212,20150110,"TALL_048",41,4,"1408",,,,,,,"sap","Data collected from subplots that were removed under revised protocol 20141117"
+1213,20150110,"TALL_048",41,,"1409",,61,"207.1","6.6",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117; blue tag 6040"
+1214,20150110,"TALL_048",41,,"1410",,61,"199.4","10.6",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1215,20150110,"TALL_048",41,,"1419",,61,"181","11",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1216,20150110,"TALL_048",41,,"1420",,61,"195.7","13.6",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1217,20150110,"TALL_048",41,,"1421",,61,"215.7","16.7",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1218,20150110,"TALL_048",41,,"1422",,61,"228.2","18.5",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1219,20150110,"TALL_048",41,,"1423",,61,"233.5","17.4",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1220,20150110,"TALL_048",41,,"1433",,61,"247.1","13.9",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117; no transcription errors found"
+1221,20150110,"TALL_048",41,,"1434",,61,"262.8","18.5",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1222,20150110,"TALL_048",41,,"1435",,61,"266.7","19.4",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1223,20150110,"TALL_048",41,,"1437",,61,"268.1","20.2",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1224,20150110,"TALL_048",41,,"1438",,61,"223.8","20.8",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1225,20150110,"TALL_048",41,,"1440",,61,"212.4","20.2",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1226,20150110,"TALL_048",41,,"1441",,61,"227.9","23.5",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1227,20150110,"TALL_048",41,,"1442",,61,"229.7","23.5",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1228,20150110,"TALL_048",41,,"1443",,61,"228.7","24.7",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1229,20150110,"TALL_048",41,,"1444",,43,"270.3","12.7",,,"sbt","Data collected from subplots that were removed under revised protocol 20141117"
+1230,20150110,"TALL_048",21,,"1445",,39,"108","19","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21; no transcription error found"
+1231,20150110,"TALL_048",21,,"1448",,39,"104.3","14.4","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21; no transcription error found"
+1232,20150110,"TALL_048",21,,"1449",,39,"94.7","6.4","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21; no transcription error found"
+1233,20150110,"TALL_048",21,,"1451",,39,"124.9","7.3","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1234,20150110,"TALL_048",21,,"1452",,39,"162.8","6","Pinus taeda",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1235,20150110,"TALL_048",21,,"1453",,39,"160","7","Pinus taeda",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1236,20150110,"TALL_048",21,,"1454",,39,"182.6","12","Pinus echinata",,"sbt","subplot entered incorrectly: changed from 41 to 21; no error in dtat transcription;from West to Southwest is 183 degrees"
+1237,20150110,"TALL_048",21,1,"1352",,,,,"Rhus copallinum",,"sap",
+1238,20150110,"TALL_048",21,1,"1354",,,,,"Quercus falcata",,"sap","no trascription errors found"
+1239,20150110,"TALL_048",21,1,"1355",,,,,"Oxydendrum arboreum",,"sis",
+1240,20150110,"TALL_048",21,1,"1356",,,,,"Oxydendrum arboreum",,"sis","no transcription errors found"
+1241,20150110,"TALL_048",21,1,"1357",,,,,"Oxydendrum arboreum",,"sis",
+1242,20150110,"TALL_048",21,1,"1360",,,,,"Oxydendrum arboreum",,"sis",
+1243,20150110,"TALL_048",21,1,"1361",,,,,"Oxydendrum arboreum",,"smt",
+1244,20150110,"TALL_048",21,1,"1363",,,,,"Oxydendrum arboreum",,"sis",
+1245,20150110,"TALL_048",21,1,"1364",,,,,"Rhus copallinum",,"sis",
+1246,20150110,"TALL_048",21,1,"1365",,,,,"Acer rubrum",,"sap",
+1247,20150110,"TALL_048",21,1,"1366",,,,,"Liquidambar styraciflua",,"sap",
+1248,20150110,"TALL_048",21,1,"1368",,,,,"Rhus copallinum",,"smt",
+1249,20150110,"TALL_048",21,1,"1369",,,,,"Quercus nigra",,"sap",
+1250,20150110,"TALL_048",21,1,"1370",,,,,"Rhus copallinum",,"smt","no transcription errors found"
+1251,20150110,"TALL_048",21,1,"1371",,,,,"Rhus copallinum",,"sap",
+1252,20150110,"TALL_048",21,1,"1372",,,,,"Acer rubrum",,"smt","no transcription errors found"
+1253,20150110,"TALL_048",21,,"1455",,39,"179.1","13.6","Pinus taeda",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1254,20150110,"TALL_048",21,,"1457",,39,"135.6","16.4","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1255,20150110,"TALL_048",21,,"1461",,39,"141.1","18.5","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1256,20150110,"TALL_048",21,,"1462",,39,"125.4","17.3","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1257,20150110,"TALL_048",21,,"1463",,39,"122.4","22.2","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1258,20150110,"TALL_048",21,,"1464",,39,"123.8","21.8","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1259,20150110,"TALL_048",21,,"1465",,39,"129.5","22.3","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1260,20150110,"TALL_048",21,,"1466",,39,"128.8","23.6","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1261,20150110,"TALL_048",21,,"1467",,39,"138.5","25.9","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21;no transcription error found"
+1262,20150110,"TALL_048",21,,"1468",,39,"135.9","25.8","Pinus palustris",,"sbt","subplot entered incorrectly: changed from 41 to 21"
+1263,20150109,"TALL_049",21,1,"1002",,,,,,,"sap",
+1264,20150109,"TALL_049",21,1,"1003",,,,,,,"sap",
+1265,20150109,"TALL_049",21,1,"1004",,,,,,,"sap",
+1266,20150109,"TALL_049",21,1,"1005",,,,,,,"sap",
+1267,20150109,"TALL_049",21,1,"1006",,,,,,,"sap",
+1268,20150109,"TALL_049",21,1,"1012",,,,,,,"sap",
+1269,20150109,"TALL_049",21,1,"1014",,,,,,,"sap",
+1270,20150109,"TALL_049",21,1,"1022",,,,,,,"sap","no transcription errors found"
+1271,20150109,"TALL_049",21,1,"1023",,,,,,,"smt",
+1272,20150109,"TALL_049",21,1,"1024",,,,,,,"sap",
+1273,20150109,"TALL_049",21,1,"1033",,,,,,,"sap",
+1274,20150109,"TALL_049",21,1,"1035",,,,,,,"smt",
+1275,20150109,"TALL_049",21,1,"1036",,,,,,,"sap",
+1276,20150109,"TALL_049",21,1,"1037",,,,,,,"sap",
+1277,20150109,"TALL_049",21,1,"1038",,,,,,,"sap",
+1278,20150109,"TALL_049",21,1,"1053",,,,,"Quercus falcata",,"sap",
+1279,20150109,"TALL_049",21,1,"1054",,,,,"Quercus falcata",,"smt",
+1280,20150109,"TALL_049",21,1,"1055",,,,,"Quercus falcata",,"sap","no transcription errors found"
+1281,20150109,"TALL_049",21,1,"1056",,,,,"Symplocos tinctoria",,"sap",
+1282,20150109,"TALL_049",21,1,"1057",,,,,,,"sis",
+1283,20150109,"TALL_049",21,1,"1059",,,,,"Quercus",,"smt",
+1284,20150109,"TALL_049",21,1,"1060",,,,,"Quercus falcata",,"sap",
+1285,20150109,"TALL_049",21,1,"1090",,,,,"Carya alba",,"smt","no transcription errors found"
+1286,20150109,"TALL_049",21,4,"1094",,,,,"Rhus copallinum",,"sap",
+1287,20150109,"TALL_049",21,4,"1095",,,,,"Quercus stellata",,"sap",
+1288,20150109,"TALL_049",21,4,"1096",,,,,"Quercus stellata",,"smt",
+1289,20150109,"TALL_049",21,4,"1097",,,,,"Rhus copallinum",,"smt",
+1290,20150109,"TALL_049",21,4,"1098",,,,,"Quercus stellata",,"sap","no transcription errors found"
+1291,20150109,"TALL_049",21,4,"1100",,,,,"Rhus copallinum",,"sap",
+1292,20150109,"TALL_049",21,4,"1113",,,,,"Liquidambar styraciflua",,"sis",
+1293,20150109,"TALL_049",21,4,"1117",,,,,"Vaccinium arboreum",,"sap",
+1294,20150109,"TALL_049",41,1,"1121",,,,,"Quercus",,"sap",
+1295,20150109,"TALL_049",41,1,"1122",,,,,"Diospyros virginiana var. pubescens",,"sap",
+1296,20150109,"TALL_049",41,1,"1127",,,,,"Rhus copallinum",,"sap",
+1297,20150109,"TALL_049",41,1,"1128",,,,,"Quercus",,"sap","no transcription errors found"
+1298,20150109,"TALL_049",41,1,"1129",,,,,,,"sap",
+1299,20150109,"TALL_049",41,1,"1138",,,,,"Quercus marilandica",,"sap","no transcription errors found"
+1300,20150109,"TALL_049",41,1,"1139",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+1301,20150109,"TALL_049",41,1,"1158",,,,,"Quercus marilandica",,"sap",
+1302,20150109,"TALL_049",41,1,"1159",,,,,"Quercus marilandica",,"smt",
+1303,20150109,"TALL_049",41,1,"1161",,,,,"Quercus marilandica",,"sap",
+1304,20150109,"TALL_049",41,1,"1162",,,,,"Quercus",,"sap",
+1305,20150109,"TALL_049",41,1,"1198",,,,,"Rhus copallinum",,"sap",
+1306,20150109,"TALL_049",41,4,"1199",,,,,"Rhus copallinum",,"sap",
+1307,20150109,"TALL_049",41,4,"1200",,,,,"Rhus copallinum",,"sap",
+1308,20150109,"TALL_049",41,4,"1236",,,,,"Rhus copallinum",,"sap",
+1309,20150109,"TALL_049",41,4,"1237",,,,,"Rhus copallinum",,"sap",
+1310,20150109,"TALL_049",41,4,"1238",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+1311,20150109,"TALL_049",41,4,"1239",,,,,"Liquidambar styraciflua",,"smt","no transcription errors found"
+1312,20150109,"TALL_049",41,4,"1241",,,,,"Liquidambar styraciflua",,"smt",
+1313,20150109,"TALL_049",21,,"1244",,39,"125.5","21.5","Carya alba",,"sbt",
+1314,20150109,"TALL_049",21,,"1245",,39,"133.9","17","Pinus palustris",,"sbt","no transcription errors found"
+1315,20150109,"TALL_049",21,,"1246",,39,"143.3","13.8","Pinus palustris",,"sbt",
+1316,20150109,"TALL_049",21,1,"1001",,,,,,,"smt",
+1317,20150109,"TALL_049",21,,"1251",,39,"145.9","14.6","Pinus palustris",,"sbt",
+1318,20150109,"TALL_049",21,,"1253",,39,"114.3","15.1","Quercus falcata",,"sbt",
+1319,20150109,"TALL_049",21,,"1254",,39,"89.7","4.3","Pinus palustris",,"sbt","dead - possible beetle; noerror in data transcription;No error in stemAzimuth transcription"
+1320,20150109,"TALL_049",21,,"1257",,39,"168.6","10.4","Pinus palustris",,"sbt","no transcription errors found"
+1321,20150109,"TALL_049",41,,"1258",,61,"208.8","17.1","Pinus palustris",,"sbt",
+1322,20150109,"TALL_049",41,,"1260",,61,"216.8","14.2","Pinus",,"sbt","dead"
+1323,20150109,"TALL_049",41,,"1259",,61,"204.5","20","Pinus echinata",,"sbt",
+1324,20150109,"TALL_049",41,,"1261",,61,"184.5","12.4","Pinus echinata",,"sbt",
+1325,20150109,"TALL_049",41,,"1262",,61,"214.2","4","Pinus palustris",,"sbt","no transcription errors found"
+1326,20150109,"TALL_049",41,,"1263",,61,"271.8","11","Pinus palustris",,"sbt","no error in data transcription;No error in stemAzimuth transcription"
+1327,20150109,"TALL_052",21,1,"2772",,,,,"Symplocos tinctoria",,"sap",
+1328,20150109,"TALL_052",21,1,"2804",,,,,"Vaccinium arboreum",,"sap",
+1329,20150109,"TALL_052",21,1,"2801",,,,,"Pinus palustris",,"sap",
+1330,20150109,"TALL_052",21,1,"2776",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+1331,20150109,"TALL_052",21,1,"2774",,,,,"Vaccinium arboreum",,"sap",
+1332,20150109,"TALL_052",21,1,"2781",,,,,"Symplocos tinctoria",,"sms",
+1333,20150109,"TALL_052",21,,"2773",,21,"31.8","4.5","Pinus palustris",,"sbt",
+1334,20150109,"TALL_052",21,,"2777",,21,"54.9","16.4","Pinus palustris",,"sbt",
+1335,20150109,"TALL_052",21,,"2780",,21,"87.6","16.9","Pinus palustris",,"sbt","no transcription errors found"
+1336,20150109,"TALL_052",21,,"2800",,21,"41.7","21.5","Pinus taeda",,"sbt",
+1337,20150109,"TALL_052",21,,"2794",,21,"16.4","18.1","Pinus taeda",,"sbt",
+1338,20150109,"TALL_052",41,,"2779",,43,"270.9","17.6","Pinus taeda",,"sbt",
+1339,20150109,"TALL_052",41,,"2778",,43,"293.9","16.7","Pinus palustris",,"sbt",
+1340,20150109,"TALL_052",41,,"2802",,43,"296.4","20.1","Pinus taeda",,"sbt","no transcription errors found"
+1341,20150109,"TALL_052",41,,"2795",,43,"310.2","22.5","Pinus palustris",,"sbt",
+1342,20150109,"TALL_052",41,,"2784",,43,"311.5","19.2","Pinus taeda",,"sbt",
+1343,20150109,"TALL_052",41,,"2799",,43,"314","18.7","Pinus taeda",,"sbt",
+1344,20150109,"TALL_052",41,,"2796",,43,"320.9","7.7","Pinus palustris",,"sbt","dead"
+1345,20150109,"TALL_052",41,,"2798",,43,"338.1","10.9","Pinus taeda",,"sbt",
+1346,20150109,"TALL_052",41,,"2797",,43,"341.7","12","Pinus taeda",,"sbt",
+1347,20150109,"TALL_052",41,,"2792",,43,"0","13.2","Pinus taeda",,"sbt","No error in stemAzimuth transcription"
+1348,20150109,"TALL_052",41,,"2793",,43,"351.4","15.9","Pinus palustris",,"sbt",
+1349,20150109,"TALL_052",41,,"2806",,43,"338.7","19.4","Pinus taeda",,"sbt","no transcription errors found"
+1350,20150109,"TALL_052",41,4,"2718",,,,,"Vaccinium arboreum",,"sms","no transcription errors found"
+1351,20150109,"TALL_052",41,4,"2720",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+1352,20150109,"TALL_052",41,4,"2721",,,,,"Vaccinium arboreum",,"sap",
+1353,20150109,"TALL_052",41,4,"2719",,,,,"Vaccinium arboreum",,"sap",
+1354,20150109,"TALL_052",41,4,"2723",,,,,"Vaccinium arboreum",,"sap",
+1355,20150109,"TALL_052",41,4,"2722",,,,,"Vaccinium arboreum",,"sap",
+1356,20150109,"TALL_052",41,4,"2724",,,,,"Rhus copallinum",,"sap",
+1357,20150109,"TALL_052",41,4,"2725",,,,,"Vaccinium arboreum",,"sap",
+1358,20150109,"TALL_052",41,4,"2726",,,,,"Vaccinium arboreum",,"sms",
+1359,20150109,"TALL_052",41,4,"2727",,,,,"Vaccinium arboreum",,"sap",
+1360,20150109,"TALL_052",41,4,"2728",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+1361,20150109,"TALL_052",41,1,"2729",,,,,"Pinus palustris",,"smt",
+1362,20150109,"TALL_052",41,1,"2740",,,,,"Vaccinium arboreum",,"sap",
+1363,20150109,"TALL_052",41,1,"2741",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+1364,20150109,"TALL_052",41,1,"2742",,,,,"Vaccinium arboreum",,"sap",
+1365,20150109,"TALL_052",41,1,"2743",,,,,"Vaccinium arboreum",,"sap",
+1366,20150109,"TALL_052",41,1,"2744",,,,,"Vaccinium arboreum",,"sap",
+1367,20150109,"TALL_052",41,1,"2745",,,,,"Vaccinium arboreum",,"sap",
+1368,20150109,"TALL_052",41,1,"2746",,,,,"Vaccinium arboreum",,"sap",
+1369,20150109,"TALL_052",41,1,"2747",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+1370,20150109,"TALL_052",41,1,"2748",,,,,"Vaccinium arboreum",,"sap","no transcription errors found"
+1371,20150109,"TALL_052",41,1,"2749",,,,,"Vaccinium arboreum",,"sap",
+1372,20150109,"TALL_052",41,1,"2750",,,,,"Vaccinium arboreum",,"sap",
+1373,20150109,"TALL_052",41,1,"2751",,,,,"Rhus copallinum",,"sap",
+1374,20150109,"TALL_052",41,1,"2752",,,,,"Vaccinium arboreum",,"sap",
+1375,20150109,"TALL_052",41,1,"2753",,,,,"Rhus copallinum",,"sap",
+1376,20150109,"TALL_052",21,4,"2754",,,,,"Pinus palustris",,"smt",
+1377,20150109,"TALL_052",21,4,"2755",,,,,"Pinus palustris",,"sap",
+1378,20150109,"TALL_052",21,4,"2756",,,,,"Pinus palustris",,"smt",
+1379,20150109,"TALL_052",21,4,"2757",,,,,"Vaccinium arboreum",,"sap",
+1380,20150109,"TALL_052",21,4,"2758",,,,,"Quercus stellata",,"sap","no transcription errors found"
+1381,20150109,"TALL_052",21,4,"2759",,,,,"Quercus falcata",,"sap","no transcription errors found"
+1382,20150109,"TALL_052",21,4,"2760",,,,,"Quercus falcata",,"sap",
+1383,20150109,"TALL_052",21,4,"2761",,,,,"Vaccinium arboreum",,"sap",
+1384,20150109,"TALL_052",21,4,"2762",,,,,"Vaccinium arboreum",,"sap",
+1385,20150109,"TALL_052",21,4,"2763",,,,,"Vaccinium arboreum",,"sms",
+1386,20150109,"TALL_052",21,4,"2764",,,,,"Vaccinium arboreum",,"sap",
+1387,20150109,"TALL_052",21,4,"2769",,,,,"Vaccinium arboreum",,"sap",
+1388,20150109,"TALL_052",21,4,"2770",,,,,"Vaccinium arboreum",,"sap",
+1389,20150109,"TALL_052",21,4,"2771",,,,,"Vaccinium arboreum",,"sap",
+1390,20150109,"TALL_053",41,1,"2915",,,,,"Oxydendrum arboreum",,"sap","no transcription errors found"
+1391,20150109,"TALL_053",41,1,"2916",,,,,"Oxydendrum arboreum",,"smt",
+1392,20150109,"TALL_053",41,1,"2917",,,,,"Oxydendrum arboreum",,"sap",
+1393,20150109,"TALL_053",41,1,"2918",,,,,"Magnolia fraseri",,"sis",
+1394,20150109,"TALL_053",41,1,"2919",,,,,,,"sis",
+1395,20150109,"TALL_053",41,1,"2920",,,,,,,"sap",
+1396,20150109,"TALL_053",41,4,"2921",,,,,"Carya alba",,"sap",
+1397,20150109,"TALL_053",41,4,"2922",,,,,"Quercus stellata",,"sap",
+1398,20150109,"TALL_053",41,4,"2923",,,,,,,"smt",
+1399,20150109,"TALL_053",41,4,"2924",,,,,"Carya alba",,"sap",
+1400,20150109,"TALL_053",41,4,"2925",,,,,"Carya alba",,"sap","no transcription errors found"
+1401,20150109,"TALL_053",41,4,"2926",,,,,"Quercus falcata",,"sis",
+1402,20150109,"TALL_053",41,4,"2927",,,,,"Quercus falcata",,"sap",
+1403,20150109,"TALL_053",41,4,"2928",,,,,"Quercus alba",,"sms",
+1404,20150109,"TALL_053",41,4,"2929",,,,,"Liquidambar styraciflua",,"sis",
+1405,20150109,"TALL_053",41,4,"2930",,,,,"Quercus falcata",,"sms",
+1406,20150109,"TALL_053",41,4,"2931",,,,,,,"sis",
+1407,20150109,"TALL_053",41,4,"2932",,,,,"Acer rubrum",,"sap","no transcription errors found"
+1408,20150109,"TALL_053",41,4,"2933",,,,,"Acer rubrum",,"smt",
+1409,20150109,"TALL_053",41,4,"2934",,,,,"Oxydendrum arboreum",,"sis",
+1410,20150109,"TALL_053",41,4,"2935",,,,,"Rhus copallinum",,"sap","no transcription errors found"
+1411,20150109,"TALL_053",41,,"2936",,61,"227.4","25.3","Quercus falcata",,"sbt",
+1412,20150109,"TALL_053",41,,"2937",,61,"219","22.5","Quercus falcata",,"sbt",
+1413,20150109,"TALL_053",41,,"2938",,61,"224.1","19.1","Quercus falcata",,"sbt",
+1414,20150109,"TALL_053",41,,"2939",,61,"237.1","21.6","Oxydendrum arboreum",,"sbt",
+1415,20150109,"TALL_053",41,,"2940",,61,"228.5","15.2","Pinus palustris",,"sbt",
+1416,20150109,"TALL_053",41,,"2941",,61,"234.4","14.4","Quercus stellata",,"sbt",
+1417,20150109,"TALL_053",41,,"2942",,61,"247.2","16","Pinus palustris",,"sbt",
+1418,20150109,"TALL_053",41,,"2943",,61,"258.9","14.6","Oxydendrum arboreum",,"sbt",
+1419,20150109,"TALL_053",41,,"2944",,61,"261.8","18","Pinus palustris",,"sbt",
+1420,20150109,"TALL_053",41,,"2945",,61,"256.8","9.4","Pinus","cf. species","sbt","no transcription errors found"
+1421,20150109,"TALL_053",41,,"2946",,61,"268.9","6.5","Pinus Sp.",,"sbt","dead"
+1422,20150109,"TALL_053",41,,"2947",,61,"245.7","7.6","Oxydendrum arboreum",,"sbt",
+1423,20150109,"TALL_053",41,,"2948",,61,"214.7","2.9","Oxydendrum arboreum",,"sbt",
+1424,20150109,"TALL_053",41,,"2949",,61,"190.2","11.2","Pinus palustris",,"sbt","no transcription errors found"
+1425,20150109,"TALL_053",41,,"2950",,61,"194","15","Quercus alba",,"sbt",
+1426,20150109,"TALL_053",39,1,"2951",,,,,"Quercus rubra",,"sap",
+1427,20150109,"TALL_053",39,1,"2952",,,,,"Carya alba",,"sap",
+1428,20150109,"TALL_053",39,1,"2953",,,,,"Carya microcarpa",,"sms","no transcription errors found"
+1429,20150109,"TALL_053",39,1,"2954",,,,,"Quercus alba",,"sap",
+1430,20150109,"TALL_053",39,1,"2955",,,,,"Quercus stellata",,"sap","no transcription errors found"
+1431,20150109,"TALL_053",39,1,"2956",,,,,"Carya microcarpa",,"sap",
+1432,20150109,"TALL_053",39,1,"2957",,,,,"Carya alba",,"sap",
+1433,20150109,"TALL_053",39,1,"2958",,,,,"Quercus stellata",,"sap",
+1434,20150109,"TALL_053",39,1,"2959",,,,,"Quercus rubra",,"sap",
+1435,20150109,"TALL_053",39,1,"2960",,,,,"Carya alba",,"sap",
+1436,20150109,"TALL_053",39,1,"2961",,,,,"Quercus rubra",,"sap",
+1437,20150109,"TALL_053",39,1,"2962",,,,,"Quercus alba",,"sms","no transcription errors found"
+1438,20150109,"TALL_053",39,1,"2963",,,,,"Quercus rubra",,"sap",
+1439,20150109,"TALL_053",39,1,"2964",,,,,"Quercus rubra",,"sap",
+1440,20150109,"TALL_053",39,1,"2965",,,,,"Quercus rubra",,"sap","no transcription errors found"
+1441,20150109,"TALL_053",39,1,"2966",,,,,"Quercus stellata",,"sap",
+1442,20150109,"TALL_053",39,1,"2967",,,,,"Quercus stellata",,"sms",
+1443,20150109,"TALL_053",39,1,"2968",,,,,"Quercus rubra",,"sap",
+1444,20150109,"TALL_053",39,1,"2969",,,,,"Vaccinium arboreum",,"smt","no transcription errors found"
+1445,20150109,"TALL_053",39,1,"2970",,,,,"Quercus rubra",,"sap",
+1446,20150109,"TALL_053",39,1,"2971",,,,,"Vaccinium arboreum",,"sap",
+1447,20150109,"TALL_053",39,1,"2972",,,,,"Quercus stellata",,"sap",
+1448,20150109,"TALL_053",39,1,"2973",,,,,"Carya alba",,"sap",
+1449,20150109,"TALL_053",39,1,"2974",,,,,"Quercus stellata",,"sap",
+1450,20150109,"TALL_053",39,1,"2975",,,,,"Carya alba",,"sap","no transcription errors found"
+1451,20150109,"TALL_053",39,1,"2976",,,,,,,"sis",
+1452,20150109,"TALL_053",39,1,"2977",,,,,"Quercus rubra",,"sap",
+1453,20150109,"TALL_053",39,1,"2978",,,,,"Liquidambar styraciflua",,"sms","no transcription errors found"
+1454,20150109,"TALL_053",39,1,"2979",,,,,"Carya microcarpa",,"sap",
+1455,20150109,"TALL_053",39,3,"2980",,,,,"Oxydendrum arboreum",,"smt",
+1456,20150109,"TALL_053",39,3,"2981",,,,,"Oxydendrum arboreum",,"smt",
+1457,20150109,"TALL_053",39,3,"2982",,,,,"Oxydendrum arboreum",,"sap",
+1458,20150109,"TALL_053",39,3,"2983",,,,,"Pinus taeda",,"smt",
+1459,20150109,"TALL_053",39,3,"2984",,,,,"Liquidambar styraciflua",,"smt",
+1460,20150109,"TALL_053",39,3,"2985",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+1461,20150109,"TALL_053",39,3,"2986",,,,,"Quercus falcata",,"sms",
+1462,20150109,"TALL_053",39,3,"2987",,,,,"Vaccinium arboreum",,"sis",
+1463,20150109,"TALL_053",39,3,"2988",,,,,"Vaccinium arboreum",,"smt",
+1464,20150109,"TALL_053",39,3,"2989",,,,,"Vaccinium arboreum",,"sis",
+1465,20150109,"TALL_053",39,3,"2990",,,,,"Quercus rubra",,"sms","no transcription errors found"
+1466,20150109,"TALL_053",39,3,"2991",,,,,"Vaccinium corymbosum var. albiflorum",,"sms",
+1467,20150109,"TALL_053",39,3,"2992",,,,,"Liquidambar styraciflua",,"sap",
+1468,20150109,"TALL_053",39,3,"2993",,,,,"Liquidambar styraciflua",,"smt",
+1469,20150109,"TALL_053",39,3,"2994",,,,,"Liquidambar styraciflua",,"sap",
+1470,20150109,"TALL_053",39,3,"2995",,,,,"Carya alba",,"smt","no transcription errors found"
+1471,20150109,"TALL_053",39,3,"2996",,,,,"Vaccinium arboreum",,"sap",
+1472,20150109,"TALL_053",39,3,"2997",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+1473,20150109,"TALL_053",39,3,"2998",,,,,"Vaccinium stamineum var. candicans",,"sap",
+1474,20150109,"TALL_053",39,3,"2999",,,,,"Vaccinium arboreum",,"sap",
+1475,20150109,"TALL_053",39,3,"3000",,,,,"Acer rubrum",,"sap",
+1476,20150109,"TALL_053",39,3,"2498",,,,,"Carya microcarpa",,"sap",
+1477,20150109,"TALL_053",39,3,"2499",,,,,"Carya alba",,"sap",
+1478,20150109,"TALL_053",39,,"2500",,39,"13.1","4.5","Nyssa sylvatica",,"sbt",
+1479,20150109,"TALL_053",39,,"1302",,39,"24.9","6.2","Carya alba",,"sbt","no transcription errors found"
+1480,20150109,"TALL_053",39,,"1304",,39,"17.1","8.5","Nyssa sylvatica",,"sbt","no transcription errors found"
+1481,20150109,"TALL_053",39,,"1305",,39,"27.2","13","Quercus falcata",,"sbt",
+1482,20150109,"TALL_053",39,,"1306",,39,"38.2","13.3","Oxydendrum arboreum",,"sbt",
+1483,20150109,"TALL_053",39,,"1321",,39,"75.3","13","Quercus alba",,"sbt",
+1484,20150109,"TALL_053",39,,"1322",,39,"68.5","11.9","Oxydendrum arboreum",,"sbt",
+1485,20150109,"TALL_053",39,,"1323",,39,"82.5","19.8","Oxydendrum arboreum",,"sbt",
+1486,20150109,"TALL_053",39,,"1324",,39,"79.3","17.4","Nyssa sylvatica",,"sbt",
+1487,20150109,"TALL_053",39,,"1325",,39,"72.7","15","Liriodendron tulipifera",,"sbt",
+1488,20150109,"TALL_053",39,,"1326",,39,"57.3","15.2","Acer rubrum",,"sbt",
+1489,20150109,"TALL_053",39,,"1327",,39,"46.4","15.2","Liriodendron tulipifera",,"sbt","no transcription errors found"
+1490,20150109,"TALL_053",39,,"1328",,39,"45.8","26.1","Quercus falcata",,"sbt","no transcription errors found"
+1491,20150109,"TALL_053",39,,"1329",,39,"65.7","17.5","Pinus","cf. species","sbt",
+1492,20150109,"TALL_053",39,,"1340",,39,"17.4","20.2","Liquidambar styraciflua",,"sbt","dead"
+1493,20150109,"TALL_059",41,1,"2824",,,,,"Liquidambar styraciflua",,"smt","no transcription errors found"
+1494,20150109,"TALL_059",41,1,"2825",,,,,"Ilex opaca",,"smt",
+1495,20150109,"TALL_059",41,1,"2826",,,,,"Liquidambar styraciflua",,"smt",
+1496,20150109,"TALL_059",41,4,"2827",,,,,"Magnolia fraseri",,"smt",
+1497,20150109,"TALL_059",41,4,"2828",,,,,"Oxydendrum arboreum",,"smt","no transcription errors found"
+1498,20150109,"TALL_059",41,4,"2833",,,,,"Oxydendrum arboreum",,"sap",
+1499,20150109,"TALL_059",41,4,"2834",,,,,"Oxydendrum arboreum",,"smt",
+1500,20150109,"TALL_059",41,4,"2835",,,,,"Oxydendrum arboreum",,"smt","dead, no transcription errors found"
+1501,20150109,"TALL_059",41,4,"2836",,,,,"Magnolia fraseri",,"smt",
+1502,20150109,"TALL_059",41,4,"2837",,,,,"Magnolia fraseri",,"sap",
+1503,20150109,"TALL_059",21,1,"2838",,,,,"Liquidambar styraciflua",,"smt",
+1504,20150109,"TALL_059",21,1,"2839",,,,,"Magnolia fraseri",,"sis",
+1505,20150109,"TALL_059",21,1,"2840",,,,,"Magnolia fraseri",,"smt",
+1506,20150109,"TALL_059",21,1,"2841",,,,,"Magnolia fraseri",,"sis","no transcription errors found"
+1507,20150109,"TALL_059",21,1,"2842",,,,,"Cerothamnus inodorus",,"sap",
+1508,20150109,"TALL_059",21,1,"2843",,,,,"Magnolia fraseri",,"sis",
+1509,20150109,"TALL_059",21,1,"2844",,,,,"Oxydendrum arboreum",,"smt",
+1510,20150109,"TALL_059",21,1,"2845",,,,,"Oxydendrum arboreum",,"sis","no transcription errors found"
+1511,20150109,"TALL_059",21,1,"2846",,,,,"Oxydendrum arboreum",,"smt",
+1512,20150109,"TALL_059",21,1,"2850",,,,,"Oxydendrum arboreum",,"smt",
+1513,20150109,"TALL_059",21,1,"2852",,,,,"Vaccinium corymbosum var. albiflorum",,"sms",
+1514,20150109,"TALL_059",21,1,"2860",,,,,"Vaccinium corymbosum var. albiflorum",,"sms",
+1515,20150109,"TALL_059",21,1,"2861",,,,,"Magnolia fraseri",,"smt",
+1516,20150109,"TALL_059",21,4,"2862",,,,,"Liquidambar styraciflua",,"sis",
+1517,20150109,"TALL_059",21,4,"2863",,,,,"Quercus falcata",,"sap",
+1518,20150109,"TALL_059",21,4,"2864",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+1519,20150109,"TALL_059",21,4,"2865",,,,,"Liquidambar styraciflua",,"sap",
+1520,20150109,"TALL_059",21,4,"2866",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+1521,20150109,"TALL_059",21,4,"2867",,,,,"Oxydendrum arboreum",,"sis",
+1522,20150109,"TALL_059",21,4,"2868",,,,,"Quercus alba",,"sap",
+1523,20150109,"TALL_059",21,4,"2870",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+1524,20150109,"TALL_059",21,4,"2871",,,,,"Oxydendrum arboreum",,"sms",
+1525,20150109,"TALL_059",21,4,"2873",,,,,"Liquidambar styraciflua",,"sap",
+1526,20150109,"TALL_059",21,4,"2874",,,,,"Oxydendrum arboreum",,"smt",
+1527,20150109,"TALL_059",21,4,"2875",,,,,"Oxydendrum arboreum",,"sap",
+1528,20150109,"TALL_059",21,4,"2876",,,,,"Oxydendrum arboreum",,"sap",
+1529,20150109,"TALL_059",21,4,"2877",,,,,"Liquidambar styraciflua",,"smt",
+1530,20150109,"TALL_059",21,1,"2878",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+1531,20150109,"TALL_059",21,1,"2879",,,,,"Liquidambar styraciflua",,"sap",
+1532,20150109,"TALL_059",21,,"2880",,21,"28.5","0.9","Liquidambar styraciflua",,"sbt",
+1533,20150109,"TALL_059",21,,"2881",,21,"81.5","2.4","Nyssa sylvatica",,"sbt",
+1534,20150109,"TALL_059",21,,"2882",,21,"32.8","4","Nyssa sylvatica",,"sbt",
+1535,20150109,"TALL_059",21,,"2883",,21,"79.2","5","Nyssa sylvatica",,"sbt",
+1536,20150109,"TALL_059",21,,"2884",,21,"10.4","6.3","Nyssa sylvatica",,"sbt","no transcription errors found"
+1537,20150109,"TALL_059",21,,"2885",,21,"58","8.4","Nyssa sylvatica",,"sbt",
+1538,20150109,"TALL_059",21,,"2886",,21,"37.6","9.2","Nyssa sylvatica",,"sbt",
+1539,20150109,"TALL_059",21,,"2887",,21,"13.9","9.6","Turbina",,"sbt",
+1540,20150109,"TALL_059",21,,"2888",,21,"11.5","9.8","Turbina",,"sbt","no transcription errors found"
+1541,20150109,"TALL_059",21,,"2889",,21,"24.9","12.7","Ilex opaca",,"sbt",
+1542,20150109,"TALL_059",21,,"2889A",,21,"24.9","12.7","Ilex opaca",,"sbt",
+1543,20150109,"TALL_059",41,1,"2649",,,,,"Viburnum nudum",,"smt","no transcription errors found"
+1544,20150109,"TALL_059",41,1,"2641",,,,,"Viburnum nudum",,"smt",
+1545,20150109,"TALL_059",41,1,"2646",,,,,"Viburnum nudum",,"smt",
+1546,20150109,"TALL_059",41,1,"2807",,,,,"Ditrysinia fruticosa",,"sap",
+1547,20150109,"TALL_059",41,1,"2647",,,,,"Liquidambar styraciflua",,"smt",
+1548,20150109,"TALL_059",41,1,"2809",,,,,"Viburnum nudum",,"smt",
+1549,20150109,"TALL_059",41,1,"2808",,,,,"Vaccinium corymbosum var. albiflorum",,"smt",
+1550,20150109,"TALL_059",41,1,"2810",,,,,"Liquidambar styraciflua",,"smt","no transcription errors found"
+1551,20150109,"TALL_059",41,1,"2811",,,,,"Viburnum nudum",,"smt",
+1552,20150109,"TALL_059",41,1,"2812",,,,,"Quercus nigra",,"smt",
+1553,20150109,"TALL_059",41,1,"2813",,,,,"Ilex opaca",,"smt",
+1554,20150109,"TALL_059",41,1,"2815",,,,,"Acer rubrum",,"sap",
+1555,20150109,"TALL_059",41,1,"2816",,,,,"Viburnum nudum",,"smt",
+1556,20150109,"TALL_059",41,1,"2822",,,,,"Liquidambar styraciflua",,"smt",
+1557,20150109,"TALL_059",41,1,"2823",,,,,"Ilex opaca",,"smt",
+1558,20150109,"TALL_059",21,,"2890",,21,"8.4","13.2","Ilex opaca",,"sbt",
+1559,20150109,"TALL_059",21,,"2891",,21,"5.9","17","Quercus alba",,"sbt",
+1560,20150109,"TALL_059",21,,"2892",,21,"16.7","20.4","Liquidambar styraciflua",,"sbt","no transcription errors found"
+1561,20150109,"TALL_059",21,,"2893",,21,"35.3","18.5","Liriodendron tulipifera",,"sbt",
+1562,20150109,"TALL_059",21,,"2894",,21,"42.5","21.5","Quercus laevis",,"sbt",
+1563,20150109,"TALL_059",21,,"2895",,21,"51.4","18.3","Oxydendrum arboreum",,"sbt",
+1564,20150109,"TALL_059",21,,"2896",,21,"54.7","18.4","Ilex opaca",,"sbt","no transcription errors found"
+1565,20150109,"TALL_059",21,4,"2897",,,,,"Oxydendrum arboreum",,"smt",
+1566,20150109,"TALL_059",21,,"2898",,21,"61.6","23","Nyssa sylvatica",,"sbt",
+1567,20150109,"TALL_059",21,,"2899",,23,"325.1","8.4","Nyssa sylvatica",,"sbt",
+1568,20150109,"TALL_059",21,,"2900",,23,"310.5","8.6","Nyssa sylvatica",,"sbt",
+1569,20150109,"TALL_059",21,,"2901",,23,"305.2","11.8","Nyssa sylvatica",,"sbt",
+1570,20150109,"TALL_059",21,,"2902",,23,"286.2","8.2","Nyssa sylvatica",,"sbt","no transcription errors found"
+1571,20150109,"TALL_059",21,,"2903",,23,"289.3","6.1","Nyssa sylvatica",,"sbt",
+1572,20150109,"TALL_059",21,,"2904",,23,"330.7","18.2","Pinus","cf. species","sbt","dead"
+1573,20150109,"TALL_059",41,,"2905",,59,"164.3","17","Nyssa sylvatica",,"sbt",
+1574,20150109,"TALL_059",41,,"2906",,59,"160.5","18.9","Liquidambar styraciflua",,"sbt",
+1575,20150109,"TALL_059",41,,"2907",,59,"148.8","19.8","Oxydendrum arboreum",,"sbt",
+1576,20150109,"TALL_059",41,,"2908",,59,"139.4","14.8","Oxydendrum arboreum",,"sbt","dead"
+1577,20150109,"TALL_059",41,,"2909",,59,"144.7","11.1","Nyssa sylvatica",,"sbt",
+1578,20150109,"TALL_059",41,,"2910",,59,"113.3","9.3","Nyssa sylvatica",,"sbt",
+1579,20150109,"TALL_059",41,,"2911",,59,"110.2","11.9","Pinus taeda",,"sbt","no transcription errors found"
+1580,20150109,"TALL_059",41,,"2912",,59,"113.7","21.6","Magnolia fraseri",,"sbt","no transcription errors found"
+1581,20150109,"TALL_059",41,,"2913",,59,"130.8","22.1","Magnolia fraseri",,"sbt",
+1582,20150109,"TALL_059",41,,"2914",,43,"282.7","3.8","Magnolia fraseri",,"sbt",
+1583,20150110,"TALL_060",41,1,"0279",,,,,"Sassafras variifolium",,"sap",
+1584,20150110,"TALL_060",41,1,"0280",,,,,"Sassafras variifolium",,"sap","no transcription errors found"
+1585,20150110,"TALL_060",41,1,"0281",,,,,"Sassafras variifolium",,"sap",
+1586,20150110,"TALL_060",41,1,"0282",,,,,"Sassafras variifolium",,"sap",
+1587,20150110,"TALL_060",41,1,"0283",,,,,"Sassafras variifolium",,"sap",
+1588,20150110,"TALL_060",41,1,"0284",,,,,"Cynoxylon floridum",,"smt",
+1589,20150110,"TALL_060",41,1,"0285",,,,,"Vaccinium arboreum",,"sap",
+1590,20150110,"TALL_060",41,1,"0286",,,,,"Quercus rubra",,"sap","no transcription errors found"
+1591,20150110,"TALL_060",41,1,"0287",,,,,"Sassafras variifolium",,"sap",
+1592,20150110,"TALL_060",41,1,"0288",,,,,"Pinus echinata",,"smt","dead"
+1593,20150110,"TALL_060",41,1,"0289",,,,,"Vaccinium arboreum",,"sap",
+1594,20150110,"TALL_060",41,1,"0290",,,,,"Sassafras variifolium",,"smt","no transcription errors found"
+1595,20150110,"TALL_060",41,1,"0292",,,,,"Cynoxylon floridum",,"sis",
+1596,20150110,"TALL_060",41,1,"0293",,,,,"Pinus",,"smt","dead"
+1597,20150110,"TALL_060",41,1,"0294",,,,,"Carya alba",,"smt",
+1598,20150110,"TALL_060",41,1,"0295",,,,,"Sassafras variifolium",,"smt",
+1599,20150110,"TALL_060",41,1,"0296",,,,,"Vaccinium arboreum",,"smt",
+1600,20150110,"TALL_060",41,1,"0297",,,,,"Vaccinium arboreum",,"smt","no transcription errors found"
+1601,20150110,"TALL_060",41,1,"0298",,,,,"Vaccinium arboreum",,"sap",
+1602,20150110,"TALL_060",41,1,"0299",,,,,"Vaccinium arboreum",,"smt",
+1603,20150110,"TALL_060",41,1,"0300",,,,,"Vaccinium arboreum",,"smt",
+1604,20150110,"TALL_060",41,1,"0307",,,,,"Vaccinium arboreum",,"smt",
+1605,20150110,"TALL_060",41,1,"0310",,,,,"Vaccinium arboreum",,"smt",
+1606,20150110,"TALL_060",41,1,"0311",,,,,"Sassafras variifolium",,"smt",
+1607,20150110,"TALL_060",41,1,"0312",,,,,"Cynoxylon floridum",,"sis",
+1608,20150110,"TALL_060",41,1,"0313",,,,,"Quercus rubra",,"smt",
+1609,20150110,"TALL_060",41,1,"0314",,,,,"Vaccinium arboreum",,"smt",
+1610,20150110,"TALL_060",41,1,"0315",,,,,"Vaccinium arboreum",,"smt","no transcription errors found"
+1611,20150110,"TALL_060",41,1,"0316",,,,,"Vaccinium arboreum",,"sis",
+1612,20150110,"TALL_060",41,1,"0317",,,,,"Cynoxylon floridum",,"smt",
+1613,20150110,"TALL_060",41,1,"0318",,,,,"Vaccinium arboreum",,"smt",
+1614,20150110,"TALL_060",41,1,"0319",,,,,"Vaccinium arboreum",,"smt",
+1615,20150110,"TALL_060",41,1,"0320",,,,,"Vaccinium arboreum",,"smt",
+1616,20150110,"TALL_060",41,1,"0321",,,,,"Carya alba",,"smt",
+1617,20150110,"TALL_060",41,1,"0322",,,,,"Sassafras variifolium",,"sap",
+1618,20150110,"TALL_060",41,4,"0323",,,,,"Carya alba",,"smt",
+1619,20150110,"TALL_060",41,4,"0325",,,,,"Sassafras variifolium",,"smt",
+1620,20150110,"TALL_060",41,4,"0326",,,,,"Quercus rubra",,"sap","no transcription errors found"
+1621,20150110,"TALL_060",41,4,"0327",,,,,"Quercus rubra",,"sap",
+1622,20150110,"TALL_060",41,4,"0328",,,,,"Sassafras variifolium",,"sap",
+1623,20150110,"TALL_060",41,4,"0329",,,,,"Quercus",,"sis",
+1624,20150110,"TALL_060",41,4,"0330",,,,,"Sassafras variifolium",,"sap",
+1625,20150110,"TALL_060",41,4,"0331",,,,,"Sassafras variifolium",,"sis",
+1626,20150110,"TALL_060",41,4,"0332",,,,,"Carya alba",,"smt",
+1627,20150110,"TALL_060",41,4,"0333",,,,,"Pinus palustris",,"smt",
+1628,20150110,"TALL_060",41,4,"0334",,,,,"Sassafras variifolium",,"smt",
+1629,20150110,"TALL_060",41,4,"0335",,,,,"Cynoxylon floridum",,"smt",
+1630,20150110,"TALL_060",41,4,"0336",,,,,"Carya alba",,"sap","no transcription errors found"
+1631,20150110,"TALL_060",41,4,"0337",,,,,"Carya alba",,"smt",
+1632,20150110,"TALL_060",41,4,"0338",,,,,"Sassafras variifolium",,"sap",
+1633,20150110,"TALL_060",41,4,"0339",,,,,"Quercus rubra",,"sap",
+1634,20150110,"TALL_060",41,4,"0340",,,,,"Sassafras variifolium",,"sap",
+1635,20150110,"TALL_060",41,4,"0341",,,,,"Sassafras variifolium",,"smt",
+1636,20150110,"TALL_060",41,4,"0343",,,,,"Vaccinium arboreum",,"smt",
+1637,20150110,"TALL_060",41,4,"0344",,,,,"Vaccinium arboreum",,"smt",
+1638,20150110,"TALL_060",41,4,"0346",,,,,"Quercus",,"smt",
+1639,20150110,"TALL_060",23,4,"0347",,,,,"Liquidambar styraciflua",,"sap",
+1640,20150110,"TALL_060",23,4,"0348",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+1641,20150110,"TALL_060",23,4,"0349",,,,,"Carya alba",,"smt",
+1642,20150110,"TALL_060",23,4,"0350",,,,,"Cynoxylon floridum",,"smt",
+1643,20150110,"TALL_060",23,4,"0351",,,,,"Sassafras variifolium",,"sap",
+1644,20150110,"TALL_060",23,4,"0353",,,,,"Cynoxylon floridum",,"sis",
+1645,20150110,"TALL_060",23,4,"0354",,,,,"Carya alba",,"smt",
+1646,20150110,"TALL_060",23,4,"0355",,,,,"Sassafras variifolium",,"smt",
+1647,20150110,"TALL_060",23,4,"0356",,,,,"Sassafras variifolium",,"sap",
+1648,20150110,"TALL_060",23,4,"0357",,,,,"Sassafras variifolium",,"sap",
+1649,20150110,"TALL_060",23,4,"0358",,,,,"Cynoxylon floridum",,"smt",
+1650,20150110,"TALL_060",23,4,"0359",,,,,"Sassafras variifolium",,"smt","no transcription errors found"
+1651,20150110,"TALL_060",23,4,"0360",,,,,"Liquidambar styraciflua",,"smt",
+1652,20150110,"TALL_060",23,4,"0361",,,,,"Sassafras variifolium",,"smt",
+1653,20150110,"TALL_060",23,4,"0362",,,,,"Liquidambar styraciflua",,"sap",
+1654,20150110,"TALL_060",23,4,"0363",,,,,"Liquidambar styraciflua",,"snt",
+1655,20150110,"TALL_060",23,4,"0364",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+1656,20150110,"TALL_060",23,4,"0365",,,,,"Vaccinium arboreum",,"sis",
+1657,20150110,"TALL_060",23,4,"0366",,,,,"Carya alba",,"sis",
+1658,20150110,"TALL_060",23,4,"0368",,,,,"Liquidambar styraciflua",,"sap",
+1659,20150110,"TALL_060",23,4,"0369",,,,,"Liquidambar styraciflua",,"sap","could be tag 0367"
+1660,20150110,"TALL_060",23,4,"0370",,,,,"Cynoxylon floridum",,"smt","no transcription errors found"
+1661,20150110,"TALL_060",23,4,"0371",,,,,"Liquidambar styraciflua",,"sap",
+1662,20150110,"TALL_060",23,4,"0372",,,,,"Cynoxylon floridum",,"smt",
+1663,20150110,"TALL_060",23,4,"0373",,,,,"Liquidambar styraciflua",,"sap",
+1664,20150110,"TALL_060",23,4,"0374",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+1665,20150110,"TALL_060",23,4,"0375",,,,,"Cynoxylon floridum",,"smt",
+1666,20150110,"TALL_060",23,4,"0376",,,,,"Liquidambar styraciflua",,"sap",
+1667,20150110,"TALL_060",23,2,"0378",,,,,"Carya alba",,"smt",
+1668,20150110,"TALL_060",23,2,"0381",,,,,"Vaccinium arboreum",,"sis",
+1669,20150110,"TALL_060",23,2,"0392",,,,,"Cynoxylon floridum",,"smt",
+1670,20150110,"TALL_060",23,2,"0379",,,,,"Cynoxylon floridum",,"smt","no transcription errors found"
+1671,20150110,"TALL_060",23,2,"0385",,,,,"Sassafras variifolium",,"sis",
+1672,20150110,"TALL_060",23,2,"0377",,,,,"Cynoxylon floridum",,"smt",
+1673,20150110,"TALL_060",23,2,"0383",,,,,"Carya alba",,"smt",
+1674,20150110,"TALL_060",23,2,"0394",,,,,"Sassafras variifolium",,"sis",
+1675,20150110,"TALL_060",23,2,"0397",,,,,"Berchemia scandens",,"lia",
+1676,20150110,"TALL_060",23,2,"0395",,,,,"Quercus rubra",,"smt",
+1677,20150110,"TALL_060",23,2,"0396",,,,,"Cynoxylon floridum",,"smt","no transcription errors found"
+1678,20150110,"TALL_060",23,2,"0382",,,,,"Sassafras variifolium",,"smt",
+1679,20150110,"TALL_060",23,2,"0393",,,,,"Vaccinium arboreum",,"smt",
+1680,20150110,"TALL_060",23,2,"0384",,,,,"Sassafras variifolium",,"smt","no transcription errors found"
+1681,20150110,"TALL_060",23,2,"0398",,,,,"Vaccinium arboreum",,"smt","no transcription errors found"
+1682,20150110,"TALL_060",23,2,"0399",,,,,"Cynoxylon floridum",,"smt",
+1683,20150110,"TALL_060",23,2,"0400",,,,,"Vaccinium arboreum",,"sis",
+1684,20150110,"TALL_060",23,2,"0401",,,,,"Vaccinium arboreum",,"smt",
+1685,20150110,"TALL_060",23,2,"0402",,,,,"Cynoxylon floridum",,"smt",
+1686,20150110,"TALL_060",23,2,"0403",,,,,"Vaccinium arboreum",,"sis",
+1687,20150110,"TALL_060",23,2,"0404",,,,,"Vaccinium arboreum",,"smt","no transcription errors found"
+1688,20150110,"TALL_060",23,2,"0405",,,,,"Cynoxylon floridum",,"smt",
+1689,20150110,"TALL_060",23,,"0406",,25,"351.3","4.7","Pinus taeda",,"sbt",
+1690,20150110,"TALL_060",23,,"0407",,25,"332.6","4.8","Liquidambar styraciflua",,"sbt","no transcription errors found"
+1691,20150110,"TALL_060",23,,"0409",,25,"275.5","1.9","Cynoxylon floridum",,"sbt",
+1692,20150110,"TALL_060",23,,"0410",,25,"312.3","6.2","Pinus taeda",,"sbt","no transcription errors found"
+1693,20150110,"TALL_060",23,,"0411",,25,"295.4","7.3","Carya alba",,"sbt",
+1694,20150110,"TALL_060",23,,"0412",,25,"323.7","9.6","Pinus",,"sbt","dead"
+1695,20150110,"TALL_060",23,,"0413",,25,"328.4","11.7","Liquidambar styraciflua",,"sbt",
+1696,20150110,"TALL_060",23,,"0414",,25,"331.5","13.6","Liquidambar styraciflua",,"sbt",
+1697,20150110,"TALL_060",23,,"0415",,25,"341.1","16.7","Quercus velutina var. missouriensis",,"sbt",
+1698,20150110,"TALL_060",23,,"0416",,25,"285.5","18.5","Pinus taeda",,"sbt",
+1699,20150110,"TALL_060",23,,"0417",,25,"285.7","15.8","Pinus echinata",,"sbt","no transcription errors found"
+1700,20150110,"TALL_060",23,,"0418",,25,"273.2","18","Pinus palustris",,"sbt","no transcription errors found"
+1701,20150110,"TALL_060",23,,"0419",,25,"271.4","16.5","Carya alba",,"sbt","dead"
+1702,20150110,"TALL_060",23,,"0421",,25,"285","12.8","Pinus echinata",,"sbt",
+1703,20150110,"TALL_060",23,,"0423",,25,"295.9","15.8","Pinus echinata",,"sbt",
+1704,20150110,"TALL_060",23,,"0424",,25,"300.1","14.9","Pinus echinata",,"sbt","no transcription errors found"
+1705,20150110,"TALL_060",23,,"0425",,25,"302.4","15.1","Pinus echinata",,"sbt",
+1706,20150110,"TALL_060",23,,"0426",,25,"302.2","19.6","Liquidambar styraciflua",,"sbt",
+1707,20150110,"TALL_060",23,,"0427",,25,"303.7","21","Pinus taeda",,"sbt",
+1708,20150110,"TALL_060",23,,"0428",,25,"318","24.2","Pinus echinata",,"sbt","no transcription errors found"
+1709,20150110,"TALL_060",23,,"0429",,43,"268.5","18","Pinus echinata",,"sbt",
+1710,20150110,"TALL_060",41,,"0431",,43,"340.9","0.8","Pinus echinata",,"sbt","no transcription errors found"
+1711,20150110,"TALL_060",41,,"0432",,43,"273.1","11","Liquidambar styraciflua",,"sbt",
+1712,20150110,"TALL_060",41,,"0433",,43,"283.6","11","Pinus taeda",,"sbt",
+1713,20150110,"TALL_060",41,,"0434",,43,"273.3","17","Pinus echinata",,"sbt","no transcription errors found"
+1714,20150110,"TALL_060",41,,"0435",,43,"271.6","19.7","Pinus taeda",,"sbt",
+1715,20150110,"TALL_060",41,,"0436",,43,"272.5","17","Pinus echinata",,"sbt",
+1716,20150110,"TALL_060",41,,"0437",,43,"289.3","19.6","Acer rubrum",,"mbt",
+1717,20150110,"TALL_060",41,,"0437A",,43,"289.3","19.6","Acer rubrum",,"mbt",
+1718,20150110,"TALL_060",41,,"0437B",,43,"289.3","19.6","Acer rubrum",,"mbt",
+1719,20150110,"TALL_060",41,,"0438",,43,"300.9","19.2","Juniperus virginiana",,"sbt",
+1720,20150110,"TALL_060",41,,"0439",,43,"296.5","22.9","Pinus taeda",,"sbt","no transcription errors found"
+1721,20150110,"TALL_060",41,,"0440",,43,"311.8","24.9","Quercus montana",,"sbt","no transcription errors found"
+1722,20150110,"TALL_060",41,,"0441",,43,"321","22.8","Quercus montana",,"sbt",
+1723,20150110,"TALL_060",41,,"0442",,43,"321.7","21.7","Quercus montana",,"sbt",
+1724,20150110,"TALL_060",41,,"0443",,43,"317.8","18.1","Cynoxylon floridum",,"sbt",
+1725,20150110,"TALL_060",41,,"0444",,43,"316.4","19.2","Cynoxylon floridum",,"sbt",
+1726,20150110,"TALL_060",41,,"0445",,43,"325.4","18.2","Pinus echinata",,"sbt","no transcription errors found"
+1727,20150110,"TALL_060",41,,"0446",,61,"214.4","8.3","Liquidambar styraciflua",,"sbt",
+1728,20150110,"TALL_060",41,,"0447",,61,"241.8","6.7","Liquidambar styraciflua",,"mbt",
+1729,20150110,"TALL_060",41,,"0447A",,61,"241.8","6.7","Liquidambar styraciflua",,"mbt",
+1730,20150110,"TALL_060",41,,"0448",,61,"195.3","6.4","Pinus echinata",,"sbt","no transcription errors found"
+1731,20150110,"TALL_060",41,,"0449",,61,"262.1","6.4","Cynoxylon floridum",,"sbt",
+1732,20150110,"TALL_060",41,,"0450",,61,"266.8","11.2","Pinus",,"sbt","dead"
+1733,20150110,"TALL_060",41,,"0451",,61,"260.9","11","Quercus nigra",,"sbt","no transcription errors found"
+1734,20150120,"TALL_048",39,3,"0501",,,,,"Rhus","cf. species","sap","no transcription errors found"
+1735,20150120,"TALL_048",39,3,"0502",,,,,"Vaccinium arboreum","cf. species","sms",
+1736,20150120,"TALL_048",39,3,"0503",,,,,"Vaccinium arboreum","cf. species","sms",
+1737,20150120,"TALL_048",39,3,"0507",,,,,"Vaccinium arboreum","cf. species","sms",
+1738,20150120,"TALL_048",39,3,"0508",,,,,"Vaccinium arboreum","cf. species","sms",
+1739,20150120,"TALL_048",39,3,"0515",,,,,"Symplocos tinctoria",,"sis",
+1740,20150120,"TALL_048",39,3,"0516",,,,,"Vaccinium arboreum","cf. species","sis",
+1741,20150120,"TALL_048",39,3,"0517",,,,,"Vaccinium arboreum","cf. species","sis",
+1742,20150120,"TALL_048",39,3,"0519",,,,,"Vaccinium arboreum","cf. species","sms",
+1743,20150120,"TALL_048",39,3,"0521",,,,,"Symplocos tinctoria",,"sms","no transcription errors found"
+1744,20150120,"TALL_048",39,3,"0525",,,,,"Vaccinium arboreum","cf. species","sms","no transcription errors found"
+1745,20150120,"TALL_048",39,3,"0526",,,,,,,"sap",
+1746,20150120,"TALL_048",39,3,"0527",,,,,"Rhus","cf. species","sis",
+1747,20150120,"TALL_048",39,3,"0528",,,,,"Rhus","cf. species","smt",
+1748,20150120,"TALL_048",39,3,"0530",,,,,"Rhus","cf. species","sis",
+1749,20150120,"TALL_048",39,3,"0529",,,,,"Symplocos tinctoria",,"sis",
+1750,20150120,"TALL_048",39,3,"0539",,,,,"Rhus","cf. species","sap",
+1751,20150120,"TALL_048",39,3,"0531",,,,,"Symplocos tinctoria",,"sms","no transcription errors found"
+1752,20150120,"TALL_048",39,3,"0532",,,,,"Rhus","cf. species","sap",
+1753,20150120,"TALL_048",39,3,"0533",,,,,"Vaccinium arboreum","cf. species","sms","no transcription errors found"
+1754,20150120,"TALL_048",39,3,"0534",,,,,"Vaccinium arboreum","cf. species","sis",
+1755,20150120,"TALL_048",39,3,"0536",,,,,"Vaccinium arboreum","cf. species","sms",
+1756,20150120,"TALL_048",39,3,"0538",,,,,"Rhus","cf. species","sap",
+1757,20150120,"TALL_048",39,3,"0553",,,,,"Vaccinium arboreum","cf. species","sis",
+1758,20150120,"TALL_048",39,3,"0601",,,,,"Symplocos tinctoria",,"sis",
+1759,20150120,"TALL_048",39,3,"0602",,,,,"Rhus","cf. species","sap",
+1760,20150120,"TALL_048",39,3,"0603",,,,,,,"sis",
+1761,20150120,"TALL_048",39,3,"0604",,,,,"Vaccinium arboreum","cf. species","sis",
+1762,20150120,"TALL_048",39,3,"0605",,,,,,,"sms",
+1763,20150120,"TALL_048",39,3,"0668",,,,,"Symplocos tinctoria",,"sis","no transcription errors found"
+1764,20150120,"TALL_048",39,3,"0671",,,,,"Symplocos tinctoria",,"sis",
+1765,20150120,"TALL_048",39,3,"0672",,,,,"Symplocos tinctoria",,"sis",
+1766,20150120,"TALL_048",39,3,"0665",,,,,"Vaccinium arboreum","cf. species","sis",
+1767,20150120,"TALL_048",39,3,"0662",,,,,"Vaccinium arboreum","cf. species","sis",
+1768,20150121,"TALL_048",39,1,"0608",,,,,"Vaccinium arboreum","cf. species","sms",
+1769,20150121,"TALL_048",39,1,"0613",,,,,"Vaccinium arboreum","cf. species","smt",
+1770,20150121,"TALL_048",39,1,"0619",,,,,"Liquidambar styraciflua",,"sap","no transcription errors found"
+1771,20150121,"TALL_048",39,1,"0617",,,,,"Rhus","cf. species","smt",
+1772,20150121,"TALL_048",39,1,"0614",,,,,"Symplocos tinctoria",,"sis",
+1773,20150121,"TALL_048",39,1,"0626",,,,,"Symplocos tinctoria",,"sis","no transcription errors found"
+1774,20150121,"TALL_048",39,1,"0612",,,,,"Symplocos tinctoria",,"sis",
+1775,20150121,"TALL_048",39,1,"0624",,,,,"Symplocos tinctoria",,"sis",
+1776,20150121,"TALL_048",39,1,"0618",,,,,"Vaccinium arboreum","cf. species","sis",
+1777,20150121,"TALL_048",39,1,"0607",,,,,"Vaccinium arboreum","cf. species","sis",
+1778,20150121,"TALL_048",39,,"0670",,57,"174.7","6","Pinus palustris",,"sbt","no transcription errors found"
+1779,20150121,"TALL_048",39,,"0669",,57,"177.2","12.8","Pinus palustris",,"sbt",
+1780,20150121,"TALL_048",39,,"0673",,57,"181.2","20.1","Pinus palustris",,"sbt","No error in stemAzimuth transcription"
+1781,20150121,"TALL_048",39,,"0664",,57,"161.8","16.1","Pinus palustris",,"sbt",
+1782,20150121,"TALL_048",39,,"0606",,57,"139.6","13","Pinus palustris",,"sbt",
+1783,20150121,"TALL_048",39,,"0622",,57,"117.5","10","Pinus palustris",,"sbt","Blue tag 6046; no transcription errors found"
+1784,20150121,"TALL_048",39,,"0627",,57,"117.6","8.1","Pinus palustris",,"sbt","Dead; no transcription errors found"
+1785,,,,,,,,,,,,,
+1786,20150414,"TALL_048",39,,"699",,41,"303","7.8","Pinus palustris",,"sbt",
+1787,20150414,"TALL_048",39,,"681",,41,"283.5","4.5","Pinus palustris",,"sbt",
+1788,20150414,"TALL_048",39,,"679",,41,"277.2","3.7","Pinus palustris",,"sbt",
+1789,20150414,"TALL_048",39,,"700",,57,"127.1","15.5","Pinus palustris",,"sbt",

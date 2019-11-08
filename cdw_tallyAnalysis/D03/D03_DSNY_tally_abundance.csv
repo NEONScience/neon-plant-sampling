@@ -1,0 +1,12 @@
+"siteid","taxonid","decayClass","sizeCategory","relativeAbundance","cumulativeAbundance","sampledDiskNum","cumulativeDiskNum"
+"DSNY","PINUS","3",">=10cm",18.75,18.75,10,10
+"DSNY","PIPA2","3",">=10cm",18.75,37.5,10,20
+"DSNY","QUERC","2","2-5cm",12.5,50,5,25
+"DSNY","QUNI","2",">=10cm",6.25,56.25,10,35
+"DSNY","NYSSA","4",">=10cm",6.25,62.5,10,45
+"DSNY","QUERC","4",">=10cm",6.25,68.75,10,55
+"DSNY","PIPA2","5",">=10cm",6.25,75,10,65
+"DSNY","QUERC","5",">=10cm",6.25,81.25,10,75
+"DSNY","QUNI","2","5-10cm",6.25,87.5,5,80
+"DSNY","PIPA2","3","5-10cm",6.25,93.75,5,85
+"DSNY","QUERC","3",NA,6.25,100,NA,NA

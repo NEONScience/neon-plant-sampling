@@ -1,0 +1,433 @@
+---
+title: "Site Characterization Data Quality Report"
+author: "Report prepared by Cody Flagg and Katie Jones"
+output:
+  pdf_document:
+    number_sections: yes
+    toc: yes
+  html_document:
+    toc: yes
+---
+
+# Overview
+This data quality report is based on data files received from ARCADIS on 1/19/2015 for four of the five sites at which vegetation characterization field work occurred (over the period November 10th - January 10th).  The quality checks contained in this report represent the extent of what we are capable of assessing without field checking contractor performance. An additional quality report may still be filed for field work. For the purpose of this summary, we have divided our concerns into two general areas - issues related to __species identification__ and issues related to __data entry__: 
+
+**Species ID** - Two issues arose with respect to species identifications:
+
+1.  Incomplete identification - At two sites, HARV and SCBI only a portion of the dataset includes values in the "`scientificName`" field (23% complete at HARV, 68% complete at SCBI). Field work at both of these sites was initiated following fall senescence. In recognition of increased difficulty in positively identifying individuals to species, we relaxed the acceptable resolution to genus level (10/30/14 Git issue #3). This was reiterated in our 11/31/14 conference call as species ID should be to "_Finest resolution possible given the conditions_" (see meeting notes posted on GitHub). __In no instance did we agree that identification was not necessary__. 
+
+2.  Use of incorrect data type in `scientificName` field - NEON uses USDA Plants as the taxonomic authority for naming/coding conventions but the data entry field for species is `scientificName`, which is defined in the Access DB `vstFieldSummary` table as 'Binomial latin name', this is reinforced through the constrained set of values available as a dropdown list in the `scientificName` field in the `vst_perindividual_in` table (See guidance in Data Transcription protocol section 8.3.2.e.iii). 
+
+Nonetheless, all `scientificName` entries in the HARV and JERC datasets are codes. For JERC, converting from USDA code to `scientificName` should be simple to update as all codes appear to be valid USDA Plants accepted codes. On the other hand, in the HARV dataset, most of the codes used _are not_ USDA codes, we have no way to confidently assign a `scientificName` to most of these records.  See the print out of unique values in the `scientificName` field (section 3.1, below) to identify additional errors; __most of these are avoidable by utilizing the drop down list in the Access DB__.
+
+**Data entry** - Some of these errors may be attributable to data transcription, others may be errors that originate in field data collection. In either case, data with these errors cannot be ingested into the NEON database.  
+
+* `Numeric values in remarks field`. __Are these values data?__ Remarks are not machine readable, as such, we are unable to make use of essential information if it is included in this field. 
+* `Invalid pointIDs`, NEON cannot generate georeferenced  stem maps if stems are mapped from points other than those identified in the protocol
+* `Invalid growthForms`, only growthForms listed in the protocol will be recognized by our ingest algorithms.  
+* `Invalid Azimuth values`, individuals are plotted as being outside of the designated plot boundaries.
+
+__See site specific summaries below and supplemental error reports (in folder "`QA_Files`") for more details.__
+
+
+```{r echo=FALSE}
+## 1.0 Version Notes
+
+# This script currently uses data from NatureServe 2013 survey data to test error checking algorithms. 
+# * Need to make how pointChecker.func() pulls pointID and azimuths more flexible, original solution was too specific to FOPS. 
+# * Should get file writing functions to spit files into separate new "QA" folder (http://stackoverflow.com/questions/4216753/check-existence-of-directory-and-create-if-doesnt-exist)
+# 
+# * Azimuth checking incorporates the +/- 1 degree error of the device now
+
+# read function source code: http://stackoverflow.com/questions/19226816/how-can-i-view-the-source-code-for-a-function
+```
+
+
+```{r Data Files, echo=FALSE, warning=FALSE, message=FALSE}
+# 1.1 __Read in data__
+setwd('C:\\Users\\cflagg\\Documents\\GitHub\\neonPlantSampling\\vst_datacheck\\testdata\\ARCADIS_data')
+
+# load xls files - this is NEON's plot list (plotList.NEON)
+# Arcadis incorrectly specified "plotID" from TALL as "poltID"
+# working directory for this source is one folder down from this current script, hence all the setwd()
+source("combine_xls_files_v2.R")
+
+library(plyr)
+library(dplyr) # for tbl_df()
+library(knitr)
+library(pander)
+
+# Set working directory and file path
+setwd('C:\\Users\\cflagg\\Documents\\GitHub\\neonPlantSampling\\vst_datacheck\\testdata\\ARCADIS_data')
+pathToFiles<-c('C:\\Users\\cflagg\\Documents\\GitHub\\neonPlantSampling\\vst_datacheck\\testdata\\ARCADIS_data') #test data here for mapping/tagging, should only need vst_perindividual_Dxx csvs
+
+# Create directory to hold script output - QA files
+dir.create(file.path(pathToFiles, "QA_Files"),showWarnings = FALSE)
+
+#set this to the prefix for the sheets in your module; make specific to file name batch
+myPrefix<-'vst_peri'
+
+# load and inspect files
+fileList <- list.files(pathToFiles, full.names=TRUE) # list all the files, full.names=TRUE is necessary for ldplay/lapply to work below
+# solution from: http://stackoverflow.com/questions/13441204/using-lapply-and-read-csv-on-multiple-files-in-r
+fileGrab1 <- fileList[grep(myPrefix,fileList)] # subset to just the ones in your module, using prefix
+azimuthFile = read.csv(fileList[grep('L_pointID',fileList)], sep = ",", stringsAsFactors=FALSE) # grab azimuths 
+
+# separate the checks into different lists - could just use a simple  vector of inputs e.g. distributedID = c(21,23,25,39,49), but this seems more flexible
+pointIDList.distributed = azimuthFile[azimuthFile$plotSize == 400,]
+pointIDList.tower = azimuthFile[azimuthFile$plotSize == 1600,]
+azCh = azimuthFile[1:14,] # smaller chunk of azimuth set
+```
+
+
+
+```{r Variables, echo=FALSE}
+# 1.2 Declare Variables
+options(digits = 3)
+
+# what to name site/domain id's
+site.prefix = "Domain"
+fileFeed = fileGrab1 # this is the object that 'holds' the files
+
+
+############# Site Name Appender - FROM FILE NAME ############# 
+# # Establish Site Names for Use Below 
+name1 = unlist(strsplit(fileFeed, '_D')) # this splits a string,  then this will unlist a list, which is what strsplit() returns
+name2 = do.call(rbind, strsplit(name1, '.csv')) # re-combine as rows
+indexer = seq(from = 0, to = length(name2),by = 2) # grab every other element, i.e. the site ID
+siteID.names = name2[indexer] # store the site IDs as a character vector
+################################################
+
+############ Site Name Appender - FROM FILE FIELD ###################
+# extract function from the left of string
+substrLeft <- function(x,m,n){
+  substr(x, m, n)
+}
+
+# pull unique names from the list
+siteID.real = llply(fileFeed, function(x){
+   t <- read.csv(x, header=T, sep = ",",stringsAsFactors=FALSE)
+   out <- unique(substrLeft(as.character(t$plotID), 1,4))
+  
+})
+
+# unlist and drop blanks
+siteID.real =unlist(siteID.real)
+#dump <- unlist(dump)
+siteID.real = siteID.real[-which(siteID.real == "")]
+#####################################################################
+```
+
+
+
+```{r Functions, echo=FALSE}
+# 1.3 Declare Functions
+# extract from the right
+# substrRight <- function(x, n){
+#   substr(x, nchar(x)-n+1, nchar(x))
+# }
+
+# "t" inside the functions stands for "temporary", kind of like an floating index variable in a for loop. 
+# "out" output object
+# "ply" function argument that denotes plyr function to use
+# read in data file to "t", do something to it in "out"
+
+#A) Fast Check: how many plots did they do?
+# note that the read.csv() function REQUIRES stringsAsFactors=FALSE as an argument or the entire plyr function fails to execute
+### FIX THIS
+plotCount.func = function(input, ply = ldply){
+  ply(input, function(x){
+    t <- read.csv(x, stringsAsFactors=FALSE, sep=",") # "x" = the file name here, read it into memory, assign it to object "t"
+    out <- unique(t$plotID) # grab unique IDs
+    out2 <- unlist(out) # unlist to a character vector for each list element
+    out3 <- out[which(out2 != "")] # dump the blanks, using "-which[x == ""]" does NOT work
+    out4 <-length(unique(out3)) # count it
+    return(out4)
+  })
+}
+
+# B) List unique plotIDs by site - are there typos, did they do them all?
+plotList.func = function(input){
+  lapply(input, function(x){
+  t <- read.csv(x, header=T, sep = ",",stringsAsFactors=FALSE) # "x" = the file name here, read it into memory, assign it to object "t"
+  out <- unique(t$plotID) # test function, will it point to column name and apply function?
+  return(out) # for some reason this won't unlist to a single vector inside lapply()
+})
+}
+
+# C1) Unique Species List, by site. llply() will return a nested list
+uniqueSppList.func = function(input, ply = llply){
+  llply(input, function(x){
+  t <- read.csv(x, header=T, sep = ",",stringsAsFactors=FALSE) 
+  out <- unique(t$scientificName)
+  return(sort(out))
+})
+}
+
+# C2) Unique Growth Forms by site
+uniqueGrowthForm.func = function(input, ply = llply){
+  ply(input, function(x){
+  t <- read.csv(x, header=T, sep = ",",stringsAsFactors=FALSE) 
+  out <- unique(t$growthForm)
+  return(sort(out))
+})
+}
+
+## D) Duplicate Tag IDs - stitch together a compound ID (plotID_tagID = compID)
+# Feed this list to a duplication function
+duplicateTags.func = function(input, ply = ldply){
+  ply(input, function(x){
+  t <- read.csv(x, header=T, sep = ",",stringsAsFactors=FALSE) 
+  out <- data.frame(plotID = t$plotID)
+  out$siteID <- substrLeft(t$plotID,1,4)
+  out$compID <- paste0(out$siteID,"_",t$tagID)
+  # the following lines append a field to identify the site
+  return(out)
+})
+}
+
+# fmatch::fmatch() is supposedly faster
+
+# original - uses plyr [RESULTS IN ERROR IF NO return()] - use ldply() to make one BIG data frame of all sites
+# llply breaks data frames into separate elements by site
+
+#ATBD section 5.4.5
+
+# E) Point ID and Azimuth checking function
+# this just needs to point to the pointIDlist.tower data.frame, these are all 40 x 40 tower plots at the moment (1/14/2015)
+# out$Type line originally:  out$Type <- plotTypeFile$Type[match(out$plotID, plotTypeFile$Plot_ID, nomatch = NA)]# append plot type by matching ID's
+pointChecker.func <- function(input, ply = llply){
+  ply(input, function(x){
+    t <- read.csv(x, header=T, sep = ",",stringsAsFactors=FALSE) # "x" = the file name here, read it into memory, assign it to object "t"
+    out <- t
+    out$Type <- "Tower" # this line originally checked what size a plot was based on a separate lookup table
+    out$pointIDQF <- ifelse(out$Type == "Distributed", 
+       ifelse((out$pointID %in% pointIDList.distributed$pointID),1,ifelse(is.na(out$pointID),1,-9999)), # conditions if distributed, use is.na(field) to assign value, not field == "NA" else this won't work
+       ifelse((out$pointID %in% pointIDList.tower$pointID),1,ifelse(is.na(out$pointID),1,-9999)))
+    # match and append azimuth values range from lookup table, these columns are temporary
+    out$aAzimuth.ch <- azCh$aAzimuth[match(out$pointID, azCh$pointID, nomatch = NA)]
+    out$bAzimuth.ch <- azCh$bAzimuth[match(out$pointID, azCh$pointID, nomatch = NA)]
+    # check if stemAzimuth is in that range
+    # old code # out$azimuthQF <- ifelse(out$stemAzimuth >= (out$aAzimuth.ch-1) & out$stemAzimuth <= (out$bAzimuth.ch+1), 1, -9999)
+    out$azimuthQF <- ifelse(out$aAzimuth.ch == 270, 
+       ifelse(out$stemAzimuth >= 270 & out$stemAzimuth <= 360 | out$stemAzimuth >= 0 & out$stemAzimuth <= 90,1,-9999),
+       ifelse(out$stemAzimuth >= out$aAzimuth.ch  & out$stemAzimuth <= out$bAzimuth.ch,1,-9999))
+    out[c("aAzimuth.ch", "bAzimuth.ch","Field1")] <- list(NULL) # clean-up, remove the extra columns
+#     name1 <- unlist(strsplit(x, '_D')) # this splits a string,  then this will unlist a list, which is what strsplit() returns
+#     name2 <- do.call(rbind, strsplit(name1, '.csv')) # re-combine as rows
+#     indexer <- seq(from = 0, to = length(name2),by = 2) # grab every other element, i.e. the site ID
+#     siteID.names <- name2[indexer] # store the site IDs
+#     out$siteID <- siteID.names
+      out$siteID <- substrLeft(t$plotID,1,4)
+  return(out)
+})
+}
+
+# 0.13 seconds for 13084 rows - using lapply() saves about 0.02 seconds for the same volume
+# system.time(pointChecker.func(fileFeed))
+
+# E) Missing Sci Name Function
+# Count the number of erroneous entries in the scientificName field
+missingNames.func = function(input, ply = ldply){
+    ply(input, function(x){
+    t <- read.csv(x, header=T, sep = ",", stringsAsFactors=FALSE) # "x" = the file name here, read it into memory, assign it to object "t"
+    na.count <- sum(is.na(t$scientificName)) # count NA's
+    blank.count <- sum(t$scientificName =="") # count Blanks
+    unk.count <- length(grep("^unk",t$scientificName, ignore.case = TRUE)) # count variations of "unknown"
+    return(c(na.count,blank.count,unk.count))
+})
+}
+
+# F) Combine all files together for summary table
+siteCombine.func = function(input){
+  ldply(input, function(x){
+  t <- read.csv(x, header=T, sep = ",",stringsAsFactors=FALSE) 
+  name1 = unlist(strsplit(x, '_D')) # this splits a string,  then this will unlist a list, which is what strsplit() returns
+  name2 = do.call(rbind, strsplit(name1, '.csv')) # re-combine as rows
+  indexer = seq(from = 0, to = length(name2),by = 2) # grab every other element, i.e. the site ID
+  siteID.names = name2[indexer] # store the site IDs
+  out <- t
+  out$siteID <- paste0("D", siteID.names)
+  return(out)
+})
+}
+
+```
+
+
+# Plot Completion
+* Provides a summary for which data are reported at each site
+## Plot Count
+* Quick check: How many plots were visited?
+* HARV, SCBI and JERC have blank entries in field: `plotID`. 
+
+```{r plot counts, echo=FALSE}
+plotCount = plotCount.func(fileFeed)
+#plotCount
+
+# plotCount
+plotCount.output = data.frame(Site = siteID.real, plotCounts = plotCount)
+names(plotCount.output) <- c("Site", "PlotCount")
+# 
+plotCount.output$siteID = siteID.real
+kable(plotCount.output[,c(1,2)], caption = "Plot Count by Site")
+```
+
+## Missing Plots
+* These plots are in the provided NEON Excel files for each site, but were not found in the data files received from Arcadis. 
+* Git issue #9 documents that NEON Field Ops completed `HARV_036 and HARV_050`, please verify if this is also the case for missing plots at OSBS. SCBI appears to be a data entry error, please fix.
+```{r missing plots, echo=FALSE}
+# OUTPUT FILE - this lists plot IDs done by contractor
+plotList.Arcadis = unlist(plotList.func(fileFeed)) # collapse the list elements to make one large list
+plotList.Arcadis = plotList.Arcadis[-which(plotList.Arcadis == "")] # remove blanks from the list
+### 
+
+#list missing plots
+# compare the lists, what is missing from OUR CHECKLIST
+missingPlots.output = setdiff(plotList.NEON$plotID,plotList.Arcadis)
+missingPlots.output
+```
+
+## Extra Plots
+* This lists plots that were found in the received files from Arcadis that are not included in the lists provided by NEON. 
+* This appears to be a data entry error. 
+```{r extra plots, echo=FALSE}
+#list extra plots - reverse the order of setdiff()
+extraPlots.output = setdiff(plotList.Arcadis, plotList.NEON$plotID)
+extraPlots.output
+```
+
+# Duplicate and Unique Tags
+* This summarizes the number of duplicate `tagID` entries per site. 
+* See the supplemental .csv files (File suffix: `_duplicateTags`) for lists of specific duplicate tag IDs by site. 
+* The first row in this table (with a blank `siteID`) indicates that 8 entries are missing a `plotID`. 
+
+```{r duplicate tagID, echo=FALSE}
+#by tagID/site
+duplicateTags.list = duplicateTags.func(fileFeed)
+# Now find the duplicates, append the logical results (TRUE/FALSE)
+duplicateTags.list$dupe = as.vector(duplicated(duplicateTags.list$compID))
+# only keep duplicates = TRUE
+dupe.output = duplicateTags.list[which(duplicateTags.list$dupe == TRUE),]
+# summarize duplicate counts per site
+dupe.summary = ddply(dupe.output, .(siteID), summarise,
+                     Count = length(dupe))
+#dupe.summary$siteID = siteID.real
+# print it
+kable(dupe.summary, caption = "Duplicate Tags by Site")
+
+# write duplicate tag files
+# should be a cleaner way to direct these files...
+setwd("C:\\Users\\cflagg\\Documents\\GitHub\\neonPlantSampling\\vst_datacheck\\testdata\\ARCADIS_data\\QA_Files")
+fileSuffix2 = "duplicateTags"
+d_ply(dupe.output,.(siteID), function(input) 
+  write.csv(input, file = paste0(unique(input$siteID),"_",fileSuffix2, ".csv", sep="")))
+```
+
+## Unique species list by site (`scientificName`)
+* Some unique records may be attributable to spelling and capitalization errors during data transcription
+```{r unique Species, echo=FALSE}
+uniqueSppList.output = uniqueSppList.func(fileFeed)
+# solution: http://stackoverflow.com/questions/3548263/l-ply-how-to-pass-the-lists-name-attribute-into-the-function
+# assign the list elements' name to an attribute, called "name"
+# helper function from pander: http://rapporter.github.io/pander/
+
+names(uniqueSppList.output) <- paste0(siteID.real) # Append the DomainID to each sub-list/list element
+
+for(i in 1:length(uniqueSppList.output)){
+    attr(uniqueSppList.output[[i]],"name") <- names(uniqueSppList.output)[i]
+}
+
+l_ply(uniqueSppList.output, function(input){
+  y <- attr(input,"name") # call the attribute of the object, name
+  print(y) #print it above the list
+  pandoc.list(input) # print a formatted list
+}
+)
+```
+
+
+
+## Unique growth forms list by site
+* __Acceptable values__ : lia, sbt, mbt, sms, sis, smt, sap 
+```{r unique growthForms, echo=FALSE}
+uniqueGrowthFormList.output = uniqueGrowthForm.func(fileFeed)
+names(uniqueGrowthFormList.output) <- paste0(siteID.real) # Append the DomainID to each sub-list/list element
+uniqueGrowthFormList.output
+```
+
+# Point and Azimuth Validation
+* This checks that all pointIDs are valid for plot dimensions and azimuth values are within pre-defined ranges for specific pointID. 
+* See supplemental .csv files (file suffix: `pointID_azimuth_QF`) for specific details regarding where `pointID` and `stemAzimuth` errors occur.  
+* "`pointIDQF`" and "`azimuthQF`" fields flag errors for each row in the supplemental files; "__1__" = no error, "__-9999__" = potential error. 
+```{r point azimuth checking, echo=FALSE}
+# execute and store output
+pointCheck.output = pointChecker.func(fileFeed, ldply)
+
+# summary table
+pointSummary.output = ddply(pointCheck.output, .(siteID), summarise, 
+                            pointID.error = sum(na.omit(pointIDQF) == -9999),
+                            azimuth.error = sum(na.omit(azimuthQF) == -9999))
+#pointSummary.output$siteID = siteID.real
+kable(pointSummary.output[-1,], caption = "Point/Azimuth Errors by Site")
+
+
+# solution: make filename unique, because input$siteID is a multi-element vector (i.e. passing too many file names to argument file =)
+# http://stackoverflow.com/questions/8995505/write-multiple-custom-files-with-d-ply
+setwd("C:\\Users\\cflagg\\Documents\\GitHub\\neonPlantSampling\\vst_datacheck\\testdata\\ARCADIS_data\\QA_Files")
+fileSuffix = as.character("pointID_azimuth_QF")
+d_ply(pointCheck.output,.(siteID), function(input) 
+  write.csv(input, file = paste0("D",unique(input$siteID),"_",fileSuffix, ".csv", sep="")))
+```
+
+\pagebreak
+
+## Growth Form Measurements by Site
+* This table summarizes the types of growth forms that have stem distance and azimuth measurements. 
+* Note that a blank in the "growthForm" column suggests there is a missing entry. 
+```{r dist/az by growth, echo=FALSE}
+# Come up with a count
+
+#incorrectGF.out = pointCheck.output[pointCheck.output$growthForm != 'SBT' & pointCheck.output$growthForm != 'sbt' & pointCheck.output$stemDistance > 0,]
+
+incorrectGF.out = pointCheck.output
+
+gf.output = ddply(incorrectGF.out, .(siteID,growthForm), summarize,
+      Count = length(growthForm))
+
+# FIX THIS
+#gf.output = gf.output[-16,]
+#gf.output$siteID = siteID.real
+kable(gf.output, caption = "Growth Form Measurements by Site")
+
+```
+
+\pagebreak
+
+# Missing Scientific Names
+* This table summarizes how many scientific names are missing (i.e. blanks, NA, unknown, unk etc.). 
+```{r missing names, echo=FALSE}
+missingNames.output = missingNames.func(fileFeed)
+#missingNames.output$Sites <- paste0(site.prefix,siteID.names)
+names(missingNames.output) <- c("NA","Blank","Unknown")
+missingNames.output$siteID = siteID.real
+kable(missingNames.output[,c(4,1,2,3)], caption = "Missing Scientific Names by Site") # re-arrange columns
+```
+
+# Tagged Plants by Site
+* This table summarizes the number of tags per plot per site. 
+```{r summary stats by tagID, echo=FALSE}
+#min/max/mean count of tagID/plot by site
+# F) Combine all data into one DF
+options(digits = 1)
+
+# there's probably a way to wrap this into a single function...or perhaps call ddply() just once
+# the internal siteCombine function brings all plots and sites together
+tags.level2 = ddply(siteCombine.func(fileGrab1), .(siteID, plotID), summarise, Total = length(tagID))
+tagSummary.output = ddply(tags.level2, .(siteID), summarise, 
+               minTags = min(Total),
+               maxtags = max(Total),
+               meanTags = mean(Total))
+tagSummary.output$siteID = siteID.real
+kable(tagSummary.output, caption = "Tags Used by Site")
+```

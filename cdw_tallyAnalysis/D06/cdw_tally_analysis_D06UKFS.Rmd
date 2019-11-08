@@ -1,0 +1,139 @@
+---
+title: "CDW Tally Analysis: D06 UKFS"
+author: "Courtney Meier, Cody Flagg"
+date: "1st April 2019"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+# Status
+```{r setup, results='hold', warning=FALSE, message=FALSE}
+## Load libraries
+library(plyr)
+library(dplyr)
+library(ggplot2)
+library(httr)
+
+##  Define paths and other inputs
+domain <- "D06"
+site <- "UKFS"
+
+# Define path for writing out files
+if (file.exists("~/Documents/workDocuments")){
+outpath <- paste("~/Documents/workDocuments/gitRepositories/neonPlantSampling/cdw_tallyAnalysis/", domain, sep="")
+}
+
+if (file.exists("/Users/cmeier")){
+  outpath <- paste("~/Documents/gitRepositories/neonPlantSampling/cdw_tallyAnalysis/", domain, sep="")
+}
+
+#   Define function to pull Fulcrum data
+get_Fulcrum_data <- function(api_token, sql, urlEncode = T){
+  require(httr)
+  require(jsonlite)
+  if(urlEncode){
+    sql = URLencode(sql)
+  }
+  url  <-  paste0("https://api.fulcrumapp.com/api/v2/query?token=", api_token, 
+                  "&format=json", "&q=", sql, "&headers=true")
+  request <- httr::GET(url, add_headers("X-ApiToken" = api_token, 
+                                        Accept = "application/json"))
+  content <- jsonlite::fromJSON(httr::content(request, as = "text")) 
+  return(content$rows)
+}
+
+```
+
+```{r downloadFulcrumData, results='hold', warning=FALSE, message=FALSE}
+## Import data from Fulcrum
+# Define Fulcrum API token
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define CDW Fulcrum query for site
+cdwQuery = paste(URLencode('SELECT domainid, siteid, plotid_parent, tallydate, yearboutbegan, eventid, volumefactor,
+samplingprotocolversion, lidsazimuth, targettaxapresent, logdistance, logmaxdiameter, minorlogdiameter, logid,
+loglength, taxonid, scientificname, decayclass FROM "CDW: Tally [PROD]" AS parent
+                      JOIN "CDW: Tally [PROD]/cdw_transect" AS child'),
+            URLencode(paste0("ON (parent._record_id = child._parent_id)
+                      WHERE siteid LIKE'", site, "'")), sep = "%20")
+
+# Get CDW site data from Fulcrum
+cdw <- get_Fulcrum_data(api_token = api_token, sql = cdwQuery)
+
+# Write-out to csv to perform taxonID updates
+write.csv(cdw, file = "D06_UKFS_inputTally.csv", row.names = FALSE, fileEncoding = "UTF-8")
+
+# Read-in csv with updated taxonIDs
+cdw <- read.csv("D06_UKFS_outputTally.csv", header=TRUE, stringsAsFactors = FALSE)
+
+```
+
+
+```{r data_processing, results='hold'}
+##  Filter to analyze data from 2018 only
+cdw %>% filter(grepl("2018", eventid)) -> cdw
+
+## Create diameter class factor
+cdw$diameterClass <- ifelse(cdw$logmaxdiameter >= 10, '>=10cm', 
+                            ifelse(cdw$logmaxdiameter < 5, "2-5cm", "5-10cm"))
+ 
+## Simplify decayclass to numeric value wrapped inside sapply(decayClassNum, "[[", 1) e.g. 'return first element of each list member'
+cdw$decayClassNum <- sapply(stringr::str_split(cdw$decayclass, pattern = " "),"[[", 1)
+
+
+## Write data file
+write.csv(cdw, file = paste(outpath, paste(domain, site, "merged","cdw_rawdata.csv", sep="_"), sep = "/"))
+
+```
+
+```{r summary_table, results='hold', echo=FALSE}
+## Filter out 'blank' transects where TTP = NO
+cdw_fil <- dplyr::filter(cdw, targettaxapresent == "Y", !is.na(taxonid), !is.na(decayclass))
+t1 <- ddply(cdw_fil, ~siteid+taxonid+decayClassNum+diameterClass, summarize, counts = length(taxonid))
+
+## Sort rows by siteID then by descending number of counts
+t1 <- dplyr::arrange(t1, siteid, desc(counts), diameterClass, decayClassNum, taxonid)
+
+## Calculate relative abundances
+t1$totalLogs <- nrow(cdw_fil)
+t1$relativeAbundance <- round((t1$counts/t1$totalLogs)*100,2)
+t1$cumulativeAbundance <- round(cumsum(t1$relativeAbundance),2)
+
+## determine raw ranking by count of DST combo within siteid
+t1 <- plyr::ddply(t1, ~siteid, mutate, DSTrank = as.numeric(paste(1:length(counts))), DSTcombo = paste0(taxonid,"_", decayClassNum,"_",diameterClass))
+# t2 <- ddply(cdw, ~siteid+taxonid, summarize, counts = length(taxonid))
+
+##  Determine required sample size per DST combo, and cumulative sample size
+t1$sampledDiskNum <- ifelse(t1$diameterClass == ">=10cm", 10,5)
+t1$cumulativeDiskNum <- cumsum(t1$sampledDiskNum)
+
+```
+
+`r knitr::kable(t1)`
+
+```{r rank_abundance_plots, results='hold', echo=FALSE}
+## species abundance/total abundance
+######  This was throwing an error, unsure why
+ggplot(data = t1, aes(x = DSTrank, y = counts, color = taxonid, shape = diameterClass)) +
+  geom_point() + 
+  facet_wrap(~siteid) + 
+  labs(title = "Rank Abundance of decayClass x sizeCategory x taxonID (DST)")
+```
+
+### Code
+
+```{r write_files, echo=FALSE}
+##  Prepare t1 for output to protocol appendix
+# Filter columns from t1 that are not required by Field Ops, and not needed in protocol appendix
+t1 %>% select(-DSTrank, -DSTcombo, -totalLogs) -> t1
+
+# Reorder columns
+t1 <- t1[c("siteid", "taxonid", "decayClassNum", "diameterClass", "relativeAbundance", "cumulativeAbundance", "sampledDiskNum", "cumulativeDiskNum")]
+
+# Rename columns
+t1 %>% rename(decayClass=decayClassNum, sizeCategory=diameterClass) -> t1
+
+write.csv(t1, file = paste(outpath, paste(domain, site, "tally_abundance.csv", sep = "_"), sep = "/"), row.names = F)
+```
+

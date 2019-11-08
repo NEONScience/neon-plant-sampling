@@ -1,0 +1,76 @@
+---
+title: "D17 DHP Photo Check"
+author: "Courtney Meier"
+date: "3/15/2017"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(knitr)
+library(plyr)
+library(dplyr)
+library(stringr)
+
+# exifPath <- "/Volumes/neon/DSF/CI Dropbox/Domain 17/TOS/LAI_RAW_images/2016"
+exifPath <- "/Volumes/neon/DSF/CI Dropbox/Domain 17/TOS/LAI_RAW_images/2017"
+
+```
+
+
+```{r getExifData, echo=FALSE, eval=FALSE}
+# Read DHP Exif data for selected site using 'ExifTool'
+system('exiftool -T -r -common -csv -G4 SJER03 > /Users/cmeier/Documents/neonScienceDocs/gitRepositories/neonPlantSampling/dhpPhotoCheck/dhp_exifdata_D17_2016_SJER03.csv')
+system('exiftool -T -r -common -csv -G4 SJER04 > /Users/cmeier/Documents/neonScienceDocs/gitRepositories/neonPlantSampling/dhpPhotoCheck/dhp_exifdata_D17_2016_SJER04.csv')
+system('exiftool -T -r -common -csv -G4 SJER07 > /Users/cmeier/Documents/neonScienceDocs/gitRepositories/neonPlantSampling/dhpPhotoCheck/dhp_exifdata_D17_2017_SJER07.csv')
+system('exiftool -T -r -common -csv -G4 SJER10 > /Users/cmeier/Documents/neonScienceDocs/gitRepositories/neonPlantSampling/dhpPhotoCheck/dhp_exifdata_D17_2017_SJER10.csv')
+system('exiftool -T -r -common -csv -G4 SJER00 > /Users/cmeier/Documents/neonScienceDocs/gitRepositories/neonPlantSampling/dhpPhotoCheck/dhp_exifdata_D17_2017_SJER00.csv')
+
+```
+
+```{r compileExifData, echo=FALSE}
+# List Exif files
+exifFiles <- list.files(path = ".", pattern="exifdata_D")
+
+# Collate Exif data into data frame
+newExif <- data.frame()
+for (i in 1:length(exifFiles)){
+  tempExif <- read.csv(exifFiles[i], header=T, stringsAsFactors = F)
+  newExif <- rbind(newExif, tempExif)
+}
+newExif <- tbl_df(newExif)
+
+# Make grouping variable for output summary table
+sourceData <- plyr::ldply(str_split(newExif$SourceFile, "/"))
+newExif$boutPlot <- paste(sourceData$V1, sourceData$V2, sep = "/")
+
+```
+
+##  D17 SJER DHP photo quality
+### ShutterSpeed summary
+Count of photos by boutPlot (boutID x plotID) and observed shutter speeds.
+```{r shutterSummary, echo=FALSE}
+newExif %>% count(boutPlot, ShutterSpeed) %>% kable
+
+```
+
+### Aperture summary
+Count of photos by boutPlot (boutID x plotID) and observed apertures.
+```{r apertureSummary, echo=FALSE}
+newExif %>% count(boutPlot, Aperture) %>% kable
+
+```
+
+### ISO summary
+Count of photos by boutPlot (boutID x plotID) and observed ISO values.
+```{r isoSummary, echo=FALSE}
+newExif %>% count(boutPlot, ISO) %>% kable
+
+```
+
+### Results
+- **Shutter Speed**: Minimum observed shutter speed across all boutPlots was 1/30s --> good.
+- **Aperture**: Minimum aperture observed across all boutPlots was `r min(newExif$Aperture)` --> good.
+- **ISO**: Maximum ISO observed across all boutPlots was `r max(newExif$ISO)`, and `r nrow(newExif[newExif$ISO > 12800,])` photos had ISO >= 12,800. Technicians need to be aware when ISO is exceeding the maximum allowed value of 12,800.

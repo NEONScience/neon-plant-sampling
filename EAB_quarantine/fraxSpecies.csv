@@ -1,0 +1,60 @@
+acceptedTaxonID,taxonID,scientificName
+FRAXI,,Fraxinus
+FRAL3,,Fraxinus albicans
+FRAL3,FRAMT,Fraxinus americana ssp. texensis
+FRAL3,FRAMT2,Fraxinus americana var. texensis
+FRAL3,FRTE,Fraxinus texensis
+FRAM2,,Fraxinus americana
+FRAM2,FRAMB,Fraxinus americana var. biltmoreana
+FRAM2,FRAMC,Fraxinus americana var. crassifolia
+FRAM2,FRAMC2,Fraxinus americana var. curtissii
+FRAM2,FRAMJ,Fraxinus americana var. juglandifolia
+FRAM2,FRAMM,Fraxinus americana var. microcarpa
+FRAM2,FRBI2,Fraxinus biltmoreana
+FRAN2,,Fraxinus anomala
+FRANA,,Fraxinus anomala var. anomala
+FRANL,,Fraxinus anomala var. lowellii
+FRANL,FRLO,Fraxinus lowellii
+FRBE,,Fraxinus berlandieriana
+FRCA3,,Fraxinus caroliniana
+FRCA3,FRCAC4,Fraxinus caroliniana var. cubensis
+FRCA3,FRCAO3,Fraxinus caroliniana var. oblanceolata
+FRCA3,FRPA8,Fraxinus pauciflora
+FRCH6,,Fraxinus chinensis
+FRCU,,Fraxinus cuspidata
+FRCU,FRCUM2,Fraxinus cuspidata var. macropetala
+FRDI2,,Fraxinus dipetala
+FRDI2,FRDIT,Fraxinus dipetala var. trifoliolata
+FRDI2,FRJO3,Fraxinus jonesii
+FRDI2,FRTR3,Fraxinus trifoliata
+FRDI2,FRTR2,Fraxinus trifoliolata
+FREX80,,Fraxinus excelsior
+FRGO,,Fraxinus gooddingii
+FRGR2,,Fraxinus greggii
+FRLA,,Fraxinus latifolia
+FRLA,FROR3,Fraxinus oregona
+FRLA,FRPEO,Fraxinus pennsylvanica ssp. oregona
+FRMA5,,Fraxinus mandshurica
+FRMA3,,Fraxinus mariesii
+FRNI,,Fraxinus nigra
+FROR2,,Fraxinus ornus
+FRPA4,,Fraxinus papillosa
+FRPE,,Fraxinus pennsylvanica
+FRPE,FRCA8,Fraxinus campestris
+FRPE,FRDA,Fraxinus darlingtonii
+FRPE,FRLA3,Fraxinus lanceolata
+FRPE,FRPEA,Fraxinus pennsylvanica var. austinii
+FRPE,FRPEI,Fraxinus pennsylvanica var. integerrima
+FRPE,FRPEL,Fraxinus pennsylvanica var. lanceolata
+FRPE,FRPES,Fraxinus pennsylvanica var. subintegerrima
+FRPE,FRSM,Fraxinus smallii
+FRPR,,Fraxinus profunda
+FRPR,FRMI2,Fraxinus michauxii
+FRPR,FRTO,Fraxinus tomentosa
+FRQU,,Fraxinus quadrangulata
+FRUH,,Fraxinus uhdei
+FRVE2,,Fraxinus velutina
+FRVE2,FRPEV,Fraxinus pennsylvanica ssp. velutina
+FRVE2,FRVEC3,Fraxinus velutina var. coriacea
+FRVE2,FRVEG,Fraxinus velutina var. glabra
+FRVE2,FRVET,Fraxinus velutina var. toumeyi

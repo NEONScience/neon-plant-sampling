@@ -1,0 +1,3190 @@
+---
+title: "CDW maximum probable diameter by site"
+author: "Courtney Meier"
+date: "09 September 2019"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load required libraries
+library(plyr)
+library(dplyr)
+library(stringr)
+library(ggplot2)
+library(knitr)
+library(httr)
+library(jsonlite)
+
+# Load required functions
+if (file.exists("/Users/cmeier")){
+  source("~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis/cdwDlimAndRDFunctions.R")
+}
+
+# Define function to pull Fulcrum data
+get_Fulcrum_data <- function(api_token, sql, urlEncode = T){
+  require(httr)
+  require(jsonlite)
+  if(urlEncode){
+    sql = URLencode(sql)
+  }
+  url  <-  paste0("https://api.fulcrumapp.com/api/v2/query?token=", api_token, 
+                  "&format=json", "&q=", sql, "&headers=true")
+  request <- httr::GET(url, add_headers("X-ApiToken" = api_token, 
+                                        Accept = "application/json"))
+  content <- jsonlite::fromJSON(httr::content(request, as = "text")) 
+  return(content$rows)
+}
+
+```
+
+# Background
+- Field Operations technicians requested a standardized procedure for determining the length of transects for CDW tally sampling. To support this request, I have analyzed Vegetation Structure / Vegetation Characterization DBH data on a per domain basis. 
+- For most sites, datasets are filtered to remove stems with DBH <= 10cm; filtered stem DBH data are then analyzed visually with histogram plots, and the 95th percentile of DBH was also calculated. The initial assumption is that the 95th percentile of DBH will correspond to the maximum likely DBH encountered.
+- The choice of F-value for each site is initially based on the maximum expected size of the particles, as well as qualitative estimates of particle density at the site. The F-value may be revised iteratively with feedback from Field Operations technicians.
+- Results are documented in NEON-2474 (https://neoninc.atlassian.net/browse/NEON-2474).
+
+#  D01 stemDiameter analysis
+## D01: Load and clean data
+Load 2015 VegStructure data from D01, located in CI Dropbox (10.100.128.37). There are three files with `apparentIndividual` data, these are associated with three different versions of the Access ingest DB that were used in 2015. From conversation with D01 on 2016-05-05, these files should not contain duplicates, but will need to verify.
+``` {r d01DomainID, include=FALSE}
+domainID <- "D01"
+
+```
+
+``` {r d01LoadData, eval=FALSE, include=FALSE}
+# Load D01 2015 data from CI dropbox (//10.100.128.37/dropbox)
+setwd("/Volumes/dropbox/2015data/D01")
+
+# Load data from D01 AccessDBs; 2d version is most recent for field names
+vst2d <- tbl_df(read.csv("vst_apparentindividual_v2d_D01.csv", header=T, stringsAsFactors = F))
+vst2b <- tbl_df(read.csv("vst_apparentindividual_v2b_D01.csv", header=T, stringsAsFactors = F))
+vst1 <- tbl_df(read.csv("vst_apparentindividual_D01.csv", header=T, stringsAsFactors = F))
+
+# Determine fields present in `vst2d` missing from `vst2b` and vice versa
+which(!colnames(vst2b) %in% colnames(vst2d))
+which(!colnames(vst2d) %in% colnames(vst2b))
+names(vst2d)[9:11]
+
+# Determine fields present in `vst2d` and missing from `vst1`, and vice versa
+which(!names(vst1) %in% names(vst2d))
+identical(names(vst1), names(vst2d))
+
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+vst2d <- distinct(vst2d)
+vst2b <- distinct(vst2b)
+vst1 <- distinct(vst1)
+
+```
+
+**_Results of dataframe comparison and cleanup_**: 
+
+- All names in `vst2b` present in `vst2d`
+- `basalDiameter`, `basalDiameterHeight`, and `growthForm` are lacking in vst2b
+- All names present in `vst1` are present in `vst2d`
+- 1 duplicate record in `vst2d`
+- 27 duplicate records in `vst2b`
+- 1 duplicate record in `vst1`
+
+## D01: Create unified VST dataset
+```{r d01DataMerge, eval=FALSE, include=FALSE}
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+vstTemp <- full_join(vst2d, vst2b)
+vstd1 <- full_join(vstTemp, vst1)
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(vstd1, file=fileName, row.names = F)
+
+```
+**_Results of dataframe merge_**
+
+- `vstd1` has 6978 records using the full_join technique
+- Using rbind (code not shown), total number of records is 8439; but using distinct() on rbind result gives 6978 records.
+- The results from 'full_join' automatically get rid of duplicates -> very nice
+
+## D01: DBH percentiles and histograms
+
+- Create a histogram in ggplot of stemDiameter data, and look only at `stemDiameter` >= 10 cm, since there are often many small diameter stems that do not contribute significantly to CDW production.
+- Calculate the 95th percentile and the max DBH using the DBH data.
+- Overlay the 95th %tile as a vertical line. 
+
+```{r harvDBHAnalysis, include=FALSE}
+siteID <- "HARV"
+fVal <- 5
+# For HARV, going to look at stems >= 10 cm only
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd1 <- read.csv(paste(inputPath, "vst_D01_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+vstd1 %>% 
+  filter(siteID=="HARV", stemDiameter >= 10) -> harvVst
+
+# Calculate maxLikelyStemDiameter, maxStemDiameter, and Dlim
+count <- nrow(harvVst)
+maxLikelySD <- ceiling(quantile(harvVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(harvVst$stemDiameter)
+dHarv <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Create data.frame to hold results
+dlim.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, dHarv)
+colnames(dlim.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+
+```
+
+**_HARV: Results of stem diameter analysis_**
+
+``` {r d01HarvHistPlot, echo=FALSE}
+# Create a histogram plot using ggplot2 package
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(harvVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Virtually all logs have DBH < 65 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r dHarv` m @ F=`r fVal`
+
+
+```{r bartDBHAnalysis, include=FALSE}
+# For BART, similar analysis as above
+siteID <- "BART"
+fVal <- 5
+vstd1 %>% filter(siteID=="BART", stemDiameter >= 10) -> bartVst
+
+count <- nrow(bartVst)
+maxLikelySD <- ceiling(quantile(bartVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(bartVst$stemDiameter)
+dBart <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add BART numbers to existing df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, dBart)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_BART: Results of stem diameter analysis_**
+
+``` {r d01BartHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(bartVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title="D01 BART: stemDiameter distribution", x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Virtually all logs have DBH < 65 cm
+- maxLikelyStemDiameter = 99th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r dBart` m @ F=`r fVal`
+
+
+
+#  D02 stemDiameter analysis
+##  D02: Load and clean data
+In the CI Dropbox (10.100.128.37), there are VST data in the 'Veg Characterization data' folder, as well as in the '2015data' folder. Based on preliminary visual checks, there are data for SCBI, SERC and BLAN in these locations.
+``` {r d02DomainID, include=FALSE}
+domainID <- "D02"
+
+```
+
+``` {r d02LoadData, eval=FALSE, include=FALSE}
+# Load D02 2015 data from CI dropbox
+setwd("/Volumes/dropbox/2015data/D02")
+vst1 <- tbl_df(read.csv("vst_apparentindividual_D02.csv", header=T, stringsAsFactors = F))
+vst2 <- tbl_df(read.csv("vst_div_apparentindividual_D02.csv", header=T, stringsAsFactors = F))
+
+# Load D02 Veg Characterization data
+setwd("/Volumes/dropbox/Veg Characterization data")
+vst3 <- tbl_df(read.csv("vst_apparentindividual_SERC.csv", header=T, stringsAsFactors = F))
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+
+# Determine fields are common to all files, and which are unique to individual files
+which(!colnames(vst1) %in% colnames(vst2))
+which(!colnames(vst2) %in% colnames(vst1))
+colnames(vst1)[9:11]
+
+which(!colnames(vst2) %in% names(vst3))
+
+```
+
+``` {r d02DupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+vst1DupNum <- nrow(vst1)-nrow(distinct(vst1))
+vst1 <- distinct(vst1)
+
+vst2DupNum <- nrow(vst2)-nrow(distinct(vst2))
+vst2 <- distinct(vst2)
+
+vst3DupNum <- nrow(vst3)-nrow(distinct(vst3))
+vst3 <- distinct(vst3)
+
+```
+
+**_Results of D02 dataframe comparison and cleanup_**: 
+
+- All colnames in `vst2` present in `vst1`
+- `basalDiameter`, `basalDiameterHeight`, and `growthForm` are lacking in vst2
+- All names in `vst2` match those in `vst3`
+- 15 duplicate records in `vst1`
+- 18 duplicate records in `vst2`
+- 0 duplicate records in `vst3`
+
+## D02: Create unified VST dataset
+```{r d02DataMerge, eval=FALSE, include=FALSE}
+# Join data frames into one with dplyr::full_join
+vstTemp <- full_join(vst1, vst2)
+vstd2 <- full_join(vstTemp, vst3)
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(vstd2, file=fileName, row.names = F)
+
+# Determine the number of unique dates in resulting data frame
+dates <- unique(vstd2$date)
+
+```
+
+**_Results of dataframe merge_**
+
+- `vstd2` has 7249 records using the full_join technique
+- Most records in `vst2` and `vst3` appear to be duplicates of data in `vst1`
+- All data collected between 2015-09-14 and 2015-10-21
+
+## D02: DBH percentiles and histograms
+
+- Histograms and analyses for D02 are identical to those created for D01
+
+```{r scbiDBHAnalysis, include=FALSE}
+siteID <- "SCBI"
+fVal <- 8
+# SCBI: Filter out stems >= 10 cm only
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd2 <- read.csv(paste(inputPath, "vst_D02_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+vstd2 %>% 
+  filter(siteID=="SCBI", stemDiameter >= 10) -> scbiVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(scbiVst)
+maxLikelySD <- ceiling(quantile(scbiVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(scbiVst$stemDiameter)
+dScbi <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add SCBI numbers to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, dScbi)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_SCBI: Results of stem diameter analysis_**
+
+``` {r d02ScbiHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(scbiVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: No clear breakpoint in distribution tail
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r dScbi` m @ F=`r fVal`
+
+```{r blanDBHAnalysis, include=FALSE}
+siteID <- "BLAN"
+fVal <- 5
+# BLAN: Filter out stems >= 10 cm only
+vstd2 %>% 
+  filter(siteID=="BLAN", stemDiameter >= 10) -> blanVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(blanVst)
+maxLikelySD <- ceiling(quantile(blanVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(blanVst$stemDiameter)
+dBlan <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add BLAN numbers to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, dBlan)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_BLAN: Results of stem diameter analysis_**
+
+``` {r d02BlanHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(blanVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: No clear breakpoint in distribution tail
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r dBlan` m @ F=`r fVal`
+
+```{r sercDBHAnalysis, include=FALSE}
+siteID <- "SERC"
+fVal <- 5
+# SERC: Filter out stems >= 10 cm only
+vstd2 %>% 
+  filter(siteID=="SERC", stemDiameter >= 10) -> sercVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(sercVst)
+maxLikelySD <- ceiling(quantile(sercVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(sercVst$stemDiameter)
+dSerc <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add SERC numbers to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, dSerc)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_SERC: Results of stem diameter analysis_**
+
+``` {r d02SercHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(sercVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: No clear breakpoint in distribution tail
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r dSerc` m @ F=`r fVal`
+
+
+
+
+#  D03 stemDiameter analysis
+##  D03: Load and clean data
+In the CI Dropbox (10.100.128.37), there are VST data in the '2015data' folder. Based on preliminary visual checks, there are data for OSBS and JERC, but not DSNY.
+
+``` {r d03DomainID, include=FALSE}
+domainID <- "D03"
+
+```
+
+``` {r d03LoadData, eval=FALSE, include=FALSE}
+# Load D03 2015 data from CI dropbox
+setwd("/Volumes/dropbox/2015data/D03/Veg Structure")
+vst1 <- tbl_df(read.csv("vst_apparentindividual_in_D03.csv", header=T, stringsAsFactors = F))
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+
+```
+
+``` {r d03DataCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+vst1DupNum <- nrow(vst1)-nrow(distinct(vst1))
+vst1 <- distinct(vst1)
+
+# Check date ranges for records
+dates <- unique(vst1$date)
+ggplot(vst1, aes(x=date)) +
+  geom_histogram(binwidth = 1) +
+  labs(title="D03 2015 VST measurement dates")
+
+# For OSBS individuals with DBH >= 10 cm, check whether same tagID measured on different dates
+vst1 %>%
+  filter(siteID=="OSBS", stemDiameter >= 10) %>%
+  arrange(plotID, tagID, date) -> osbsVst
+
+# Find duplicated tagIDs, and check how tagID duplicates arise; observations recorded below
+osbsDup <- osbsVst[duplicated(osbsVst$tagID) | duplicated(osbsVst$tagID, fromLast = TRUE),c(1:8,11,12)]
+osbsDup <- arrange(osbsDup, plotID, tagID)
+
+# Remove duplicate tagIDs in osbsVst based on observations recorded below
+##  Filter out records collected in 2015-03 from OSBS_004
+osbsVst <- filter(osbsVst, !(plotID=="OSBS_004" & grepl("201503", date)))
+
+##  Filter out records in OSBS_008 with duplicated tagID and subplotID==40
+osbsVst <- filter(osbsVst, !(plotID=="OSBS_008" & (duplicated(tagID) | duplicated(tagID, fromLast = TRUE)) & subplotID==40))
+
+##  Remove 'A' from duplicated tagID in OSBS_017
+which(osbsVst$plotID=="OSBS_017" & (duplicated(osbsVst$tagID) | duplicated(osbsVst$tagID, fromLast = TRUE)))
+osbsVst[182, ][,"tagID"] = 915
+
+##  Remove records collected in 2015-03 for OSBS_027, OSBS_030, OSBS_051
+osbsVst <- filter(osbsVst, !((plotID=="OSBS_027" | plotID=="OSBS_030" | plotID=="OSBS_051") & grepl("201503", date)))
+
+##  Remove apparent duplicates from OSBS_029, OSBS_031, OSBS_033
+osbsVst %>%
+  filter(!(plotID=="OSBS_029" & duplicated(tagID))) %>%
+  filter(!(plotID=="OSBS_031" & duplicated(tagID))) %>%
+  filter(!(plotID=="OSBS_033" & duplicated(tagID))) -> osbsVst
+
+
+# For JERC individuals with DBH >= 10 cm, check whether same tagID measured on different dates
+vst1 %>%
+  filter(siteID=="JERC", stemDiameter >= 10) %>%
+  arrange(plotID, tagID, date) -> jercVst
+
+# Check for duplicate tagIDs
+jercDup <- filter(jercVst, (duplicated(tagID) | duplicated(tagID, fromLast = TRUE)))
+
+```
+
+- 27 duplicate records in `vst1`
+- `date` recorded spans from 2015-03-04 to 2015-10-13
+- OSBS_004: duplicates based on tagID result because tagIDs were measured in 2015-03, and 2015-10 -> *remove 2015-03 records*
+- OSBS_008: duplicates based on tagID are identical except for subplotID value -> *remove records with subplotID=40*
+- OSBS_017: One dup - tagID for larger bole should not have 'A' -> *change tagID*
+- OSBS_027: Same action as for 004 plot above
+- OSBS_029: One tagID repeated 3X; records appear identical based on selected columns -> *choose one record*
+- OSBS_030: Same action as for 004 plot above
+- OSBS_031: tagID 3381 appears identical based on selected columns -> *choose one record*
+- OSBS_033: tagID 03708 appears identical based on selected columns -> *choose one record*
+- OSBS_051: Same action as for 004 plot above
+- JERC: No duplicate records
+- **`vst_D03_cleanData.csv` ONLY CONTAINS STEMS >= 10 cm DBH**
+
+
+
+##  D03: Create unified VST dataset
+``` {r d03DataMerge, eval=FALSE, include=FALSE}
+# Join OSBS and JERC datasets, write to .csv
+vstd3 <- bind_rows(osbsVst, jercVst)
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(vstd3, file=fileName, row.names = FALSE)
+
+# Examine distribution of dates in 'clean' vstd3 dataset
+ggplot(vstd3, aes(x=date)) +
+  geom_histogram(binwidth = 1) +
+  labs(title="D03 2015 cleanVST measurement dates")
+min(vstd3$date)
+max(vstd3$date)
+
+
+```
+
+**_Results of dataframe merge_**
+
+- `vstd3` has 886 records
+- Of the total records, JERC has 193 records
+- Most data collected between 2015-08-01 and 2015-10-13, but some collected in 2015-03
+
+
+##  D03 DSNY: Pull VST Tower Plot data from Fulcrum database
+```{r d03DsnyLoadData, eval=FALSE, include=FALSE}
+# Define siteID
+siteID <- "DSNY"
+
+# Define working filepath
+lidsPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Define API token with admin privileges
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define SQL query to get Apparent Individual data
+vstQuery <- paste(URLencode('SELECT * FROM "(TOS) VST: Apparent Individuals [PROD]" AS parent 
+                        JOIN "(TOS) VST: Apparent Individuals [PROD]/woody_stems" AS child'),
+                  URLencode(paste0("ON (parent._record_id = child._parent_id)
+                            WHERE siteid LIKE'", siteID, "'")), sep = "%20")
+
+# Get VST Apparent Individual data
+dsnyVst <- get_Fulcrum_data(api_token = api_token, sql = vstQuery)
+dsnyVst %>%
+  select(siteid, eventid, date, plotid, plottype, plotsize, tagid, taxonid, growthform, 
+         stemdiameter, basalstemdiameter, plantstatus) %>%
+  filter(stemdiameter!="NA") -> dsnyVst
+
+# Check per plot sampling effort
+dsnyVst %>% count(plotid) %>% kable
+length(unique(dsnyVst$plotid))
+
+```
+
+``` {r d03DsnyDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+dsnyDupNum <- nrow(dsnyVst)-nrow(dplyr::distinct(dsnyVst)) # -> 1 duplicates set of records
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(dsnyVst$date))
+
+# Write out data used for analysis
+write.csv(dplyr::distinct(dsnyVst), file = paste(lidsPath, "vst_D03_DSNY_cleanData.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+**_Summary of DSNY Fulcrum Data_**
+
+- 1207 records in Fulcrum, collected between 2018-01-02 to 2018-01-18
+- 93 records of individuals for which a **stemdiameter** was recorded
+
+
+
+## D03: DBH percentiles and histograms
+
+- Histograms and analyses for D03 are identical to previous analyses
+
+```{r osbsDBHAnalysis, include=FALSE}
+siteID <- "OSBS"
+fVal <- 5
+# OSBS: Filter only OSBS data
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd3 <- read.csv(paste(inputPath, "vst_D03_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+vstd3 %>% 
+  filter(siteID=="OSBS", stemDiameter >= 10) -> osbsVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(osbsVst)
+maxLikelySD <- ceiling(quantile(osbsVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(osbsVst$stemDiameter)
+dOsbs <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add OSBS numbers to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, dOsbs)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_OSBS: Results of stem diameter analysis_**
+
+``` {r d03OsbsHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(osbsVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: No clear breakpoint in distribution tail
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r dOsbs` m @ F=`r fVal`
+
+
+```{r dsnyDBHAnalysis, include=FALSE}
+siteID <- "DSNY"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+dsnyVst <- read.csv(paste(inputPath, "vst_D03_DSNY_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# DSNY: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+hist(dsnyVst$stemdiameter, breaks = 30) # -> there are a few trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+dsnyVst %>% filter(stemdiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemdiameter, probs=c(0.95), na.rm = TRUE))[[1]]
+maxSD <- max(tempVst$stemdiameter, na.rm = TRUE)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_DSNY: Results of stem diameter analysis_**
+
+``` {r d03DsnyHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemdiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 40 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+``` {r jercDBHAnalysis, include=FALSE}
+siteID <- "JERC"
+fVal <- 5
+# JERC: Filter only JERC data
+vstd3 %>% 
+  filter(siteID=="JERC", stemDiameter >= 10) -> jercVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(jercVst)
+maxLikelySD <- ceiling(quantile(jercVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(jercVst$stemDiameter)
+dJerc <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add JERC numbers to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, dJerc)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_JERC: Results of stem diameter analysis_**
+
+``` {r d03JercHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(jercVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: No clear breakpoint in distribution tail
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r dJerc` m @ F=`r fVal`
+
+
+# D04 stemDiameter analysis
+##  D04: Load and clean data
+There are VST data for GUAN in the 'Veg Characterization data' folder on Sharepoint, which have been dowloaded to the working directory of this repo. There are also 2014 VST data from one plot at GUAN (GUAN_002), but analysis of these data is not included here.
+``` {r d04DomainID, include=FALSE}
+domainID <- "D04"
+```
+
+``` {r d04LoadData, eval=FALSE, include=FALSE}
+# Load D04 GUAN VC data from `neonPlantSampling` repo 
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+guan <- tbl_df(read.csv("vst_apparentindividual_GUAN.csv", header=T, stringsAsFactors = F))
+
+# Data type checks
+str(guan)
+guan$date <- as.Date(as.character(guan$date), "%Y%m%d")
+guan$VD2height <- as.numeric(guan$VD2height)
+
+# Check per plot sampling effort, total number of plots sampled
+guan %>% count(siteID, plotID) %>% kable
+length(unique(guan$plotID))
+
+```
+
+``` {r d04DupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+guanDupNum <- nrow(guan)-nrow(distinct(guan)) # -> 20 duplicates
+guan <- distinct(guan)
+
+```
+
+**_Results of D04 dataframe comparison and cleanup_**: 
+
+- 21 plots sampled at GUAN --> includes GUAN_002; based on plotID, need to cross-check with 'applicableModules.csv' to determine whether should be part of dataset. Including it will likely not affect results of stemDiameter analysis.
+- 20 duplicates in the GUAN input data frame
+
+
+## D04: Create and check unified VST dataset
+```{r d04DataMerge, eval=FALSE, include=FALSE}
+# Merge data into one data frame --> only one file here, not necessary
+
+# Write dataframe to a .csv
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(guan, file=fileName, row.names = F, fileEncoding = "UTF-8")
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(guan$date[guan$siteID=="GUAN"])) # -> Measurements from May - Nov of 2015; significant activity June-Aug, big effort in November.
+
+ggplot(guan, aes(x=date)) +
+  geom_histogram(data=filter(guan, siteID=="GUAN"), fill="red", alpha=0.2)
+
+```
+
+**_Summary statistics for dataframe(s)_**
+
+- `guan` has 2668 unique records
+- GUAN data collection: Significant effort Jun-Aug 2015, big effort in November 2015.
+
+## D04: DBH percentiles and histograms
+
+- Histograms and analyses for D04 are identical to those created for other sites
+```{r guanDBHAnalysis, include=FALSE}
+siteID <- "GUAN"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd04 <- read.csv(paste(inputPath, "vst_D04_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# GUAN: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+vstd04 %>% filter(siteID=="GUAN") -> tempVst
+hist(tempVst$stemDiameter, breaks = 30) # -> there are trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+vstd04 %>% filter(siteID=="GUAN", stemDiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_GUAN: Results of stem diameter analysis_**
+
+``` {r d04GuanHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 50 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm; extreme outlier --> likely data entry error.
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+
+#  D05 stemDiameter analysis
+##  D05: Load and clean data
+There are VST data for TREE and STEI in the 'Veg Characterization data' folder on Sharepoint, which have been dowloaded to the working directory of this repo. Some VST data from UNDE from 2014 are in the CI Dropbox (10.100.128.37). For STEI, it is necessary to assess transect length separately for Distributed Plots and Tower Plots, as the Distributed Plots are in the CNF, are miles away, and are managed completely differently than the Tower Plots.
+
+``` {r d05DomainID, include=FALSE}
+domainID <- "D05"
+
+```
+
+``` {r d05LoadData, eval=FALSE, include=FALSE}
+# Load D05 2014 UNDE data from CI dropbox 
+setwd("/Volumes/dropbox/2014data/D05/D05_vst_2014")
+vst1 <- tbl_df(read.csv("vst_perindividual_perbout.csv", header=T, stringsAsFactors = F))
+
+# Load 2015 STEI, TREE VegChar data from gitRepo
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+vst2 <- tbl_df(read.csv("vst_apparentindividual_TREE_STEI.csv", header=T, stringsAsFactors = F))
+
+# Determine fields are common to all files, and which are unique to individual files
+colnames(vst1)
+colnames(vst2)
+which(!colnames(vst1) %in% colnames(vst2))
+which(!colnames(vst2) %in% colnames(vst1))
+colnames(vst1)[1]
+colnames(vst2)[c(1,18,19)]
+
+# Add siteID=="UNDE" to vst1, remove 'uid'
+vst1$siteID = "UNDE"
+vst1 <- select(vst1, -uid)
+
+# Check how many plots were sampled
+length(unique(vst1$plotID))
+length(unique(vst2$plotID))
+
+```
+
+``` {r d05DupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+vst1DupNum <- nrow(vst1)-nrow(distinct(vst1))
+vst1 <- distinct(vst1)
+vst2DupNum <- nrow(vst2)-nrow(distinct(vst2))
+vst2 <- distinct(vst2)
+
+```
+
+**_Results of D05 dataframe comparison and cleanup_**: 
+
+- `uid` column missing from `vst2` -> remove from `vst1`
+- Data were collected in only 4 plots at UNDE in 2014
+- `siteID`, `measuredBy`, and `recordedBy` columns missing from `vst1` -> added `siteID`=="UNDE" to `vst1`
+- 7 duplicate records in `vst1`
+- 23 duplicate records in `vst2`
+
+## D05: Create and check unified VST dataset
+```{r d05DataMerge, eval=FALSE, include=FALSE}
+# First join attempt failed: 'remarks' were type=logi and type=char, and need to be one or the other; make all type=char
+vst1$remarks <- as.character(vst1$remarks)
+
+# Join data frames into one with dplyr::full_join, and then join with selected fields from 'applicableModules' dataframe to get plotType
+vstd5 <- full_join(vst1, vst2)
+
+setwd("~/Documents/gitRepositories/devTOS/spatialData/supportingDocs")
+am <- read.csv("applicableModules.csv", header=T, stringsAsFactors = F)
+am %>% 
+  select(plotID, plotType, subtype) %>%
+  filter(subtype=="basePlot") %>%
+  arrange(plotID) -> plotType.df
+vstd5 <- left_join(vstd5, plotType.df, by="plotID")
+vstd5 <- arrange(vstd5, siteID, plotID)
+
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(vstd5, file=fileName, row.names = F)
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(vstd5$date))
+ggplot(vstd5, aes(x=date)) +
+  geom_histogram(data=filter(vstd5, siteID=="UNDE"), fill="red", alpha=0.2) +
+  geom_histogram(data=filter(vstd5, siteID=="STEI"), fill="green", alpha=0.2) +
+  geom_histogram(data=filter(vstd5, siteID=="TREE"), fill="blue", alpha=0.2)
+
+
+```
+
+**_Results of dataframe merge_**
+
+- `vstd5` has 3028 records using the full_join technique: an exact sum of the two input data frames
+- UNDE data collected in 2014-10
+- STEI data collected in 2015-08, over two weeks
+- TREE data collected in 2015-07 and 2015-08, over two weeks
+
+## D05: DBH percentiles and histograms
+
+- Histograms and analyses for D05 are identical to those created for other sites
+
+```{r undeDBHAnalysis, include=FALSE}
+siteID <- "UNDE"
+fVal <- 5
+# UNDE: Filter out stems >= 10 cm only
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd5 <- read.csv(paste(inputPath, "vst_D05_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+vstd5 %>% 
+  filter(siteID=="UNDE", stemDiameter >= 10) -> undeVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(undeVst)
+maxLikelySD <- ceiling(quantile(undeVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(undeVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add UNDE numbers to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_UNDE: Results of stem diameter analysis_**
+
+``` {r d05UndeHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(undeVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Only 100 individuals >= 10 cm diameter measured at UNDE -> incomplete data collection effort or data entry effort.
+- Histogram: Clear breakpoint at about 38 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+```{r steiDBHAnalysis, include=FALSE}
+siteID <- "STEI"
+fVal <- 5
+# UNDE: Filter out stems >= 10 cm only
+vstd5 %>% 
+  filter(siteID=="STEI", stemDiameter >= 10) -> steiVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(steiVst)
+maxLikelySD <- ceiling(quantile(steiVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(steiVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add SCBI numbers to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_STEI: Results of stem diameter analysis_**
+
+``` {r d05SteiHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(steiVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- All data used for STEI analysis are Tower Plot data; no Distributed Plots sampled in this dataset.
+Only 179 individuals >= 10 cm diameter measured at STEI -> few records likely because the Tower airshed is very small
+- Histogram: Clear breakpoint at about 40 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+```{r treeDBHAnalysis, include=FALSE}
+siteID <- "TREE"
+fVal <- 5
+# TREE: Filter out stems >= 10 cm only
+vstd5 %>% 
+  filter(siteID=="TREE", stemDiameter >= 10) -> treeVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(treeVst)
+maxLikelySD <- ceiling(quantile(treeVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(treeVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add SCBI numbers to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_TREE: Results of stem diameter analysis_**
+
+``` {r d05TreeHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(steiVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- 736 individuals >= 10 cm diameter measured at TREE
+- Histogram: Clear breakpoint at about 39 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+
+# D06 stemDiameter analysis
+##  D06: Load and clean data
+There are VST data for UKFS in the 'Veg Characterization data' folder on Sharepoint, which have been dowloaded to the working directory of this repo. Data for KONZ come from Fulcrum.
+``` {r d06DomainID, include=FALSE}
+domainID <- "D06"
+```
+
+``` {r d06UkfsLoadData, eval=FALSE, include=FALSE}
+# Load D06 UKFS VC data from `neonPlantSampling` repo 
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+ukfs <- tbl_df(read.csv("vst_apparentindividual_UKFS.csv", header=T, stringsAsFactors = F))
+
+# Data type checks
+str(ukfs)
+ukfs$date <- as.Date(as.character(ukfs$date), "%Y%m%d")
+ukfs$VD2height <- as.numeric(ukfs$VD2height)
+ukfs$maxBaseCanopyDiameter <- as.numeric(ukfs$maxBaseCanopyDiameter)
+
+# Check per plot sampling effort, total number of plots sampled
+ukfs %>% count(siteID, plotID) %>% kable
+length(unique(ukfs$plotID))
+
+# 3 records in UKFS_031 are missing a siteID, half the records from 'UKFS_054' have plotID 'UKFS_54'
+ukfs$siteID <- "UKFS"
+ukfs$plotID[ukfs$plotID=="UKFS_54"] <- "UKFS_054"
+
+```
+
+``` {r d06UkfsDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+ukfsDupNum <- nrow(ukfs)-nrow(distinct(ukfs)) # -> 0 duplicates
+# ukfs <- distinct(ukfs) -> not needed, since no dupes
+
+```
+
+```{r d06KonzLoadData, eval=FALSE, include=FALSE}
+# Define siteID
+siteID <- "KONZ"
+
+# Define working filepath
+lidsPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Define API token with admin privileges
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define SQL query to get Apparent Individual data
+vstQuery <- paste(URLencode('SELECT * FROM "(TOS) VST: Apparent Individuals [PROD]" AS parent 
+                        JOIN "(TOS) VST: Apparent Individuals [PROD]/woody_stems" AS child'),
+                  URLencode(paste0("ON (parent._record_id = child._parent_id)
+                            WHERE siteid LIKE'", siteID, "'")), sep = "%20")
+
+# Get VST Apparent Individual data
+konzVst <- get_Fulcrum_data(api_token = api_token, sql = vstQuery)
+konzVst %>%
+  select(siteid, eventid, date, plotid, plottype, plotsize, tagid, taxonid, growthform, 
+         stemdiameter, basalstemdiameter, plantstatus) %>%
+  filter(stemdiameter!="NA") -> konzVst
+
+# Check per plot sampling effort
+konzVst %>% count(plotid) %>% kable
+length(unique(konzVst$plotid))
+```
+
+``` {r d06KonzDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+konzDupNum <- nrow(konzVst)-nrow(dplyr::distinct(konzVst)) # -> 2 duplicates
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(konzVst$date))
+
+# Write out data used for analysis
+write.csv(dplyr::distinct(konzVst), file = paste(lidsPath, "vst_D06_KONZ_cleanData.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+**_Results of D06 dataframe comparison and cleanup_**: 
+
+- 20 plots sampled at UKFS
+- 0 duplicates in the UKFS input data frame
+- 10 plots with tree and small tree individuals at KONZ
+- 2 duplicates in input data from Fulcrum
+
+
+## D06: Create and check unified VST dataset
+```{r d06DataMerge, eval=FALSE, include=FALSE}
+# Merge data into one data frame --> only one file here, not necessary
+
+# Write dataframe to a .csv
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(ukfs, file=fileName, row.names = F, fileEncoding = "UTF-8")
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(ukfs$date[ukfs$siteID=="UKFS"])) # -> one bout in 2015, as expected.
+
+ggplot(ukfs, aes(x=date)) +
+  geom_histogram(data=filter(ukfs, siteID=="UKFS"), fill="red", alpha=0.2)
+
+```
+
+**_Summary statistics for dataframe(s)_**
+
+- UKFS has 1561 unique records
+- UKFS data collection: Effort in Aug 2015.
+- KONZ has 236 unique records
+- KONZ data collection for analysis: Effort from 2016-10-26 to 2016-11-09
+
+## D06: DBH percentiles and histograms
+
+- Histograms and analyses for D06 are identical to those created for other sites
+```{r ukfsDBHAnalysis, include=FALSE}
+siteID <- "UKFS"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd06 <- read.csv(paste(inputPath, "vst_D06_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# UKFS: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+vstd06 %>% filter(siteID=="UKFS") -> tempVst
+hist(tempVst$stemDiameter, breaks = 30) # -> there are trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+vstd06 %>% filter(siteID=="UKFS", stemDiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95), na.rm = TRUE))[[1]]
+maxSD <- max(tempVst$stemDiameter, na.rm = TRUE)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_UKFS: Results of stem diameter analysis_**
+
+``` {r d06UkfsHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 55 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm; extreme outlier --> likely data entry error.
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+```{r konzDBHAnalysis, include=FALSE}
+siteID <- "KONZ"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+konzVst <- read.csv(paste(inputPath, "vst_D06_KONZ_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# KONZ: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+hist(konzVst$stemdiameter, breaks = 30) # -> there are a few trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+konzVst %>% filter(stemdiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemdiameter, probs=c(0.95), na.rm = TRUE))[[1]]
+maxSD <- max(tempVst$stemdiameter, na.rm = TRUE)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_KONZ: Results of stem diameter analysis_**
+
+``` {r d06KonzHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemdiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 20 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+
+
+#  D07 stemDiameter analysis
+##  D07: Load and clean data
+There are VST data for ORNL and GRSM  in the in the CI Dropbox (10.100.128.37).
+
+``` {r d07DomainID, include=FALSE}
+domainID <- "D07"
+
+```
+
+``` {r d07LoadData, eval=FALSE, include=FALSE}
+# Load D07 data from CI dropbox 
+setwd("/Volumes/dropbox/2015data/D07/VegStructure/VST_GRSM_2015")
+vst1 <- tbl_df(read.csv("vst_GRSM_apparentindivdual_2015.csv", header=T, stringsAsFactors = F))
+
+setwd("/Volumes/dropbox/2015data/D07/VegStructure/VST_ORNL_2015")
+vst2 <- tbl_df(read.csv("vst_ORNL_apparentindividual_in.csv", header=T, stringsAsFactors = F))
+
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+
+# Determine which fields are common to all files, and which are unique to individual files
+colnames(vst1)
+colnames(vst2)
+which(!colnames(vst1) %in% colnames(vst2))
+which(!colnames(vst2) %in% colnames(vst1))
+colnames(vst2)[c(8,10:12)]
+
+# Data frame cleanup
+unique(vst2$Field1)
+vst2 <- select(vst2, -Field1)
+
+# Check how many plots were sampled
+length(unique(vst1$plotID))
+length(unique(vst2$plotID))
+
+```
+
+``` {r d07LegacyDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+vst1DupNum <- nrow(vst1)-nrow(distinct(vst1))
+vst1 <- distinct(vst1)
+vst2DupNum <- nrow(vst2)-nrow(distinct(vst2))
+vst2 <- distinct(vst2)
+
+```
+
+**_Results of D07 dataframe comparison and cleanup_**: 
+
+- In `vst_ORNL_apparentindividual_in.csv`, `vd1Height` and `vd2Height` values appear to have been switched; `vd1Height` values are negative.
+- All colnames in `vst1` exist in `vst2`
+- colnames in `vst2` not in `vst1`: Field1, basalDiameter, basalDiameterHeight, growthForm
+- Field1 is all NAs -> remove from `vst2`
+- 20 plots sampled at GRSM
+- 40 plots sampled at ORNL
+- 7 duplicate records in `vst1`
+- 10 duplicate records in `vst2`
+
+## D07: Create and check unified VST legacy dataset
+```{r d07DataMerge, eval=FALSE, include=FALSE}
+# Data 'type' inconsistencies to clean up
+vst1$remarks <- as.character(vst1$remarks)
+vst1$VD2height <- as.numeric(vst1$VD2height)
+
+# Join data frames into one with dplyr::full_join
+vstd7 <- full_join(vst1, vst2)
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(vstd7, file=fileName, row.names = F)
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(vstd7$date[vstd7$siteID=="GRSM"]))
+dates <- sort(unique(vstd7$date[vstd7$siteID=="ORNL"]))
+
+ggplot(vstd7, aes(x=date)) +
+  geom_histogram(data=filter(vstd7, siteID=="GRSM"), fill="red", alpha=0.2) +
+  geom_histogram(data=filter(vstd7, siteID=="ORNL"), fill="green", alpha=0.2)
+
+
+```
+
+
+##  D07 MLBS: Pull VST Tower Plot data from Fulcrum database
+```{r d07MlbsLoadData, eval=FALSE, include=FALSE}
+# Define siteID
+siteID <- "MLBS"
+
+# Define working filepath
+lidsPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Define API token with admin privileges
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define SQL query to get Apparent Individual data
+vstQuery <- paste(URLencode('SELECT * FROM "(TOS) VST: Apparent Individuals [PROD]" AS parent 
+                        JOIN "(TOS) VST: Apparent Individuals [PROD]/woody_stems" AS child'),
+                  URLencode(paste0("ON (parent._record_id = child._parent_id)
+                            WHERE siteid LIKE'", siteID, "'")), sep = "%20")
+
+# Get VST Apparent Individual data
+mlbsVst <- get_Fulcrum_data(api_token = api_token, sql = vstQuery)
+mlbsVst %>%
+  select(siteid, eventid, date, plotid, plottype, plotsize, tagid, taxonid, growthform, 
+         stemdiameter, basalstemdiameter, plantstatus) %>%
+  filter(stemdiameter!="NA") -> mlbsVst
+
+# Check per plot sampling effort
+mlbsVst %>% count(plotid) %>% kable
+length(unique(mlbsVst$plotid))
+
+```
+
+``` {r d07MlbsDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+mlbsDupNum <- nrow(mlbsVst)-nrow(dplyr::distinct(mlbsVst)) # -> 3 duplicates
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(mlbsVst$date))
+
+# Write out data used for analysis
+write.csv(dplyr::distinct(mlbsVst), file = paste(lidsPath, "vst_D07_MLBS_cleanData.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+
+**_Results of dataframe merge_**
+
+- `vstd7` has 5539 records using the full_join technique: an exact sum of the two input data frames
+- GRSM data collected between 2015-05-18 and 2015-06-26
+- ORNL data collected between 2015-11-04 and 2016-01-19
+- 16 plots sampled at MLBS between 2017-10-02 and 2017-10-24
+- 3 duplicates in the MLBS data frame
+
+
+
+## D07: DBH percentiles and histograms
+
+- Histograms and analyses for D07 are identical to those created for other sites
+```{r ornlDBHAnalysis, include=FALSE}
+siteID <- "ORNL"
+fVal <- 5
+# ORNL: Filter out stems >= 10 cm only
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd7 <- read.csv(paste(inputPath, "vst_D07_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+vstd7 %>% 
+  filter(siteID=="ORNL", stemDiameter >= 10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_ORNL: Results of stem diameter analysis_**
+
+``` {r d07OrnlHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= ~60 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+```{r grsmDBHAnalysis, include=FALSE}
+siteID <- "GRSM"
+fVal <- 8
+# GRSM: Filter out stems >= 10 cm only
+vstd7 %>% 
+  filter(siteID=="GRSM", stemDiameter >= 10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_GRSM: Results of stem diameter analysis_**
+
+``` {r d07GrsmHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= ~65 cm
+- With F=5, Dlim=290 m; selected F=8 since 300 m transects are very long
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+**_MLBS: Results of stem diameter analysis_**
+```{r mlbsDBHAnalysis, include=FALSE}
+siteID <- "MLBS"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+mlbsVst <- read.csv(paste(inputPath, "vst_D07_MLBS_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# MLBS: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+hist(mlbsVst$stemdiameter, breaks = 30) # -> there are a few trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+mlbsVst %>% filter(stemdiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemdiameter, probs=c(0.95), na.rm = TRUE))[[1]]
+maxSD <- max(tempVst$stemdiameter, na.rm = TRUE)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+
+``` {r d07MlbsHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemdiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 50 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+#  D08 stemDiameter analysis
+##  D08: Load and clean data
+The 2015 VST data reside in one file in the CI Dropbox (10.100.128.37). 
+
+``` {r d08DomainID, include=FALSE}
+domainID <- "D08"
+
+```
+
+``` {r d08LoadData, eval=FALSE, include=FALSE}
+# Load D08 data from CI dropbox 
+setwd("/Volumes/dropbox/2015data/D08/VegStructure")
+vst1 <- tbl_df(read.csv("vst_apparentindividual_in_D08.csv", header=T, stringsAsFactors = F))
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+
+# Data frame cleanup
+colnames(vst1)
+# None required
+
+# Check per plot sampling effort, total number of plots sampled
+vst1 %>% count(siteID, plotID) %>% kable
+vst1 %>% filter(siteID=="DELA") -> temp
+length(unique(temp$plotID))
+
+vst1 %>% filter(siteID=="LENO") -> temp
+length(unique(temp$plotID))
+
+vst1 %>% filter(siteID=="TALL") -> temp
+length(unique(temp$plotID))
+
+```
+
+``` {r d08DupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+vst1DupNum <- nrow(vst1)-nrow(distinct(vst1))
+vstd8 <- distinct(vst1)
+
+```
+
+**_Results of D08 dataframe comparison and cleanup_**: 
+
+- 20 plots sampled at DELA
+- 10 plots sampled at LENO
+- 40 plots sampled at TALL
+- 21 duplicate records in `vst1`
+
+## D08: Create and check unified VST dataset
+```{r d08DataMerge, eval=FALSE, include=FALSE}
+# Write dataframe to a .csv
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(vstd8, file=fileName, row.names = F)
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(vstd8$date[vstd8$siteID=="DELA"]))
+dates <- sort(unique(vstd8$date[vstd8$siteID=="LENO"]))
+dates <- sort(unique(vstd8$date[vstd8$siteID=="TALL"]))
+
+ggplot(vstd8, aes(x=date)) +
+  geom_histogram(data=filter(vstd8, siteID=="DELA"), fill="red", alpha=0.2) +
+  geom_histogram(data=filter(vstd8, siteID=="LENO"), fill="green", alpha=0.2) +
+  geom_histogram(data=filter(vstd8, siteID=="TALL"), fill="blue", alpha=0.2)
+
+```
+
+**_Results of dataframe merge_**
+
+- `vstd8` has 7657 records
+- DELA data collected between 2015-09-14 and 2015-09-29
+- LENO data collected between 2015-11-03 and 2015-11-12
+- TALL data collected between 2015-09-30 and 2015-10-28
+
+
+## D08: DBH percentiles and histograms
+
+- Histograms and analyses for D08 are identical to those created for other sites
+```{r tallDBHAnalysis, include=FALSE}
+siteID <- "TALL"
+fVal <- 5
+# TALL: Filter out stems >= 10 cm only
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd8 <- read.csv(paste(inputPath, "vst_D08_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+vstd8 %>% 
+  filter(siteID=="TALL", stemDiameter >= 10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_TALL: Results of stem diameter analysis_**
+
+``` {r d08TallHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 52 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+```{r delaDBHAnalysis, include=FALSE}
+siteID <- "DELA"
+fVal <- 5
+# DELA: Filter out stems >= 10 cm only
+vstd8 %>% 
+  filter(siteID=="DELA", stemDiameter >= 10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_DELA: Results of stem diameter analysis_**
+
+``` {r d08DelaHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 50 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+```{r lenoDBHAnalysis, include=FALSE}
+siteID <- "LENO"
+fVal <- 8
+# LENO: Filter out stems >= 10 cm only
+vstd8 %>% 
+  filter(siteID=="LENO", stemDiameter >= 10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_LENO: Results of stem diameter analysis_**
+
+``` {r d08LenoHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 55 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+#   D10 stemDiameter analysis
+``` {r d10TowerDomainID, include=FALSE}
+domainID <- "D10 T"
+
+```
+
+##  D10 RMNP Tower Plots: Pull VST data from Fulcrum database
+```{r d10RmnpTowerLoadData, eval=FALSE, include=FALSE}
+# Define siteID
+siteID <- "RMNP"
+
+# Define working filepath
+lidsPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Define API token with admin privileges
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define SQL query to get Apparent Individual data
+vstQuery <- paste(URLencode('SELECT siteid, eventid, date, plotid, plottype, plotsize, tagid, taxonid, growthform, 
+         stemdiameter, basalstemdiameter, plantstatus FROM "(TOS) VST: Apparent Individuals [PROD]" AS parent 
+                        JOIN "(TOS) VST: Apparent Individuals [PROD]/woody_stems" AS child'),
+                  URLencode(paste0("ON (parent._record_id = child._parent_id)
+                            WHERE siteid LIKE'", siteID, "'")), sep = "%20")
+
+# Get VST Apparent Individual data
+rmnpVst <- get_Fulcrum_data(api_token = api_token, sql = vstQuery)
+rmnpVst %>% filter(stemdiameter!="NA") -> rmnpVst
+
+# Check per plot sampling effort
+rmnpVst %>% count(plotid) %>% kable
+length(unique(rmnpVst$plotid))
+
+```
+
+``` {r d10RmnpTowerDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+rmnpDupNum <- nrow(rmnpVst)-nrow(dplyr::distinct(rmnpVst)) # -> 1 duplicates set of records
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(rmnpVst$date))
+
+# Write out Tower Plot data used for analysis
+rmnpVst %>% filter(plottype=="tower") -> rmnpVst
+write.csv(dplyr::distinct(rmnpVst), file = paste(lidsPath, "vst_D10_RMNP_cleanData_tower.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+**_Summary of RMNP Tower Plot Fulcrum Data_**
+
+- 1239 records in Fulcrum for which a **stemdiameter** was recorded
+- Data collected between 2017-09-26 to 2017-10-10
+- 877 records for individuals with DBH >= 10 cm.
+
+
+
+```{r rmnpTowerDBHAnalysis, include=FALSE}
+siteID <- "RMNP"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+rmnpVst <- read.csv(paste(inputPath, "vst_D10_RMNP_cleanData_tower.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# RMNP: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+hist(rmnpVst$stemdiameter, breaks = 30) # -> Most trees have DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+rmnpVst %>% filter(stemdiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemdiameter, probs=c(0.95), na.rm = TRUE))[[1]]
+maxSD <- max(tempVst$stemdiameter, na.rm = TRUE)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_RMNP: Results of stem diameter analysis in Tower Plots_**
+
+``` {r d10RmnpTowerHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "Tower Plot stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemdiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 42 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+``` {r d10DistDomainID, include=FALSE}
+domainID <- "D10 D"
+
+```
+
+##  D10 RMNP Distributed Plots: Pull VST data from Fulcrum database
+```{r d10RmnpDistLoadData, eval=FALSE, include=FALSE}
+# Define siteID
+siteID <- "RMNP"
+
+# Define working filepath
+lidsPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Define API token with admin privileges
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define SQL query to get Apparent Individual data
+vstQuery <- paste(URLencode('SELECT siteid, eventid, date, plotid, plottype, plotsize, tagid, taxonid, growthform, 
+         stemdiameter, basalstemdiameter, plantstatus FROM "(TOS) VST: Apparent Individuals [PROD]" AS parent 
+                        JOIN "(TOS) VST: Apparent Individuals [PROD]/woody_stems" AS child'),
+                  URLencode(paste0("ON (parent._record_id = child._parent_id)
+                            WHERE siteid LIKE'", siteID, "'")), sep = "%20")
+
+# Get VST Apparent Individual data
+rmnpVst <- get_Fulcrum_data(api_token = api_token, sql = vstQuery)
+rmnpVst %>% filter(stemdiameter!="NA") -> rmnpVst
+
+# Check per plot sampling effort
+rmnpVst %>% count(plotid) %>% kable
+length(unique(rmnpVst$plotid))
+
+```
+
+``` {r d10RmnpDistDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+rmnpDupNum <- nrow(rmnpVst)-nrow(dplyr::distinct(rmnpVst)) # -> No duplicates
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(rmnpVst$date))
+
+# Write out Distributed Plot data used for analysis
+rmnpVst %>% filter(plottype=="distributed") -> rmnpVst
+write.csv(dplyr::distinct(rmnpVst), file = paste(lidsPath, "vst_D10_RMNP_cleanData_distributed.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+**_Summary of RMNP Distributed Plot Fulcrum Data_**
+
+- 1166 records in Fulcrum for which a **stemdiameter** was recorded
+- Data collected between 2018-09-07 and 2018-10-03
+- 915 records for individuals with DBH >= 10 cm.
+
+
+
+```{r rmnpDistDBHAnalysis, include=FALSE}
+siteID <- "RMNP"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+rmnpVst <- read.csv(paste(inputPath, "vst_D10_RMNP_cleanData_distributed.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# RMNP: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+hist(rmnpVst$stemdiameter, breaks = 30) # -> Most trees have DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+rmnpVst %>% filter(stemdiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemdiameter, probs=c(0.95), na.rm = TRUE))[[1]]
+maxSD <- max(tempVst$stemdiameter, na.rm = TRUE)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_RMNP: Results of stem diameter analysis in Distributed Plots_**
+
+``` {r d10RmnpDistHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "RMNP Distributed Plot stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemdiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 34 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+#  D11 stemDiameter analysis
+##  D11: Load and clean data
+The VST data used here come from VegCharacterization data collected in March/April 2016, and stored in the working directory of this Rmd file.
+
+``` {r d11DomainID, include=FALSE}
+domainID <- "D11"
+
+```
+
+``` {r d11LoadData, eval=FALSE, include=FALSE}
+# Load D11 data from input file for CLBJ
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+clbj <- tbl_df(read.csv("vst_apparentindividual_CLBJ.csv", header=T, stringsAsFactors = F))
+
+## Data frame colname checks, data type checks (necessary for joining), and site x plot sampling effort
+# colname and dataType checks
+head(clbj)
+clbj$date <- as.Date(as.character(clbj$date), "%Y%m%d")
+
+# Check per plot sampling effort, total number of plots sampled
+clbj %>% count(siteID, plotID) %>% kable
+length(unique(clbj$plotID))
+
+```
+
+``` {r d11DupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+clbjDupNum <- nrow(clbj)-nrow(distinct(clbj)) # -> 13 duplicates
+clbj <- distinct(clbj)
+
+```
+
+**_Results of D11 dataframe comparison and cleanup_**: 
+
+- 29 Tower Plots sampled at CLBJ (no other sites in D11 in this data input file)
+- 13 duplicate records in `clbj` input data frame
+
+## D11: Create and check unified VST dataset
+```{r d11DataMerge, eval=FALSE, include=FALSE}
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(clbj$date[clbj$siteID=="CLBJ"])) # -> 4 records have date=="2015-03-22", clearly need to fix data entry error for YYYY
+clbj$date[clbj$date=="2015-03-22"]  <- "2016-03-22"
+
+ggplot(clbj, aes(x=date)) +
+  geom_histogram(data=filter(clbj, siteID=="CLBJ"), fill="red", alpha=0.2)
+
+# Write dataframe to a .csv
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(clbj, file=fileName, row.names = F, fileEncoding = "UTF-8")
+
+```
+
+**_Dataframe details_**
+
+- `clbj` has 1486 records
+- `clbj` data collected between 2016-02-09 and 2016-05-11
+
+## D11: DBH percentiles and histograms
+
+- Histograms and analyses for D11 are identical to those created for other sites
+```{r clbjDBHAnalysis, include=FALSE}
+siteID <- "CLBJ"
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd11 <- read.csv(paste(inputPath, "vst_D11_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# NIWO: Check input data to determine whether trees wiht DBH >=10 cm exist in dataset, and what likely starting point for 'fVal' should be
+vstd11 %>% filter(siteID=="CLBJ") -> tempVst
+hist(tempVst$stemDiameter, breaks = 30) # -> there are trees with DBH >= 50 cm, most have DBH <= 20cm
+fVal <- 5
+
+vstd11 %>% filter(siteID=="CLBJ", stemDiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_CLBJ: Results of stem diameter analysis_**
+
+``` {r d11ClbjHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram visual inspection: Most individuals encountered have DBH <= 50 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm; clearly a data entry error
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+
+#   D12 stemDiameter analysis
+``` {r d12DistDomainID, include=FALSE}
+domainID <- "D12 D"
+
+```
+
+##  D12 YELL Distributed Plots: Pull VST data from Fulcrum database
+```{r d12YellDistLoadData, eval=FALSE, include=FALSE}
+# Define siteID
+siteID <- "YELL"
+
+# Define working filepath
+lidsPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Define API token with admin privileges
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define SQL query to get Apparent Individual data
+vstQuery <- paste(URLencode('SELECT * FROM "VST: Apparent Individuals [PROD]" AS parent 
+                        JOIN "VST: Apparent Individuals [PROD]/vst_woody_stems" AS child'),
+                  URLencode(paste0("ON (parent._record_id = child._parent_id)
+                            WHERE siteid LIKE'", siteID, "'")), sep = "%20")
+
+# Get VST Apparent Individual data
+yellVst <- get_Fulcrum_data(api_token = api_token, sql = vstQuery)
+yellVst %>% filter(stemdiameter!="NA", plottype=="distributed") %>%
+  select(siteid, eventid, date, plotid, plottype, plotsize, tagid, taxonid, growthform, 
+         stemdiameter, basalstemdiameter, plantstatus) -> yellVst
+
+# Check per plot sampling effort
+yellVst %>% count(plotid) #%>% kable
+length(unique(yellVst$plotid))
+
+```
+
+``` {r d12YellDistDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+yellDupNum <- nrow(yellVst)-nrow(dplyr::distinct(yellVst)) # -> No duplicates
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(yellVst$date))
+
+# Write out Distributed Plot data used for analysis
+#rmnpVst %>% filter(plottype=="distributed") -> rmnpVst
+write.csv(dplyr::distinct(yellVst), file = paste(lidsPath, "vst_D12_YELL_cleanData_distributed.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+**_Summary of YELL Distributed Plot Fulcrum Data_**
+
+- 251 records in Fulcrum for which a **stemdiameter** was recorded
+- Data collected in two efforts: Between 2018-05-17 to 2018-05-22, and 2019-07-23 to 2019-08-26
+- 216 records for individuals with DBH >= 10 cm
+
+
+
+```{r yellDistDBHAnalysis, include=FALSE}
+siteID <- "YELL"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+yellVst <- read.csv(paste(inputPath, "vst_D12_YELL_cleanData_distributed.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# YELL: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+hist(yellVst$stemdiameter, breaks = 30) # -> Most trees have DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+yellVst %>% filter(stemdiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemdiameter, probs=c(0.95), na.rm = TRUE))[[1]]
+maxSD <- max(tempVst$stemdiameter, na.rm = TRUE)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_YELL: Results of stem diameter analysis in Distributed Plots_**
+
+``` {r d12YellDistHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "YELL Distributed Plot stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemdiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 55 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+
+
+#  D13 stemDiameter analysis
+##  D13 NIWO: Load and clean data
+The NIWO VST data used here come from VegStructure data collected from Distributed Plots in September of 2015. Data are are currently stored in the Field Ops 'Dropbox' (10.100.128.37). Data for MOAB come from VegCharacterization (Tower Plots only).
+
+``` {r d13DomainID, include=FALSE}
+domainID <- "D13"
+
+```
+
+``` {r d13LoadData, eval=FALSE, include=FALSE}
+# Load D13 data from input files
+setwd("/Volumes/dropbox/2015data/D10and13")
+niwo <- tbl_df(read.csv("vst_apparentindividual_in_D13.csv", header=T, stringsAsFactors = F))
+setwd("/Users/cmeier/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+moab <- tbl_df(read.csv("vst_apparentindividual_MOAB.csv", header = T, stringsAsFactors = F))
+
+## Data frame colname checks, data type checks (necessary for joining), and site x plot sampling effort
+# colname checks
+colnames(niwo)  # -> everything looks fine
+colnames(moab)
+setdiff(colnames(niwo), colnames(moab))
+
+# Data type checks
+str(niwo)
+niwo$date <- as.Date(as.character(niwo$date), "%Y%m%d")
+str(moab)
+moab$tagID <- as.character(moab$tagID)
+moab$date <- as.Date(as.character(moab$date), "%Y%m%d")
+moab$VD2height <- as.numeric(moab$VD2height)
+moab$remarks <- as.character(moab$remarks)
+
+# Check per plot sampling effort, total number of plots sampled
+niwo %>% count(siteID, plotID) %>% kable
+length(unique(niwo$plotID))
+moab %>% count(siteID, plotID) %>% kable
+length(unique(moab$plotID))
+
+```
+
+``` {r d13DupCheck, eval=FALSE , include=FALSE}
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+niwoDupNum <- nrow(niwo)-nrow(distinct(niwo)) # -> 5 duplicates
+niwo <- distinct(niwo)
+moabDupNum <- nrow(moab)-nrow(distinct(moab)) # -> 0 duplicates
+
+```
+
+**_Results of D13 NIWO dataframe comparison and cleanup_**: 
+
+- 16 Distributed Plots sampled at NIWO
+- 5 duplicate records in `niwo` input data frame
+- 21 plots sampled at MOAB
+- Zero duplicate records in `moab` input data frame
+
+## D13 NIWO: Create and check unified VST dataset
+```{r d13DataMerge, eval=FALSE, include=FALSE}
+vstd13 <- full_join(moab, niwo)
+
+# Write dataframe to a .csv
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(vstd13, file=fileName, row.names = F, fileEncoding = "UTF-8")
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(vstd13$date[vstd13$siteID=="NIWO"])) # -> one bout in Aug-Sep 2015 as expected
+dates <- sort(unique(vstd13$date[vstd13$siteID=="MOAB"])) # -> one bout in April 2015 as expected
+
+ggplot(vstd13, aes(x=date)) +
+  geom_histogram(data=filter(vstd13, siteID=="NIWO"), fill="red", alpha=0.2) +
+  geom_histogram(data=filter(vstd13, siteID=="MOAB"), fill="blue", alpha=0.2)
+  
+
+```
+
+**_Dataframe details_**
+
+- `niwo` has 1233 records
+- NIWO data collected between 2015-08-19 and 2015-09-16
+
+
+## D13 NIWO: DBH percentiles and histograms
+
+- Histograms and analyses for D13 are identical to those created for other sites
+```{r niwoDBHAnalysis, include=FALSE}
+siteID <- "NIWO"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd13 <- read.csv(paste(inputPath, "vst_D13_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# NIWO: Check input data to determine whether trees wiht DBH >=10 cm exist in dataset
+vstd13 %>% filter(siteID=="NIWO") -> tempVst
+hist(tempVst$stemDiameter, breaks = 30) # -> there are trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+vstd13 %>% filter(siteID=="NIWO", stemDiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_NIWO: Results of stem diameter analysis_**
+
+``` {r d13NiwoHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram visual inspection: Most individuals encountered have DBH <= 42 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+##   D13 MOAB stemDiameter analysis
+###  D13 MOAB: Pull VST Tower Plot data from Fulcrum database
+```{r d13MoabLoadData, eval=FALSE, include=FALSE}
+# Define siteID
+siteID <- "MOAB"
+
+# Define working filepath
+lidsPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Define API token with admin privileges
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define SQL query to get Apparent Individual data
+vstQuery <- paste(URLencode('SELECT siteid, eventid, date, plotid, plottype, plotsize, tagid, taxonid, growthform, 
+         stemdiameter, basalstemdiameter, plantstatus FROM "(TOS) VST: Apparent Individuals [PROD]" AS parent 
+                        JOIN "(TOS) VST: Apparent Individuals [PROD]/woody_stems" AS child'),
+                  URLencode(paste0("ON (parent._record_id = child._parent_id)
+                            WHERE siteid LIKE'", siteID, "'")), sep = "%20")
+
+# Get VST Apparent Individual data
+moabVst <- get_Fulcrum_data(api_token = api_token, sql = vstQuery)
+moabVst %>% filter(stemdiameter!="NA") -> moabVst
+
+# Check per plot sampling effort
+moabVst %>% count(plottype, taxonid, plotid) %>% kable  
+length(unique(moabVst$plotid))
+
+```
+
+``` {r d13MoabDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+moabDupNum <- nrow(moabVst)-nrow(dplyr::distinct(moabVst)) # -> 1 duplicate set of records
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(moabVst$date))
+
+# Write out data used for analysis
+write.csv(dplyr::distinct(moabVst), file = paste(lidsPath, "vst_D13_MOAB_cleanData.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+**_Summary of MOAB VST Fulcrum Data_**
+
+- 1861 records in Fulcrum, collected between 2016-09-26 and 2016-10-24
+- 119 records for which a **stemdiameter** was recorded
+- Individuals with **stemdiameter** existed in 4 Distributed Plots only.
+
+
+
+```{r moabDBHAnalysis, include=FALSE}
+siteID <- "MOAB"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+moabVst <- read.csv(paste(inputPath, "vst_D13_MOAB_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# MOAB: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+hist(moabVst$stemdiameter, breaks = 30) # -> Tallies are very low, and most appear < 2 cm diameter; filter to stemDiameter ≥ 2 cm
+
+moabVst %>% filter(stemdiameter >=2) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemdiameter, probs=c(0.95), na.rm = TRUE))[[1]]
+maxSD <- max(tempVst$stemdiameter, na.rm = TRUE)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_MOAB: Results of stem diameter analysis_**
+
+``` {r d10MoabHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "Distributed Plot stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemdiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Tower Plots do not contain qualifying VST individuals, so likely no qualifying CDW either --> no sampling in Tower Plots.
+- Histogram: Most individuals encountered have DBH <= 25 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+
+# D14 stemDiameter analysis
+##  D14 SRER: Load and clean data
+VST Distributed Plot data only, loaded from Fulcrum and collected in 2016.
+```{r d14DomainID, include=FALSE}
+domainID <- "D14"
+```
+
+
+```{r d14SrerLoadData, eval=FALSE, include=FALSE}
+# Define siteID
+siteID <- "SRER"
+
+# Define working filepath
+lidsPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Define API token with admin privileges
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define SQL query to get Apparent Individual data
+vstQuery <- paste(URLencode('SELECT * FROM "(TOS) VST: Apparent Individuals [PROD]" AS parent 
+                        JOIN "(TOS) VST: Apparent Individuals [PROD]/woody_stems" AS child'),
+                  URLencode(paste0("ON (parent._record_id = child._parent_id)
+                            WHERE siteid LIKE'", siteID, "'")), sep = "%20")
+
+# Get VST Apparent Individual data
+srerVst <- get_Fulcrum_data(api_token = api_token, sql = vstQuery)
+srerVst %>%
+  select(siteid, eventid, date, plotid, plottype, plotsize, tagid, taxonid, growthform, 
+         stemdiameter, basalstemdiameter, plantstatus) %>%
+  filter(stemdiameter!="NA") -> srerVst
+
+# Check per plot sampling effort
+srerVst %>% count(plotid) %>% kable
+length(unique(srerVst$plotid))
+```
+
+``` {r d14DupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+srerDupNum <- nrow(srerVst)-nrow(dplyr::distinct(srerVst)) # -> 34 duplicates
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(srerVst$date))
+
+# Write out data used for analysis
+write.csv(srerVst, file = paste(lidsPath, "vst_D14_SRER_cleanData.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+**_Results of D14 dataframe comparison and cleanup_**: 
+
+- 18 plots with qualifying woody individuals at SRER
+- 934 records with stemDiameter != 'NA', 7 records with DBH ≥ 10 cm, 135 records with DBH ≥ 2 cm; analysis for SRER uses all stems with DBH ≥ 2 cm
+- 34 duplicates in input data frame from Fulcrum
+- Data collected between 2016-10-18 and 2017-01-19
+
+
+## D14: DBH percentiles and histograms
+
+- Histograms and analyses for D14 are identical to those created for other sites
+```{r srerDBHAnalysis, include=FALSE}
+siteID <- "SRER"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+srerVst <- read.csv(paste(inputPath, "vst_D14_SRER_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# SJER: Check input data to determine whether trees wiht DBH >=10 cm exist in dataset
+hist(srerVst$stemdiameter, breaks = 30) # -> there are only 7 trees with DBH >= 10 cm, so perform analysis with all stems ≥ 2 cm DBH
+
+srerVst %>% filter(stemdiameter >=2) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemdiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemdiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_SRER: Results of stem diameter analysis_**
+
+``` {r d14SrerHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemdiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 10 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+
+# D15 stemDiameter analysis
+##  D15 ONAQ: Load and clean data
+VST Distributed Plot data only, loaded from Fulcrum and collected in 2016.
+```{r d15DomainID, include=FALSE}
+domainID <- "D15"
+```
+
+
+```{r d15OnaqLoadData, eval=FALSE, include=FALSE}
+# Define siteID
+siteID <- "ONAQ"
+
+# Define working filepath
+lidsPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Define API token with admin privileges
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define SQL query to get Apparent Individual data
+vstQuery <- paste(URLencode('SELECT * FROM "(TOS) VST: Apparent Individuals [PROD]" AS parent 
+                        JOIN "(TOS) VST: Apparent Individuals [PROD]/woody_stems" AS child'),
+                  URLencode(paste0("ON (parent._record_id = child._parent_id)
+                            WHERE siteid LIKE'", siteID, "'")), sep = "%20")
+
+# Get VST Apparent Individual data
+onaqVst <- get_Fulcrum_data(api_token = api_token, sql = vstQuery)
+onaqVst %>%
+  select(siteid, eventid, date, plotid, plottype, plotsize, tagid, taxonid, growthform, 
+         stemdiameter, basalstemdiameter, plantstatus) %>%
+  filter(plottype=="distributed", stemdiameter!="NA") -> onaqVst
+
+# Check per plot sampling effort
+onaqVst %>% count(plotid) %>% kable
+length(unique(onaqVst$plotid))
+```
+
+``` {r d15DupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+onaqDupNum <- nrow(onaqVst)-nrow(dplyr::distinct(onaqVst)) # -> 0 duplicates
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(onaqVst$date))
+
+# Write out data used for analysis
+write.csv(onaqVst, file = paste(lidsPath, "vst_D15_cleanData.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+**_Results of D15 dataframe comparison and cleanup_**: 
+
+- 4 plots sampled at ONAQ
+- 153 records with stemDiameter != 'NA' in Distributed Plots
+- Zero duplicates in input data frame from Fulcrum
+- Data collected between 2016-10-18 and 2016-11-03
+
+
+## D15: DBH percentiles and histograms
+
+- Histograms and analyses for D15 are identical to those created for other sites
+```{r onaqDBHAnalysis, include=FALSE}
+siteID <- "ONAQ"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd15 <- read.csv(paste(inputPath, "vst_D15_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# SJER: Check input data to determine whether trees wiht DBH >=10 cm exist in dataset
+vstd15 %>% filter(siteid=="ONAQ") -> tempVst
+hist(tempVst$stemdiameter, breaks = 30) # -> there are trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+vstd15 %>% filter(siteid=="ONAQ", stemdiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemdiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemdiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_ONAQ: Results of stem diameter analysis_**
+
+``` {r d15OnaqHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemdiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 35 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+#   D16 stemDiameter analysis
+``` {r d16DomainID, include=FALSE}
+domainID <- "D16"
+
+```
+
+##  D16 WREF Tower Plots: Pull VST data from Fulcrum database
+```{r d16WrefTowerLoadData, eval=FALSE, include=FALSE}
+# Define siteID
+siteID <- "WREF"
+
+# Define working filepath
+lidsPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Define API token with admin privileges
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define SQL query to get Apparent Individual data
+vstQuery <- paste(URLencode('SELECT siteid, eventid, date, plotid, plottype, plotsize, tagid, taxonid, growthform, 
+         stemdiameter, basalstemdiameter, plantstatus FROM "VST: Apparent Individuals [PROD]" AS parent 
+                        JOIN "VST: Apparent Individuals [PROD]/vst_woody_stems" AS child'),
+                  URLencode(paste0("ON (parent._record_id = child._parent_id)
+                            WHERE siteid LIKE'", siteID, "'")), sep = "%20")
+
+# Get VST Apparent Individual data
+wrefVst <- get_Fulcrum_data(api_token = api_token, sql = vstQuery)
+wrefVst %>% filter(stemdiameter!="NA") -> wrefVst
+
+# Check per plot sampling effort
+wrefVst %>% count(plotid) %>% kable
+length(unique(wrefVst$plotid))
+
+```
+
+``` {r d16WrefTowerDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+wrefDupNum <- nrow(wrefVst)-nrow(dplyr::distinct(wrefVst)) # -> 3 duplicate records; possible they are legit since individuals could be multi-stem smt and sis
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(wrefVst$date))
+
+# Determine number of individuals with DBH ≥ 10 cm
+wrefVst %>% filter(stemdiameter >= 10) %>% nrow()
+
+# Write out Tower Plot data used for analysis
+wrefVst %>% filter(plottype=="tower") -> wrefVst
+write.csv(dplyr::distinct(wrefVst), file = paste(lidsPath, "vst_D16_WREF_cleanData_tower.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+**_Summary of WREF Tower Plot Fulcrum Data_**
+
+- 1598 records in Fulcrum for which a **stemdiameter** was recorded
+- Data collected between 2017-10-16 to 2017-11-01
+- 944 records for individuals with DBH >= 10 cm.
+
+
+
+```{r wrefTowerDBHAnalysis, include=FALSE}
+siteID <- "WREF"
+fVal <- 15
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+wrefVst <- read.csv(paste(inputPath, "vst_D16_WREF_cleanData_tower.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# RMNP: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+hist(wrefVst$stemdiameter, breaks = 30) # -> Most trees have DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+wrefVst %>% filter(stemdiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemdiameter, probs=c(0.95), na.rm = TRUE))[[1]]
+maxSD <- max(tempVst$stemdiameter, na.rm = TRUE)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_WREF: Results of stem diameter analysis in Tower Plots_**
+
+``` {r d16WrefTowerHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "Tower Plot stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemdiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 90 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+
+
+
+
+
+
+# D17 stemDiameter analysis
+##  D17: Load and clean data
+The 2015 VST data used here come from the 2015 VegCharacterization effort, and reside in site-specific files on Sharepoint. One file each for `SJER`, `SOAP` and `TEAK`.
+
+```{r d17DomainID, include=FALSE}
+domainID <- "D17"
+```
+
+```{r d17LoadData, eval=FALSE, include=FALSE}
+# Load D17 data from VegCharacterization files
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+sjer <- tbl_df(read.csv("vst_apparentindividual_SJER.csv", header=T, stringsAsFactors = F))
+soap <- tbl_df(read.csv("vst_apparentindividual_SOAP.csv", header=T, stringsAsFactors = F))
+teak <- tbl_df(read.csv("vst_apparentindividual_TEAK.csv", header=T, stringsAsFactors = F))
+
+## Data frame colname checks, data type checks (necessary for joining), and site x plot sampling effort
+# colname checks
+setdiff(colnames(sjer), colnames(soap))
+setdiff(colnames(sjer), colnames(teak)) # --> All names match
+
+# Data type checks
+str(sjer)
+sjer$date <- as.Date(as.character(sjer$date), "%Y%m%d")
+sjer$nestedSubplotID <- as.integer(sjer$nestedSubplotID)
+sjer$VD2height <- as.numeric(sjer$VD2height)
+str(soap)
+soap$date <- as.Date(as.character(soap$date), "%Y%m%d")
+soap$measurementHeight <- as.numeric(soap$measurementHeight)
+soap$maxBaseCanopyDiameter <- as.numeric(soap$maxBaseCanopyDiameter)
+soap$ninetyBaseCanopyDiameter <- as.numeric(soap$ninetyBaseCanopyDiameter)
+str(teak)
+teak$date <- as.Date(as.character(teak$date), "%Y%m%d")
+teak$measurementHeight <- as.numeric(teak$measurementHeight)
+teak$maxBaseCanopyDiameter <- as.numeric(teak$maxBaseCanopyDiameter)
+teak$ninetyBaseCanopyDiameter <- as.numeric(teak$ninetyBaseCanopyDiameter)
+
+# Check per plot sampling effort, total number of plots sampled
+sjer %>% count(siteID, plotID) %>% kable
+length(unique(sjer$plotID))
+
+soap %>% count(siteID, plotID) %>% kable
+length(unique(soap$plotID))
+
+teak %>% count(siteID, plotID) %>% kable
+length(unique(teak$plotID))
+```
+
+``` {r d17DupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+sjerDupNum <- nrow(sjer)-nrow(distinct(sjer)) # -> 0 duplicates
+soapDupNum <- nrow(soap)-nrow(distinct(soap)) # -> 0 duplicates
+teakDupNum <- nrow(teak)-nrow(distinct(teak)) # -> 0 duplicates
+```
+
+**_Results of D17 dataframe comparison and cleanup_**: 
+
+- 20 plots sampled at SJER
+- 20 plots sampled at SOAP
+- 20 plots sampled at TEAK
+- Zero duplicates in all input data frames
+
+## D17: Create and check unified VST dataset
+```{r d17DataMerge, eval=FALSE, include=FALSE}
+# Merge data into one data frame
+vstd17 <- full_join(sjer, soap)
+vstd17 <- full_join(vstd17, teak)
+
+# Write dataframe to a .csv
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(vstd17, file=fileName, row.names = F, fileEncoding = "UTF-8")
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(vstd17$date[vstd17$siteID=="SJER"])) # -> one mis-reported date = 2016-04-17, should be 2015
+dates <- sort(unique(vstd17$date[vstd17$siteID=="SOAP"])) # -> one bout in 2015 as expected
+dates <- sort(unique(vstd17$date[vstd17$siteID=="TEAK"])) # -> one bout in 2015 as expected
+
+ggplot(vstd17, aes(x=date)) +
+  geom_histogram(data=filter(vstd17, siteID=="SJER"), fill="red", alpha=0.2) +
+  geom_histogram(data=filter(vstd17, siteID=="SOAP"), fill="blue", alpha=0.2) +
+  geom_histogram(data=filter(vstd17, siteID=="TEAK"), fill="green", alpha=0.2)
+
+```
+
+**_Results of dataframe merge_**
+
+- `vstd17` has 4258 records
+- SJER data collected between 2015-04-14 and 2015-05-07
+- SOAP data collected between 2015-08-12 and 2015-11-20
+- TEAK data collected between 2015-08-13 and 2015-10-20
+
+## D17: DBH percentiles and histograms
+
+- Histograms and analyses for D17 are identical to those created for other sites
+```{r sjerDBHAnalysis, include=FALSE}
+siteID <- "SJER"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd17 <- read.csv(paste(inputPath, "vst_D17_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# SJER: Check input data to determine whether trees wiht DBH >=10 cm exist in dataset
+vstd17 %>% filter(siteID=="SJER") -> tempVst
+hist(tempVst$stemDiameter, breaks = 30) # -> there are trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+vstd17 %>% filter(siteID=="SJER", stemDiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_SJER: Results of stem diameter analysis_**
+
+``` {r d17SjerHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 65 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm; extreme outlier --> likely data entry error.
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+```{r soapDBHAnalysis, include=FALSE}
+siteID <- "SOAP"
+fVal <- 8
+
+# SOAP: Check input data to determine whether trees wiht DBH >=10 cm exist in dataset
+vstd17 %>% filter(siteID=="SOAP") -> tempVst
+hist(tempVst$stemDiameter, breaks = 30) # -> there are trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+vstd17 %>% filter(siteID=="SOAP", stemDiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_SOAP: Results of stem diameter analysis_**
+
+``` {r d17SoapHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 60 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm; extreme outlier --> likely data entry error.
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+```{r teakDBHAnalysis, include=FALSE}
+siteID <- "TEAK"
+fVal <- 10
+
+# TEAK: Check input data to determine whether trees wiht DBH >=10 cm exist in dataset
+vstd17 %>% filter(siteID=="TEAK") -> tempVst
+hist(tempVst$stemDiameter, breaks = 30) # -> there are trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+vstd17 %>% filter(siteID=="TEAK", stemDiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_TEAK: Results of stem diameter analysis_**
+
+``` {r d17TeakHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 90 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm; extreme outlier --> likely data entry error.
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+
+
+#  D19 stemDiameter analysis
+##  D19: Load and clean data
+The 2015 VST data used here come from the 2015 VegCharacterization effort, and reside in site-specific files on Sharepoint. Files have all been copied to the `neonPlantSampling` Git repo.
+
+``` {r d19DomainID, include=FALSE}
+domainID <- "D19"
+```
+
+``` {r d19LoadData, eval=FALSE, include=FALSE}
+# Load D19 data from VegCharacterization files for DEJU and HEAL downloaded from SP, and temporarily placed `cdwProtocolDev` folder.
+setwd("~/Documents/gitRepositories/neonPlantSampling/cdwProtocolDev")
+deju <- tbl_df(read.csv("vst_apparentindividual_DEJU.csv", header=T, stringsAsFactors = F))
+heal <- tbl_df(read.csv("vst_apparentindividual_HEAL.csv", header=T, stringsAsFactors = F))
+bona <- tbl_df(read.csv("vst_apparentindividual_BONA.csv", header=T, stringsAsFactors = F))
+
+
+## Data frame colname checks, data type checks (necessary for joining), and site x plot sampling effort
+# colname checks
+colnames(deju)
+colnames(heal) #  -> all names match, as expected from VC data
+which(!colnames(deju) %in% colnames(heal))
+which(!colnames(heal) %in% colnames(deju)) #  -> all names match
+setdiff(colnames(heal), colnames(bona))   # -> all names match
+
+# Data type checks
+str(deju)
+str(heal) 
+str(bona) #  -> several fields have inappropriate and mis-matched data types across the 3 data frames
+heal$tagID <- as.character(heal$tagID)
+heal$measurementHeight <- as.numeric(heal$measurementHeight)
+deju$VD2height <- as.numeric(deju$VD2height)
+heal$VD2height <- as.numeric(heal$VD2height)
+deju$date <- as.Date(as.character(deju$date), "%Y%m%d")
+heal$date <- as.Date(as.character(heal$date), "%Y%m%d")
+bona$date <- as.Date(as.character(bona$date), "%Y%m%d")
+
+# Check per plot sampling effort, total number of plots sampled
+deju %>% count(siteID, plotID) %>% kable
+length(unique(deju$plotID))
+
+heal %>% count(siteID, plotID) %>% kable
+length(unique(heal$plotID))
+
+bona %>% count(siteID, plotID) %>% kable
+length(unique(bona$plotID))
+```
+
+``` {r d19DupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in each input dataframe using dplyr::distinct()
+dejuDupNum <- nrow(deju)-nrow(distinct(deju)) # -> no duplicates
+healDupNum <- nrow(heal)-nrow(distinct(heal)) # -> 2 duplicates
+heal <- distinct(heal)
+bonaDupNum <- nrow(bona)-nrow(distinct(bona)) # -> 27 duplicates
+bona <- distinct(bona)
+
+
+```
+
+**_Results of D19 dataframe comparison and cleanup_**: 
+
+- 20 plots sampled at DEJU
+- 28 plots sampled at HEAL
+- 20 plots sampled at BONA
+- Zero duplicates in `deju` input data frame
+- 2 duplicates in `heal` input data frame
+- 27 duplicates in `bona` input data frame
+
+## D19: Create and check unified VST dataset
+```{r d19DataMerge, eval=FALSE, include=FALSE}
+# Merge data into one data frame
+vstd19 <- full_join(deju, heal)
+vstd19 <- full_join(vstd19, bona)
+
+# Write dataframe to a .csv
+fileName <- paste("vst_", domainID, "_cleanData.csv", sep="")
+write.csv(vstd19, file=fileName, row.names = F, fileEncoding = "UTF-8")
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(vstd19$date[vstd19$siteID=="DEJU"])) # -> one bout in June 2015 as expected
+dates <- sort(unique(vstd19$date[vstd19$siteID=="HEAL"])) # -> one bout in May-Jun 2015 as expected
+dates <- sort(unique(vstd19$date[vstd19$siteID=="BONA"])) # -> one bout, with effort Jun-Jul 2015, and Sep 2015
+
+ggplot(vstd19, aes(x=date)) +
+  geom_histogram(data=filter(vstd19, siteID=="DEJU"), fill="red", alpha=0.2) +
+  geom_histogram(data=filter(vstd19, siteID=="HEAL"), fill="blue", alpha=0.2) +
+  geom_histogram(data=filter(vstd19, siteID=="BONA"), fill="green", alpha=0.2)
+
+```
+
+**_Results of dataframe merge_**
+
+- `vstd19` has 5247 records
+- DEJU data collected between 2015-06-15 and 2015-06-24
+- HEAL data collected between 2015-05-14 and 2015-06-08
+- BONA data collected between 2016-06-13 and 2016-07-01, and again between 2016-09-12 and 2016-09-15
+
+
+
+## D19: DBH percentiles and histograms
+
+- Histograms and analyses for D19 are identical to those created for other sites
+```{r dejuDBHAnalysis, include=FALSE}
+siteID <- "DEJU"
+fVal <- 5
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+vstd19 <- read.csv(paste(inputPath, "vst_D19_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# DEJU: Check input data to determine whether trees wiht DBH >=10 cm exist in dataset
+vstd19 %>% filter(siteID=="DEJU") -> tempVst
+hist(tempVst$stemDiameter, breaks = 30) # -> there are trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+vstd19 %>% filter(siteID=="DEJU", stemDiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+**_DEJU: Results of stem diameter analysis_**
+
+``` {r d19DejuHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 20 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm; extreme outlier --> likely data entry error.
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+```{r healDBHAnalysis, include=FALSE}
+siteID <- "HEAL"
+fVal <- 5
+
+# HEAL: Check input data to determine whether trees wiht DBH >=10 cm exist in dataset
+vstd19 %>% filter(siteID=="HEAL") -> tempVst
+hist(tempVst$stemDiameter, breaks = 30) # -> there are few trees with DBH >= 10 cm, so analyze all stems >= 2 cm: DIFFERENT FROM ALL OTHER SITES
+
+# HEAL: Filter out stems with DBH < 2 cm
+vstd19 %>% filter(siteID=="HEAL", stemDiameter >= 2) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_HEAL: Results of stem diameter analysis_**
+
+``` {r d19HealHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: All individuals encountered have DBH <= 14 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+```{r bonaDBHAnalysis, include=FALSE}
+siteID <- "BONA"
+fVal <- 5
+
+# BONA: Check input data to determine whether trees wiht DBH >=10 cm exist in dataset
+vstd19 %>% filter(siteID=="BONA") -> tempVst
+hist(tempVst$stemDiameter, breaks = 30) # -> there are a decent number of trees with DBH >= 10 cm, so analyze as normal
+
+# BONA: Filter out stems with DBH >= 10 cm
+vstd19 %>% filter(siteID=="BONA", stemDiameter >= 10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95)))[[1]]
+maxSD <- max(tempVst$stemDiameter)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+**_BONA: Results of stem diameter analysis_**
+
+``` {r d19BonaHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals have DBH <= 25 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm, likley a data entry error
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+#  D20 stemDiameter analysis
+##  Pull VST Tower Plot data from Fulcrum database
+
+``` {r d20DomainID, include=FALSE}
+domainID <- "D20"
+```
+
+```{r d20PuumLoadData, eval=FALSE, include=FALSE}
+# Define siteID
+siteID <- "PUUM"
+
+# Define working filepath
+lidsPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Define API token with admin privileges
+api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+
+# Define SQL query to get Apparent Individual data
+vstQuery <- paste(URLencode('SELECT siteid, eventid, date, plotid, plottype, plotsize, tagid, taxonid, growthform, 
+         stemdiameter, basalstemdiameter, plantstatus FROM "(TOS) VST: Apparent Individuals [PROD]" AS parent 
+                        JOIN "(TOS) VST: Apparent Individuals [PROD]/woody_stems" AS child'),
+                  URLencode(paste0("ON (parent._record_id = child._parent_id)
+                            WHERE siteid LIKE'", siteID, "'")), sep = "%20")
+
+# Get VST Apparent Individual data
+puumVst <- get_Fulcrum_data(api_token = api_token, sql = vstQuery)
+puumVst %>%
+  filter(stemdiameter!="NA") -> puumVst
+
+# Check per plot sampling effort
+puumVst %>% count(plotid) %>% kable
+length(unique(puumVst$plotid))
+
+```
+
+``` {r d20PuumDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+puumDupNum <- nrow(puumVst)-nrow(dplyr::distinct(puumVst)) # -> 0 duplicates
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(puumVst$date))
+
+# Write out data used for analysis
+write.csv(dplyr::distinct(puumVst), file = paste(lidsPath, "vst_D20_PUUM_cleanData.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+
+**_Summary of VST Fulcrum input data_**
+
+- `puumVst` has 1646 records, of which 1305 contain a non-null `stemdiameter` value.
+- 0 duplicates in the PUUM data frame
+- 949 individuals with DBH >= 10 cm
+- 20 plots sampled at PUUM, data collected between 2018-03-29 and 2018-08-06
+- Stems per plot, with stemdiameter != NULL, range from 36 (PUUM_032) to 111 (PUUM_034)
+
+
+
+## D20: DBH percentiles and histograms
+
+- Histograms and analyses for D20 are identical to those created for other sites
+
+**_PUUM: Results of stem diameter analysis_**
+```{r puumDBHAnalysis, include=FALSE}
+siteID <- "PUUM"
+fVal <- 8
+if (file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+}
+
+puumVst <- read.csv(paste(inputPath, "vst_D20_PUUM_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# PUUM: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+hist(puumVst$stemdiameter, breaks = 30) # -> significant number of trees with DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+puumVst %>% filter(stemdiameter >=10) -> tempVst
+
+# Calculate maxLikelyStemDiameter, and maxStemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemdiameter, probs=c(0.95), na.rm = TRUE))[[1]]
+maxSD <- max(tempVst$stemdiameter, na.rm = TRUE)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+temp.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(temp.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+dlim.df <- bind_rows(dlim.df, temp.df)
+
+```
+
+
+
+``` {r d20PuumHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemdiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 40 cm
+- maxLikelyStemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+
+
+\pagebreak
+
+# Summary
+##  CDW F-values and transect length (Dlim) by site
+Desired transect lengths (`Dlim`, meters) associated with the `maxLikelyStemDiameter` (cm) at each site. The maximum likely stemDiameter is calculated as the 95th percentile for stemDiameter as recorded in 2014 and 2015 Vegetation Structure data from both Distributed and Tower Plots, and `count` indicates the total number of individuals with DBH >= 10 cm used for the analysis; exception(s) are HEAL, where individuals with DBH >= 2 cm were used for the analysis. Transect lengths are based on F-values specific to each site, and will change if a new F-value is chosen for a site.
+``` {r tableOutput, echo=FALSE}
+dlim.df %>% kable
+```

@@ -1,0 +1,73 @@
+---
+title: "HBP D11 2019 Sorting Subsample Experiment"
+author: "Courtney Meier"
+date: "7 May 2019"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##  Goal
+To determine the efficacy of subsampling various proportions of HBP samples in D09 in order to reduce long sort times associated with removing OSD from current-year clipped biomass. Subsampling is only evaluated in the context of clip harvests that do not require sorting to functional group (i.e., non-peak biomass clips), because the subsample to total mass ratios will not apply to individual herbGroups.
+
+##  Experimental Setup and Analyses
+
+* Select n=10 plots (10 lowest Morton Order) or all plots if the total number of grazed plots is < 10, resulting in a maximum of n=20 `clipID` to test, due to both `exclosure = Y and N` for each plot. Random spatially-balanced plot locations, and locations of clipIDs within plots, will provide an unbiased estimate of biomass throughout the Tower airshed.
+
+* For each clipID harvested in the field, test subsampling efficiency at various levels of sorting by creating subsamples (current-year + OSD) with the following percentages of the total freshMass:
+    - 10%
+    - 25%
+    - 50%
+    - 100% (no subsampling)
+
+* When subsampling is employed, calculate dryMass as follows: `dM = fM * (ssDM/ssFM)`, where:
+    - *dM* = dryMass of current-year biomass in the clipID (no OSD)
+    - *fM* = total freshMass in the clipID (current-year + OSD)
+    - *ssDM* = subsampleDryMass of current-year biomass in the subsample (no OSD)
+    - *ssFM* = fresh mass of all biomass in the subsample (current-year + OSD)
+
+* Compare `dryMass` results calculated via subsampling with `dryMass` obtained with no subsampling, and use mixed effects models to analyze results.
+
+##  Procedure
+
+1. Perform clip harvest in the field as normal, and bring clipped biomass back to the laboratory in cold storage as normal.
+
+1. Identify up to n=20 clipIDs (n=10 for `exclosure = Y` and n=10 for `exclosure = N`), originating from the 10 plotIDs with the lowest Morton Order numbers.
+
+1. Thoroughly mix biomass from each clipID to homogenize as thoroughly as possible.
+    a. For large amounts of biomass, and when there is more than one bag of biomass for a given clipID, use a large bag, box, tray or equivalent vessel to mix the biomass.
+
+1. For each clipID, weigh and record to 0.01 g:
+    a. **`freshMass`** = total fresh mass in the clipID (current-year + OSD)
+
+1. Based on the **`freshMass`**, calculate the desired subsample fresh masses for testing. For example, assuming **`freshMass`** = 100 g, the target subsample fresh masses are:
+    a. 10% subsample --> 10 g
+    a. 25% subsample --> 25 g
+    a. 50% subsample --> 50 g
+
+1. Label a coin envelope for each subsample above with the information below. Label an additional coin envelope for the residual clipped biomass that was not subsampled.
+    a. **`subsampleTest`**: `10%, 25%` or `50%`; use **`subsampleTest`** = `residual` for remaining biomass that was not subsampled.
+    a. **`clipID`**
+    a. **`collectDate`**
+    a. **`exclosure`**: `Y/N`
+
+1. Weigh each fresh subsample created above (current-year + OSD), and record the information below. For **`subsampleTest`** = `residual`, leave **`subsampleFreshMass`** = `NULL`.
+    a. **`subsampleTest`**: as above
+    a. **`clipID`**
+    a. **`collectDate`**
+    a. **`exclosure`**: `Y/N`
+    a. **`subsampleFreshMass`**: To the nearest 0.01 g; for subsamples < 0.5 g total mass, weigh to the nearest 0.0001 g
+
+1. Sort current-year biomass from OSD for each subsample, and place sorted, current-year biomass into the corresponding labeled coin envelope.
+    a. Also sort remaining fresh mass that was not subsampled, and place into the **`subsampleTest`** = `residual` envelope.
+    a. Sorted OSD may be discarded at this point.
+
+1. Dry subsamples and residual current-year mass until dry; minimum of 48 h @ 65 ˚C, track drying progress as normal.
+
+1. Remove dry samples from the oven one at a time, and immediately weigh and record:
+    a. **subsampleDryMass**: To the nearest 0.01 g; for masses < 0.5 g, weigh to the nearest 0.0001 g; record the dry mass for **`subsampleTest`** = `residual` in this field as well.
+    

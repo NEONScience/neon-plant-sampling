@@ -1,0 +1,6 @@
+"","uid","date","plotID","subplotID","nestedSubplotID","tagID","supportingStemTagID","pointID","stemAzimuth","stemDistance","scientificName","identificationQualifier","growthForm","remarks","Type","pointIDQF","azimuthQF","siteID"
+"1",1,NA,"",NA,NA,"",NA,NA,NA,NA,"",NA,"","growthForm changed to lowercase","Tower",1,NA,""
+"2",576,NA,"",NA,NA,"",NA,NA,NA,NA,"",NA,"","growthForm changed to lowercase","Tower",1,NA,""
+"3",1151,NA,"",NA,NA,"",NA,NA,NA,NA,"",NA,"","growthForm changed to lowercase","Tower",1,NA,""
+"4",3443,NA,"",NA,NA,"",NA,NA,NA,NA,"",NA,"","Data collected from subplots that were removed under revised protocol 20141117","Tower",1,NA,""
+"5",1886,NA,"",NA,NA,"",NA,NA,NA,NA,"","","","Data collected from subplots that were removed under revised protocol 20141117","Tower",1,NA,""

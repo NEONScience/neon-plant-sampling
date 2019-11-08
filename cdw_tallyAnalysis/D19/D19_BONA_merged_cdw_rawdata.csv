@@ -1,0 +1,129 @@
+"","domainid","siteid","plotid_parent","tallydate","yearboutbegan","eventid","volumefactor","samplingprotocolversion","lidsazimuth","targettaxapresent","logdistance","logmaxdiameter","minorlogdiameter","logid","loglength","taxonid","scientificname","decayclass","diameterClass","decayClassNum"
+"1","D19","BONA","BONA_005","2017-08-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"2","D19","BONA","BONA_005","2017-08-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",0.6,5.7,NA,"L01",2.55,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"3","D19","BONA","BONA_005","2017-08-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",260,"Y",3.2,9.4,NA,"L02",5.8,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"4","D19","BONA","BONA_007","2017-08-24T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",40,"Y",1.7,4.8,NA,"L01",2.5,"BENE4","Betula neoalaskana Sarg.","4 - Rotten throughout","2-5cm","4"
+"5","D19","BONA","BONA_007","2017-08-24T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",160,"Y",0.9,4.6,NA,"L02",1.9,"ALVI5","Alnus viridis (Chaix) DC.","3 - Heartwood sound","2-5cm","3"
+"6","D19","BONA","BONA_007","2017-08-24T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",280,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"7","D19","BONA","BONA_011","2017-08-17T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",260,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"8","D19","BONA","BONA_011","2017-08-17T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"Y",2.6,18.9,NA,"04300",4.1,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","2 - Sound round",">=10cm","2"
+"9","D19","BONA","BONA_011","2017-08-17T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"10","D19","BONA","BONA_026","2017-08-24T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",70,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"11","D19","BONA","BONA_026","2017-08-24T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",190,"Y",9.5,21.2,NA,"04188",7,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","2 - Sound round",">=10cm","2"
+"12","D19","BONA","BONA_026","2017-08-24T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",310,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"13","D19","BONA","BONA_018","2017-08-17T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",240,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"14","D19","BONA","BONA_018","2017-08-17T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",120,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"15","D19","BONA","BONA_018","2017-08-17T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",0,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"16","D19","BONA","BONA_075","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",210,"Y",23.8,18.3,NA,"04587",7.9,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound",">=10cm","3"
+"17","D19","BONA","BONA_075","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",90,"Y",10.6,12,NA,"04582",6.6,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout",">=10cm","4"
+"18","D19","BONA","BONA_075","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",90,"Y",10.6,21.2,NA,"04583",5.6,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","2 - Sound round",">=10cm","2"
+"19","D19","BONA","BONA_075","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",330,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"20","D19","BONA","BONA_001","2017-09-05T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",220,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"21","D19","BONA","BONA_001","2017-09-05T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",100,"Y",2.3,6.4,NA,"L01",2.1,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout","5-10cm","4"
+"22","D19","BONA","BONA_001","2017-09-05T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",340,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"23","D19","BONA","BONA_002","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"Y",1.23,4.9,NA,"L01",1.02,"BENE4","Betula neoalaskana Sarg.","2 - Sound round","2-5cm","2"
+"24","D19","BONA","BONA_002","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"Y",4.8,14.4,NA,"04794",6.2,"POTR5","Populus tremuloides Michx.","2 - Sound round",">=10cm","2"
+"25","D19","BONA","BONA_002","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"26","D19","BONA","BONA_002","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",260,"Y",5.05,7.61,NA,"L02",4.2,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"27","D19","BONA","BONA_087","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",220,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"28","D19","BONA","BONA_087","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",80,"Y",1.5,4.5,NA,"L01",1.71,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","3 - Heartwood sound","2-5cm","3"
+"29","D19","BONA","BONA_087","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",320,"Y",2.3,13,NA,"04592",1,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout",">=10cm","4"
+"30","D19","BONA","BONA_082","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",330,"Y",7.3,10.1,NA,"04589",1.66,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound",">=10cm","3"
+"31","D19","BONA","BONA_082","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",90,"Y",5.4,7.8,NA,"L04",5.57,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"32","D19","BONA","BONA_082","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",90,"Y",6.5,9.1,NA,"L05",1.77,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"33","D19","BONA","BONA_082","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",210,"Y",1,4.8,NA,"L01",1.25,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","2-5cm","3"
+"34","D19","BONA","BONA_082","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",210,"Y",4.8,7.5,NA,"L02",2.35,"POTR5","Populus tremuloides Michx.","2 - Sound round","5-10cm","2"
+"35","D19","BONA","BONA_082","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",90,"Y",2.9,3.8,NA,"L03",1.45,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","2-5cm","3"
+"36","D19","BONA","BONA_082","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",330,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"37","D19","BONA","BONA_008","2017-08-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"38","D19","BONA","BONA_008","2017-08-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",1.9,13.5,NA,"04192",2.9,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout",">=10cm","4"
+"39","D19","BONA","BONA_008","2017-08-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",1.9,7.8,NA,"L03",2.4,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"40","D19","BONA","BONA_008","2017-08-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",11.2,12,NA,"04191",1.2,"BENE4","Betula neoalaskana Sarg.","4 - Rotten throughout",">=10cm","4"
+"41","D19","BONA","BONA_008","2017-08-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",260,"Y",3,6.2,NA,"L04",4.7,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"42","D19","BONA","BONA_008","2017-08-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",260,"Y",5.2,7.3,NA,"L05",3.8,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout","5-10cm","4"
+"43","D19","BONA","BONA_093","2017-08-31T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",340,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"44","D19","BONA","BONA_093","2017-08-31T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",100,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"45","D19","BONA","BONA_093","2017-08-31T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",220,"Y",6.6,9.2,NA,"L01",1.9,"BENE4","Betula neoalaskana Sarg.","2 - Sound round","5-10cm","2"
+"46","D19","BONA","BONA_084","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",260,"Y",0.75,6.04,NA,"L01",3.35,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"47","D19","BONA","BONA_084","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",260,"Y",0.9,6.59,NA,"L02",7.1,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"48","D19","BONA","BONA_084","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",260,"Y",7.6,8.65,NA,"L03",2.1,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout","5-10cm","4"
+"49","D19","BONA","BONA_084","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",260,"Y",30.6,20.5,17,"04800",6.2,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout",">=10cm","4"
+"50","D19","BONA","BONA_084","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",2.3,8.7,NA,"L04",3.3,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"51","D19","BONA","BONA_084","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",4.4,10.7,NA,"04799",3.4,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound",">=10cm","3"
+"52","D19","BONA","BONA_084","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"Y",0.3,7.1,NA,"L05",5.8,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"53","D19","BONA","BONA_084","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"Y",1.4,6.2,NA,"L06",3.6,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"54","D19","BONA","BONA_084","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"Y",1.9,5.3,NA,"L07",4,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout","5-10cm","4"
+"55","D19","BONA","BONA_084","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"Y",6.1,9.2,NA,"L08",8.5,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"56","D19","BONA","BONA_084","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"Y",47.4,23.9,NA,"04798",8.5,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound",">=10cm","3"
+"57","D19","BONA","BONA_009","2017-08-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",100,"Y",9.1,13.4,NA,"04196",9.2,"BENE4","Betula neoalaskana Sarg.","3 - Heartwood sound",">=10cm","3"
+"58","D19","BONA","BONA_009","2017-08-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",100,"Y",0.25,9.4,NA,"L01",1.3,"BENE4","Betula neoalaskana Sarg.","4 - Rotten throughout","5-10cm","4"
+"59","D19","BONA","BONA_009","2017-08-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",100,"Y",0.5,11.1,NA,"04199",3.9,"PICEA","Picea sp.","2 - Sound round",">=10cm","2"
+"60","D19","BONA","BONA_009","2017-08-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",100,"Y",53,7.7,NA,"L02",5.4,"PICEA","Picea sp.","3 - Heartwood sound","5-10cm","3"
+"61","D19","BONA","BONA_009","2017-08-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",100,"Y",3.6,7.2,NA,"L03",3,"BENE4","Betula neoalaskana Sarg.","3 - Heartwood sound","5-10cm","3"
+"62","D19","BONA","BONA_009","2017-08-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",100,"Y",5.5,12.3,NA,"04198",3.9,"PICEA","Picea sp.","2 - Sound round",">=10cm","2"
+"63","D19","BONA","BONA_009","2017-08-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",100,"Y",6.4,9.1,NA,"L04",4.4,"PICEA","Picea sp.","3 - Heartwood sound","5-10cm","3"
+"64","D19","BONA","BONA_009","2017-08-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",220,"Y",4.5,15.5,NA,"04195",6.8,"PICEA","Picea sp.","2 - Sound round",">=10cm","2"
+"65","D19","BONA","BONA_009","2017-08-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",220,"Y",7.5,19.2,NA,"04194",1.9,"BENE4","Betula neoalaskana Sarg.","4 - Rotten throughout",">=10cm","4"
+"66","D19","BONA","BONA_009","2017-08-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",220,"Y",8.45,11.5,NA,"04193",4.1,"BENE4","Betula neoalaskana Sarg.","4 - Rotten throughout",">=10cm","4"
+"67","D19","BONA","BONA_009","2017-08-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",340,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"68","D19","BONA","BONA_023","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",350,"Y",4.5,10.6,NA,"04899",2.67,"BENE4","Betula neoalaskana Sarg.","4 - Rotten throughout",">=10cm","4"
+"69","D19","BONA","BONA_023","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",350,"Y",1.9,12.6,NA,"04898",1.84,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","3 - Heartwood sound",">=10cm","3"
+"70","D19","BONA","BONA_023","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",350,"Y",11.7,11,NA,"04897",2.42,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","3 - Heartwood sound",">=10cm","3"
+"71","D19","BONA","BONA_023","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",110,"Y",2.9,5.5,NA,"L01",2.21,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","3 - Heartwood sound","5-10cm","3"
+"72","D19","BONA","BONA_023","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",110,"Y",3.7,5.5,NA,"L02",5.3,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","3 - Heartwood sound","5-10cm","3"
+"73","D19","BONA","BONA_023","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",230,"Y",0.2,9.3,NA,"L03",3.52,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"74","D19","BONA","BONA_023","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",230,"Y",7.8,9.1,NA,"L04",6.21,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","3 - Heartwood sound","5-10cm","3"
+"75","D19","BONA","BONA_023","2017-06-22T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",230,"Y",8.1,14.4,NA,"04889",4.56,"BENE4","Betula neoalaskana Sarg.","3 - Heartwood sound",">=10cm","3"
+"76","D19","BONA","BONA_014","2017-08-17T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",340,"Y",1.1,7.6,NA,"L01",3.1,"SASC","Salix scouleriana Barratt ex Hook.","4 - Rotten throughout","5-10cm","4"
+"77","D19","BONA","BONA_014","2017-08-17T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",220,"Y",0.6,12.4,NA,"04299",4.9,"BENE4","Betula neoalaskana Sarg.","4 - Rotten throughout",">=10cm","4"
+"78","D19","BONA","BONA_014","2017-08-17T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",220,"Y",0.6,6.2,NA,"L02",2,"BENE4","Betula neoalaskana Sarg.","4 - Rotten throughout","5-10cm","4"
+"79","D19","BONA","BONA_014","2017-08-17T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",220,"Y",1.1,16.8,NA,"04298",5.6,"BENE4","Betula neoalaskana Sarg.","4 - Rotten throughout",">=10cm","4"
+"80","D19","BONA","BONA_014","2017-08-17T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",100,"Y",10.3,11,NA,"04297",5.5,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","4 - Rotten throughout",">=10cm","4"
+"81","D19","BONA","BONA_012","2017-06-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",340,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"82","D19","BONA","BONA_012","2017-06-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",220,"Y",14.1,12.8,NA,"04581",6.4,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound",">=10cm","3"
+"83","D19","BONA","BONA_012","2017-06-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",220,"Y",34.5,24.9,NA,"04586",6,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound",">=10cm","3"
+"84","D19","BONA","BONA_012","2017-06-21T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",100,"Y",1.7,4.6,NA,"L01",3.2,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","3 - Heartwood sound","2-5cm","3"
+"85","D19","BONA","BONA_088","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",300,"Y",1.9,7.8,NA,"L01",4.68,"POTR5","Populus tremuloides Michx.",NA,"5-10cm",NA
+"86","D19","BONA","BONA_088","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",300,"Y",3.9,8.7,NA,"L02",6.9,"POTR5","Populus tremuloides Michx.",NA,"5-10cm",NA
+"87","D19","BONA","BONA_088","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",180,"Y",5.95,7.1,NA,"L03",2.98,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"88","D19","BONA","BONA_088","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",60,"Y",2.55,8.74,NA,"L04",5.3,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.",NA,"5-10cm",NA
+"89","D19","BONA","BONA_088","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",60,"Y",3.95,11,NA,"04600",9.15,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound",">=10cm","3"
+"90","D19","BONA","BONA_088","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",60,"Y",6.6,10.2,NA,"04599",4.1,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound",">=10cm","3"
+"91","D19","BONA","BONA_088","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",60,"Y",7,12.3,NA,"04598",7.5,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout",">=10cm","4"
+"92","D19","BONA","BONA_088","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",60,"Y",9.6,10.1,NA,"04597",5.1,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound",">=10cm","3"
+"93","D19","BONA","BONA_072","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",5.6,7.8,5.9,"L01",2.1,"BENE4","Betula neoalaskana Sarg.",NA,"5-10cm",NA
+"94","D19","BONA","BONA_072","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"95","D19","BONA","BONA_072","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",260,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"96","D19","BONA","BONA_078","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",10,"Y",1.4,3.9,NA,"L01",2.8,"POTR5","Populus tremuloides Michx.",NA,"2-5cm",NA
+"97","D19","BONA","BONA_078","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",10,"Y",4.8,15.4,NA,"04596",3.8,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout",">=10cm","4"
+"98","D19","BONA","BONA_078","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",10,"Y",6.8,14,NA,"04595",5.9,"PIGL","Picea glauca (Moench) Voss","2 - Sound round",">=10cm","2"
+"99","D19","BONA","BONA_078","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",130,"Y",0.48,3.3,NA,"L02",4.92,"POTR5","Populus tremuloides Michx.","2 - Sound round","2-5cm","2"
+"100","D19","BONA","BONA_078","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",130,"Y",0.5,4,NA,"L03",3.36,"POTR5","Populus tremuloides Michx.","2 - Sound round","2-5cm","2"
+"101","D19","BONA","BONA_078","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",130,"Y",3.5,6.5,NA,"L04",5.25,"PIGL","Picea glauca (Moench) Voss","2 - Sound round","5-10cm","2"
+"102","D19","BONA","BONA_078","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",130,"Y",17.3,14.2,NA,"04594",4.48,"PIGL","Picea glauca (Moench) Voss","3 - Heartwood sound",">=10cm","3"
+"103","D19","BONA","BONA_078","2017-06-19T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",250,"Y",15,7.4,NA,"L05",2.67,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout","5-10cm","4"
+"104","D19","BONA","BONA_089","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",260,"Y",1,5,NA,"L01",1.7,"PIGL","Picea glauca (Moench) Voss","4 - Rotten throughout","5-10cm","4"
+"105","D19","BONA","BONA_089","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",2,6.4,NA,"L02",2.9,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"106","D19","BONA","BONA_089","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",4.3,9.2,NA,"L03",1.5,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout","5-10cm","4"
+"107","D19","BONA","BONA_089","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",5.1,8.1,NA,"L04",2.1,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"108","D19","BONA","BONA_089","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",5.4,9.7,NA,"L05",1.9,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"109","D19","BONA","BONA_089","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",140,"Y",5.8,9.1,NA,"L06",2.8,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"110","D19","BONA","BONA_089","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",20,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
+"111","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",240,"Y",0.8,13.6,NA,"04572",3.3,"BENE4","Betula neoalaskana Sarg.","3 - Heartwood sound",">=10cm","3"
+"112","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",0,"Y",1.1,4.9,NA,"L01",2.4,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","3 - Heartwood sound","2-5cm","3"
+"113","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",0,"Y",2,7.6,NA,"L02",1.5,"BENE4","Betula neoalaskana Sarg.","3 - Heartwood sound","5-10cm","3"
+"114","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",0,"Y",6.6,10.4,NA,"04578",1.2,"BENE4","Betula neoalaskana Sarg.","3 - Heartwood sound",">=10cm","3"
+"115","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",0,"Y",7.7,8.8,NA,"L03",3,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"116","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",0,"Y",41.8,30.4,NA,"04569",22,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","3 - Heartwood sound",">=10cm","3"
+"117","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",120,"Y",1.5,6.3,NA,"L04",2.3,"BENE4","Betula neoalaskana Sarg.","3 - Heartwood sound","5-10cm","3"
+"118","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",120,"Y",14.9,20.5,NA,"04575",9.8,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","3 - Heartwood sound",">=10cm","3"
+"119","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",120,"Y",15.6,15.6,NA,"04576",9.3,"BENE4","Betula neoalaskana Sarg.","3 - Heartwood sound",">=10cm","3"
+"120","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",240,"Y",0.5,12.6,NA,"04585",2.2,"BENE4","Betula neoalaskana Sarg.","3 - Heartwood sound",">=10cm","3"
+"121","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",240,"Y",4.7,7.5,NA,"L05",3.6,"BENE4","Betula neoalaskana Sarg.","3 - Heartwood sound","5-10cm","3"
+"122","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",240,"Y",5.2,8.3,NA,"L06",8.4,"PIMA","Picea mariana (Mill.) Britton, Sterns & Poggenb.","3 - Heartwood sound","5-10cm","3"
+"123","D19","BONA","BONA_021","2017-09-07T00:00:00.000Z",NA,NA,NA,"NEON.DOC.001711vC",240,"Y",10.1,11.2,NA,"04574",3.1,"BENE4","Betula neoalaskana Sarg.","3 - Heartwood sound",">=10cm","3"
+"124","D19","BONA","BONA_079","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",210,"Y",3.2,10.3,NA,"04797",1.9,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout",">=10cm","4"
+"125","D19","BONA","BONA_079","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",210,"Y",1.7,5.5,NA,"L01",1.6,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout","5-10cm","4"
+"126","D19","BONA","BONA_079","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",210,"Y",7.3,18.9,NA,"04796",7.4,"POTR5","Populus tremuloides Michx.","4 - Rotten throughout",">=10cm","4"
+"127","D19","BONA","BONA_079","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",330,"Y",2.3,6.1,NA,"L02",4.9,"POTR5","Populus tremuloides Michx.","3 - Heartwood sound","5-10cm","3"
+"128","D19","BONA","BONA_079","2017-06-20T00:00:00.000Z",NA,NA,"5","NEON.DOC.001711vC",90,"N",NA,NA,NA,NA,NA,NA,NA,NA,NA,NA
