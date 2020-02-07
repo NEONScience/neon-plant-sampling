@@ -74,7 +74,9 @@ cdw <- get_Fulcrum_data(api_token = api_token, sql = cdwQuery)
 cdw %>% 
   dplyr::select(domainid, siteid, plotid_parent, tallydate, volumefactor_ingest, particle_count, lidsazimuth, logmaxdiameter,
                      taxonid, decayclass, logid_ingest, logdistance, loglength, acceptedtaxonid, targettaxapresent) %>%
-  dplyr::filter(siteid==site) -> cdw
+  dplyr::filter(siteid==site) %>% dplyr::filter(taxonid!="JUVI") -> cdw
+
+ # filtered out taxonID JUVI since Field Science said this was always something else, typically a Pinus species
 
 
 ## Create diameter class factor
