@@ -13,7 +13,8 @@
 # basePlotType = "distributed" or "tower"
 
 
-lidsList = function(siteCode, basePlotType){
+### lidsList = function(siteCode, basePlotType){ --> function retired; use 'lidsAngleByPlot_allSites.R' script
+### LIDS lists now being served via Fulcrum
   
   # Load 'TeachingDemos' package so that plotIDs may be turned into unique numeric seeds for angle randomization
   require(TeachingDemos)

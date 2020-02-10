@@ -47,5 +47,5 @@ lidsDF %>%
 
 
 ##  Write-out output to csv
-fileName <- "~/Documents/gitRepositories/devTOS/lidsLists/lidsAnglesByPlot_20190702.csv"
+fileName <- "[Insert path and name...]"
 write.csv(lidsDF, file = fileName, row.names = FALSE, fileEncoding = "UTF-8")
