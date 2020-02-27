@@ -1,0 +1,11 @@
+growthForm,records,recordsStemDensity,recordsBasalCover,recordsCanopyCover,perStemDensity,perBasalCover,perCanopyCover
+cactus,10,10,0,0,100.00%,0.00%,0.00%
+fern,18,18,0,0,100.00%,0.00%,0.00%
+liana,236,236,236,0,100.00%,100.00%,0.00%
+multi-bole tree,306,306,304,217,100.00%,99.35%,70.92%
+palm,16,16,0,16,100.00%,0.00%,100.00%
+sapling,954,954,946,1,100.00%,99.16%,0.10%
+single bole tree,1322,1322,1319,1282,100.00%,99.77%,96.97%
+single shrub,512,512,511,484,100.00%,99.80%,94.53%
+small shrub,770,770,759,736,100.00%,98.57%,95.58%
+small tree,1112,1112,1108,212,100.00%,99.64%,19.06%
