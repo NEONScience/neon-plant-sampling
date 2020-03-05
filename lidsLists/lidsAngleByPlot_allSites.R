@@ -10,6 +10,11 @@ if(file.exists("~/Documents/gitRepositories")){
                            header = TRUE, stringsAsFactors = FALSE)
 }
 
+if(file.exists("C:/GitHub")){
+  acceptedPlot <- read.csv("C:/GitHub/devTOS/spatialData/supportingDocs/applicableModules.csv",
+                           header = TRUE, stringsAsFactors = FALSE)
+}
+
 #   Obtain and sort list of plots that support CDW
 acceptedPlot %>% filter(grepl('cdw', applicableModules)) %>% arrange(siteID, plotType, plotID) -> cdwPlots
 
@@ -47,5 +52,7 @@ lidsDF %>%
 
 
 ##  Write-out output to csv
+# if(file.exists("C:/GitHub")){ write.csv(lidsDF, "C:/GitHub/neon-plant-sampling/lidsLists/all_lidsLists_2020-03-05.csv", row.names = FALSE, fileEncoding = "UTF-8") }
+
 fileName <- "[Insert path and name...]"
 write.csv(lidsDF, file = fileName, row.names = FALSE, fileEncoding = "UTF-8")
