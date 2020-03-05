@@ -65,7 +65,7 @@ lidsDF$lidsConcat <- paste0(lidsDF$lidsAngle1,"|",lidsDF$lidsAngle2,"|", lidsDF$
 
 
 ##  Write-out output to csv
-# if(file.exists("C:/GitHub")){ write.csv(lidsDF, "C:/GitHub/neon-plant-sampling/lidsLists/all_lidsLists_2020-03-05b.csv", row.names = FALSE, fileEncoding = "UTF-8") }
+# if(file.exists("C:/GitHub")){ write.csv(lidsDF, "C:/GitHub/neon-plant-sampling/lidsLists/lidsAnglesByPlot_2020-03-05.csv", row.names = FALSE, fileEncoding = "UTF-8") }
 
 fileName <- "[Insert path and name...]"
 write.csv(lidsDF, file = fileName, row.names = FALSE, fileEncoding = "UTF-8")
