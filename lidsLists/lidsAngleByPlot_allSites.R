@@ -6,7 +6,12 @@ library(dplyr)
 #   Obtain list of plotIDs from applicableModules.csv
 #	Read in plot-level data from applicableModules.csv, and return to parent working directory
 if(file.exists("~/Documents/gitRepositories")){
-  acceptedPlot <- read.csv("~/Documents/gitRepositories/devTOS/spatialData/supportingDocs/applicableModules.csv",
+  acceptedPlot <- read.csv("~/Documents/gitRepositories/neon-plant-sampling/spatialData/applicableModules.csv",
+                           header = TRUE, stringsAsFactors = FALSE)
+}
+
+if(file.exists("~/Documents/workDocuments/gitRepositories")){
+  acceptedPlot <- read.csv("~/Documents/workDocuments/gitRepositories/neon-plant-sampling/spatialData/applicableModules.csv",
                            header = TRUE, stringsAsFactors = FALSE)
 }
 
@@ -16,7 +21,7 @@ if(file.exists("C:/GitHub")){
 }
 
 #   Obtain and sort list of plots that support CDW
-acceptedPlot %>% filter(grepl('cdw', applicableModules)) %>% arrange(siteID, plotType, plotID) -> cdwPlots
+cdwPlots <- acceptedPlot %>% filter(grepl('cdw', applicableModules)) %>% arrange(siteID, plotType, plotID)
 
 #   Create a dataframe for plotIDs and LIDS angles
 lidsDF <- tibble(cdwPlots$plotID, cdwPlots$plotType)
@@ -29,6 +34,10 @@ theAngles = seq(from=0, to=350, by=10)
 ##  Generate random angle based on plotID setseed
 #   Use a "for" loop to generate random LIDS azimuths for each value of plotID
 lidsDF$lidsAngle1 <- ""
+
+# Use method for sampling random numbers in R versions prior to 3.6
+RNGkind(sample.kind = "Rounding")
+
 for (i in 1:nrow(lidsDF)){
   # Use the plotID as a set.seed so that randomly selected azimuths are reproducible
   randomSeed = lidsDF$plotID[i]

@@ -22,12 +22,12 @@
   
   #	Read in plot-level data from applicableModules.csv, and return to parent working directory
   if(file.exists("~/Documents/gitRepositories")){
-    acceptedPlot <- read.csv("~/Documents/gitRepositories/devTOS/spatialData/supportingDocs/applicableModules.csv",
+    acceptedPlot <- read.csv("~/Documents/gitRepositories/neon-plant-sampling/spatialData/applicableModules.csv",
                              header = TRUE, stringsAsFactors = FALSE)
   }
   
   if(file.exists("~/Documents/workDocuments/gitRepositories")){
-    acceptedPlot <- read.csv("~/Documents/workDocuments/gitRepositories/devTOS/spatialData/supportingDocs/applicableModules.csv",
+    acceptedPlot <- read.csv("~/Documents/workDocuments/gitRepositories/neon-plant-sampling/spatialData/applicableModules.csv",
                              header = TRUE, stringsAsFactors = FALSE)
   }
   
@@ -47,6 +47,9 @@
   
   # Create a vector of angles from which to randomly sample; angles are in 10 deg increments
   theAngles = seq(from=0, to=350, by=10)
+  
+  # Use method for sampling random numbers in R versions prior to 3.6
+  RNGkind(sample.kind = "Rounding")
   
   ##  Use a "for" loop to generate random LIDS azimuths for each value of plotID
   for (i in 1:nrow(lids.df)){
