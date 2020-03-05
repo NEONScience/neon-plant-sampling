@@ -32,11 +32,11 @@ clipList <- function(siteCode){
   
   ##  Define paths to required inputs and destinations for outputs
   if(file.exists("~/Documents/gitRepositories")){
-    basePath <- "~/Documents/gitRepositories/devTOS"
+    basePath <- "~/Documents/gitRepositories/neon-plant-sampling"
   }
 
   # Path to 'applicableModules.csv'
-  appMod <- paste(basePath, "spatialData/supportingDocs/applicableModules.csv", sep = "/")
+  appMod <- paste(basePath, "spatialData/applicableModules.csv", sep = "/")
   
   # Path to 'nestedCoords.csv'
   nc <- paste(basePath, "clipLists/nestedCoords.csv", sep = "/")
