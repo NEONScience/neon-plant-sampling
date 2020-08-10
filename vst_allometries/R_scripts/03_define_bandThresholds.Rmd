@@ -1,0 +1,89 @@
+---
+title: "Untitled"
+author: "kj"
+date: "6/3/2020"
+output: html_document
+---
+
+```{r load libraries and files, echo=FALSE}
+library(tidyverse)
+library(png)
+
+source("R_scripts/02_load_dendroObjects.R")
+
+```
+
+
+```{r load allometry lookups, echo=FALSE, message=FALSE, warning=FALSE}
+
+equations <- read.csv(paste(myPathToTeams, 'SourceData/allometries/chojnacky_assignment.csv', sep="/"), 
+                      stringsAsFactors = F)
+
+parameters <- read.csv(paste(myPathToTeams, 'SourceData/allometries/chojnacky_parameters.csv', sep="/"), 
+                       stringsAsFactors = F)
+
+```
+
+
+
+```{r calculate biomass, echo=FALSE}
+
+
+#ln(biomass_kg)= b0 + b1 * ln(diameter_cm)
+
+eq <- select(equations, allometry_ID, taxonid=taxonID)
+pm <- select(parameters, allometry_ID, b0, b1, minDiameter, maxDiameter)
+
+
+#df <- left_join(df, eq)
+
+df$agb <- NA
+
+#i=49
+
+for(i in 1:nrow(df)){
+  ch_allID <- ifelse(is.na(df$taxonid[i])|df$taxonid[i]=='', "H7", eq$allometry_ID[eq$taxonid==df$taxonid[i]])
+  temp.b0 <- pm$b0[pm$allometry_ID==ch_allID]
+  temp.b1 <- pm$b1[pm$allometry_ID==ch_allID]
+  df$agb[i] <- round(exp(temp.b0 + temp.b1*log(df$stemdiameter[i])), digits=1)
+}
+
+## try mutate or apply
+## make function first
+
+
+```
+
+
+```{r determine thresholds, echo=FALSE}
+
+thresh <- df%>%
+  group_by(siteid)%>%
+  summarize(t2 = round(quantile(stemdiameter, 0.75), 1),
+            t3 = round(quantile(stemdiameter, 0.95), 1),
+            b2 = quantile(agb, 0.75),
+            b3 = quantile(agb, 0.95),
+            b2_d = min(stemdiameter[agb>=b2]),
+            b3_d = min(stemdiameter[agb>=b3])
+)
+
+
+```
+
+
+```{r comaparisonTable, echo=FALSE, message=FALSE, warning=FALSE}
+
+dbh_agb_thresh <- thresh%>%
+  select(siteid, "75th"=b2_d, "95th"=b3_d)#%>%
+
+```
+
+
+```{r write threshold file, echo=FALSE, message=FALSE, warning=FALSE}
+
+#write.csv(dbh_agb_thresh, paste(myPathToTeams, 'SourceData/dbh_abg_thresholds.csv', 
+#                                sep='/'), row.names=FALSE)
+
+```
+
+

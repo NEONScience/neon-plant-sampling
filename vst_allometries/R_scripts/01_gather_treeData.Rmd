@@ -1,0 +1,131 @@
+---
+title: "Dendrometer Prototype Cost Estimate"
+author: "Katie Jones"
+date: \today
+urlcolor: blue
+output: pdf_document
+header includes:
+ - \usepackage{longtable}
+ - \usepackage{hyperref}
+ - \usepackage{ltablex}
+---
+
+```{r loadLibraries, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(rmarkdown)
+library(scales)
+library(tidyverse)
+library(png)
+library(knitr)
+library(pander)
+library(restR)
+
+options(stringsAsFactors = FALSE)
+
+```
+
+
+```{r filePaths, echo=FALSE, message=FALSE, warning=FALSE}
+
+if (file.exists(
+  'C:/Users/kjones')){
+  myPathToSharepoint <- "C:/Users/kjones/National Ecological Observatory Network, Inc/FSU Only - Plant Docs/protocols/vst_vegetationStructure/dendro_prototype"
+  myPathToTeams <- "C:/Users/kjones/National Ecological Observatory Network, Inc/OS Team - OS Protocol Revision/protocols_SOPs/TOS-VST_vegetationStructure/dendrometerDevelopment/kj_dendroFiles"
+}
+
+```
+
+
+```{r pull fulcrum data, echo=FALSE, warning=FALSE}
+ library(httr)
+# 
+# # K. LeVan function for getting Fulcrum data
+get_Fulcrum_data <- function(api_token, sql){
+  require(httr)
+  url = paste0("https://api.fulcrumapp.com/api/v2/query?token=",
+               api_token, "&format=json", "&q=", sql, "&headers=true")
+  request <- httr::GET(url, add_headers("X-ApiToken" = api_token,
+                                        Accept = "application/json"))
+  content <- jsonlite::fromJSON(httr::content(request, as = "text"))
+  return(content$rows)
+}
+
+# 'Katie's SQL token'
+api_token = Sys.getenv("FULCRUM_KEY")
+
+
+ 
+vstMapQuery <- paste(URLencode('SELECT eventid, domainid, siteid, plotid, subplotid, pointid, stemazimuth, stemdistance, taxonid, individualid FROM "VST: Mapping and Tagging [PROD]"'),
+                     #URLencode("WHERE siteID IN ('SJER')"),
+                     URLencode("WHERE plottype LIKE 'tower'"),
+                     sep = "%20")
+
+
+source("R_scripts/get_fulcrum_vstMT.R")
+ ## gets all current Fulcrum map data
+
+mt <- get_fulcrum_vstMT(apiToken = api_token)
+
+# write.csv(mt, paste(myPathToSharepoint, "vst_data_d", sep="/"), row.names = FALSE )
+ 
+
+df <- read.csv(paste(myPathToSharepoint, "vst_data_d.csv", sep="/"),stringsAsFactors=F) 
+
+
+```
+
+```{r subset stem data}
+
+df$plotEvent <- paste(df$plotid, df$eventid, sep="_")
+
+lowMorton <- NULL
+maxEvent <- NULL
+
+plots <- sort(unique(df$plotid))
+
+for (i in 1:length(plots)){
+  sub <- filter(df, plotid==plots[i])
+  maxEvent <- c(maxEvent, max(sort(sub$plotEvent)))
+  rm(sub)
+}
+
+df_sub <- df%>%
+  filter(plantstatus%in%c("1", "4", "5", "6", "7", "9", 
+                                           "Live", "Live, disease damaged", "Live, insect damaged", "Live, other damage", "Live, physically damaged") & !growthform%in%c("single shrub", "small shrub"), plotEvent%in%maxEvent)%>% 
+  arrange(plotid, desc(eventid))
+
+### suspect stem diameter at BONA, reset
+df_sub$stemdiameter[df_sub$siteid=='BONA'& df_sub$stemdiameter==120] <- 12.0
+df_sub <- df_sub[!duplicated(df_sub$individualid), ]
+
+
+```
+
+
+
+```{r subset map data}
+
+map <- mt%>%
+  arrange(individualid, desc(eventid))%>%
+  distinct(individualid, .keep_all = TRUE)%>%
+  select(-eventid, -subplotid)
+
+```
+
+```{r join stem with map}
+
+df_out <- df_sub%>%
+  left_join(map)%>%
+  select(domainid, siteid, plotid, subplotid, pointid, stemazimuth, stemdistance, taxonid, individualid, growthform, stemdiameter)%>%
+  arrange(domainid, plotid, subplotid, desc(stemdiameter))
+
+```
+
+
+```{r write cleaned df}
+
+write.csv(df_out, "SourceData/vst_data_d_cleaned.csv", row.names=FALSE)
+
+
+```
+
