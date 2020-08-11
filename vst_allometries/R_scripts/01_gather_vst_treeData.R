@@ -1,21 +1,15 @@
 library(restR)
 library(here)
 library(readr)
-
-
-pmd_df <- restR::get.os.l0(stack = 'prod', tab = 'DP0.10098.001:vst_perplotperyear_in') 
-                             startDate = '2012-01-01', endDate = '2020-07-26')
-
-
-if (!require("neonUtilities")) install.packages("neonUtilites")
 library(neonUtilities)
 
-#ltr = dpID="DP1.10033.001"
-#phe = dpID= "DP1.10055.001"
+# pmd_df <- restR::get.os.l0(stack = 'prod', tab = 'DP0.10098.001:vst_perplotperyear_in') 
+#                              startDate = '2012-01-01', endDate = '2020-07-26')
+# 
 
 ##
 vstDat <- loadByProduct(dpID="DP1.10098.001",
-                        #site = "SJER",
+                        site = "SJER",
                         #startdate = NA,
                         #enddate = NA,
                         package = "basic",
@@ -23,24 +17,45 @@ vstDat <- loadByProduct(dpID="DP1.10098.001",
                         token = Sys.getenv('NEON_KEY'))
 
 # unlist all data frames
-list2env(vstDat ,.GlobalEnv)
+#list2env(vstDat ,.GlobalEnv)
 
-date <- '20200715'
+# unlist target data frames
+#perplot <- vstDat$vst_perplotperyear
+appind <- vstDat$vst_apparentindividual
+map <- vstDat$vst_mappingandtagging
+#shrub <- vstDat$vst_shrubgroup
 
-dir.create(path=paste(getwd(), 'vst/data', date, sep='/'))
+appind$plotEvent <- paste(appind$plotID, appind$eventID, sep="_")
 
-folder <- paste(getwd(), 'vst/data', date, sep='/')
+lowMorton <- NULL
+maxEvent <- NULL
 
-write.csv(vst_perplotperyear, 
-           paste(folder, 'l0_vst_pmd.csv', sep='/'))
-write.csv(vst_mappingandtagging,
-          paste(folder, 'l0_vst_mt.csv', sep='/'))
-write.csv(vst_apparentindividual,
-          paste(folder, 'l0_vst_ai.csv', sep='/'))
-write.csv(vst_shrubgroup,
-          paste(folder, 'l0_vst_sg.csv', sep='/'))
+plots <- sort(unique(appind$plotID))
 
+for (i in 1:length(plots)){
+  sub <- filter(appind, plotID==plots[i])
+  maxEvent <- c(maxEvent, max(sort(sub$plotEvent)))
+  rm(sub)
+}
 
+df_sub <- appind%>%
+  filter(plantStatus%in%c("1", "4", "5", "6", "7", "9", 
+                          "Live", "Live, disease damaged", "Live, insect damaged", "Live, other damage", "Live, physically damaged") & 
+           !growthForm%in%c("single shrub", "small shrub"), plotEvent%in%maxEvent)%>% 
+  arrange(plotID, desc(eventID))
 
+df_sub <- df_sub[!duplicated(df_sub$individualID), ]
 
+map_sub <- map%>%
+  arrange(individualID, desc(eventID))%>%
+  distinct(individualID, .keep_all = TRUE)%>%
+  select(-eventID, -subplotID)
+
+df_out <- df_sub%>%
+  left_join(map_sub)%>%
+  select(domainID, siteID, plotID, subplotID, pointID, stemAzimuth, 
+         stemDistance, taxonID, individualID, growthForm, stemDiameter)%>%
+  arrange(domainID, plotID, subplotID, desc(stemDiameter))
+
+write.csv(df_out, "vst_allometries/SourceData/vst_data_cleaned.csv", row.names=FALSE)
 

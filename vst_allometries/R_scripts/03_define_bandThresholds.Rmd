@@ -9,17 +9,20 @@ output: html_document
 library(tidyverse)
 library(png)
 
-source("R_scripts/02_load_dendroObjects.R")
+source(paste(getwd(), "vst_allometries/R_scripts/02_load_dendroObjects.R", sep='/'))
 
 ```
 
 
 ```{r load allometry lookups, echo=FALSE, message=FALSE, warning=FALSE}
 
-equations <- read.csv(paste(myPathToTeams, 'SourceData/allometries/chojnacky_assignment.csv', sep="/"), 
+## having trouble with relative paths
+
+
+equations <- read.csv('./vst_allometries/SourceData/allometries/chojnacky_assignment.csv',
                       stringsAsFactors = F)
 
-parameters <- read.csv(paste(myPathToTeams, 'SourceData/allometries/chojnacky_parameters.csv', sep="/"), 
+parameters <- read.csv(paste(getwd(), 'vst_allometries/SourceData/allometries/chojnacky_parameters.csv', sep="/"), 
                        stringsAsFactors = F)
 
 ```
