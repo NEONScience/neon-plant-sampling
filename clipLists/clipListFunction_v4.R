@@ -6,7 +6,7 @@
 
 #	The function assumes that the starting working directory is the default associated with the Git repository.
 
-#	The function assumes there is a file called 'applicableModules.csv,' in a 'spatialData/supportingDocs/' directory, and that this .csv contains the following fields:
+#	The function assumes there is a file called 'applicableModules.csv,' in a 'spatialData' directory, and that this .csv contains the following fields:
   # siteID
   # plotID
   # plotType, values in lower case (e.g., distributed, tower)
@@ -34,6 +34,10 @@ clipList <- function(siteCode){
   if(file.exists("~/Documents/gitRepositories")){
     basePath <- "~/Documents/gitRepositories/neon-plant-sampling"
   }
+  
+  if(file.exists("~/Documents/workDocuments/gitRepositories")){
+    basePath <- "~/Documents/workDocuments/gitRepositories/neon-plant-sampling"
+  }
 
   # Path to 'applicableModules.csv'
   appMod <- paste(basePath, "spatialData/applicableModules.csv", sep = "/")
@@ -42,7 +46,7 @@ clipList <- function(siteCode){
   nc <- paste(basePath, "clipLists/nestedCoords.csv", sep = "/")
   
   # Path to write .xlsx output
-  writePath <- paste(basePath, "clipLists/_excelClipLists", sep = "/")
+  writePath <- paste(basePath, "clipLists/excelClipLists", sep = "/")
 
   # Read in plot-level data from applicableModules.csv
   acceptedPlot <- read.csv(appMod, header=T, stringsAsFactors = F)
@@ -65,6 +69,8 @@ clipList <- function(siteCode){
   gridRow <- yDistance/cellHeight
   totalCell <- gridCol*gridRow
   
+  # Use method for sampling random numbers in R versions prior to 3.6
+  RNGkind(sample.kind = "Rounding")
   
   
   ###  Create Clip Lists for forested `cfc` Distributed Plots that are not otherwise sampled for HBP
