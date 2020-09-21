@@ -7,7 +7,7 @@ library(dplyr)
 library(pbapply)
 library(stringr)
 
-#   Load ECS Keys, Secrets, and Functions
+#   Load ECS Keys, Secrets, and Functions --> customize as necessary
 if(file.exists("/Users/Pajaro")){
   source("~/Box/computing/ecsBucketKeys.R")
   funPath <- "~/Documents/workDocuments/gitRepositories/neon-plant-sampling/plant_tools"
@@ -33,7 +33,7 @@ bucket <- 'neon-microbial-raw-seq-files'
 writePath <- '~/Desktop'
 
 #   Example with single file
-get_file_ecs(objectKey = temp$Key[1], volumePath = "~/Desktop", ecsBucket = bucket)
+get_file_ecs(objectKey = temp$Key[1], volumePath = writePath, ecsBucket = bucket)
 
 #   Example with file list and pblapply
 pbapply::pblapply(X = temp$Key, FUN = get_file_ecs,
