@@ -1,0 +1,103 @@
+---
+title: "Create band lists"
+author: "kj"
+date: "6/5/2020"
+output: html_document
+---
+
+```{r load libraries and files, echo=FALSE}
+library(tidyverse)
+
+source("R_scripts/02_load_dendroObjects.R")
+
+```
+
+
+```{r select sites}
+
+sites <- c("BONA")
+
+df_sub <- df[df$siteid%in%sites,]
+
+```
+
+```{r summaryTable}
+
+df_d_bands <- NULL
+
+for (i in unique(df_sub$siteid)){
+  siteid <- i
+  thresh1 <- dbh_agb_thresh$`75th`[dbh_agb_thresh$siteid==i]
+  thresh2 <- dbh_agb_thresh$`95th`[dbh_agb_thresh$siteid==i]
+  df_opti <- df_sub[df_sub$siteid==i & df_sub$plotid%in%vst_annualPlot &
+                      df_sub$stemdiameter>thresh1 | df_sub$siteid==i &
+                      !df_sub$plotid%in%vst_annualPlot & df_sub$stemdiameter>thresh2,]
+  bands_count <- nrow(df_opti[df_opti$siteid==i,])
+  total_plots <- length(unique(df_opti$plotid[df_opti$siteid==i]))
+  df_d_bands = rbind(df_d_bands, data.frame(siteid, bands_count, total_plots))
+}  
+
+
+
+```
+
+
+```{r Band deets, echo=FALSE, anchor="Table", message=FALSE}
+
+bandList <- NULL
+
+for (i in unique(df_sub$siteid)){
+  print(i)
+  siteid <- i
+  thresh1 <- dbh_agb_thresh$`75th`[dbh_agb_thresh$siteid==i]
+  thresh2 <- dbh_agb_thresh$`95th`[dbh_agb_thresh$siteid==i]
+  df_temp <- df_sub[df_sub$siteid==i & df_sub$plotid%in%vst_annualPlot &
+                      df_sub$stemdiameter>=thresh1 | df_sub$siteid==i &
+                      !df_sub$plotid%in%vst_annualPlot & df_sub$stemdiameter>=thresh2,]
+  bandList = rbind(bandList, df_temp)
+}  
+
+
+bandList$addDBH <- ifelse(bandList$stemdiameter<10, 2.5,
+                        ifelse(bandList$stemdiameter < 50, 4, 7.5))
+
+
+bandList$bandLength <- ceiling((bandList$stemdiameter+bandList$addDBH)*3.14)
+
+bandList$springSize <- ifelse(bandList$stemdiameter < 50, "76mm", "127mm")
+
+```
+
+
+```{r make final list, echo=FALSE, message=FALSE}
+
+# assign domains and  group by DSF
+df_bands$domainid <- substr(df_sub$individualid, 10, 12)
+df_bands$domainid <- ifelse(df_sub$domainid%in%c("D10", "D13"), "D10/13", 
+                          ifelse(df_sub$domainid%in%c("D18", "D19"), "D18/19", df_bands$domainid))
+
+
+# # subset to selected trees 
+# df_out <- df_sub%>%
+#   filter(plotid%in%lowMorton & banded_sub=="Y" | banded_all=="Y")%>%
+#   left_join(map)%>%
+#   select(domainid, siteid, plotid, subplotid, pointid, stemazimuth, stemdistance, taxonid, individualid, growthform, stemdiameter, templateSize, springLength)%>%
+#   arrange(domainid, plotid, subplotid, desc(stemdiameter))
+
+# write files for each site
+
+ for (i in 1:length(sort(unique(bandList$siteid)))){
+   sub <- bandList[bandList$siteid==sort(unique(bandList$siteid))[i],]
+   write.csv(sub, paste('outputFiles/', unique(sub$siteid), "_treesToBand_nlcdOptimized.csv", sep=""), row.names=FALSE)
+   rm(sub)
+ }
+
+out_b <- select(df_out, plotid, point=pointid, azimuth=stemazimuth, distance=stemdistance, taxonid, individualid, stemdiameter)
+
+panderOptions('table.split.table', Inf)
+pander::pander(out_b, justify="center",  missing='', caption=paste("Target trees to band n=", nrow(out_b)))
+
+
+```
+
+

@@ -1,0 +1,287 @@
+---
+title: ""
+author: "Katie Jones"
+date: \today
+urlcolor: blue
+output: pdf_document
+header includes:
+ - \usepackage{longtable}
+ - \usepackage{hyperref}
+ - \usepackage{ltablex}
+---
+
+```{r loadLibraries, echo=FALSE, message=FALSE, warning=FALSE}
+
+library(restR)
+library(tidyverse)
+library(png)
+library(knitr)
+library(pander)
+library(kableExtra)
+library(magrittr)
+library(scales)
+library(xtable)
+options(xtable.floating = FALSE)
+options(xtable.timestamp = "")
+
+
+```
+
+
+```{r filePaths, echo=FALSE, message=FALSE, warning=FALSE}
+
+if (file.exists(
+  'C:/Users/kjones')){
+  myPathToNEONplants <- "C:/Users/kjones/Documents/GitHub/neonPlantSampling/stemMapSimulation"
+  myPathToFulcrumDev <- "C:/Users/kjones/Documents/GitHub/fulcrumDev/admin_tools_scripts/magpie_requests" 
+  myPathToSharepoint <- "C:/Users/kjones/National Ecological Observatory Network, Inc/FSU Only - Plant Docs/protocols/vst_vegetationStructure/dendro_prototype"
+}
+
+```
+
+
+```{r loadData, echo=FALSE, message=FALSE, warning=FALSE}
+
+df <- read.csv(paste(myPathToSharepoint, "vst_data_d.csv", sep="/"), stringsAsFactors=F )
+## BLAN KONZ data
+#df <- read.csv(paste(myPathToSharepoint, "vst_KONZ_BLAN_tower.csv", sep="/"), stringsAsFactors = F)
+
+nlcd_optimization <- read.csv(paste(myPathToSharepoint, "optimizedPlots_sub.csv", sep="/"), 
+                              stringsAsFactors=F)
+
+
+equations <- read.csv(paste(myPathToSharepoint, 'Final_list/chojnacky_assignment.csv', sep="/"), 
+                      stringsAsFactors = F)
+parameters <- read.csv(paste(myPathToSharepoint, 'Final_list/chojnacky_parameters.csv', sep="/"), 
+                       stringsAsFactors = F)
+
+
+```
+
+
+```{r subset dataframe, echo=FALSE, message=FALSE, warning=FALSE}
+
+df$plotEvent <- paste(df$plotid, df$eventid, sep="_")
+
+#opti_plot <- unique(nlcd_optimization$plotID)
+
+lowMorton <- NULL
+maxEvent <- NULL
+sites <- unique(df$siteid)
+#sites <- 'BONA'
+#sites <- c('BONA', 'NIWO', 'DEJU')
+#sites <- c('BLAN', 'KONZ')
+plots <- sort(unique(df$plotid))
+
+for (i in 1:length(plots)){
+  sub <- filter(df, plotid==plots[i])
+  maxEvent <- c(maxEvent, max(sort(sub$plotEvent)))
+  rm(sub)
+}
+
+
+df_sub <- df%>%
+  filter(siteid%in%sites & plantstatus%in%c("1", "4", "5", "6", "7", "9", 
+                                           "Live", "Live, disease damaged", "Live, insect damaged", "Live, other damage", "Live, physically damaged" ), plotEvent%in%maxEvent)%>% 
+  arrange(plotid, desc(eventid))
+
+### suspect stem diameter at BONA, reset
+df_sub$stemdiameter[df_sub$siteid=='BONA'& df_sub$stemdiameter==120] <- 12.0
+df_sub <- df_sub[!duplicated(df_sub$individualid), ]
+
+
+for (i in 1:length(sites)){
+   sub <- filter(df, siteid==sites[i]& plantstatus%in%c("1", "4", "5", "6", "7", "9", 
+                                           "Live", "Live, disease damaged", "Live, insect damaged", "Live, other damage", "Live, physically damaged" ),)
+   lowMorton <- c(lowMorton, sort(unique(sub$plotid))[1:5])
+   rm(sub)
+ }
+
+```
+
+#### New script
+
+```{r calculate biomass, echo=FALSE}
+
+
+#ln(biomass_kg)= b0 + b1 * ln(diameter_cm)
+
+eq <- select(equations, allometry_ID, taxonid=taxonID)
+pm <- select(parameters, allometry_ID, b0, b1, minDiameter, maxDiameter)
+
+
+#df <- left_join(df, eq)
+
+df_sub$agb <- NA
+
+#i=49
+
+for(i in 1:nrow(df_sub)){
+  ch_allID <- ifelse(is.na(df_sub$taxonid[i])|df_sub$taxonid[i]=='', "H7", eq$allometry_ID[eq$taxonid==df_sub$taxonid[i]])
+  temp.b0 <- pm$b0[pm$allometry_ID==ch_allID]
+  temp.b1 <- pm$b1[pm$allometry_ID==ch_allID]
+  df_sub$agb[i] <- round(exp(temp.b0 + temp.b1*log(df_sub$stemdiameter[i])), digits=1)
+}
+
+
+## try mutate or apply
+## make function first
+
+
+```
+
+
+# Plot and Stem Selection
+
+The 5 lowest morton order plots are targeted for annual vegetation structure measurements
+
+## Assumptions for tree selection for dendrometer band installation:
+
+* all stemDiameters converted to aboveground biomass based on specific allometric equations from Chojnacky et al., 2014
+* within subset of 5 target productivity Tower plots all trees > 1 cm & < 75th percentile aboveground biomass located in subset of plots measured with diameter tapes or calipers on an annual basis (Table 2)
+* all trees > 75th  percentile aboveground biomass located in subset of plots recieve dendrometer bands 
+* all trees $\geq$ 95th percentile aboveground biomass in all Tower plots recieve dendrometer bands
+
+The diameter thresholds, based on aboveground biomass are summarized in Table 1
+
+```{r determine thresholds, echo=FALSE}
+
+plots <- data.frame("plot"= sort(unique(df_sub$plotid)), stringsAsFactors = FALSE)
+
+
+thresh <- df_sub%>%
+  group_by(siteid)%>%
+  summarize(t2 = round(quantile(stemdiameter, 0.75), 1),
+            t3 = round(quantile(stemdiameter, 0.95), 1),
+            b2 = quantile(agb, 0.75),
+            b3 = quantile(agb, 0.95),
+            b2_d = min(stemdiameter[agb>=b2]),
+            b3_d = min(stemdiameter[agb>=b3])
+)
+
+
+```
+
+
+```{r comaparisonTable, echo=FALSE, message=FALSE, warning=FALSE}
+
+dbh_agb_thresh <- thresh%>%
+  select(siteid, "75th"=b2_d, "95th"=b3_d)#%>%
+
+```
+
+```{r compare dendro plot size distribution to opti plot size distribution, echo=FALSE, }
+
+   low <- df_sub[df_sub$plotid%in%lowMorton,]
+  opti <- df_sub[df_sub$plotid%in%opti_plot,]
+
+
+ out_plot <- ggplot(data=df_sub, aes(x=stemdiameter))+
+  facet_wrap(~siteid)+
+  geom_density(color="black", size=1)+
+  geom_density(data=df_sub[df_sub$plotid %in% lowMorton,], color="orange", size=1) +
+  geom_density(data=df_sub[df_sub$plotid %in% opti_plot,], color= "blue", size=1) +
+  #xlim(10, 40)+
+  ylim(0, 0.15)+
+  #geom_vline(data=dbh_agb_thresh, aes(xintercept=as.numeric(`75th`)),
+  #           color="black", linetype="dashed", size=0.5)+
+  ggtitle("Stem diameter comparison: Black = all plots, Blue = Dendrometer plots, Orange = Optimized plots") #+
+  # geom_label(aes(x = 20, y = 0.1, 
+  #                  label = paste("n=", nrow(df_sub), "\n",
+  #                                                "dendro stems =", nrow(df_sub[plotid%in%lowMorton,]), "\n",
+  #                                                "optimize stem =", nrow(df_sub[plotid%in%opti_plot,]),
+  #                                                sep=""),
+  #                   hjust="left"),
+  #            group=df_sub$siteid)
+
+
+
+
+```
+
+```{r add columns for materials}
+df_sub$addDBH <- ifelse(df_sub$stemdiameter<50, 4, 7.5)
+
+df_sub$bandLength <- ceiling((df_sub$stemdiameter+df_sub$addDBH)*3.14)
+
+df_sub$springSize <- ifelse(df_sub$stemdiameter < 50, "76mm", "127mm")
+
+```
+
+
+
+
+```{r summary table}
+
+df_sumTable <- df_sub%>%
+  group_by(siteid)%>%
+  summarise(n_allPlots=n(),
+            n_d_prod=sum(low),
+            n_optimized=sum(op))
+
+
+df_d_bands <- NULL
+i='BONA'
+for (i in unique(df_sub$siteid)){
+  siteid <- i
+  thresh1 <- dbh_agb_thresh$`75th`[dbh_agb_thresh$siteid==i]
+  thresh2 <- dbh_agb_thresh$`95th`[dbh_agb_thresh$siteid==i]
+  df_orig <- df_sub[df_sub$siteid==i & df_sub$plotid%in%lowMorton &
+                     df_sub$stemdiameter>thresh1 | df_sub$siteid==i &
+                     !df_sub$plotid%in%lowMorton & df_sub$stemdiameter>thresh2,]
+  df_opti <- df_sub[df_sub$siteid==i & df_sub$plotid%in%opti_plot &
+                      df_sub$stemdiameter>thresh1 | df_sub$siteid==i &
+                      !df_sub$plotid%in%opti_plot & df_sub$stemdiameter>thresh2,]
+  bands_orig <- nrow(df_orig[df_orig$siteid==i,])
+  plots_orig <- length(unique(df_orig$plotid[df_orig$siteid==i]))
+  bands_optimized <- nrow(df_opti[df_opti$siteid==i,])
+  plots_optimized <- length(unique(df_opti$plotid[df_opti$siteid==i]))
+  df_d_bands = rbind(df_d_bands, data.frame(siteid, bands_orig, plots_orig, bands_optimized, plots_optimized))
+}  
+  
+df_sumTable <- left_join(df_sumTable, df_d_bands)
+
+# kable(df_sumTable, "html") %>%
+#   kable_styling(bootstrap_options = c("striped", "hover"), full_width = F) %>%
+#   save_kable("countSummary_blanKonz.html")
+
+
+```
+# Pull vst data for BLAN & KONz
+
+
+```{r get materials cost}
+
+tapeCost <- 8.31
+springCost <- 9.55  #small size springs
+
+materials_orig <- df_orig%>%
+  group_by(siteid)%>%
+  summarise(n=n(), totalBandLength=round(sum(bandLength),digits = 0),
+            tapeCount =round(ceiling(totalBandLength/640), digits=0),
+            springPacks = ceiling(n/10))
+
+materials_orig$cost <- (materials_orig$tapeCount*1.5*tapeCost)+(materials_orig$springPacks*1.5*springCost)
+
+# $40/hr * 10 min/band
+materials_orig$labor <- materials_orig$n*(40*0.18)
+
+materials_orig$total <- materials_orig$cost + materials_orig$labor
+
+materials_opti <- df_opti%>%
+  group_by(siteid)%>%
+  summarise(n=n(), totalBandLength=round(sum(bandLength),digits = 0),
+            tapeCount =round(ceiling(totalBandLength/640), digits=0),
+            springPacks = ceiling(n/10))
+
+materials_opti$cost <- (materials_opti$tapeCount*1.5*tapeCost)+(materials_opti$springPacks*1.5*springCost)
+
+materials_opti$labor <- materials_opti$n*(40*0.18)
+
+materials_opti$total <- materials_opti$cost + materials_opti$labor
+
+costDiff_bona <- materials_opti$total[materials_opti$siteid=='BONA']-materials_orig$total[materials_orig$siteid=='BONA']
+
+
+```
+
