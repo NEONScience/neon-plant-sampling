@@ -57,24 +57,29 @@ get_fulcrum_pageLim <- function(apiToken, sql, pageLim = 2000, timeLim = 120, ur
   
 } # End
 
-#   Define API token
+
+
+### Define API token
 fulcrumToken = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
 
 
 
-### Define CDW Fulcrum unique plotID query for input eventID ####
-eventID <- "CDW.2019.SOAP" #--> modify for event for which reporting is required
-cdwPlotQuery <- paste(URLencode('SELECT DISTINCT plotid_parent FROM "4487b90c-51b3-495a-873b-16f6b6d0abf7"'),
-                 URLencode(paste0("WHERE eventid = '", eventID, "'")), 
-                 sep = "%20")
-
-cdwPlots <- get_fulcrum_pageLim(apiToken = fulcrumToken, sql = cdwPlotQuery)
-
-
-
-### Get and analyze data from Fulcrum for reporting ####
-#   Get Fulcrum data
-cdwPlots <- get_fulcrum_pageLim(apiToken = fulcrumToken, sql = cdwPlotQuery)
-
-#   Determine number of plots sampled
-nrow(cdwPlots)
+### Define CDW Summary Function ####
+get_cdwPlots_Fulcrum <- function(eventID){
+  require(dplyr)
+  
+  # CDW Tally query for distinct plotIDs within user-specified eventID
+  cdwPlotQuery <- paste(URLencode('SELECT DISTINCT plotid_parent FROM "4487b90c-51b3-495a-873b-16f6b6d0abf7"'),
+                        URLencode(paste0("WHERE eventid = '", eventID, "'")), 
+                        sep = "%20")
+  
+  # Get data from Fulcrum
+  cdwPlotList <- get_fulcrum_pageLim(apiToken = fulcrumToken, sql = cdwPlotQuery)
+  cdwPlotList <- cdwPlotList %>% arrange(plotid_parent)
+  cdwPlotNum <- nrow(cdwPlotList)
+  
+  # Create output
+  output <- list(cdwPlotList = cdwPlotList, cdwPlotNum = cdwPlotNum)
+  return(output)
+  
+}
