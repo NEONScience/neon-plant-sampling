@@ -1,0 +1,53 @@
+---
+title: "Untitled"
+author: "kj"
+date: "6/3/2020"
+output: html_document
+---
+
+```{r load libraries and files, echo=FALSE}
+library(tidyverse)
+library(png)
+
+
+source("R_scripts/02_load_dendroObjects.R")
+
+```
+
+```{r format dfs, echo=FALSE, message=FALSE}
+
+vst_annualPlot <- unique(nlcd_optimization$plotID[nlcd_optimization$annualTowerVst=='Y'])
+vst_annualPlot <- vst_annualPlot[!is.na(vst_annualPlot)]
+
+sites <- c('BONA', 'HEAL', 'DEJU') 
+
+df_sub <- filter(df, siteid%in%sites)
+
+```
+
+```{r compare all plot stem diameter size distribution to annual plot size distribution, echo=FALSE, }
+
+
+out_plot <- ggplot(data=df_sub, aes(x=stemdiameter))+
+  facet_wrap(~siteid)+
+  geom_density(color="black", size=1)+
+#  geom_density(data=df_sub[df_sub$plotid %in% lowMorton,], color="orange", size=1) +
+  geom_density(data=df_sub[df_sub$plotid %in% vst_annualPlot,], color= "blue", size=1) +
+  #xlim(10, 40)+
+  ylim(0, 0.15)+
+  #geom_vline(data=dbh_agb_thresh, aes(xintercept=as.numeric(`75th`)),
+  #           color="black", linetype="dashed", size=0.5)+
+  ggtitle("Stem diameter comparison: Black = all plots, Blue = Dendrometer plots, Orange = Optimized plots") #+
+  # geom_label(aes(x = 20, y = 0.1, 
+  #                  label = paste("n=", nrow(df_sub), "\n",
+  #                                                "dendro stems =", nrow(df_sub[plotid%in%lowMorton,]), "\n",
+  #                                                "optimize stem =", nrow(df_sub[plotid%in%opti_plot,]),
+  #                                                sep=""),
+  #                   hjust="left"),
+  #            group=df_sub$siteid)
+ 
+ 
+ #ggsave(out_plot, paste(myPathToTeams, 'outputFiles/stemDistributions.jpeg'))
+
+
+```

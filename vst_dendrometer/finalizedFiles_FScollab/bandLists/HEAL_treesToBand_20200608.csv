@@ -1,0 +1,6 @@
+"domainid","siteid","plotid","subplotid","pointid","stemazimuth","stemdistance","taxonid","individualid","growthform","stemdiameter","addDBH","bandLength","springSize"
+"D19","HEAL","HEAL_047",41,NA,NA,NA,"PIGL","NEON.PLA.D19.HEAL.01168","sbt",14,4,57,"76mm"
+"D19","HEAL","HEAL_051",41,NA,NA,NA,"PIGL","NEON.PLA.D19.HEAL.00690","sbt",12.8,4,53,"76mm"
+"D19","HEAL","HEAL_073",31,NA,NA,NA,"PIGL","NEON.PLA.D19.HEAL.00412","sbt",14,4,57,"76mm"
+NA,"HEAL","HEAL_047",41,NA,NA,NA,"PIGL","NEON.PLA.D19.HEAL.01167","sbt",12,4,51,"76mm"
+NA,"HEAL","HEAL_066",40,NA,NA,NA,"PIGL","NEON.PLA.D19.HEAL.00512","sbt",13.8,4,56,"76mm"

@@ -1,5 +1,5 @@
 ---
-title: "Dendrometer Prototype Cost Estimate"
+title: ""
 author: "Katie Jones"
 date: \today
 urlcolor: blue
@@ -12,6 +12,10 @@ header includes:
 
 ```{r loadLibraries, echo=FALSE, message=FALSE, warning=FALSE}
 
+#library(devtools)
+#install_github('NEONScience/NEON-geolocation/geoNEON', dependencies=TRUE)
+
+
 library(rmarkdown)
 library(scales)
 library(tidyverse)
@@ -19,6 +23,7 @@ library(png)
 library(knitr)
 library(pander)
 library(restR)
+library(geoNEON)
 
 options(stringsAsFactors = FALSE)
 
@@ -29,8 +34,9 @@ options(stringsAsFactors = FALSE)
 
 if (file.exists(
   'C:/Users/kjones')){
-  myPathToSharepoint <- "C:/Users/kjones/National Ecological Observatory Network, Inc/FSU Only - Plant Docs/protocols/vst_vegetationStructure/dendro_prototype"
-  myPathToTeams <- "C:/Users/kjones/National Ecological Observatory Network, Inc/OS Team - OS Protocol Revision/protocols_SOPs/TOS-VST_vegetationStructure/dendrometerDevelopment/kj_dendroFiles"
+  wdir <- "C:/Users/kjones/Documents/GitHub/neon-plant-sampling"
+  # myPathToSharepoint <- "C:/Users/kjones/National Ecological Observatory Network, Inc/FSU Only - Plant Docs/protocols/vst_vegetationStructure/dendro_prototype"
+  # myPathToTeams <- "C:/Users/kjones/National Ecological Observatory Network, Inc/OS Team - OS Protocol Revision/protocols_SOPs/TOS-VST_vegetationStructure/dendrometerDevelopment/kj_dendroFiles"
 }
 
 ```
@@ -50,29 +56,57 @@ get_Fulcrum_data <- function(api_token, sql){
   return(content$rows)
 }
 
-# 'Katie's SQL token'
+
 api_token = Sys.getenv("FULCRUM_KEY")
 
 
- 
+vstwoodyQuery = paste(URLencode('SELECT eventid, siteid, plotid, subplotid,
+                                individualid, taxonid, stemdiameter, growthform,
+plantstatus FROM "VST: Apparent Individuals [PROD]" AS Parent'),
+                    URLencode('JOIN "VST: Apparent Individuals [PROD]/vst_woody_stems" AS child'),
+                    URLencode('On (parent._record_id=child._record_id)'),
+                    URLencode("WHERE plottype LIKE 'tower'"),
+                    URLencode("AND siteid IN ('BONA', 'DEJU', 'HEAL', 'NIWO', 'RMNP', 'SJER', 'SOAP', 'SRER', 'TEAK', 'YELL', 'WREF')"),
+                    URLencode("AND stemdiameter IS NOT NULL"), sep = "%20")
+                   # URLencode("AND growthform IN ('smt', 'sbt', 'mbt')"), sep = "%20")
+
+
 vstMapQuery <- paste(URLencode('SELECT eventid, domainid, siteid, plotid, subplotid, pointid, stemazimuth, stemdistance, taxonid, individualid FROM "VST: Mapping and Tagging [PROD]"'),
-                     #URLencode("WHERE siteID IN ('SJER')"),
-                     URLencode("WHERE plottype LIKE 'tower'"),
+                     URLencode("WHERE siteid IN ('BONA', 'DEJU', 'HEAL', 'NIWO', 'RMNP', 'SJER', 'SOAP', 'SRER', 'TEAK', 'YELL', 'WREF')"),
+                     URLencode("AND plottype LIKE 'tower'"),
                      sep = "%20")
 
+# 
+# ### Generate dataframes for each of the tables in vst ###
+# 
+# 
+#df = get_Fulcrum_data(api_token = api_token, sql = vstwoodyQuery)
+# 
+# write.csv(df, paste(myPathToSharepoint, "vst_data_yell.csv", sep="/"), row.names = FALSE )
 
-source("R_scripts/get_fulcrum_vstMT.R")
+# mt = get_Fulcrum_data(api_token, sql = vstMapQuery)
+# 
+# roundOneSites <- c('BONA', 'DEJU', 'HEAL', 'NIWO', 'RMNP', 'SJER', 'SOAP', 'SRER', 'TEAK', 'YELL', 'WREF')
+# 
+# mt <- filter(mt, siteid%in%roundOneSites)
+
+# write.csv()  ## change read.csv below to new file
+ 
+#source("/vst_dendrometer/R_scripts/get_fulcrum_vstMT.R")
  ## gets all current Fulcrum map data
 
-mt <- get_fulcrum_vstMT(apiToken = api_token)
+#mt2 <- get_fulcrum_vstMT(apiToken = api_token)
 
-# write.csv(mt, paste(myPathToSharepoint, "vst_data_d", sep="/"), row.names = FALSE )
- 
+df <- read.csv(paste(wdir, "vst_dendrometer/SourceData/vst_data_d.csv", sep='/'), 
+               stringsAsFactors = F)
 
-df <- read.csv(paste(myPathToSharepoint, "vst_data_d.csv", sep="/"),stringsAsFactors=F) 
+
+# labor <- read.csv(paste(myPathToSharepoint, "laborEstimates.csv", sep="/"),stringsAsFactors=F )
+# labor$siteid <- trimws(labor$siteid)
 
 
 ```
+
 
 ```{r subset stem data}
 
@@ -97,7 +131,6 @@ df_sub <- df%>%
 ### suspect stem diameter at BONA, reset
 df_sub$stemdiameter[df_sub$siteid=='BONA'& df_sub$stemdiameter==120] <- 12.0
 df_sub <- df_sub[!duplicated(df_sub$individualid), ]
-
 
 ```
 
@@ -124,8 +157,7 @@ df_out <- df_sub%>%
 
 ```{r write cleaned df}
 
-write.csv(df_out, "SourceData/vst_data_d_cleaned.csv", row.names=FALSE)
-
+#write.csv(df_out, paste(wdir, "vst_dendrometer/SourceData/vst_data_d_cleaned.csv"), row.names=FALSE)
 
 ```
 

@@ -9,7 +9,12 @@ output: html_document
 library(tidyverse)
 library(png)
 
-source(paste(getwd(), "vst_allometries/R_scripts/02_load_dendroObjects.R", sep='/'))
+if (file.exists(
+  'C:/Users/kjones')){
+  wdir <- "C:/Users/kjones/Documents/GitHub/neon-plant-sampling"
+}
+
+source(paste(wdir, "vst_dendrometer/R_scripts/02_load_dendroObjects.R", sep='/'))
 
 ```
 
@@ -19,10 +24,10 @@ source(paste(getwd(), "vst_allometries/R_scripts/02_load_dendroObjects.R", sep='
 ## having trouble with relative paths
 
 
-equations <- read.csv('./vst_allometries/SourceData/allometries/chojnacky_assignment.csv',
+equations <- read.csv(paste(wdir, 'vst_allometries/SourceData/allometries/chojnacky_assignment.csv', sep='/'),
                       stringsAsFactors = F)
 
-parameters <- read.csv(paste(getwd(), 'vst_allometries/SourceData/allometries/chojnacky_parameters.csv', sep="/"), 
+parameters <- read.csv(paste(wdir, 'vst_allometries/SourceData/allometries/chojnacky_parameters.csv', sep='/'),
                        stringsAsFactors = F)
 
 ```
