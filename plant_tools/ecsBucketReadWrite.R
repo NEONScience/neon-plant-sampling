@@ -14,15 +14,23 @@ if(file.exists("/Users/Pajaro")){
   source(paste(funPath, "ecsBucketFunctions.R", sep = "/"))
 }
 
-#   Set System Environment to authenticate to AWS
+#   DHP: Set System Environment to authenticate to AWS
+Sys.setenv("AWS_ACCESS_KEY_ID" = cmDhpKey, "AWS_SECRET_ACCESS_KEY" = cmDhpSecret,
+           "AWS_S3_ENDPOINT" = "neonscience.org", "AWS_DEFAULT_REGION" = "s3.data")
+
+#   Microbe Seq Data: Set System Environment to authenticate to AWS
 Sys.setenv("AWS_ACCESS_KEY_ID" = micKey, "AWS_SECRET_ACCESS_KEY" = micSecret,
            "AWS_S3_ENDPOINT" = "neonscience.org", "AWS_DEFAULT_REGION" = "s3.data")
 
 
 
 ### Read ECS bucket contents ####
-#   --> change 'max = 100' to 'max = Inf' to retrieve listing of complete bucket contents
+#   Microbe bucket--> change 'max = 100' to 'max = Inf' to retrieve listing of complete bucket contents
 temp <- aws.s3::get_bucket_df(bucket='neon-microbial-raw-seq-files', check_region = FALSE, max = 10)
+temp <- temp %>% filter(Size != 0)
+
+#   DHP bucket
+temp <- aws.s3::get_bucket_df(bucket='neon-dhp-images', check_region = FALSE, max = 10)
 temp <- temp %>% filter(Size != 0)
 
 
