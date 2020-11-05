@@ -36,9 +36,25 @@ table(delete_vst$vstid %in% no_dupes$vstid) # none of these should be present in
 ## most dupes are from early on, before 2018
 table(delete_vst$year)
 
-## check some of the more recent dupes...49 in 2019 and 19 in 2020
+# for each dupe, grab the record and stash it for posterity
+keep_records <- delete_vst$X_record_id
 
+xout <- lapply(keep_records, query_app_filter, parent ='VST: Mapping and Tagging [PROD]', api_token = Sys.getenv('FULCRUM_API_NEON'), column = '_record_id')
 
-### delete these records  
+## for some reason this creates a duplicate row of each record
+z <- data.table::rbindlist(xout)
+
+## these are weird lists nested within the returned data.frame that muck up operations
+z[,14] <- NULL
+z[,24] <- NULL
+z[,29] <- NULL
+
+z$dupe <- duplicated(z)
+
+zout <- dplyr::filter(z, dupe == FALSE)
+
+write.csv(zout, 'vst_mapping_tagging_record_dupes_deleted.csv', row.names=FALSAE)
+
+### then delete those records -- DELETE RECORDS AFTER ALL HAVE BEEN STASHED
 # lapply(delete_vst$X_record_id, delete_record, api_token = Sys.getenv('FULCRUM_API_NEON'))
 
