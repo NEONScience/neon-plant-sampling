@@ -2,7 +2,7 @@ library(dplyr)
 library(stringr)
 
 # read in fulcrumAPI functions
-fx_path <- '../../../../fulcrumDev/admin_tools_scripts/fulcrumAPI/R'
+fx_path <- '../../fulcrumDev/admin_tools_scripts/fulcrumAPI/R'
 fulcrumAPI_files <- list.files(fx_path, full.names = TRUE)
 lapply(fulcrumAPI_files, FUN = source)
 
@@ -41,20 +41,24 @@ keep_records <- delete_vst$X_record_id
 
 xout <- lapply(keep_records, query_app_filter, parent ='VST: Mapping and Tagging [PROD]', api_token = Sys.getenv('FULCRUM_API_NEON'), column = '_record_id')
 
+xout2 <- xout
+
+for (df in 1:length(xout)){
+  
+  xout2[[df]][,22] <- NULL
+  
+} 
 ## for some reason this creates a duplicate row of each record
-z <- data.table::rbindlist(xout)
+z <- data.table::rbindlist(xout2, fill=TRUE)
 
-## these are weird lists nested within the returned data.frame that muck up operations
-z[,14] <- NULL
-z[,24] <- NULL
-z[,29] <- NULL
+# z$dupe <- duplicated(z)
+# 
+# zout <- dplyr::filter(z, dupe == FALSE)
 
-z$dupe <- duplicated(z)
+z2 <- apply(X = z, MARGIN = 2, as.character)
 
-zout <- dplyr::filter(z, dupe == FALSE)
-
-write.csv(zout, 'vst_mapping_tagging_record_dupes_deleted.csv', row.names=FALSAE)
+write.csv(z2, 'vst_mapping_tagging_record_dupes_deleted.csv', row.names=FALSE)
 
 ### then delete those records -- DELETE RECORDS AFTER ALL HAVE BEEN STASHED
-# lapply(delete_vst$X_record_id, delete_record, api_token = Sys.getenv('FULCRUM_API_NEON'))
+lapply(delete_vst$X_record_id, delete_record, api_token = Sys.getenv('FULCRUM_API_NEON'))
 
