@@ -20,7 +20,6 @@ table(is.na(vst$vstid))
 table(vst$vstid == '')
 table(vst$vstid == ' ')
 
-## records to keep -- arrange by latest creation date, keep that one
 no_dupes <- vst %>% 
   group_by(individualid) %>% 
   arrange(desc(creationDate)) %>% 
@@ -64,3 +63,19 @@ names(delete_vst) %in% names(z2)
 ### then delete those records -- DELETE RECORDS AFTER ALL HAVE BEEN STASHED
 lapply(delete_vst$X_record_id, delete_record, api_token = Sys.getenv('FULCRUM_API_NEON'))
 
+### grab records from fulcrum because I only pulled 9 columns from Fulcrum originally -- get ALL columns
+double_check <- lapply(delete_vst$individualid, query_app_filter, parent ='VST: Mapping and Tagging [PROD]', api_token = Sys.getenv('FULCRUM_API_NEON'), column = 'individualid')
+
+### some API calls returned nothing, which inserts a NULL into the list. as.character on NULL causes a fail
+double_check2 <- lapply(1:length(double_check), FUN = function(x) {
+  #print(x)
+  if (is.null(double_check[[x]]) == FALSE){
+    data.frame(apply(double_check[[x]], c(1,2), as.character))
+  }
+  })
+
+### having to do all this munging suggests a function that pulls Fulcrum records should dump the geometry fields whenever they exist
+double_check2 <- data.table::rbindlist(double_check2, fill=TRUE)
+
+### looks like there are still a few dupes (15 total), but they share the same vstID (so the above code wouldn't have caught these). vstID dupes are indeterminate via code, unless we assume the latest date is the correct record. 
+double_check2 %>% group_by(individualid, vstid) %>% count %>% arrange(desc(n))
