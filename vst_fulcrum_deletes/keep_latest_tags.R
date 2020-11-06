@@ -39,26 +39,28 @@ table(delete_vst$year)
 # for each dupe, grab the record and stash it for posterity
 keep_records <- delete_vst$X_record_id
 
+### grab records from fulcrum because I only pulled 9 columns from Fulcrum originally -- get ALL columns
 xout <- lapply(keep_records, query_app_filter, parent ='VST: Mapping and Tagging [PROD]', api_token = Sys.getenv('FULCRUM_API_NEON'), column = '_record_id')
 
 xout2 <- xout
 
 for (df in 1:length(xout)){
-  
+
   xout2[[df]][,22] <- NULL
-  
-} 
+
+}
 ## for some reason this creates a duplicate row of each record
 z <- data.table::rbindlist(xout2, fill=TRUE)
 
 # z$dupe <- duplicated(z)
-# 
+#
 # zout <- dplyr::filter(z, dupe == FALSE)
 
 z2 <- apply(X = z, MARGIN = 2, as.character)
 
 write.csv(z2, 'vst_mapping_tagging_record_dupes_deleted.csv', row.names=FALSE)
 
+names(delete_vst) %in% names(z2)
 ### then delete those records -- DELETE RECORDS AFTER ALL HAVE BEEN STASHED
 lapply(delete_vst$X_record_id, delete_record, api_token = Sys.getenv('FULCRUM_API_NEON'))
 
