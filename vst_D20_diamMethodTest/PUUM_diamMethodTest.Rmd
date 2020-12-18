@@ -1,0 +1,89 @@
+---
+title: "D20 Diameter Method Test"
+author: "Courtney Meier"
+date: "2020-12-02"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Required libraries
+library(dplyr)
+library(knitr)
+library(PairedData)
+
+# Read in data
+df <- read.csv(file = "PUUM_diamMethodTest.csv", header = TRUE, stringsAsFactors = FALSE)
+
+```
+
+### Stem Diameter method evaluation
+A subset of large Ohi'a trees at the NEON D20 PUUM site are supported by large prop roots, creating a bole that becomes regular far higher than 130 cm above the ground. To determine whether a pole-based tape-wrapping technique or calipers might be suitable for reaching measurement locations that cannot be reached from the ground with a standard DBH tape approach, staff collected stem diameter data from a sample of trees (n=20) that could be reached from the ground using three techniques:
+
+- Standard DBH tape (control)
+- DBH tape + pole
+- Calipers
+
+Here, we use two paired t-tests to determine whether the pole-based method and the caliper method are significantly different from the DBH tape control method.
+
+Summary of input data:
+```{r diamData, echo=FALSE, message=FALSE, warning=FALSE}
+datSum <- dplyr::group_by(df, method) %>%
+  summarise(
+    count = n(),
+    mean = mean(diameter, na.rm = TRUE),
+    stdev = sd(diameter, na.rm = TRUE)
+  )
+
+kable(datSum)
+
+```
+
+
+#### Compare Stem Diameter: Tape control vs. Pole method
+```{r poleCompare, echo=FALSE}
+# Filter desired data
+dat <- df %>% filter(method %in% c("dbhTape", "pole"))
+dbhTape <- dat[dat$method=="dbhTape", "diameter"]
+pole <- dat[dat$method=="pole", "diameter"]
+
+# Conduct t-test
+t.test(dbhTape, pole, paired = TRUE, conf.level = 0.95)
+
+# Create paired plot
+pd <- paired(dbhTape, pole)
+plot(pd, type = "profile")
+
+```
+
+- Paired t-test: No significant difference between control DBH tape and pole-based method.
+- Average difference in stem diameter was 0.04 cm larger with pole-based method.
+- Difference of > 1 cm apparent for at least 1 individual.
+
+
+#### Compare Stem Diameter: Tape control vs. Caliper method
+```{r caliperCompare, echo=FALSE}
+# Filter desired data
+dat <- df %>% filter(method %in% c("dbhTape", "caliper"))
+dbhTape <- dat[dat$method=="dbhTape", "diameter"]
+caliper <- dat[dat$method=="caliper", "diameter"]
+
+# Conduct t-test
+t.test(dbhTape, caliper, paired = TRUE, conf.level = 0.95)
+
+# Create paired plot
+pd <- paired(dbhTape, caliper)
+plot(pd, type = "profile")
+
+```
+
+- Paired t-test: No significant difference between control DBH tape and caliper method.
+- Average difference in stem diameter was 0.05 cm larger with caliper method.
+- Although stem diameter not significantly higher with caliper method, variation in paired differences is greater compared to the pole method.
+
+
+#### Conclusions
+- Pole-wrapping method is suitable for large Ohi'a trees when it is not possible to reach the desired measurement location from the ground.
+- The caliper method may be suitable for difficult individuals that cannot be safely measured from the ground due to terrain, but the caliper method is not preferred.
+- It may be possible to improve the caliper method by making multiple diameter measurements - e.g., two measurements orthogonal to each other. Here, only one diameter measurement was collected with the calipers.
