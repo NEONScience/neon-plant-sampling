@@ -1,7 +1,7 @@
 ---
 title: "CDW Tally Analysis: D20 PUUM"
 author: "Courtney Meier, Cody Flagg"
-date: "17th April 2019"
+date: "1st April 2021"
 output: 
   pdf_document: 
     latex_engine: xelatex
@@ -14,60 +14,53 @@ library(plyr)
 library(dplyr)
 library(ggplot2)
 library(httr)
+library(glue)
 
 ##  Define paths and other inputs
 domain <- "D20"
 site <- "PUUM"
 
-# Define path for writing out files
+# Define required paths and functions
 if (file.exists("~/Documents/workDocuments")){
-outpath <- paste("~/Documents/workDocuments/gitRepositories/neonPlantSampling/cdw_tallyAnalysis/", domain, sep="")
+  outpath <- paste("~/Documents/workDocuments/gitRepositories/neon-plant-sampling/cdw_tallyAnalysis/", domain, sep="")
+  source("~/Documents/workDocuments/gitRepositories/neon-plant-sampling/plant_tools/get_fulcrum_pageLim.R")
 }
 
 if (file.exists("/Users/cmeier")){
-  outpath <- paste("~/Documents/gitRepositories/neonPlantSampling/cdw_tallyAnalysis/", domain, sep="")
+  outpath <- paste("~/Documents/gitRepositories/neon-plant-sampling/cdw_tallyAnalysis/", domain, sep="")
+  source("~/Documents/gitRepositories/neon-plant-sampling/plant_tools/get_fulcrum_pageLim.R")
 }
 
-#   Define function to pull Fulcrum data
-get_Fulcrum_data <- function(api_token, sql, urlEncode = T){
-  require(httr)
-  require(jsonlite)
-  if(urlEncode){
-    sql = URLencode(sql)
-  }
-  url  <-  paste0("https://api.fulcrumapp.com/api/v2/query?token=", api_token, 
-                  "&format=json", "&q=", sql, "&headers=true")
-  request <- httr::GET(url, add_headers("X-ApiToken" = api_token, 
-                                        Accept = "application/json"))
-  content <- jsonlite::fromJSON(httr::content(request, as = "text")) 
-  return(content$rows)
-}
+
 
 ```
 
 ```{r downloadFulcrumData, results='hold', warning=FALSE, message=FALSE}
 ## Import data from Fulcrum
 # Define Fulcrum API token
-api_token = "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
+api_token <- "3ab235047ec293b27f06f6819e81b291435f9c61282345ff1de9624f744034b4233a6fcd1b87c3c2"
 
 # Define CDW Fulcrum query for site
-cdwQuery = paste(URLencode('SELECT domainid, siteid, plotid_parent, tallydate, yearboutbegan, eventid, volumefactor,
-samplingprotocolversion, lidsazimuth, targettaxapresent, logdistance, logmaxdiameter, minorlogdiameter, logid,
-loglength, taxonid, scientificname, decayclass FROM "CDW: Tally [PROD]" AS parent
-                      JOIN "CDW: Tally [PROD]/cdw_transect" AS child'),
-            URLencode(paste0("ON (parent._record_id = child._parent_id)
-                      WHERE siteid LIKE'", site, "'")), sep = "%20")
+cdwQuery <- URLencode(glue::glue('SELECT domainid, siteid, plotid_parent, tallydate, yearboutbegan, eventid, volumefactor,
+                                 samplingprotocolversion, lidsazimuth, targettaxapresent, logdistance, logmaxdiameter, minorlogdiameter,
+                                 logid, loglength, taxonid, scientificname, decayclass FROM "4487b90c-51b3-495a-873b-16f6b6d0abf7"
+                                 AS parent JOIN "4487b90c-51b3-495a-873b-16f6b6d0abf7/cdw_transect" AS child ON
+                                 (parent._record_id = child._parent_id) WHERE siteid =', "'{site}' ORDER BY _child_record_id", .sep = " "))
 
-# Get CDW site data from Fulcrum
-cdw <- get_Fulcrum_data(api_token = api_token, sql = cdwQuery)
+# Get 2020 CDW site data from Fulcrum for Distributed plots
+cdw <- get_fulcrum_pageLim(apiToken = api_token, sql = cdwQuery)
+cdw$volumefactor <- as.integer(cdw$volumefactor)
+
+# Read in 2018 CDW site data for Tower plots previously used for analysis
+cdw2018 <- read.csv(paste(outpath, "D20_PUUM_merged_cdw_rawdata_v1.csv", sep = "/"), header = TRUE, stringsAsFactors = FALSE)
+cdw2018 <- cdw2018 %>% select(-X, -diameterClass, -decayClassNum)
+
+cdw <- cdw %>% bind_rows(cdw2018)
 
 ```
 
 
 ```{r data_processing, results='hold'}
-##  Filter to analyze data from 2018 only
-cdw %>% filter(grepl("2018", eventid)) -> cdw
-
 ## Create diameter class factor
 cdw$diameterClass <- ifelse(cdw$logmaxdiameter >= 10, '>=10cm', 
                             ifelse(cdw$logmaxdiameter < 5, "2-5cm", "5-10cm"))
@@ -76,17 +69,16 @@ cdw$diameterClass <- ifelse(cdw$logmaxdiameter >= 10, '>=10cm',
 cdw$decayClassNum <- sapply(stringr::str_split(cdw$decayclass, pattern = " "),"[[", 1)
 
 ##  Convert '2PLANT' to '2PLANT-H'
-cdw[cdw$taxonid=='2PLANT', 'taxonid'] <- '2PLANT-H'
-cdw %>% mutate(taxonid = replace(taxonid, taxonid=='2PLANT', '2PLANT-H')) -> cdw
+cdw <- cdw %>% mutate(taxonid = replace(taxonid, taxonid=='2PLANT', '2PLANT-H'))
 
 ## Write data file
-write.csv(cdw, file = paste(outpath, paste(domain, site, "merged","cdw_rawdata.csv", sep="_"), sep = "/"))
+write.csv(cdw, file = paste(outpath, paste(domain, site, "merged","cdw_rawdata_v2.csv", sep="_"), sep = "/"))
 
 ```
 
 ```{r summary_table, results='hold', echo=FALSE}
-## Filter out 'blank' transects where TTP = NO
-cdw_fil <- dplyr::filter(cdw, targettaxapresent == "Y", !is.na(taxonid), !is.na(decayclass), decayclass!="NA")
+## Filter out 'blank' transects where TTP = NO and concentrate on decayClass = 1|2 due to cutting restrictions
+cdw_fil <- cdw %>% dplyr::filter(targettaxapresent == "Y", !is.na(taxonid), grepl("1", decayclass)|grepl("2", decayclass))
 t1 <- ddply(cdw_fil, ~siteid+taxonid+decayClassNum+diameterClass, summarize, counts = length(taxonid))
 
 ## Sort rows by siteID then by descending number of counts
@@ -112,7 +104,7 @@ t1$cumulativeDiskNum <- cumsum(t1$sampledDiskNum)
 ```{r rank_abundance_plots, results='hold', echo=FALSE}
 ## species abundance/total abundance
 ######  This was throwing an error, unsure why
-ggplot(data = t1, aes(x = DSTrank, y = counts, color = taxonid, shape = diameterClass)) +
+ggCDW <- ggplot(data = t1, aes(x = DSTrank, y = counts, color = taxonid, shape = diameterClass)) +
   geom_point() + 
   facet_wrap(~siteid) + 
   labs(title = "Rank Abundance of decayClass x sizeCategory x taxonID (DST)")
@@ -123,14 +115,14 @@ ggplot(data = t1, aes(x = DSTrank, y = counts, color = taxonid, shape = diameter
 ```{r write_files, echo=FALSE}
 ##  Prepare t1 for output to protocol appendix
 # Filter columns from t1 that are not required by Field Ops, and not needed in protocol appendix
-t1 %>% select(-DSTrank, -DSTcombo, -totalLogs) -> t1
+t1 <- t1 %>% select(-DSTrank, -DSTcombo, -totalLogs)
 
 # Reorder columns
 t1 <- t1[c("siteid", "taxonid", "decayClassNum", "diameterClass", "relativeAbundance", "cumulativeAbundance", "sampledDiskNum", "cumulativeDiskNum")]
 
 # Rename columns
-t1 %>% rename(decayClass=decayClassNum, sizeCategory=diameterClass) -> t1
+t1 <- t1 %>% rename(decayClass=decayClassNum, sizeCategory=diameterClass)
 
-write.csv(t1, file = paste(outpath, paste(domain, site, "tally_abundance.csv", sep = "_"), sep = "/"), row.names = F)
+write.csv(t1, file = paste(outpath, paste(domain, site, "tally_abundance_v2.csv", sep = "_"), sep = "/"), row.names = F)
 ```
 
