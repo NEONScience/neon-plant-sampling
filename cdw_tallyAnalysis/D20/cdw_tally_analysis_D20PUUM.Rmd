@@ -47,15 +47,18 @@ cdwQuery <- URLencode(glue::glue('SELECT domainid, siteid, plotid_parent, tallyd
                                  AS parent JOIN "4487b90c-51b3-495a-873b-16f6b6d0abf7/cdw_transect" AS child ON
                                  (parent._record_id = child._parent_id) WHERE siteid =', "'{site}' ORDER BY _child_record_id", .sep = " "))
 
-# Get 2020 CDW site data from Fulcrum for Distributed plots
-cdw <- get_fulcrum_pageLim(apiToken = api_token, sql = cdwQuery)
-cdw$volumefactor <- as.integer(cdw$volumefactor)
+# # Get 2020 CDW site data from Fulcrum for Distributed plots
+# cdw <- get_fulcrum_pageLim(apiToken = api_token, sql = cdwQuery)
+# cdw$volumefactor <- as.integer(cdw$volumefactor)
+# 
+# # Read in 2018 CDW site data for Tower plots previously used for analysis
+# cdw2018 <- read.csv(paste(outpath, "D20_PUUM_merged_cdw_rawdata_v1.csv", sep = "/"), header = TRUE, stringsAsFactors = FALSE)
+# cdw2018 <- cdw2018 %>% select(-X, -diameterClass, -decayClassNum)
+# 
+# cdw <- cdw %>% bind_rows(cdw2018)
 
-# Read in 2018 CDW site data for Tower plots previously used for analysis
-cdw2018 <- read.csv(paste(outpath, "D20_PUUM_merged_cdw_rawdata_v1.csv", sep = "/"), header = TRUE, stringsAsFactors = FALSE)
-cdw2018 <- cdw2018 %>% select(-X, -diameterClass, -decayClassNum)
-
-cdw <- cdw %>% bind_rows(cdw2018)
+# Read in previously row-stacked 2020 and 2018 data
+cdw <- read.csv(paste(outpath, "D20_PUUM_merged_cdw_rawdata_v2.csv", sep = "/"), stringsAsFactors = FALSE, header = TRUE)
 
 ```
 
@@ -70,6 +73,9 @@ cdw$decayClassNum <- sapply(stringr::str_split(cdw$decayclass, pattern = " "),"[
 
 ##  Convert '2PLANT' to '2PLANT-H'
 cdw <- cdw %>% mutate(taxonid = replace(taxonid, taxonid=='2PLANT', '2PLANT-H'))
+
+##  Convert taxonid=='METRO' to 'MEPO5'
+cdw <- cdw %>% mutate(taxonid = replace(taxonid, taxonid=='METRO', 'MEPO5'))
 
 ## Write data file
 write.csv(cdw, file = paste(outpath, paste(domain, site, "merged","cdw_rawdata_v2.csv", sep="_"), sep = "/"))
