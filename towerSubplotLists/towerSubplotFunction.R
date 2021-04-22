@@ -47,6 +47,9 @@ randomSubplots = function(siteCode){
   # Create a vector of subplotIDs from which to randomly sample; currenty, subplotIDs are specific to a 40m x 40m plot
   theSubplots <- c(21,23,39,41)
   
+  # Use method for sampling random numbers in R versions prior to 3.6
+  RNGkind(sample.kind = "Rounding")
+  
   ##  Use a "for" loop to generate two randomly selected subplots for each value of plotID
   for (i in 1:nrow(subplots.df)){
     # Use the plotID as a set.seed so that randomly selected subplots are reproducible
