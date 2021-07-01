@@ -35,8 +35,12 @@ put_file_ecs <- function(sourceFile, objectKey, ecsBucket){
     print(paste0("Object already exists in ", ecsBucket, ": ", objectKey), quote = FALSE)
   } else {
     # Put object into bucket with specified objectKey, and report successful transfer
-    aws.s3::put_object(file = sourceFile, object = objectKey, bucket = ecsBucket, 
-                       acl = "public-read", check_region = FALSE)
+    aws.s3::put_object(file = sourceFile,
+                       object = objectKey,
+                       bucket = ecsBucket,
+                       #acl = "public-read",
+                       acl = "private",
+                       check_region = FALSE)
     print(paste0("Successful put to ", ecsBucket, ": ", objectKey), quote = FALSE)
   }
 }
