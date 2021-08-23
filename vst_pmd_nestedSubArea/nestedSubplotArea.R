@@ -170,7 +170,7 @@ allPmdDF <- read.csv("vst_pmd_nestedSubplotArea.csv", header = TRUE)
 
 ### Next step: Review values for towerSubset at each site and update 'noneSelected' with value from nstPmdDF when allTowerPlots were measured 
 
-
+write.csv(nstPmdDF, file = "vst_nonWoody_pmdDF_20210819.csv", row.names = FALSE, fileEncoding = "UTF-8")
 
 
 
