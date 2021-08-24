@@ -1,0 +1,189 @@
+---
+title: "CDW Tally Analysis: D08 LENO"
+author: "Courtney Meier, Cody Flagg"
+date: "23rd August 2021"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+# Status
+
+  - Re-running analysis in 2021 after major storm caused significant wind-fall at LENO site.
+  - Due to pines being present in the Tower airshed because of slightly higher and drier soil, analysis uses previously collected tally data from Tower plots and 2021 Distributed plot data.
+
+```{r setup, results='hold', warning=FALSE, message=FALSE}
+## Load libraries
+library(plyr)
+library(dplyr)
+library(ggplot2)
+library(httr)
+library(glue)
+library(neonUtilities)
+
+##  Define paths and other inputs
+domain <- "D08"
+site <- "LENO"
+
+# Define required paths and functions
+if (file.exists("~/Documents/workDocuments")){
+  outpath <- paste("~/Documents/workDocuments/gitRepositories/neon-plant-sampling/cdw_tallyAnalysis/", domain, sep="")
+  source("~/Documents/workDocuments/gitRepositories/neon-plant-sampling/plant_tools/get_fulcrum_pageLim.R")
+}
+
+if (file.exists("/Users/cmeier")){
+  outpath <- paste("~/Documents/gitRepositories/neon-plant-sampling/cdw_tallyAnalysis/", domain, sep="")
+  source("~/Documents/gitRepositories/neon-plant-sampling/plant_tools/get_fulcrum_pageLim.R")
+}
+
+
+
+```
+
+```{r downloadFulcrumData, results='hold', warning=FALSE, message=FALSE}
+## Import data from Fulcrum
+# Define CDW Fulcrum query for site
+cdwQuery <- URLencode(glue::glue('SELECT domainid, siteid, plotid_parent, tallydate, eventid, volumefactor,
+                                 samplingprotocolversion, lidsazimuth, targettaxapresent, logdistance, logmaxdiameter, minorlogdiameter,
+                                 logid, loglength, taxonid, scientificname, decayclass FROM "4487b90c-51b3-495a-873b-16f6b6d0abf7"
+                                 AS parent JOIN "4487b90c-51b3-495a-873b-16f6b6d0abf7/cdw_transect" AS child ON
+                                 (parent._record_id = child._parent_id) WHERE siteid =', "'{site}' ORDER BY _child_record_id", .sep = " "))
+
+##  Get 2021 CDW site data from Fulcrum for Distributed plots
+fulcrumCDW <- get_fulcrum_pageLim(apiToken = Sys.getenv('FULCRUM_PAT'), sql = cdwQuery)
+
+#   Set data types and rename variables to match Portal data
+fulcrumCDW$volumefactor <- as.integer(fulcrumCDW$volumefactor)
+fulcrumCDW$tallydate <- as.Date(fulcrumCDW$tallydate)
+
+fulcrumCDW <- fulcrumCDW %>%
+  dplyr::rename(
+    domainID = domainid,
+    siteID = siteid,
+    plotID = plotid_parent,
+    date = tallydate,
+    eventID = eventid,
+    volumeFactor = volumefactor,
+    samplingProtocolVersion = samplingprotocolversion,
+    lidsAzimuth = lidsazimuth,
+    targetTaxaPresent = targettaxapresent,
+    logDistance = logdistance,
+    logMaxDiameter = logmaxdiameter,
+    logMinorDiameter = minorlogdiameter,
+    logID = logid,
+    logLength = loglength,
+    taxonID = taxonid,
+    scientificName = scientificname,
+    decayClass = decayclass
+  )
+
+fulcrumCDW$plotType <- "distributed"
+
+
+##  Get older CDW Tally data from Portal for Tower plots
+portalCDW <- neonUtilities::loadByProduct(
+  dpID = "DP1.10010.001",
+  site = "LENO",
+  check.size = FALSE,
+  token = Sys.getenv('NEON_PAT')
+)
+
+portalCDW <- portalCDW$cdw_fieldtally
+
+portalCDW <- portalCDW %>%
+  dplyr::filter(plotType=="tower" & eventID=="CDW.2017.LENO") %>%
+  dplyr::select(
+    domainID,
+    siteID,
+    plotID,
+    plotType,
+    date,
+    eventID,
+    volumeFactor,
+    samplingProtocolVersion,
+    lidsAzimuth,
+    targetTaxaPresent,
+    logDistance,
+    logMaxDiameter,
+    logMinorDiameter,
+    logID,
+    logLength,
+    taxonID,
+    scientificName,
+    decayClass
+  )
+portalCDW$volumeFactor <- as.integer(portalCDW$volumeFactor)
+
+cdw <- dplyr::bind_rows(fulcrumCDW, portalCDW)
+
+
+```
+
+
+```{r data_processing, results='hold'}
+## Create diameter class factor
+cdw$diameterClass <- ifelse(cdw$logMaxDiameter >= 10, '>=10cm', 
+                            ifelse(cdw$logMaxDiameter < 5, "2-5cm", "5-10cm"))
+ 
+## Simplify decayclass to numeric value wrapped inside sapply(decayClassNum, "[[", 1) e.g. 'return first element of each list member'
+cdw$decayClassNum <- sapply(stringr::str_split(cdw$decayClass, pattern = " "),"[[", 1)
+
+##  Convert '2PLANT' to '2PLANT-H'
+#cdw <- cdw %>% mutate(taxonID = replace(taxonID, taxonID=='2PLANT', '2PLANT-H')) #--> not needed, no '2PLANT' in dataset
+
+
+## Write data file
+write.csv(cdw, file = paste(outpath, paste(domain, site, "merged","cdw_rawdata_v2.csv", sep="_"), sep = "/"))
+
+```
+
+```{r summary_table, results='hold', echo=FALSE}
+## Filter out 'blank' transects where TTP = NO and concentrate on decayClass = 1|2 due to cutting restrictions
+cdw_fil <- cdw %>% dplyr::filter(targetTaxaPresent == "Y", !is.na(taxonID))
+t1 <- ddply(cdw_fil, ~siteID+taxonID+decayClassNum+diameterClass, summarize, counts = length(taxonID))
+
+## Sort rows by siteID then by descending number of counts
+t1 <- dplyr::arrange(t1, siteID, desc(counts), diameterClass, decayClassNum, taxonID)
+
+## Calculate relative abundances
+t1$totalLogs <- nrow(cdw_fil)
+t1$relativeAbundance <- round((t1$counts/t1$totalLogs)*100,2)
+t1$cumulativeAbundance <- round(cumsum(t1$relativeAbundance),2)
+
+## determine raw ranking by count of DST combo within siteid
+t1 <- plyr::ddply(t1, ~siteID, mutate, DSTrank = as.numeric(paste(1:length(counts))), DSTcombo = paste0(taxonID,"_", decayClassNum,"_",diameterClass))
+# t2 <- ddply(cdw, ~siteid+taxonid, summarize, counts = length(taxonid))
+
+##  Determine required sample size per DST combo, and cumulative sample size
+t1$sampledDiskNum <- ifelse(t1$diameterClass == ">=10cm", 10,5)
+t1$cumulativeDiskNum <- cumsum(t1$sampledDiskNum)
+
+```
+
+`r knitr::kable(t1)`
+
+```{r rank_abundance_plots, results='hold', echo=FALSE}
+## species abundance/total abundance
+######  This was throwing an error, unsure why
+ggCDW <- ggplot(data = t1, aes(x = DSTrank, y = counts, color = taxonID, shape = diameterClass)) +
+  geom_point() + 
+  facet_wrap(~siteID) + 
+  labs(title = "Rank Abundance of decayClass x sizeCategory x taxonID (DST)")
+```
+
+### Code
+
+```{r write_files, echo=FALSE}
+##  Prepare t1 for output to protocol appendix
+# Filter columns from t1 that are not required by Field Ops, and not needed in protocol appendix
+t1 <- t1 %>% select(-DSTrank, -DSTcombo, -totalLogs)
+
+# Reorder columns
+t1 <- t1[c("siteID", "taxonID", "decayClassNum", "diameterClass", "relativeAbundance", "cumulativeAbundance", "sampledDiskNum", "cumulativeDiskNum")]
+
+# Rename columns
+t1 <- t1 %>% rename(decayClass=decayClassNum, sizeCategory=diameterClass)
+
+write.csv(t1, file = paste(outpath, paste(domain, site, "tally_abundance_v2.csv", sep = "_"), sep = "/"), row.names = F)
+```
+
