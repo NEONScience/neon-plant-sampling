@@ -1,0 +1,118 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r libraries}
+knitr::opts_chunk$set(echo = TRUE)
+
+options("stringsAsFactors" = FALSE)
+
+library(neonUtilities)
+library(tidyverse)
+```
+
+
+
+```{r pull data}
+
+dpid=as.character('DP1.10098.001')
+  
+  
+dat <- loadByProduct(dpID=dpid, 
+              site = "BART", # example with 1 site
+              package = "basic",
+              check.size = FALSE,
+              token = Sys.getenv('NEON_KEY'))
+
+
+# unlist all data frames
+list2env(dat ,.GlobalEnv)
+
+
+```
+
+```{r subset dfs}
+# Create a list of all species captured in veg structure at a site
+map_tax <- vst_mappingandtagging%>%
+  select(siteID, taxonID, scientificName, taxonRank)
+
+## If shrub groups are present in the downloaded data, pull taxonIDs from that table as well as mapping and tagging
+# shrub_tax <- vst_shrubgroup%>%
+#   select(siteID, taxonID, scientificName, taxonRank)
+
+#all_tax <- distinct(rbind(map_tax, shrub_tax)
+
+```
+
+
+```{r prepare dataframes}
+
+#get summary of # plots per eventID
+table(vst_perplotperyear$eventID, vst_perplotperyear$plotType)
+
+# look at event type by year - only available 2020-present 
+unique(paste(vst_perplotperyear$eventID, vst_perplotperyear$eventType))
+
+# look at data collected by year - only available 2020-present 
+unique(paste(vst_perplotperyear$eventID, vst_perplotperyear$dataCollected))
+
+## select target eventID
+plot_df <- vst_perplotperyear%>%
+  filter(eventID=='vst_BART_2017')%>%
+  select(domainID, siteID, plotType, plotID, nlcdClass, eventID, treesPresent,
+         treesAbsentList, shrubsPresent, shrubsAbsentList, lianasPresent,
+         lianasAbsentList, nestedSubplotAreaShrubSapling, nestedSubplotAreaLiana,
+         totalSampledAreaTrees, totalSampledAreaShrubSapling, totalSampledAreaLiana,
+         remarks)
+  
+plot_df$plotID <- as.character(plot_df$plotID)
+
+unique(vst_apparentindividual$growthForm)
+
+
+## subset apparent individual table to the event specified in plot_df and growthForms of interest
+## Area sampled differs according to growth form and plot, see protocol or dpug for details. This example uses tree growth forms which are not sampled in nested subplots. 
+ 
+ai_df <- vst_apparentindividual%>%
+  filter(eventID%in%plot_df$eventID & plotID%in%plot_df$plotID 
+         & growthForm%in%c("single bole tree", "multi-bole tree"))%>%
+  select(-uid, -namedLocation, -date, -eventID, -domainID, -siteID)
+
+
+df_out <- full_join(plot_df, ai_df, by="plotID")
+
+## add taxonID
+tax <- vst_mappingandtagging%>%
+  select(plotID, individualID, taxonID, scientificName)
+
+tax$scientificName <- as.character(tax$scientificName)
+
+df_out <- left_join(df_out, tax)
+
+```
+
+```{r tree summaries}
+unique(df_out$plantStatus)
+
+
+#remove na taxonid & dead or non-qualifying trees
+df_out <- filter(df_out, !is.na(scientificName) & 
+                   !plantStatus%in%c("Downed", "No longer qualifies", "Dead, broken bole", "Standing dead", "Lost, fate unknown", "Removed"))
+
+# summarize by plot
+tax_by_plot <- df_out%>%
+  group_by(plotID, totalSampledAreaTrees, scientificName)%>%
+  summarize(count=n())
+
+#calculate total sampled area by site
+area <- (800*length(unique(df_out$plotID)))
+
+### for growthForms using nested subplots, will need to use totalSampledArea values from the vst_perplotperyear table after verifying there are no duplicate records
+
+#summarize by site
+tax_by_site <- df_out%>%
+  group_by(scientificName)%>%
+  summarize(count=n(), area_m2=area)
+
+```
