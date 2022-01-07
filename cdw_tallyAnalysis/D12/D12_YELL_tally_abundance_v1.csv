@@ -1,0 +1,16 @@
+"siteID","taxonID","decayClass","sizeCategory","relativeAbundance","cumulativeAbundance","sampledDiskNum","cumulativeDiskNum"
+"YELL","2PLANT-S","4",">=10cm",27.27,27.27,10,10
+"YELL","2PLANT-S","3",">=10cm",24.03,51.3,10,20
+"YELL","PSME","3",">=10cm",18.18,69.48,10,30
+"YELL","PSME","4",">=10cm",8.44,77.92,10,40
+"YELL","2PLANT-S","5",">=10cm",6.49,84.41,10,50
+"YELL","2PLANT-S","3","5-10cm",3.9,88.31,5,55
+"YELL","2PLANT-S","4","5-10cm",2.6,90.91,5,60
+"YELL","PICO","2",">=10cm",1.95,92.86,10,70
+"YELL","PICO","3",">=10cm",1.95,94.81,10,80
+"YELL","2PLANT-S","3","2-5cm",1.3,96.11,5,85
+"YELL","PSME","3","5-10cm",1.3,97.41,5,90
+"YELL","PICO","1",">=10cm",0.65,98.06,10,100
+"YELL","2PLANT-S","2",">=10cm",0.65,98.71,10,110
+"YELL","PSME","2",">=10cm",0.65,99.36,10,120
+"YELL","PSME","5",">=10cm",0.65,100.01,10,130
