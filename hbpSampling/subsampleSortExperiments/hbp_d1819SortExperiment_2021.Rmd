@@ -1,0 +1,171 @@
+---
+title: "HBP D18/D19 2021 Bryophyte Sorting Subsample Experiment"
+author: "Courtney L. Meier"
+date: "`r format(Sys.Date(), format = '%B %d, %Y')`"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#   Load required libraries
+library(plyr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(lmerTest)
+library(openxlsx)
+
+```
+
+##  Goal
+
+To determine the efficacy of subsampling the BRY growth form across various proportions of HBP samples in all D18/D19 sites in order to reduce long sort times associated with bryophytes from current-year clipped biomass. Subsampling is only evaluated for the BRY functional group; all other functional groups are sorted from the full clip strip.
+
+
+
+##  Experimental Setup and Analyses
+
+* Subsample the BRY growth from from as many `clipIDs` as possible, in both Distributed and Tower plots.
+
+* For each clipID harvested in the field, test procedure by creating subsamples with the following percentages of the total freshMass:
+    - 10%
+    - 15%
+    - 25%
+    - 50%
+    - 100% (sum of all subsamples)
+
+* When subsampling is employed, calculate dryMass as follows: `dM = fM * (ssDM/ssFM)`, where:
+    - *dM* = estimated dryMass of BRY in the clipID
+    - *fM* = total freshMass in the clipID
+    - *ssDM* = subsampleDryMass of BRY in the subsample
+    - *ssFM* = fresh mass of all biomass in the subsample (BRY + other clipped material)
+
+* Compare dryMass results calculated via subsampling with dryMass obtained with no subsampling, and use linear mixed-effects models to analyze results.
+
+
+
+##  Procedure
+
+1. Perform clip harvest in the field as normal, and bring clipped biomass back to the laboratory in cold storage as normal.
+
+1. Thoroughly mix biomass from each clipID to homogenize as thoroughly as possible.
+    a. For large amounts of biomass, and when there is more than one bag of biomass for a given clipID, use a large bag, box, tray or equivalent vessel to mix the biomass.
+
+1. For each clipID, weigh and record to 0.01 g:
+    a. **`freshMass`** = total fresh mass in the clipID (all clipped material)
+
+1. Based on the **`freshMass`**, calculate the desired subsample fresh masses for testing. For example, assuming **`freshMass`** = 100 g, the target subsample fresh masses are:
+    a. 10% subsample --> 10 g
+    a. 15% subsample --> 15 g
+    a. 25% subsample --> 25 g
+    a. 50% subsample --> 50 g
+
+1. Label a coin envelope for each subsample above with the information below.
+    a. **`subsampleTest`**: `10%, 15%, 25%` or `50%`.
+    a. **`clipID`**
+    a. **`collectDate`**
+
+1. Weigh each subsample created above (all clipped material), and record the information below.
+    a. **`subsampleTest`**: as above
+    a. **`clipID`**
+    a. **`collectDate`**
+    a. **`subsampleFreshMass`**: To the nearest 0.01 g; for subsamples < 0.5 g total mass, weigh to the nearest 0.0001 g
+
+1. Sort BRY from other clipped material for each subsample, and place sorted, current-year BRY biomass into the corresponding labeled coin envelope. 
+    a. Sorted OSD may be discarded at this point.
+
+1. Dry subsamples until dry; minimum of 48 h @ 65 ˚C, track drying progress as normal.
+
+1. Remove dry samples from the oven one at a time, and immediately weigh and record:
+    a. **subsampleDryMass**: To the nearest 0.01 g; for masses < 0.5 g, weigh to the nearest 0.0001 g.
+    
+
+
+##  Analyses
+
+```{r calculations, echo=FALSE}
+# Read in data collected by D09
+if(file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/hbpSampling/subsampleSortExperiments/"
+}
+
+df <- read.csv(paste0(inputPath, "hbp_d17SortExperiment2017_input.csv"), header = TRUE, stringsAsFactors = FALSE)
+
+#   Calculate total observed dryMass for each Clip Strip, and estimated dryMass from subsampling
+#   Filter to focus analyses on 2018 bout collected between 2/19-2/28; concern that earlier bout did not 
+#   adequately represent clipping/sorting conditions that exist during majority of field season.
+df %>%
+  mutate(dryMass = ssDM10 + ssDM25 + ssDM50 + ssDMResid) %>%
+  mutate(dryMass10 = freshMass*(ssDM10/ssFM10)) %>%
+  mutate(dryMass25 = freshMass*(ssDM25/ssFM25)) %>%
+  mutate(dryMass50 = freshMass*(ssDM50/ssFM50)) %>%
+  filter(grepl("2018", eventID)) %>%
+  arrange(eventID, clipID, exclosure) -> df
+
+# Arrange data suitable for ggplot2, then plot
+df %>%
+  select(eventID, clipID, collectDate, exclosure, dryMass, dryMass10, dryMass25, dryMass50) %>%
+  gather(key = treatment, value = estimatedDryMass, dryMass10, dryMass25, dryMass50, dryMass) %>%
+  rename() %>%
+  arrange(clipID, treatment) -> longDF
+
+summaryDF <- ddply(longDF, c("treatment", "exclosure"), summarise,
+                   N = length(estimatedDryMass),
+                   mean = mean(estimatedDryMass),
+                   sd = sd(estimatedDryMass),
+                   se = sd/sqrt(N))
+
+ggplot(summaryDF, aes(x = treatment, y = mean, fill = exclosure)) +
+  geom_bar(position = "dodge", stat = "identity") +
+  geom_errorbar(aes(ymin = mean-se, ymax = mean+se), width = 0.2, position = position_dodge(0.9)) +
+  labs(x = "Treatment", y = "Dry mass (g)", title = "D17 HBP Clip Strip subsampling")
+
+
+```
+
+### Results: Mixed-Effects model analysis
+
+1.  Model accounting for subsampling effect on **dryMass** and using **clipID** as a random effect (no need to use **exclosure** as a fixed effect since random effect accounts for variation across exclosure treatment).
+```{r meTreatment}
+
+m1ML <- lmer(estimatedDryMass ~ treatment + (1|clipID), longDF, REML = FALSE)
+summary(m1ML)
+anova(m1ML)
+
+```
+\pagebreak
+
+
+2.  Null model, and using **clipID** as a random effect.
+```{r meExclosure}
+m3ML <- lmer(estimatedDryMass ~ 1 + (1|clipID), longDF, REML = FALSE)
+summary(m3ML)
+anova(m1ML, m3ML)
+
+```
+\pagebreak
+
+
+3.  Linear model, using treatment*exclosure, and no random effect.
+```{r lmExclosureInterxnTreatment}
+m1LM <- lm(estimatedDryMass ~ exclosure*treatment, data = longDF)
+summary(m1LM)
+anova(m1LM)
+
+```
+\pagebreak
+
+
+##  Outcomes
+
+1. Random effect associated with **clipID** explains considerable variability in the data. See summary output for model = m1ML.
+1. Summary output for Mixed Effects model indicates that D17 Clip Strips should be subsampled at the 25% level for all bouts with **herbGroup** = ALL.
+    - Estimates of dryMass using a 10% subsample are significantly higher than the entire sorted sample, using data from one bout collected late February and just before peak green.
+    - Other subsamples are not significantly different than the entire sorted subsample --> go with 25%
+1. Effect of `exclosure*treatment`, as evaluated in standard linear model:
+    - Effect of `exclosure` not significant (m1LM), and effect of `treatment` also not significant. No detection of `exclosure:treatment` interaction effect.
+
+    

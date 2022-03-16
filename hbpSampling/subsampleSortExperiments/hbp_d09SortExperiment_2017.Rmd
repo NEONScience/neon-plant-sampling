@@ -12,6 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ##  Goal
+
 To determine the efficacy of subsampling various proportions of HBP samples in D09 in order to reduce long sort times associated with removing OSD from current-year clipped biomass within the context of dense Kentucky Blue Grass mats. Subsampling is only evaluated in the context of clip harvests that do not require sorting to functional group (i.e., non-peak biomass clips), because the subsample to total mass ratios will not apply to individual herbGroups.
 
 ##  Experimental Setup and Analyses
