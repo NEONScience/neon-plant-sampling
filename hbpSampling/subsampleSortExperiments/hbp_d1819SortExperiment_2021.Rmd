@@ -86,37 +86,54 @@ To determine the efficacy of subsampling the BRY growth form across various prop
 
 ##  Analyses
 
-```{r calculations, echo=FALSE}
-# Read in data collected by D09
+Using formula from above, `dryMass` values are calculated for BRY from `freshMass` value from whole clip-strip, as well as subsample fresh and dry mass values.
+
+Note: The 15% subsample group has the greatest uncertainty due to the fact it was consistently sorted last and therefore lost the most water.
+
+```{r massCalculations}
+# Read in data collected by D18/D19
 if(file.exists("/Users/cmeier")){
-  inputPath <- "~/Documents/gitRepositories/neonPlantSampling/hbpSampling/subsampleSortExperiments/"
+  inputPath <- "~/Documents/gitRepositories/neon-plant-sampling/hbpSampling/subsampleSortExperiments/"
 }
 
-df <- read.csv(paste0(inputPath, "hbp_d17SortExperiment2017_input.csv"), header = TRUE, stringsAsFactors = FALSE)
+if(file.exists("/Users/Pajaro")){
+  inputPath <- "~/Documents/workDocuments/gitRepositories/neon-plant-sampling/hbpSampling/subsampleSortExperiments/"
+}
+
+df <- openxlsx::read.xlsx(
+  xlsxFile = paste0(inputPath, "hbp_d1819_sortExperiment2021_data.xlsx"),
+  sheet = "R_input",
+  startRow = 1,
+  colNames = TRUE
+)
+
 
 #   Calculate total observed dryMass for each Clip Strip, and estimated dryMass from subsampling
-#   Filter to focus analyses on 2018 bout collected between 2/19-2/28; concern that earlier bout did not 
-#   adequately represent clipping/sorting conditions that exist during majority of field season.
-df %>%
-  mutate(dryMass = ssDM10 + ssDM25 + ssDM50 + ssDMResid) %>%
-  mutate(dryMass10 = freshMass*(ssDM10/ssFM10)) %>%
-  mutate(dryMass25 = freshMass*(ssDM25/ssFM25)) %>%
-  mutate(dryMass50 = freshMass*(ssDM50/ssFM50)) %>%
-  filter(grepl("2018", eventID)) %>%
-  arrange(eventID, clipID, exclosure) -> df
+df <- df %>%
+  dplyr::mutate(dryMass10 = round(freshMass*(ssDM10/ssFM10), digits = 2), .before = dryMass) %>%
+  dplyr::mutate(dryMass15 = round(freshMass*(ssDM15/ssFM15), digits = 2), .before = dryMass) %>%
+  dplyr::mutate(dryMass25 = round(freshMass*(ssDM25/ssFM25), digits = 2), .before = dryMass) %>%
+  dplyr::mutate(dryMass50 = round(freshMass*(ssDM50/ssFM50), digits = 2), .before = dryMass) %>%
+  dplyr::arrange(domainID, siteID, clipID)
 
-# Arrange data suitable for ggplot2, then plot
-df %>%
-  select(eventID, clipID, collectDate, exclosure, dryMass, dryMass10, dryMass25, dryMass50) %>%
-  gather(key = treatment, value = estimatedDryMass, dryMass10, dryMass25, dryMass50, dryMass) %>%
-  rename() %>%
-  arrange(clipID, treatment) -> longDF
+# Arrange data suitable for ggplot2, then plot ------------------------------> needs work to work with this dataset
+longDF <- df %>%
+  dplyr::select(eventID, clipID, collectDate, exclosure, dryMass, dryMass10, dryMass25, dryMass50) %>%
+  tidyr::gather(key = treatment, value = estimatedDryMass, dryMass10, dryMass25, dryMass50, dryMass) %>%
+  dplyr::arrange(clipID, treatment)
 
 summaryDF <- ddply(longDF, c("treatment", "exclosure"), summarise,
                    N = length(estimatedDryMass),
                    mean = mean(estimatedDryMass),
                    sd = sd(estimatedDryMass),
                    se = sd/sqrt(N))
+```
+
+For each site, we plot the true observed BRY dryMass against the estimated dryMass calculated via subsampling.
+
+``` {r bryPlots, echo=FALSE}
+### Create plots of subsampling results by siteID
+
 
 ggplot(summaryDF, aes(x = treatment, y = mean, fill = exclosure)) +
   geom_bar(position = "dodge", stat = "identity") +
@@ -126,10 +143,12 @@ ggplot(summaryDF, aes(x = treatment, y = mean, fill = exclosure)) +
 
 ```
 
-### Results: Mixed-Effects model analysis
 
-1.  Model accounting for subsampling effect on **dryMass** and using **clipID** as a random effect (no need to use **exclosure** as a fixed effect since random effect accounts for variation across exclosure treatment).
-```{r meTreatment}
+
+## Results: Mixed-Effects model analysis
+
+1.  Model accounting for subsampling effect on **dryMass** and using **clipID** as a random effect; benefit of random effect is it can account for variation at level of clip-strip unrelated to treatment - e.g., variation due to moisture on day clip-strip was harvested, effect of moss abundance or type at particular location, etc.
+```{r lmerTreatment}
 
 m1ML <- lmer(estimatedDryMass ~ treatment + (1|clipID), longDF, REML = FALSE)
 summary(m1ML)
@@ -140,7 +159,7 @@ anova(m1ML)
 
 
 2.  Null model, and using **clipID** as a random effect.
-```{r meExclosure}
+```{r lmerNull}
 m3ML <- lmer(estimatedDryMass ~ 1 + (1|clipID), longDF, REML = FALSE)
 summary(m3ML)
 anova(m1ML, m3ML)
