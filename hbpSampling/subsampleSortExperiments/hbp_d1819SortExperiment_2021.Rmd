@@ -15,6 +15,7 @@ library(plyr)
 library(dplyr)
 library(tidyr)
 library(ggplot2)
+library(lattice)
 library(lmerTest)
 library(openxlsx)
 
@@ -81,16 +82,16 @@ To determine the efficacy of subsampling the BRY growth form across various prop
 
 1. Remove dry samples from the oven one at a time, and immediately weigh and record:
     a. **subsampleDryMass**: To the nearest 0.01 g; for masses < 0.5 g, weigh to the nearest 0.0001 g.
-    
 
+\pagebreak
 
-##  Analyses
+##  Analyses and Graphs
 
 Using formula from above, `dryMass` values are calculated for BRY from `freshMass` value from whole clip-strip, as well as subsample fresh and dry mass values.
 
 Note: The 15% subsample group has the greatest uncertainty due to the fact it was consistently sorted last and therefore lost the most water.
 
-```{r massCalculations}
+```{r massCalculations, warning=FALSE, message=FALSE}
 # Read in data collected by D18/D19
 if(file.exists("/Users/cmeier")){
   inputPath <- "~/Documents/gitRepositories/neon-plant-sampling/hbpSampling/subsampleSortExperiments/"
@@ -108,83 +109,343 @@ df <- openxlsx::read.xlsx(
 )
 
 
-#   Calculate total observed dryMass for each Clip Strip, and estimated dryMass from subsampling
+#   Calculate total observed dryMass for each Clip Strip, and estimated
+#   dryMass from subsampling
 df <- df %>%
-  dplyr::mutate(dryMass10 = round(freshMass*(ssDM10/ssFM10), digits = 2), .before = dryMass) %>%
-  dplyr::mutate(dryMass15 = round(freshMass*(ssDM15/ssFM15), digits = 2), .before = dryMass) %>%
-  dplyr::mutate(dryMass25 = round(freshMass*(ssDM25/ssFM25), digits = 2), .before = dryMass) %>%
-  dplyr::mutate(dryMass50 = round(freshMass*(ssDM50/ssFM50), digits = 2), .before = dryMass) %>%
+  dplyr::mutate(
+    dryMass10 = round(freshMass*(ssDM10/ssFM10), digits = 2),
+    .before = dryMass
+  ) %>%
+  dplyr::mutate(
+    dryMass15 = round(freshMass*(ssDM15/ssFM15), digits = 2),
+    .before = dryMass
+  ) %>%
+  dplyr::mutate(
+    dryMass25 = round(freshMass*(ssDM25/ssFM25), digits = 2),
+    .before = dryMass
+  ) %>%
+  dplyr::mutate(
+    dryMass50 = round(freshMass*(ssDM50/ssFM50), digits = 2), 
+    .before = dryMass
+  ) %>%
   dplyr::arrange(domainID, siteID, clipID)
 
-# Arrange data suitable for ggplot2, then plot ------------------------------> needs work to work with this dataset
+
+##  Re-arrange data for lmer models and ggplot2
+#   Create long data frame for lmer models
 longDF <- df %>%
-  dplyr::select(eventID, clipID, collectDate, exclosure, dryMass, dryMass10, dryMass25, dryMass50) %>%
-  tidyr::gather(key = treatment, value = estimatedDryMass, dryMass10, dryMass25, dryMass50, dryMass) %>%
-  dplyr::arrange(clipID, treatment)
+  dplyr::select(
+    domainID,
+    siteID,
+    clipID,
+    collectDate,
+    dryMass10,
+    dryMass15,
+    dryMass25,
+    dryMass50,
+    dryMass
+  ) %>%
+  tidyr::pivot_longer(
+    cols = tidyr::starts_with("dry"),
+    names_to = "treatment",
+    values_to = "estimatedDryMass"
+  ) %>%
+  dplyr::arrange(domainID, siteID, clipID)
 
-summaryDF <- ddply(longDF, c("treatment", "exclosure"), summarise,
-                   N = length(estimatedDryMass),
-                   mean = mean(estimatedDryMass),
-                   sd = sd(estimatedDryMass),
-                   se = sd/sqrt(N))
+#   Create summary data frame for ggplot2
+summaryDF <- longDF %>%
+  dplyr::group_by(domainID, siteID, treatment) %>%
+  dplyr::summarise(
+    count = n(),
+    mean = mean(estimatedDryMass),
+    sd = sd(estimatedDryMass),
+    se = sd/sqrt(count)
+  )
+
 ```
 
-For each site, we plot the true observed BRY dryMass against the estimated dryMass calculated via subsampling.
+For each site, we graph the true observed BRY dryMass alongside the estimated dryMass calculated via subsampling.
 
-``` {r bryPlots, echo=FALSE}
-### Create plots of subsampling results by siteID
+``` {r bryGraphs, echo=FALSE, warning=FALSE, message=FALSE}
+### Create graphs of subsampling results by siteID
+#   BARR graph
+barrGraph <- ggplot2::ggplot(
+  data = summaryDF %>%
+    dplyr::filter(siteID == "BARR"),
+  mapping = aes(
+    x = treatment,
+    y = mean
+  )
+) +
+  ggplot2::geom_bar(
+    position = "dodge",
+    stat = "identity"
+  ) +
+  ggplot2::geom_errorbar(
+    aes(
+      ymin = mean - se,
+      ymax = mean + se
+    ),
+    width = 0.2,
+    position = position_dodge(0.9)
+  ) +
+  ggplot2::labs(
+    x = "Treatment",
+    y = "Dry Mass (g)",
+    title = "D18 BARR BRY Subsampling"
+  )
 
+barrGraph
 
-ggplot(summaryDF, aes(x = treatment, y = mean, fill = exclosure)) +
-  geom_bar(position = "dodge", stat = "identity") +
-  geom_errorbar(aes(ymin = mean-se, ymax = mean+se), width = 0.2, position = position_dodge(0.9)) +
-  labs(x = "Treatment", y = "Dry mass (g)", title = "D17 HBP Clip Strip subsampling")
+#   TOOL graph
+toolGraph <- ggplot2::ggplot(
+  data = summaryDF %>%
+    dplyr::filter(siteID == "TOOL"),
+  mapping = aes(
+    x = treatment,
+    y = mean
+  )
+) +
+  ggplot2::geom_bar(
+    position = "dodge",
+    stat = "identity"
+  ) +
+  ggplot2::geom_errorbar(
+    aes(
+      ymin = mean - se,
+      ymax = mean + se
+    ),
+    width = 0.2,
+    position = position_dodge(0.9)
+  ) +
+  ggplot2::labs(
+    x = "Treatment",
+    y = "Dry Mass (g)",
+    title = "D18 TOOL BRY Subsampling"
+  )
 
+toolGraph
+
+#   BONA graph
+bonaGraph <- ggplot2::ggplot(
+  data = summaryDF %>%
+    dplyr::filter(siteID == "BONA"),
+  mapping = aes(
+    x = treatment,
+    y = mean
+  )
+) +
+  ggplot2::geom_bar(
+    position = "dodge",
+    stat = "identity"
+  ) +
+  ggplot2::geom_errorbar(
+    aes(
+      ymin = mean - se,
+      ymax = mean + se
+    ),
+    width = 0.2,
+    position = position_dodge(0.9)
+  ) +
+  ggplot2::labs(
+    x = "Treatment",
+    y = "Dry Mass (g)",
+    title = "D19 BONA BRY Subsampling"
+  )
+
+bonaGraph
+
+#   DEJU graph
+dejuGraph <- ggplot2::ggplot(
+  data = summaryDF %>%
+    dplyr::filter(siteID == "DEJU"),
+  mapping = aes(
+    x = treatment,
+    y = mean
+  )
+) +
+  ggplot2::geom_bar(
+    position = "dodge",
+    stat = "identity"
+  ) +
+  ggplot2::geom_errorbar(
+    aes(
+      ymin = mean - se,
+      ymax = mean + se
+    ),
+    width = 0.2,
+    position = position_dodge(0.9)
+  ) +
+  ggplot2::labs(
+    x = "Treatment",
+    y = "Dry Mass (g)",
+    title = "D19 DEJU BRY Subsampling"
+  )
+
+dejuGraph
+
+#   HEAL graph
+healGraph <- ggplot2::ggplot(
+  data = summaryDF %>%
+    dplyr::filter(siteID == "HEAL"),
+  mapping = aes(
+    x = treatment,
+    y = mean
+  )
+) +
+  ggplot2::geom_bar(
+    position = "dodge",
+    stat = "identity"
+  ) +
+  ggplot2::geom_errorbar(
+    aes(
+      ymin = mean - se,
+      ymax = mean + se
+    ),
+    width = 0.2,
+    position = position_dodge(0.9)
+  ) +
+  ggplot2::labs(
+    x = "Treatment",
+    y = "Dry Mass (g)",
+    title = "D19 HEAL BRY Subsampling"
+  )
+
+healGraph
 
 ```
-
+\pagebreak
 
 
 ## Results: Mixed-Effects model analysis
 
-1.  Model accounting for subsampling effect on **dryMass** and using **clipID** as a random effect; benefit of random effect is it can account for variation at level of clip-strip unrelated to treatment - e.g., variation due to moisture on day clip-strip was harvested, effect of moss abundance or type at particular location, etc.
-```{r lmerTreatment}
+- Models are run separately for each site, as the aim is to understand site-specific effects of `treatment` on `estimatedDryMass`. 
+- Models use **clipID** as a random effect; benefit of random effect is it can account for variation at level of clip-strip unrelated to treatment - e.g., variation due to moisture on day clip-strip was harvested, effect of moss abundance or species composition at particular location, etc. 
+- The version of the `lmer()` function in the `lmerTest` package is used because the assumptions for this model allow standard anova output to be assessed.
 
-m1ML <- lmer(estimatedDryMass ~ treatment + (1|clipID), longDF, REML = FALSE)
-summary(m1ML)
-anova(m1ML)
+```{r barrModel}
+### BARR subsampling model
+#   Create model with random intercept by clipID
+barrMod <- lmerTest::lmer(
+  formula = estimatedDryMass ~ treatment + (1|clipID),
+  data = longDF %>% dplyr::filter(siteID == "BARR"),
+  REML = FALSE
+)
+
+#   Assess model outputs
+summary(barrMod)
+anova(barrMod)
+lattice::dotplot(ranef(barrMod, condVar = TRUE))
+
+```
+\pagebreak
+
+``` {r toolModel}
+### TOOL subsampling model
+#   Create TOOL linear mixed-effects model to assess subsampling treatment
+toolMod <- lmerTest::lmer(
+  formula = estimatedDryMass ~ treatment + (1|clipID),
+  data = longDF %>% dplyr::filter(siteID == "TOOL"),
+  REML = FALSE
+)
+
+#   Assess model outputs
+summary(toolMod)
+anova(toolMod)
+lattice::dotplot(ranef(toolMod, condVar = TRUE))
+
+```
+\pagebreak
+
+``` {r bonaMod}
+### BONA subsampling model
+#   Create BONA linear mixed-effects model to assess subsampling treatment
+bonaMod <- lmerTest::lmer(
+  formula = estimatedDryMass ~ treatment + (1|clipID),
+  data = longDF %>% dplyr::filter(siteID == "BONA"),
+  REML = FALSE
+)
+
+#   Assess model outputs
+summary(bonaMod)
+anova(bonaMod)
+lattice::dotplot(ranef(bonaMod, condVar = TRUE))
+
+```
+\pagebreak
+
+``` {r dejuMod}
+### DEJU subsampling model
+#   Create DEJU linear mixed-effects model to assess subsampling treatment
+dejuMod <- lmerTest::lmer(
+  formula = estimatedDryMass ~ treatment + (1|clipID),
+  data = longDF %>% dplyr::filter(siteID == "DEJU"),
+  REML = FALSE
+)
+
+#   Assess model outputs
+summary(dejuMod)
+anova(dejuMod)
+lattice::dotplot(ranef(dejuMod, condVar = TRUE))
+
+```
+\pagebreak
+
+``` {r healMod}
+### HEAL subsampling model
+#   Create HEAL linear mixed-effects model to assess subsampling treatment
+healMod <- lmerTest::lmer(
+  formula = estimatedDryMass ~ treatment + (1|clipID),
+  data = longDF %>% dplyr::filter(siteID == "HEAL"),
+  REML = FALSE
+)
+
+#   Assess model outputs
+summary(healMod)
+anova(healMod)
+lattice::dotplot(ranef(healMod, condVar = TRUE))
 
 ```
 \pagebreak
 
 
-2.  Null model, and using **clipID** as a random effect.
-```{r lmerNull}
-m3ML <- lmer(estimatedDryMass ~ 1 + (1|clipID), longDF, REML = FALSE)
-summary(m3ML)
-anova(m1ML, m3ML)
-
-```
-\pagebreak
 
 
-3.  Linear model, using treatment*exclosure, and no random effect.
-```{r lmExclosureInterxnTreatment}
-m1LM <- lm(estimatedDryMass ~ exclosure*treatment, data = longDF)
-summary(m1LM)
-anova(m1LM)
+##  Summary
 
-```
-\pagebreak
+1. BARR results
+    - 10% subsampling 14% lower than control, marginally significant (p = 0.078)
+    - 15% subsampling 15% lower than control, marginally significant (p = 0.060)
+    - 25% subsampling 12% higher than control (p = 0.14)
+    - 50% subsampling virtually identical to control (p = 0.85)
+1. TOOL results
+    - 10% subsampling 6.6% higher than control (p = 0.27)
+    - 15% subsampling 4.4% higher than control (p = 0.47)
+    - 25% subsampling about 10% lower than control, marginally significant (p = 0.11)
+    - 50% subsampling less than 3% higher than control (p = 0.71)
+1. BONA results
+    - 10% subsampling 3.8% higher than control (p = 0.21)
+    - 15% subsampling 3.8% lower than control (p = 0.20)
+    - 25% subsampling < 1% lower than control (p = 0.80)
+    - 50% subsampling < 1% higher than control (p = 0.78)
+1. DEJU results
+    - 10% subsampling 11% higher than control (p < 0.05)
+    - 15% subsampling 24% lower than control (p < 0.0001)
+    - 25% subsampling 2.8% higher than control (p = 0.52)
+    - 50% subsampling 3% higher than control (p = 0.49)
+1. HEAL results
+    - 10% subsampling 2.4% higher than control (p = 0.53)
+    - 15% subsampling 4.2% lower than control (p = 0.30)
+    - 25% subsampling virtually identical to control (p = 0.997)
+    - 50% subsampling virtually identical to control (p = 0.84)
+    
+Summary of recommendations for BRY subsampling by site:
 
+- BARR: 50%
+- TOOL: 50% (conservative due to variable results at lower subsampling levels)
+- BONA: 10%
+- DEJU: 25%
+- HEAL: 10%
 
-##  Outcomes
-
-1. Random effect associated with **clipID** explains considerable variability in the data. See summary output for model = m1ML.
-1. Summary output for Mixed Effects model indicates that D17 Clip Strips should be subsampled at the 25% level for all bouts with **herbGroup** = ALL.
-    - Estimates of dryMass using a 10% subsample are significantly higher than the entire sorted sample, using data from one bout collected late February and just before peak green.
-    - Other subsamples are not significantly different than the entire sorted subsample --> go with 25%
-1. Effect of `exclosure*treatment`, as evaluated in standard linear model:
-    - Effect of `exclosure` not significant (m1LM), and effect of `treatment` also not significant. No detection of `exclosure:treatment` interaction effect.
 
     
