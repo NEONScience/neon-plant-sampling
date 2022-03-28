@@ -447,5 +447,11 @@ Summary of recommendations for BRY subsampling by site:
 - DEJU: 25%
 - HEAL: 10%
 
+Summary of recommendations for BRY subsampling by domain:
+
+- D18 (BARR, TOOL): 50%
+- D19 (BONA, DEJU, HEAL): 25%
+
+D18/19 leads indicate it will be easier to train and execute BRY subsampling correctly if a single subsampling target is used per domain.
 
     
