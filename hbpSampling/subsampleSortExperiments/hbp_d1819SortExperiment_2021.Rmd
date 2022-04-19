@@ -31,7 +31,7 @@ To determine the efficacy of subsampling the BRY growth form across various prop
 
 * Subsample the BRY growth from from as many `clipIDs` as possible, in both Distributed and Tower plots.
 
-* For each clipID harvested in the field, test procedure by creating subsamples with the following percentages of the total freshMass:
+* For each clipID harvested in the field for which subsampling is performed, create subsamples with the following percentages of the total freshMass:
     - 10%
     - 15%
     - 25%
@@ -39,10 +39,10 @@ To determine the efficacy of subsampling the BRY growth form across various prop
     - 100% (sum of all subsamples)
 
 * When subsampling is employed, calculate dryMass as follows: `dM = fM * (ssDM/ssFM)`, where:
-    - *dM* = estimated dryMass of BRY in the clipID
-    - *fM* = total freshMass in the clipID
-    - *ssDM* = subsampleDryMass of BRY in the subsample
-    - *ssFM* = fresh mass of all biomass in the subsample (BRY + other clipped material)
+    - *dM* = estimated dryMass of live BRY in the clipID
+    - *fM* = total freshMass of unsorted live and dead BRY in the clipID
+    - *ssDM* = subsampleDryMass of live BRY in the subsample
+    - *ssFM* = fresh mass of all unsorted live and dead BRY biomass in the subsample (BRY + other clipped material)
 
 * Compare dryMass results calculated via subsampling with dryMass obtained with no subsampling, and use linear mixed-effects models to analyze results.
 
@@ -50,13 +50,13 @@ To determine the efficacy of subsampling the BRY growth form across various prop
 
 ##  Procedure
 
-1. Perform clip harvest in the field as normal, and bring clipped biomass back to the laboratory in cold storage as normal.
+1. Perform clip harvest in the field as normal, and bring clipped biomass back to the laboratory in cold storage as normal. For example, sorting of non-BRY functional groups may take place in the field, and sorted non-BRY as well as all clipped BRY (live and dead) are brought back to the lab for further processing.
 
-1. Thoroughly mix biomass from each clipID to homogenize as thoroughly as possible.
+1. Assuming non-BRY are sorted out, mix unsorted BRY biomass from each clipID to homogenize as thoroughly as possible.
     a. For large amounts of biomass, and when there is more than one bag of biomass for a given clipID, use a large bag, box, tray or equivalent vessel to mix the biomass.
 
-1. For each clipID, weigh and record to 0.01 g:
-    a. **`freshMass`** = total fresh mass in the clipID (all clipped material)
+1. For each clipID, weigh and record fresh, unsorted BRY from the entire clip strip to 0.01 g:
+    a. **`freshMass`** = total fresh mass in the clipID (all clipped, unsorted BRY material)
 
 1. Based on the **`freshMass`**, calculate the desired subsample fresh masses for testing. For example, assuming **`freshMass`** = 100 g, the target subsample fresh masses are:
     a. 10% subsample --> 10 g
@@ -69,14 +69,14 @@ To determine the efficacy of subsampling the BRY growth form across various prop
     a. **`clipID`**
     a. **`collectDate`**
 
-1. Weigh each subsample created above (all clipped material), and record the information below.
+1. Weigh each subsample created above (all clipped BRY material), and record the information below.
     a. **`subsampleTest`**: as above
     a. **`clipID`**
     a. **`collectDate`**
     a. **`subsampleFreshMass`**: To the nearest 0.01 g; for subsamples < 0.5 g total mass, weigh to the nearest 0.0001 g
 
-1. Sort BRY from other clipped material for each subsample, and place sorted, current-year BRY biomass into the corresponding labeled coin envelope. 
-    a. Sorted OSD may be discarded at this point.
+1. Sort live BRY from other clipped material for each subsample, and place sorted BRY biomass into the corresponding labeled coin envelope. 
+    a. Dead BRY, organic material, and other clipped material that is NOT live BRY may be discarded at this point.
 
 1. Dry subsamples until dry; minimum of 48 h @ 65 ˚C, track drying progress as normal.
 
