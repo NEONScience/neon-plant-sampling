@@ -9,6 +9,14 @@ output:
 
 # Status
 
+**2022-08-18 update**:
+
+- D05 FE Alex Graeff identified taxonID inconsistencies between 2016 and 2021 tallies for STEI_021 (Distributed plot). Prior IDs from 2016 were used to update 2021 records for this plot for several logs. Additionally, suspect `2PLANT-H` IDs for three logs were investigated and updated.
+- Re-ran tally rank abundance analysis following corrections to determine whether CDW DST list is affected.
+
+
+**2022-03-14 update**:
+
   - Re-running analysis in 2022 after discovery that original STEI list made in 2017 included several blank taxonIDs.
   - D05 FE Alex Graeff noted that tally effort in 2019 and 2021 employed different method to identify unknown softwoods; most are Pinaceae or _Thuja occidentalis_, so many fewer '2PLANT-S' in two most recent datasets.
   - Note: Many '2PLANT' still present in 2019 for Tower plot data --> data collection/training problem in D05.
@@ -44,10 +52,12 @@ if (file.exists("/Users/cmeier")){
 ```{r downloadFulcrumData, results='hold', warning=FALSE, message=FALSE}
 ## Import data from Fulcrum
 # Define CDW Fulcrum query for site
-cdwQuery <- URLencode(glue::glue(
-  'SELECT domainid, siteid, plotid_parent, tallydate, eventid, volumefactor, samplingimpractical, samplingprotocolversion, lidsazimuth, targettaxapresent, logdistance, logmaxdiameter, minorlogdiameter, logid, loglength, taxonid, scientificname, decayclass FROM "4487b90c-51b3-495a-873b-16f6b6d0abf7" AS parent JOIN "4487b90c-51b3-495a-873b-16f6b6d0abf7/cdw_transect" AS child ON (parent._record_id = child._parent_id) WHERE siteid =', "'{site}' ORDER BY _child_record_id",
-  .sep = " "
-)
+cdwQuery <- URLencode(
+  glue::glue(
+    'SELECT domainid, siteid, plotid_parent, tallydate, eventid, volumefactor, samplingimpractical, samplingprotocolversion, lidsazimuth, targettaxapresent, logdistance, logmaxdiameter, minorlogdiameter, logid, loglength, taxonid, scientificname, decayclass FROM "4487b90c-51b3-495a-873b-16f6b6d0abf7" AS parent JOIN "4487b90c-51b3-495a-873b-16f6b6d0abf7/cdw_transect" AS child ON (parent._record_id = child._parent_id) WHERE siteid =',
+    "'{site}' ORDER BY _child_record_id",
+    .sep = " "
+  )
 )
 
 ##  Get 2021 CDW STEI Distributed plot data from Fulcrum
@@ -88,12 +98,29 @@ fulcrumCDW <- fulcrumCDW %>%
   )
 
 
+# ##  Compare 2021 Portal STEI Distributed data with Fulcrum data
+# #   Reported edits do not appear in Fulcrum data
+# distPortalCDW <- neonUtilities::loadByProduct(
+#   dpID = "DP1.10010.001",
+#   site = "STEI",
+#   startdate = "2021-01",
+#   enddate = "2022-08",
+#   check.size = FALSE,
+#   token = Sys.getenv('NEON_PAT')
+# )
+# 
+# distPortalCDW <- distPortalCDW$cdw_fieldtally
+# #--> Odd, no updates of '2PLANT-H' to 'THOC2' appear to have been made anywhere.
+
+
+
 ##  Get older CDW Tally data from Portal for Tower plots
+#   Wide date range used in case Tower plot sampling went into next year (scheduled in 2019)
 portalCDW <- neonUtilities::loadByProduct(
   dpID = "DP1.10010.001",
   site = "STEI",
   startdate = "2019-01",
-  enddate = "2019-12",
+  enddate = "2020-12",
   check.size = FALSE,
   token = Sys.getenv('NEON_PAT')
 )
@@ -148,7 +175,7 @@ cdw$decayClassNum <- sapply(stringr::str_split(cdw$decayClass, pattern = " "),"[
 
 
 ## Write data file
-write.csv(cdw, file = paste(outpath, paste(domain, site, "merged","cdw_rawdata.csv", sep="_"), sep = "/"))
+write.csv(cdw, file = paste(outpath, paste(domain, site, "merged","cdw_rawdata_20220818.csv", sep="_"), sep = "/"))
 
 ```
 
@@ -199,6 +226,6 @@ t1 <- t1[c("siteID", "taxonID", "decayClassNum", "diameterClass", "relativeAbund
 # Rename columns
 t1 <- t1 %>% rename(decayClass=decayClassNum, sizeCategory=diameterClass)
 
-write.csv(t1, file = paste(outpath, paste(domain, site, "tally_abundance.csv", sep = "_"), sep = "/"), row.names = F)
+write.csv(t1, file = paste(outpath, paste(domain, site, "tally_abundance_20220818.csv", sep = "_"), sep = "/"), row.names = F)
 ```
 
