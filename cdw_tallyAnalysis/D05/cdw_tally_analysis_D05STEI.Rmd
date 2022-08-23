@@ -1,7 +1,7 @@
 ---
 title: "CDW Tally Analysis: D05 STEI"
 author: "Courtney Meier, Cody Flagg"
-date: "14th March 2022"
+date: "23rd August 2022"
 output: 
   pdf_document: 
     latex_engine: xelatex
@@ -9,10 +9,16 @@ output:
 
 # Status
 
+**2022-08-23 update**:
+
+- Re-ran tally rank abundance analysis following updates to `taxonID` field.
+- Results: 
+
 **2022-08-18 update**:
 
 - D05 FE Alex Graeff identified taxonID inconsistencies between 2016 and 2021 tallies for STEI_021 (Distributed plot). Prior IDs from 2016 were used to update 2021 records for this plot for several logs. Additionally, suspect `2PLANT-H` IDs for three logs were investigated and updated.
-- Re-ran tally rank abundance analysis following corrections to determine whether CDW DST list is affected.
+- Re-ran tally rank abundance analysis following data corrections to determine whether CDW DST list is affected.
+- Results: Data updates were made to `acceptedTaxonID` rather than `taxonID`, so no change to DST rank list.
 
 
 **2022-03-14 update**:
@@ -175,7 +181,7 @@ cdw$decayClassNum <- sapply(stringr::str_split(cdw$decayClass, pattern = " "),"[
 
 
 ## Write data file
-write.csv(cdw, file = paste(outpath, paste(domain, site, "merged","cdw_rawdata_20220818.csv", sep="_"), sep = "/"))
+write.csv(cdw, file = paste(outpath, paste(domain, site, "merged","cdw_rawdata_20220823.csv", sep="_"), sep = "/"))
 
 ```
 
@@ -226,6 +232,6 @@ t1 <- t1[c("siteID", "taxonID", "decayClassNum", "diameterClass", "relativeAbund
 # Rename columns
 t1 <- t1 %>% rename(decayClass=decayClassNum, sizeCategory=diameterClass)
 
-write.csv(t1, file = paste(outpath, paste(domain, site, "tally_abundance_20220818.csv", sep = "_"), sep = "/"), row.names = F)
+write.csv(t1, file = paste(outpath, paste(domain, site, "tally_abundance_20220823.csv", sep = "_"), sep = "/"), row.names = F)
 ```
 
