@@ -5,6 +5,24 @@ library(dplyr)
 library(neonUtilities)
 source("~/Documents/workDocuments/gitRepositories/os-data-quality-review/vst/get.fulcrum.data.R")
 
+
+### 2022-11-29: Identify past values for JERC_057 
+pmdDF <- neonUtilities::loadByProduct(
+  dpID = "DP1.10098.001",
+  site = "JERC",
+  tabl = "vst_perplotperyear",
+  check.size = FALSE,
+  token = Sys.getenv('NEON_PAT')
+)
+
+pmdDF <- pmdDF$vst_perplotperyear
+
+nested_057 <- pmdDF %>%
+  dplyr::filter(plotID == "JERC_057") %>%
+  dplyr::select(plotID, date, eventID, nestedSubplotAreaShrubSapling, nestedSubplotAreaLiana)
+
+
+
 ### Retrieve all NEON Portal vst_perplotperyear data for all sites
 pmdDF <- neonUtilities::loadByProduct(
   dpID = "DP1.10098.001",
