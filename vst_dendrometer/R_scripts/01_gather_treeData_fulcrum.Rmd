@@ -66,13 +66,15 @@ plantstatus FROM "VST: Apparent Individuals [PROD]" AS Parent'),
                     URLencode('JOIN "VST: Apparent Individuals [PROD]/vst_woody_stems" AS child'),
                     URLencode('On (parent._record_id=child._record_id)'),
                     URLencode("WHERE plottype LIKE 'tower'"),
-                    URLencode("AND siteid IN ('BONA', 'DEJU', 'HEAL', 'NIWO', 'RMNP', 'SJER', 'SOAP', 'SRER', 'TEAK', 'YELL', 'WREF')"),
+                    URLencode("AND eventid LIKE 'vst_WREF_2020'"),
+                              #siteid IN ('BONA', 'DEJU', 'HEAL', 'NIWO', 'RMNP', 'SJER', 'SOAP', 'SRER', 'TEAK', 'YELL', 'WREF')"),
                     URLencode("AND stemdiameter IS NOT NULL"), sep = "%20")
                    # URLencode("AND growthform IN ('smt', 'sbt', 'mbt')"), sep = "%20")
 
 
 vstMapQuery <- paste(URLencode('SELECT eventid, domainid, siteid, plotid, subplotid, pointid, stemazimuth, stemdistance, taxonid, individualid FROM "VST: Mapping and Tagging [PROD]"'),
-                     URLencode("WHERE siteid IN ('BONA', 'DEJU', 'HEAL', 'NIWO', 'RMNP', 'SJER', 'SOAP', 'SRER', 'TEAK', 'YELL', 'WREF')"),
+                     URLencode("WHERE eventid LIKE 'vst_WREF_2020'"), 
+                               #siteid IN ('BONA', 'DEJU', 'HEAL', 'NIWO', 'RMNP', 'SJER', 'SOAP', 'SRER', 'TEAK', 'YELL', 'WREF')"),
                      URLencode("AND plottype LIKE 'tower'"),
                      sep = "%20")
 
@@ -80,11 +82,11 @@ vstMapQuery <- paste(URLencode('SELECT eventid, domainid, siteid, plotid, subplo
 # ### Generate dataframes for each of the tables in vst ###
 # 
 # 
-#df = get_Fulcrum_data(api_token = api_token, sql = vstwoodyQuery)
+df = get_Fulcrum_data(api_token = api_token, sql = vstwoodyQuery)
 # 
 # write.csv(df, paste(myPathToSharepoint, "vst_data_yell.csv", sep="/"), row.names = FALSE )
 
-# mt = get_Fulcrum_data(api_token, sql = vstMapQuery)
+mt = get_Fulcrum_data(api_token, sql = vstMapQuery)
 # 
 # roundOneSites <- c('BONA', 'DEJU', 'HEAL', 'NIWO', 'RMNP', 'SJER', 'SOAP', 'SRER', 'TEAK', 'YELL', 'WREF')
 # 
@@ -97,8 +99,8 @@ vstMapQuery <- paste(URLencode('SELECT eventid, domainid, siteid, plotid, subplo
 
 #mt2 <- get_fulcrum_vstMT(apiToken = api_token)
 
-df <- read.csv(paste(wdir, "vst_dendrometer/SourceData/vst_data_d.csv", sep='/'), 
-               stringsAsFactors = F)
+# df <- read.csv(paste(wdir, "vst_dendrometer/SourceData/vst_data_d.csv", sep='/'), 
+#                stringsAsFactors = F)
 
 
 # labor <- read.csv(paste(myPathToSharepoint, "laborEstimates.csv", sep="/"),stringsAsFactors=F )
@@ -157,7 +159,8 @@ df_out <- df_sub%>%
 
 ```{r write cleaned df}
 
-#write.csv(df_out, paste(wdir, "vst_dendrometer/SourceData/vst_data_d_cleaned.csv"), row.names=FALSE)
+# write.csv(df_out, paste(wdir, "/vst_dendrometer/SourceData/vst_WREF_20211227_data.csv", sep='/'), row.names=FALSE)
+#                         #data_d_cleaned.csv"), row.names=FALSE)
 
 ```
 

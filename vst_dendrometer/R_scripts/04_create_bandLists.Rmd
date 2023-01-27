@@ -8,14 +8,21 @@ output: html_document
 ```{r load libraries and files, echo=FALSE}
 library(tidyverse)
 
-source("R_scripts/02_load_dendroObjects.R")
+source("vst_dendrometer/R_scripts/02_load_dendroObjects.R")
+
+if (file.exists(
+  'C:/Users/kjones')){
+  wdir <- "C:/Users/kjones/Documents/GitHub/neon-plant-sampling/vst_dendrometer"
+}
+
+source(paste(wdir, "vst_dendrometer/R_scripts/02_load_dendroObjects.R", sep='/'))
 
 ```
 
 
 ```{r select sites}
 
-sites <- c("BONA")
+sites <- c("WREF", "BONA", "YELL", "NIWO")
 
 df_sub <- df[df$siteid%in%sites,]
 
@@ -70,7 +77,7 @@ bandList$springSize <- ifelse(bandList$stemdiameter < 50, "76mm", "127mm")
 
 
 ```{r make final list, echo=FALSE, message=FALSE}
-
+df_bands <- df_sub
 # assign domains and  group by DSF
 df_bands$domainid <- substr(df_sub$individualid, 10, 12)
 df_bands$domainid <- ifelse(df_sub$domainid%in%c("D10", "D13"), "D10/13", 
@@ -88,7 +95,7 @@ df_bands$domainid <- ifelse(df_sub$domainid%in%c("D10", "D13"), "D10/13",
 
  for (i in 1:length(sort(unique(bandList$siteid)))){
    sub <- bandList[bandList$siteid==sort(unique(bandList$siteid))[i],]
-   write.csv(sub, paste('outputFiles/', unique(sub$siteid), "_treesToBand_nlcdOptimized.csv", sep=""), row.names=FALSE)
+   write.csv(sub, paste(wdir, '/outputFiles/', unique(sub$siteid), "_treesToBand_nlcdOptimized.csv", sep=""), row.names=FALSE)
    rm(sub)
  }
 
