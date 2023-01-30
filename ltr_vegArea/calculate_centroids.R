@@ -63,7 +63,7 @@ options(digits=13) #necessary to support converting UTMs from character to numer
 ltrPlots$easting_calc <- as.numeric(ltrPlots$easting) + ltrPlots$E_add
 ltrPlots$northing_calc <- as.numeric(ltrPlots$northing) + ltrPlots$N_add
 
-ltrPlots$plotArea <- 400
+ltrPlots$plotArea <- 400 #plot or subplot, always 20x20m
 ltrPlots$CHM_area <- NA
 
 
