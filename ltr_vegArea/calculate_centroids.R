@@ -40,19 +40,19 @@ table(ltrPlots$subplotID, useNA = 'always')
 
 #calculate centroid for subplots
 for(i in 1:nrow(ltrPlots)){
-  if (ltrPlots$subplotID[i] == 31){
+  if (ltrPlots$subplotID[i] == "31"){
     ltrPlots$E_add[i] <- 0
     ltrPlots$N_add[i] <- 0
-    }else if ((ltrPlots$subplotID[i] == 21)){
+    }else if ((ltrPlots$subplotID[i] == "21")){
       ltrPlots$E_add[i] <- -10
       ltrPlots$N_add[i] <- -10      
-    }else if ((ltrPlots$subplotID[i] == 23)){ 
+    }else if ((ltrPlots$subplotID[i] == "23")){ 
       ltrPlots$E_add[i] <- 10
       ltrPlots$N_add[i] <- -10      
-    }else if ((ltrPlots$subplotID[i] == 39)){
+    }else if ((ltrPlots$subplotID[i] == "39")){
       ltrPlots$E_add[i] <- -10
       ltrPlots$N_add[i] <- 10      
-    }else if ((ltrPlots$subplotID[i] == 41)){
+    }else if ((ltrPlots$subplotID[i] == "41")){
       ltrPlots$E_add[i] <- 10
       ltrPlots$N_add[i] <- 10      
     }
@@ -65,10 +65,30 @@ ltrPlots$northing_calc <- as.numeric(ltrPlots$northing) + ltrPlots$N_add
 
 ltrPlots$plotArea <- 400 #plot or subplot, always 20x20m
 ltrPlots$CHM_area <- NA
+ltrPlots$CHM_percent <- NA
 
 
 write.csv(ltrPlots, paste0(getwd(), "/ltr_vegArea/allTargetPlots.csv"), row.names = F)
 
-test <- ltrPlots[ltrPlots$siteID=="HEAL",]
+test <- ltrPlots[ltrPlots$siteID%in%c("HEAL", "YELL"),]
+#look <- ltrPlots[ltrPlots$siteID=="YELL",]
 
 write.csv(test, paste0(getwd(), "/ltr_vegArea/testDat.csv"), row.names = F)
+
+# Check subplots are in correct direction
+sub_pt <- "39"
+
+plot(x = as.numeric(test$easting[test$subplotID == sub_pt][1]),
+       y = as.numeric(test$northing[test$subplotID == sub_pt][1]),
+     xlim=c(as.numeric(test$easting[test$subplotID == sub_pt][1])-15,
+            as.numeric(test$easting[test$subplotID == sub_pt][1])+15),
+     ylim=c(as.numeric(test$northing[test$subplotID == sub_pt][1])-15,
+            as.numeric(test$northing[test$subplotID == sub_pt][1])+15),
+       pch = 16,
+       col = "black")
+
+points(x = test$easting_calc[test$subplotID == sub_pt][1],
+       y = test$northing_calc[test$subplotID == sub_pt][1],
+       pch = 16,
+       col = "orange")
+
