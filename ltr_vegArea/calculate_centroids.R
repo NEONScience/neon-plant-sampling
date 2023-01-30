@@ -68,6 +68,8 @@ ltrPlots$CHM_area <- NA
 ltrPlots$CHM_percent <- NA
 
 
+write.csv(ltrPlots, paste0(getwd(), "/ltr_vegArea/allLitterPlots.csv"), row.names = F)
+
 write.csv(ltrPlots, paste0(getwd(), "/ltr_vegArea/allTargetPlots.csv"), row.names = F)
 
 test <- ltrPlots[ltrPlots$siteID%in%c("HEAL", "YELL"),]
