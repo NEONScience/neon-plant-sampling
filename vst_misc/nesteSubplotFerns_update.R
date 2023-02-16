@@ -48,6 +48,19 @@ nwDF <- nwDF$`vst_non-woody`
 
 ### Identify unique plotIDs with ferns and anti-join with spatial data to find plotIDs with no ferns but 
 ### that have nestedSubplotAreaFerns != 'noneSelected'
+#   Identify plots with ferns
+fernPlotsDF <- nwDF %>%
+  dplyr::filter(growthForm == "fern") %>%
+  dplyr::select(plotID) %>%
+  dplyr::distinct()
+
+#   Anti-join with spatial data and set nestedSubplotAreaFerns to 'noneSelected'
+nestedUpdate <- spatialDF %>%
+  dplyr::anti_join(fernPlotsDF, by = c("plotid" = "plotID")) %>%
+  dplyr::mutate(nestedsubplotareaferns = 'noneSelected')
+
+#   Write out results to .csv
+
 
 
 
