@@ -1,5 +1,5 @@
 # neon-plant-sampling
-Scripts supporting NEON plant biomass and productivity sampling.
+Scripts supporting NEON plant diversity, biomass, and productivity sampling.
 
 Folders contain the following:
 
