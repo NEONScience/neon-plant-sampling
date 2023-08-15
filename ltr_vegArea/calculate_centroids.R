@@ -12,10 +12,10 @@ dat <- loadByProduct(dpID="DP1.10033.001",
 # unlist all data frames
 list2env(dat ,.GlobalEnv)
 
-tSites <- unique(ltr_pertrap$siteID[ltr_pertrap$trapPlacement=="Targeted"])
+#tSites <- unique(ltr_pertrap$siteID[ltr_pertrap$trapPlacement=="Targeted"])
 
 ltrPlots <- ltr_pertrap%>%
-  filter(siteID%in%tSites)%>% #only targeted sites
+  #filter(siteID%in%tSites)%>% #only targeted sites
   mutate(def.extr.geo.os(data=., locCol = "namedLocation", 
                          locOnly = F))%>% #add spatial data
   select(siteID, namedLocation, subplotID, targetTaxaPresent, easting,
@@ -37,6 +37,8 @@ table(ltrPlots$siteID, ltrPlots$subplotID, useNA = 'always')
 
 ltrPlots$subplotID[ltrPlots$siteID%in%c("NIWO", "KONZ")] <- 31
 table(ltrPlots$subplotID, useNA = 'always')
+
+ltrPlots$subplotID[is.na(ltrPlots$subplotID)&ltrPlots$namedLocation=="LENO_068.basePlot.ltr"] <- '39'
 
 #calculate centroid for subplots
 for(i in 1:nrow(ltrPlots)){
