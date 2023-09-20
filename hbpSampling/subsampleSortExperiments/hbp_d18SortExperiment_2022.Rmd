@@ -1,0 +1,276 @@
+---
+title: "HBP D18 2022 Bryophyte Sorting Subsample Experiment"
+author: "Courtney L. Meier"
+date: "`r format(Sys.Date(), format = '%B %d, %Y')`"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+#   Load required libraries
+library(plyr)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
+library(lattice)
+library(lmerTest)
+library(openxlsx)
+
+```
+
+##  Goal
+
+To determine the efficacy of subsampling the BRY growth form across various proportions of HBP samples collected from D18 BARR and TOOL sites. Subsampling has the potential to reduce long sort times associated with bryophytes from current-year clipped biomass. Subsampling is only evaluated for the BRY functional group; all other functional groups are sorted from the full clip strip.
+
+
+
+##  Experimental Setup and Analyses
+
+* Subsample the BRY growth from from as many `clipIDs` as possible, in both Distributed and Tower plots.
+
+* For each clipID harvested in the field for which subsampling is performed, create subsamples with the following percentages of the total freshMass:
+    - 25%
+    - 50%
+
+* When subsampling is employed, calculate dryMass as follows: `dM = fM * (ssDM/ssFM)`, where:
+    - *dM* = estimated dryMass of live BRY in the clipID
+    - *fM* = total freshMass of unsorted live and dead BRY in the clipID
+    - *ssDM* = subsampleDryMass of live BRY in the subsample
+    - *ssFM* = fresh mass of all unsorted live and dead BRY biomass in the subsample (BRY + other clipped material)
+
+* Compare dryMass results calculated via subsampling with dryMass obtained with no subsampling, and use linear mixed-effects models to analyze results.
+
+
+
+##  Procedure
+
+1. Perform clip harvest in the field as normal, and bring clipped biomass back to the laboratory in cold storage as normal. For example, sorting of non-BRY functional groups may take place in the field, and sorted non-BRY as well as all clipped BRY (live and dead) are brought back to the lab for further processing.
+
+1. Assuming non-BRY are sorted out, mix unsorted BRY biomass from each clipID to homogenize as thoroughly as possible.
+    a. For large amounts of biomass, and when there is more than one bag of biomass for a given clipID, use a large bag, box, tray or equivalent vessel to mix the biomass.
+
+1. For each clipID, weigh and record fresh, unsorted BRY from the entire clip strip to 0.01 g:
+    a. **`freshMass`** = total fresh mass in the clipID (all clipped, unsorted BRY material)
+
+1. Based on the **`freshMass`**, calculate the desired subsample fresh masses for testing. For example, assuming **`freshMass`** = 100 g, the target subsample fresh masses are:
+    a. 25% subsample --> 25 g
+    a. 50% subsample --> 50 g
+
+1. Label a coin envelope for each subsample above with the information below.
+    a. **`subsampleTest`**: `25%` or `50%`.
+    a. **`clipID`**
+    a. **`collectDate`**
+
+1. Weigh each subsample created above (all clipped BRY material), and record the information below.
+    a. **`subsampleTest`**: as above
+    a. **`clipID`**
+    a. **`collectDate`**
+    a. **`subsampleFreshMass`**: To the nearest 0.01 g; for subsamples < 0.5 g total mass, weigh to the nearest 0.0001 g
+
+1. Sort live BRY from other clipped material for each subsample, and place sorted BRY biomass into the corresponding labeled coin envelope. 
+    a. Dead BRY, organic material, and other clipped material that is NOT live BRY may be discarded at this point.
+
+1. Dry subsamples until dry; minimum of 48 h @ 65 ˚C, track drying progress as normal.
+
+1. Remove dry samples from the oven one at a time, and immediately weigh and record:
+    a. **subsampleDryMass**: To the nearest 0.01 g; for masses < 0.5 g, weigh to the nearest 0.0001 g.
+
+\pagebreak
+
+##  Analyses and Graphs
+
+Using formula from above, `dryMass` values are calculated for BRY from `freshMass` value from whole clip-strip, as well as subsample fresh and dry mass values.
+
+
+```{r massCalculations, warning=FALSE, message=FALSE}
+# Read in data collected from D18
+if(file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neon-plant-sampling/hbpSampling/subsampleSortExperiments/"
+}
+
+if(file.exists("/Users/Pajaro")){
+  inputPath <- "~/Documents/workDocuments/gitRepositories/neon-plant-sampling/hbpSampling/subsampleSortExperiments/"
+}
+
+df <- openxlsx::read.xlsx(
+  xlsxFile = paste0(inputPath, "hbp_d18_sortExperiment2022_data.xlsx"),
+  sheet = "R_input",
+  startRow = 1,
+  colNames = TRUE
+)
+
+
+#   Calculate total observed dryMass for each Clip Strip, and estimated
+#   dryMass from subsampling
+df <- df %>%
+  dplyr::mutate(
+    dryMass25 = round(freshMass*(ssDM25/ssFM25), digits = 2)
+  ) %>%
+  dplyr::mutate(
+    dryMass50 = round(freshMass*(ssDM50/ssFM50), digits = 2) 
+  ) %>%
+  dplyr::arrange(domainID, siteID, clipID)
+
+
+##  Re-arrange data for lmer models and ggplot2
+#   Create long data frame for lmer models
+longDF <- df %>%
+  dplyr::select(
+    domainID,
+    siteID,
+    clipID,
+    collectDate,
+    dryMass25,
+    dryMass50
+  ) %>%
+  tidyr::pivot_longer(
+    cols = tidyr::starts_with("dry"),
+    names_to = "treatment",
+    values_to = "estimatedDryMass"
+  ) %>%
+  dplyr::arrange(domainID, siteID, clipID)
+
+#   Create summary data frame for ggplot2
+summaryDF <- longDF %>%
+  dplyr::group_by(domainID, siteID, treatment) %>%
+  dplyr::summarise(
+    count = n(),
+    mean = mean(estimatedDryMass),
+    sd = sd(estimatedDryMass),
+    se = sd/sqrt(count)
+  )
+
+```
+
+For each site, we graph the estimated BRY dryMass calculated via subsampling at both 25% and 50%.
+
+``` {r bryGraphs, echo=FALSE, warning=FALSE, message=FALSE}
+### Create graphs of subsampling results by siteID
+#   BARR graph
+barrGraph <- ggplot2::ggplot(
+  data = summaryDF %>%
+    dplyr::filter(siteID == "BARR"),
+  mapping = aes(
+    x = treatment,
+    y = mean
+  )
+) +
+  ggplot2::geom_bar(
+    position = "dodge",
+    stat = "identity"
+  ) +
+  ggplot2::geom_errorbar(
+    aes(
+      ymin = mean - se,
+      ymax = mean + se
+    ),
+    width = 0.2,
+    position = position_dodge(0.9)
+  ) +
+  ggplot2::labs(
+    x = "Treatment",
+    y = "Dry Mass (g)",
+    title = "D18 BARR 2022 BRY Subsampling"
+  )
+
+barrGraph
+
+#   TOOL graph
+toolGraph <- ggplot2::ggplot(
+  data = summaryDF %>%
+    dplyr::filter(siteID == "TOOL"),
+  mapping = aes(
+    x = treatment,
+    y = mean
+  )
+) +
+  ggplot2::geom_bar(
+    position = "dodge",
+    stat = "identity"
+  ) +
+  ggplot2::geom_errorbar(
+    aes(
+      ymin = mean - se,
+      ymax = mean + se
+    ),
+    width = 0.2,
+    position = position_dodge(0.9)
+  ) +
+  ggplot2::labs(
+    x = "Treatment",
+    y = "Dry Mass (g)",
+    title = "D18 TOOL 2022 BRY Subsampling"
+  )
+
+toolGraph
+
+```
+\pagebreak
+
+
+## Results: Mixed-Effects model analysis
+
+- Models are run separately for each site, as the aim is to understand site-specific effects of `treatment` on `estimatedDryMass`. 
+- Models use **clipID** as a random effect; benefit of random effect is it can account for variation at level of clip-strip unrelated to treatment - e.g., variation due to moisture on day clip-strip was harvested, effect of moss abundance or species composition at particular location, etc. 
+- The version of the `lmer()` function in the `lmerTest` package is used because the assumptions for this model allow standard anova output to be assessed.
+
+```{r barrModel}
+### BARR subsampling model
+#   Create model with random intercept by clipID
+barrMod <- lmerTest::lmer(
+  formula = estimatedDryMass ~ treatment + (1|clipID),
+  data = longDF %>% dplyr::filter(siteID == "BARR"),
+  REML = FALSE
+)
+
+#   Assess model outputs
+summary(barrMod)
+anova(barrMod)
+lattice::dotplot(ranef(barrMod, condVar = TRUE))
+
+```
+\pagebreak
+
+``` {r toolModel}
+### TOOL subsampling model
+#   Create TOOL linear mixed-effects model to assess subsampling treatment
+toolMod <- lmerTest::lmer(
+  formula = estimatedDryMass ~ treatment + (1|clipID),
+  data = longDF %>% dplyr::filter(siteID == "TOOL"),
+  REML = FALSE
+)
+
+#   Assess model outputs
+summary(toolMod)
+anova(toolMod)
+lattice::dotplot(ranef(toolMod, condVar = TRUE))
+
+```
+\pagebreak
+
+
+
+
+
+##  Summary
+
+1. BARR results
+    - No difference between 25% and 50% subsampling (p = 0.97); dryMass estimated from 50% subsampling is 0.09% higher than dryMass estimated from 25% subsampling.
+    - From previous 2021 analysis: 50% subsampling virtually identical to control (p = 0.85)
+1. TOOL results
+    - No difference between 25% and 50% subsampling (p = 0.75); dryMass estimated from 50% subsampling is 0.96% lower than dryMass estimated from 25% subsampling.
+    - From previous 2021 analysis: 50% subsampling less than 3% higher than control (p = 0.71)
+
+    
+Summary of recommendations for BRY subsampling by site:
+
+- BARR: 25%
+- TOOL: 25%
+
+--> All sites in D18 and D19 can subsample BRY at 25%
+
+
+    
