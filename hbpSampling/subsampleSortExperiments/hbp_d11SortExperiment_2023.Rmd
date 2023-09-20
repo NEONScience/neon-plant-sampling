@@ -1,5 +1,5 @@
 ---
-title: "HBP D11 2022 Sorting Subsample Experiment"
+title: "HBP D11 2023 Sorting Subsample Experiment"
 author: "Courtney Meier"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
 output: 
@@ -74,3 +74,85 @@ To determine the efficacy of subsampling various proportions of HBP samples in D
 1. Remove dry samples from the oven one at a time, and immediately weigh and record:
     a. **subsampleDryMass**: To the nearest 0.01 g; for masses < 0.5 g, weigh to the nearest 0.0001 g.
     
+    
+##  Analyses
+
+```{r loadPackages, echo=FALSE, include=FALSE}
+
+library(dplyr)
+library(ggplot2)
+library(glue)
+library(lmerTest)
+library(openxlsx)
+library(tidyr)
+
+```
+    
+```{r calculations, echo=FALSE}
+
+### Read in data collected by D11
+if(file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neon-plant-sampling/hbpSampling/subsampleSortExperiments"
+}
+
+df <- openxlsx::read.xlsx(xlsxFile = glue::glue(inputPath, "hbp_d11SortExperiment2023_data.xlsx", .sep = "/"),
+                          sheet = "R_input",
+                          colNames = TRUE) %>%
+  dplyr::mutate(collectDate = lubridate::ymd(collectDate))
+
+
+
+### Calculate total dryMass for each sampling cell, and estimated dryMass from subsampling
+df <- df %>%
+  dplyr::mutate(dryMass10 = round(freshMass * (ssDM10/ssFM10), digits = 2),
+                dryMass15 = round(freshMass * (ssDM15/ssFM15), digits = 2),
+                dryMass25 = round(freshMass * (ssDM25/ssFM25), digits = 2),
+                dryMass50 = round(freshMass * (ssDM50/ssFM50), digits = 2),
+                dryMass = ssDM10 + ssDM15 + ssDM25 + ssDM50) %>%
+  dplyr::arrange(eventID, clipID, exclosure)
+
+
+
+### Create long-format and summary data frames for LMER models and ggplot2
+
+#   Generate long-format data frame
+longDF <- tidyr::pivot_longer(data = df %>%
+                                dplyr::select(eventID, clipID, collectDate, exclosure,
+                                              dryMass10, dryMass15, dryMass25, dryMass50, dryMass),
+                              cols = dryMass10:dryMass,
+                              names_to = "treatment",
+                              values_to = "estDryMass")
+
+
+
+#   Calculate total observed dryMass for each Clip Strip, and estimated dryMass from subsampling
+#   Filter to focus analyses on 2018 bout collected between 2/19-2/28; concern that earlier bout did not 
+#   adequately represent clipping/sorting conditions that exist during majority of field season.
+df %>%
+  mutate(dryMass = ssDM10 + ssDM25 + ssDM50 + ssDMResid) %>%
+  mutate(dryMass10 = freshMass*(ssDM10/ssFM10)) %>%
+  mutate(dryMass25 = freshMass*(ssDM25/ssFM25)) %>%
+  mutate(dryMass50 = freshMass*(ssDM50/ssFM50)) %>%
+  filter(grepl("2018", eventID)) %>%
+  arrange(eventID, clipID, exclosure) -> df
+
+# Arrange data suitable for ggplot2, then plot
+df %>%
+  select(eventID, clipID, collectDate, exclosure, dryMass, dryMass10, dryMass25, dryMass50) %>%
+  gather(key = treatment, value = estimatedDryMass, dryMass10, dryMass25, dryMass50, dryMass) %>%
+  rename() %>%
+  arrange(clipID, treatment) -> longDF
+
+summaryDF <- ddply(longDF, c("treatment", "exclosure"), summarise,
+                   N = length(estimatedDryMass),
+                   mean = mean(estimatedDryMass),
+                   sd = sd(estimatedDryMass),
+                   se = sd/sqrt(N))
+
+ggplot(summaryDF, aes(x = treatment, y = mean, fill = exclosure)) +
+  geom_bar(position = "dodge", stat = "identity") +
+  geom_errorbar(aes(ymin = mean-se, ymax = mean+se), width = 0.2, position = position_dodge(0.9)) +
+  labs(x = "Treatment", y = "Dry mass (g)", title = "D17 HBP Clip Strip subsampling")
+
+
+```
