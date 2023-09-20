@@ -75,7 +75,7 @@ To determine the efficacy of subsampling various proportions of HBP samples in D
     a. **subsampleDryMass**: To the nearest 0.01 g; for masses < 0.5 g, weigh to the nearest 0.0001 g.
     
     
-##  Analyses
+##  Data summary
 
 ```{r loadPackages, echo=FALSE, include=FALSE}
 
@@ -115,7 +115,7 @@ df <- df %>%
 
 ### Create long-format and summary data frames for LMER models and ggplot2
 
-#   Generate long-format data frame
+#   Generate long-format data frame for LMER
 longDF <- tidyr::pivot_longer(data = df %>%
                                 dplyr::select(eventID, clipID, collectDate, exclosure,
                                               dryMass10, dryMass15, dryMass25, dryMass50, dryMass),
@@ -123,36 +123,148 @@ longDF <- tidyr::pivot_longer(data = df %>%
                               names_to = "treatment",
                               values_to = "estDryMass")
 
-
-
-#   Calculate total observed dryMass for each Clip Strip, and estimated dryMass from subsampling
-#   Filter to focus analyses on 2018 bout collected between 2/19-2/28; concern that earlier bout did not 
-#   adequately represent clipping/sorting conditions that exist during majority of field season.
-df %>%
-  mutate(dryMass = ssDM10 + ssDM25 + ssDM50 + ssDMResid) %>%
-  mutate(dryMass10 = freshMass*(ssDM10/ssFM10)) %>%
-  mutate(dryMass25 = freshMass*(ssDM25/ssFM25)) %>%
-  mutate(dryMass50 = freshMass*(ssDM50/ssFM50)) %>%
-  filter(grepl("2018", eventID)) %>%
-  arrange(eventID, clipID, exclosure) -> df
-
-# Arrange data suitable for ggplot2, then plot
-df %>%
-  select(eventID, clipID, collectDate, exclosure, dryMass, dryMass10, dryMass25, dryMass50) %>%
-  gather(key = treatment, value = estimatedDryMass, dryMass10, dryMass25, dryMass50, dryMass) %>%
-  rename() %>%
-  arrange(clipID, treatment) -> longDF
-
-summaryDF <- ddply(longDF, c("treatment", "exclosure"), summarise,
-                   N = length(estimatedDryMass),
-                   mean = mean(estimatedDryMass),
-                   sd = sd(estimatedDryMass),
-                   se = sd/sqrt(N))
-
-ggplot(summaryDF, aes(x = treatment, y = mean, fill = exclosure)) +
-  geom_bar(position = "dodge", stat = "identity") +
-  geom_errorbar(aes(ymin = mean-se, ymax = mean+se), width = 0.2, position = position_dodge(0.9)) +
-  labs(x = "Treatment", y = "Dry mass (g)", title = "D17 HBP Clip Strip subsampling")
-
+#   Generate summary data frame for ggplot2
+summaryDF <- longDF %>%
+  dplyr::group_by(treatment, exclosure) %>%
+  dplyr::summarise(
+    N = n(),
+    mean = mean(estDryMass),
+    sd = sd(estDryMass),
+    se = sd/sqrt(N)
+  ) %>%
+  dplyr::ungroup()
 
 ```
+
+``` {r results-plot, echo = FALSE}
+
+### Create ggplot from summaryDF and display
+ggplot2::ggplot(data = summaryDF,
+                mapping = aes(x = treatment,
+                              y = mean,
+                              fill = exclosure)) +
+  ggplot2::geom_bar(position = "dodge",
+                    stat = "identity") +
+  ggplot2::geom_errorbar(mapping = aes(ymin = mean - se,
+                                       ymax = mean + se),
+                         width = 0.2,
+                         position = position_dodge(0.9)) +
+  ggplot2::labs(x = "Subsampling treatment",
+                y = "Dry mass (g)",
+                title = "D11 HBP subsampling")
+
+```
+
+
+
+## Results: Mixed-Effects model analysis
+
+1.  Models accounting for subsampling effect on **dryMass** and using **clipID** as a random effect (no need to use **exclosure** as a fixed effect since random effect accounts for variation across exclosure treatment).
+
+**_Model: Data from eventID = "HBP.2023.CLBJ.18" only_**
+
+```{r me-treatment-event18, echo = FALSE}
+
+#   Mixed effects model for eventID = "HBP.2023.CLBJ.18" alone
+m1ME <- lmerTest::lmer(formula = estDryMass ~ treatment + (1|clipID),
+                       data = longDF %>% dplyr::filter(eventID == "HBP.2023.CLBJ.18"),
+                       REML = FALSE)
+
+summary(m1ME)
+anova(m1ME)
+
+```
+
+**_Model: Data from eventID = "HBP.2023.CLBJ.34" only_**
+
+``` {r me-treatement-event34, echo = FALSE}
+
+#   Mixed effects model for eventID = "HBP.2023.CLBJ.34" alone
+m2ME <- lmerTest::lmer(formula = estDryMass ~ treatment + (1|clipID),
+                       data = longDF %>% dplyr::filter(eventID == "HBP.2023.CLBJ.34"),
+                       REML = FALSE)
+
+summary(m2ME)
+anova(m2ME)
+
+```
+
+**_Model: Data from both eventIDs_**
+
+``` {r me-treatment-alldata, echo = FALSE}
+
+#   Mixed effects model for all data
+m3ME <- lmerTest::lmer(formula = estDryMass ~ treatment + (1|clipID),
+                       data = longDF,
+                       REML = FALSE)
+
+summary(m3ME)
+anova(m3ME)
+
+```
+\pagebreak
+
+
+2.  Null model, and using **clipID** as a random effect. Theoretically, if all subsampling results in the same dryMass as the full sort, the null model should be no different than the "treatment" model.
+
+```{r me-null, echo = FALSE}
+
+#   Check if NULL model better than model including "treatment"
+m4ME <- lmerTest::lmer(formula = estDryMass ~ 1 + (1|clipID),
+                       data = longDF,
+                       REML = FALSE)
+
+summary(m4ME)
+anova(m3ME, m4ME)
+
+```
+\pagebreak
+
+
+3.  Linear model, using treatment*exclosure, and no random effect.
+
+```{r lm-exclosure-interaction-effect, echo = FALSE}
+
+#   Linear model with interaction effect
+m1LM <- lm(estDryMass ~ exclosure*treatment, data = longDF)
+summary(m1LM)
+anova(m1LM)
+
+```
+\pagebreak
+
+
+### Summary of subsampling results
+
+``` {r summary, echo = FALSE}
+
+#   Create data frame of summary results: % difference of subsampling for total estimated dryMass relative to
+#   dryMass from full sort
+eventID <- c("HBP.2023.CLBJ.18", "HBP.2023.CLBJ.34")
+ss10 <- c(-6.2, 3.6)
+ss15 <- c(-0.6, 2.3)
+ss25 <- c(2.6, 1.9)
+ss50 <- c(2.1, 0.76)
+
+results <- data.frame(eventID, ss10, ss15, ss25, ss50)
+
+knitr::kable(results,
+             caption = "Difference in estimated dryMass to total dryMass for subsampling (%)")
+
+```
+
+
+## Conclusions
+
+1. Random effect associated with **clipID** explains considerable variability in the data. See summary outputs for all mixed-effects models.
+1. Summary output for Mixed Effects model indicates that D11 Clip Strips can be subsampled at the 15% level for all bouts with **herbGroup** = ALL.
+    - Comparing results from two separate bouts, estimates of dryMass using a 10% subsample are more variable relative to total dryMass from the full sort compared to other subsampling levels.
+    - Estimated dryMass from the 10% subsample is significantly different than the full sort for eventID = "HBP.2023.CLBJ.34" (p = 0.05)
+    - When eventIDs are analyzed separately (m1ME, m2ME), other subsamples are not significantly different than the entire sorted subsample (p > 0.22) --> go with 15% subsample.
+    - With both eventIDs analyzed together, there are no differences between the full sort dryMass and estimated dryMass from subsampling (p = 0.74).
+1. Effect of `exclosure*treatment`, as evaluated in standard linear model (m1LM):
+    - Effect of `exclosure` is significant (p < 0.05).
+    - Effect of `treatment` not significant (p = 0.99).
+    - No detection of `exclosure:treatment` interaction effect (p = 0.99).
+    
+
