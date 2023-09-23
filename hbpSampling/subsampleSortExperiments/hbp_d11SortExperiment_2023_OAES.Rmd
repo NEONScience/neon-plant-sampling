@@ -1,5 +1,5 @@
 ---
-title: "HBP D11 2023 Sorting Subsample Experiment"
+title: "HBP D11 OAES 2023 Sorting Subsample Experiment"
 author: "Courtney Meier"
 date: "`r format(Sys.time(), '%Y-%m-%d')`"
 output: 
@@ -12,7 +12,7 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 ##  Goal
-To determine the efficacy of subsampling various proportions of HBP samples in D11 to reduce long sort times associated with removing OSD from current-year clipped biomass. **Subsampling is only evaluated in the context of clip harvests that do not require sorting to functional group** (i.e., non-peak biomass clips), because the subsample to total mass ratios will not apply to individual herbGroups.
+To determine the efficacy of subsampling various proportions of HBP samples at the D11 OAES site to reduce long sort times associated with removing OSD from current-year clipped biomass. **Subsampling is only evaluated in the context of clip harvests that do not require sorting to functional group** (i.e., non-peak biomass clips), because the subsample to total mass ratios will not apply to individual herbGroups.
 
 ##  Experimental Setup and Analyses
 
@@ -95,10 +95,15 @@ if(file.exists("/Users/cmeier")){
   inputPath <- "~/Documents/gitRepositories/neon-plant-sampling/hbpSampling/subsampleSortExperiments"
 }
 
+if (file.exists("/Users/Pajaro")) {
+  inputPath <- "~/Documents/workDocuments/gitRepositories/neon-plant-sampling/hbpSampling/subsampleSortExperiments"
+}
+
 df <- openxlsx::read.xlsx(xlsxFile = glue::glue(inputPath, "hbp_d11SortExperiment2023_data.xlsx", .sep = "/"),
                           sheet = "R_input",
                           colNames = TRUE) %>%
-  dplyr::mutate(collectDate = lubridate::ymd(collectDate))
+  dplyr::mutate(collectDate = lubridate::ymd(collectDate)) %>%
+  dplyr::filter(grepl("OAES", clipID))
 
 
 
@@ -151,7 +156,7 @@ ggplot2::ggplot(data = summaryDF,
                          position = position_dodge(0.9)) +
   ggplot2::labs(x = "Subsampling treatment",
                 y = "Dry mass (g)",
-                title = "D11 HBP subsampling")
+                title = "D11 OAES HBP subsampling")
 
 ```
 
@@ -161,13 +166,13 @@ ggplot2::ggplot(data = summaryDF,
 
 1.  Models accounting for subsampling effect on **dryMass** and using **clipID** as a random effect (no need to use **exclosure** as a fixed effect since random effect accounts for variation across exclosure treatment).
 
-**_Model: Data from eventID = "HBP.2023.CLBJ.18" only_**
+**_Model: Data from eventID = "HBP.2023.OAES.24" only_**
 
-```{r me-treatment-event18, echo = FALSE}
+```{r me-treatment-event24, echo = FALSE}
 
-#   Mixed effects model for eventID = "HBP.2023.CLBJ.18" alone
+#   Mixed effects model for eventID = "HBP.2023.OAES.24" alone
 m1ME <- lmerTest::lmer(formula = estDryMass ~ treatment + (1|clipID),
-                       data = longDF %>% dplyr::filter(eventID == "HBP.2023.CLBJ.18"),
+                       data = longDF %>% dplyr::filter(eventID == "HBP.2023.OAES.24"),
                        REML = FALSE)
 
 summary(m1ME)
@@ -175,13 +180,13 @@ anova(m1ME)
 
 ```
 
-**_Model: Data from eventID = "HBP.2023.CLBJ.34" only_**
+**_Model: Data from eventID = "HBP.2023.OAES.36" only_**
 
-``` {r me-treatement-event34, echo = FALSE}
+``` {r me-treatement-event36, echo = FALSE}
 
-#   Mixed effects model for eventID = "HBP.2023.CLBJ.34" alone
+#   Mixed effects model for eventID = "HBP.2023.OAES.36" alone
 m2ME <- lmerTest::lmer(formula = estDryMass ~ treatment + (1|clipID),
-                       data = longDF %>% dplyr::filter(eventID == "HBP.2023.CLBJ.34"),
+                       data = longDF %>% dplyr::filter(eventID == "HBP.2023.OAES.36"),
                        REML = FALSE)
 
 summary(m2ME)
@@ -194,7 +199,7 @@ anova(m2ME)
 ``` {r me-treatment-alldata, echo = FALSE}
 
 #   Mixed effects model for all data
-m3ME <- lmerTest::lmer(formula = estDryMass ~ treatment + (1|clipID),
+m3ME <- lmerTest::lmer(formula = estDryMass ~ treatment*eventID + (1|clipID),
                        data = longDF,
                        REML = FALSE)
 
@@ -226,7 +231,7 @@ anova(m3ME, m4ME)
 ```{r lm-exclosure-interaction-effect, echo = FALSE}
 
 #   Linear model with interaction effect
-m1LM <- lm(estDryMass ~ exclosure*treatment, data = longDF)
+m1LM <- lm(estDryMass ~ exclosure*treatment + eventID, data = longDF)
 summary(m1LM)
 anova(m1LM)
 
@@ -240,11 +245,11 @@ anova(m1LM)
 
 #   Create data frame of summary results: % difference of subsampling for total estimated dryMass relative to
 #   dryMass from full sort
-eventID <- c("HBP.2023.CLBJ.18", "HBP.2023.CLBJ.34")
-ss10 <- c(-6.2, 3.6)
-ss15 <- c(-0.6, 2.3)
-ss25 <- c(2.6, 1.9)
-ss50 <- c(2.1, 0.76)
+eventID <- c("HBP.2023.OAES.24", "HBP.2023.OAES.36")
+ss10 <- c(0, 6.7)
+ss15 <- c(0.6, 2.6)
+ss25 <- c(4.6, -1.2)
+ss50 <- c(1.3, 1.7)
 
 results <- data.frame(eventID, ss10, ss15, ss25, ss50)
 
@@ -256,15 +261,17 @@ knitr::kable(results,
 
 ## Conclusions
 
+Summary of D11 OAES results:
+
 1. Random effect associated with **clipID** explains considerable variability in the data. See summary outputs for all mixed-effects models.
-1. Summary output for Mixed Effects model indicates that D11 Clip Strips can be subsampled at the 15% level for all bouts with **herbGroup** = ALL.
-    - Comparing results from two separate bouts, estimates of dryMass using a 10% subsample are more variable relative to total dryMass from the full sort compared to other subsampling levels.
-    - Estimated dryMass from the 10% subsample is significantly different than the full sort for eventID = "HBP.2023.CLBJ.34" (p = 0.05)
-    - When eventIDs are analyzed separately (m1ME, m2ME), other subsamples are not significantly different than the entire sorted subsample (p > 0.22) --> go with 15% subsample.
-    - With both eventIDs analyzed together, there are no differences between the full sort dryMass and estimated dryMass from subsampling (p = 0.74).
+1. Summary output for Mixed Effects model indicates that D11 OAES Clip Strips can be subsampled at the 15% level for all bouts with **herbGroup** = ALL.
+    - Comparing results from two separate bouts, estimates of dryMass using a 10% subsample are more variable relative to total dryMass from the full sort compared to other subsampling levels, even though the difference is not significant.
+    - When eventIDs are analyzed separately (m1ME, m2ME), other subsamples are not significantly different than the entire sorted subsample (p > 0.29) --> go with 15% subsample.
+    - With both eventIDs analyzed together, there are no differences between the full sort dryMass and estimated dryMass from subsampling (p = 0.68).
 1. Effect of `exclosure*treatment`, as evaluated in standard linear model (m1LM):
-    - Effect of `exclosure` is significant (p < 0.05).
+    - Effect of `exclosure` is not significant (p = 0.16).
     - Effect of `treatment` not significant (p = 0.99).
     - No detection of `exclosure:treatment` interaction effect (p = 0.99).
+    - Effect of `eventID` highly significant (p < 0.0001)
     
 

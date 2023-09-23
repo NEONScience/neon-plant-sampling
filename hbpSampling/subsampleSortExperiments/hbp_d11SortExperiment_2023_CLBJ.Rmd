@@ -1,0 +1,273 @@
+---
+title: "HBP D11 CLBJ 2023 Sorting Subsample Experiment"
+author: "Courtney Meier"
+date: "`r format(Sys.time(), '%Y-%m-%d')`"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##  Goal
+To determine the efficacy of subsampling various proportions of HBP samples at the D11 CLBJ site to reduce long sort times associated with removing OSD from current-year clipped biomass. **Subsampling is only evaluated in the context of clip harvests that do not require sorting to functional group** (i.e., non-peak biomass clips), because the subsample to total mass ratios will not apply to individual herbGroups.
+
+##  Experimental Setup and Analyses
+
+* Select n=10 plots (all plots for OAES), resulting in a maximum of n=20 `clipID` to test, due to both `exclosure = Y and N` for each plot. Random spatially-balanced plot locations, and locations of clipIDs within plots, will provide an unbiased estimate of biomass throughout the Tower airshed.
+
+* For each `clipID` harvested in the field, test subsampling efficiency at various levels of sorting by creating subsamples (current-year + OSD) with the following percentages of the total `freshMass`:
+    - 10%
+    - 15%
+    - 25%
+    - 50%
+    
+    The sum of all the subsamples = 100%; that is, the fresh mass of the entire clip strip.
+
+* When subsampling is employed, calculate dryMass as follows: `dM = fM * (ssDM/ssFM)`, where:
+    - *dM* = dryMass of current-year biomass in the clipID (no OSD)
+    - *fM* = total freshMass in the clipID (current-year + OSD)
+    - *ssDM* = subsampleDryMass of current-year biomass in the subsample (no OSD)
+    - *ssFM* = fresh mass of all biomass in the subsample (current-year + OSD)
+
+* Compare `dryMass` results calculated via subsampling with `dryMass` obtained with no subsampling, and use mixed effects models to analyze results.
+
+##  Procedure
+
+1. Perform clip harvest in the field as normal, and bring clipped biomass back to the laboratory in cold storage as normal.
+
+1. Identify up to n=20 clipIDs (n=10 for `exclosure = Y` and n=10 for `exclosure = N`), originating from each of the 10 plotIDs.
+
+1. Thoroughly mix biomass from each `clipID` to homogenize as thoroughly as possible.
+    a. For large amounts of biomass, and when there is more than one bag of biomass for a given `clipID`, use a large bag, box, tray or equivalent vessel to mix the biomass.
+
+1. For each clipID, weigh and record to 0.01 g:
+    a. **`freshMass`** = total fresh mass in the clipID (current-year + OSD).
+    a. It is important that `freshMass` for the entire `clipID` and subsample fresh masses (below) are collected for a given `clipID` as close to each other in time as possible. That is, avoid weighing `freshMass` for a given `clipID` hours apart from the subsample fresh masses as water loss will affect the experimental results.
+
+1. Based on the **`freshMass`**, calculate the desired subsample fresh masses for testing. For example, assuming **`freshMass`** = 100 g, the target subsample fresh masses are:
+    a. 10% subsample --> 10 g
+    a. 15% subsample --> 15 g
+    a. 25% subsample --> 25 g
+    a. 50% subsample --> 50 g
+
+1. Label a coin envelope for each subsample above with the information below.
+    a. **`subsampleTest`**: `10%, 15%, 25%` or `50%`
+    a. **`clipID`**
+    a. **`collectDate`**
+    a. **`exclosure`**: `Y/N`
+
+1. Weigh each fresh subsample created above (current-year + OSD), and record the information below.
+    a. **`subsampleTest`**: as above
+    a. **`clipID`**
+    a. **`collectDate`**
+    a. **`exclosure`**: `Y/N`
+    a. **`subsampleFreshMass`**: To the nearest 0.01 g; for subsamples < 0.5 g total mass, weigh to the nearest 0.0001 g
+
+1. Sort current-year biomass from OSD for each subsample, and place sorted, current-year biomass into the corresponding labeled coin envelope.
+    a. Sorted OSD may be discarded at this point.
+
+1. Dry subsamples until dry; minimum of 48 h @ 65 ˚C, track drying progress as normal.
+
+1. Remove dry samples from the oven one at a time, and immediately weigh and record:
+    a. **subsampleDryMass**: To the nearest 0.01 g; for masses < 0.5 g, weigh to the nearest 0.0001 g.
+    
+    
+##  Data summary
+
+```{r loadPackages, echo=FALSE, include=FALSE}
+
+library(dplyr)
+library(ggplot2)
+library(glue)
+library(lmerTest)
+library(openxlsx)
+library(tidyr)
+
+```
+    
+```{r calculations, echo=FALSE}
+
+### Read in data collected by D11
+if(file.exists("/Users/cmeier")){
+  inputPath <- "~/Documents/gitRepositories/neon-plant-sampling/hbpSampling/subsampleSortExperiments"
+}
+
+df <- openxlsx::read.xlsx(xlsxFile = glue::glue(inputPath, "hbp_d11SortExperiment2023_data.xlsx", .sep = "/"),
+                          sheet = "R_input",
+                          colNames = TRUE) %>%
+  dplyr::mutate(collectDate = lubridate::ymd(collectDate)) %>%
+  dplyr::filter(grepl("CLBJ", clipID))
+
+
+
+### Calculate total dryMass for each sampling cell, and estimated dryMass from subsampling
+df <- df %>%
+  dplyr::mutate(dryMass10 = round(freshMass * (ssDM10/ssFM10), digits = 2),
+                dryMass15 = round(freshMass * (ssDM15/ssFM15), digits = 2),
+                dryMass25 = round(freshMass * (ssDM25/ssFM25), digits = 2),
+                dryMass50 = round(freshMass * (ssDM50/ssFM50), digits = 2),
+                dryMass = ssDM10 + ssDM15 + ssDM25 + ssDM50) %>%
+  dplyr::arrange(eventID, clipID, exclosure)
+
+
+
+### Create long-format and summary data frames for LMER models and ggplot2
+
+#   Generate long-format data frame for LMER
+longDF <- tidyr::pivot_longer(data = df %>%
+                                dplyr::select(eventID, clipID, collectDate, exclosure,
+                                              dryMass10, dryMass15, dryMass25, dryMass50, dryMass),
+                              cols = dryMass10:dryMass,
+                              names_to = "treatment",
+                              values_to = "estDryMass")
+
+#   Generate summary data frame for ggplot2
+summaryDF <- longDF %>%
+  dplyr::group_by(treatment, exclosure) %>%
+  dplyr::summarise(
+    N = n(),
+    mean = mean(estDryMass),
+    sd = sd(estDryMass),
+    se = sd/sqrt(N)
+  ) %>%
+  dplyr::ungroup()
+
+```
+
+``` {r results-plot, echo = FALSE}
+
+### Create ggplot from summaryDF and display
+ggplot2::ggplot(data = summaryDF,
+                mapping = aes(x = treatment,
+                              y = mean,
+                              fill = exclosure)) +
+  ggplot2::geom_bar(position = "dodge",
+                    stat = "identity") +
+  ggplot2::geom_errorbar(mapping = aes(ymin = mean - se,
+                                       ymax = mean + se),
+                         width = 0.2,
+                         position = position_dodge(0.9)) +
+  ggplot2::labs(x = "Subsampling treatment",
+                y = "Dry mass (g)",
+                title = "D11 CLBJ HBP subsampling")
+
+```
+
+
+
+## Results: Mixed-Effects model analysis
+
+1.  Models accounting for subsampling effect on **dryMass** and using **clipID** as a random effect (no need to use **exclosure** as a fixed effect since random effect accounts for variation across exclosure treatment).
+
+**_Model: Data from eventID = "HBP.2023.CLBJ.18" only_**
+
+```{r me-treatment-event18, echo = FALSE}
+
+#   Mixed effects model for eventID = "HBP.2023.CLBJ.18" alone
+m1ME <- lmerTest::lmer(formula = estDryMass ~ treatment + (1|clipID),
+                       data = longDF %>% dplyr::filter(eventID == "HBP.2023.CLBJ.18"),
+                       REML = FALSE)
+
+summary(m1ME)
+anova(m1ME)
+
+```
+
+**_Model: Data from eventID = "HBP.2023.CLBJ.34" only_**
+
+``` {r me-treatement-event34, echo = FALSE}
+
+#   Mixed effects model for eventID = "HBP.2023.CLBJ.34" alone
+m2ME <- lmerTest::lmer(formula = estDryMass ~ treatment + (1|clipID),
+                       data = longDF %>% dplyr::filter(eventID == "HBP.2023.CLBJ.34"),
+                       REML = FALSE)
+
+summary(m2ME)
+anova(m2ME)
+
+```
+
+**_Model: Data from both eventIDs_**
+
+``` {r me-treatment-alldata, echo = FALSE}
+
+#   Mixed effects model for all data
+m3ME <- lmerTest::lmer(formula = estDryMass ~ treatment*eventID + (1|clipID),
+                       data = longDF,
+                       REML = FALSE)
+
+summary(m3ME)
+anova(m3ME)
+
+```
+\pagebreak
+
+
+2.  Null model, and using **clipID** as a random effect. Theoretically, if all subsampling results in the same dryMass as the full sort, the null model should be no different than the "treatment" model.
+
+```{r me-null, echo = FALSE}
+
+#   Check if NULL model better than model including "treatment"
+m4ME <- lmerTest::lmer(formula = estDryMass ~ 1 + (1|clipID),
+                       data = longDF,
+                       REML = FALSE)
+
+summary(m4ME)
+anova(m3ME, m4ME)
+
+```
+\pagebreak
+
+
+3.  Linear model, using treatment*exclosure, and no random effect.
+
+```{r lm-exclosure-interaction-effect, echo = FALSE}
+
+#   Linear model with interaction effect
+m1LM <- lm(estDryMass ~ exclosure*treatment + eventID, data = longDF)
+summary(m1LM)
+anova(m1LM)
+
+```
+\pagebreak
+
+
+### Summary of subsampling results
+
+``` {r summary, echo = FALSE}
+
+#   Create data frame of summary results: % difference of subsampling for total estimated dryMass relative to
+#   dryMass from full sort
+eventID <- c("HBP.2023.CLBJ.18", "HBP.2023.CLBJ.34")
+ss10 <- c(-6.2, 3.6)
+ss15 <- c(-0.6, 2.3)
+ss25 <- c(2.6, 1.9)
+ss50 <- c(2.1, 0.76)
+
+results <- data.frame(eventID, ss10, ss15, ss25, ss50)
+
+knitr::kable(results,
+             caption = "Difference in estimated dryMass to total dryMass for subsampling (%)")
+
+```
+
+
+## Conclusions
+
+Summary of D11 CLBJ results:
+
+1. Random effect associated with **clipID** explains considerable variability in the data. See summary outputs for all mixed-effects models.
+1. Summary output for Mixed Effects model indicates that D11 CLBJ Clip Strips can be subsampled at the 15% level for all bouts with **herbGroup** = ALL.
+    - Comparing results from two separate bouts, estimates of dryMass using a 10% subsample are more variable relative to total dryMass from the full sort compared to other subsampling levels.
+    - Estimated dryMass from the 10% subsample is significantly different than the full sort for eventID = "HBP.2023.CLBJ.34" (p = 0.05)
+    - When eventIDs are analyzed separately (m1ME, m2ME), other subsamples are not significantly different than the entire sorted subsample (p > 0.22) --> go with 15% subsample.
+    - With both eventIDs analyzed together, there are no differences between the full sort dryMass and estimated dryMass from subsampling (p = 0.74).
+1. Effect of `exclosure*treatment`, as evaluated in standard linear model (m1LM):
+    - Effect of `exclosure` is significant (p < 0.05).
+    - Effect of `treatment` not significant (p = 0.99).
+    - No detection of `exclosure:treatment` interaction effect (p = 0.99).
+    
+
