@@ -91,8 +91,12 @@ library(tidyr)
 ```{r calculations, echo=FALSE}
 
 ### Read in data collected by D11
-if(file.exists("/Users/cmeier")){
+if (file.exists("/Users/cmeier")) {
   inputPath <- "~/Documents/gitRepositories/neon-plant-sampling/hbpSampling/subsampleSortExperiments"
+}
+
+if (file.exists("/Users/Pajaro")) {
+  inputPath <- "~/Documents/workDocuments/gitRepositories/neon-plant-sampling/hbpSampling/subsampleSortExperiments"
 }
 
 df <- openxlsx::read.xlsx(xlsxFile = glue::glue(inputPath, "hbp_d11SortExperiment2023_data.xlsx", .sep = "/"),
