@@ -23,6 +23,17 @@ import time
 import glob
 import gdal2tiles
 from simpledbf import Dbf5
+import re
+from collections import Counter
+
+import sys
+
+nisLibDir = r'D:\Gold_Pipeline\ProcessingPipelines\NIS\lib\Python'
+
+if nisLibDir not in sys.path:
+    sys.path.insert(0, nisLibDir)
+
+from aop_processing_utils import *
 
 def compileYSV(sites, years):
     ysvL = []
@@ -275,6 +286,10 @@ def canopyHeightPercentage(YearSiteVisitName, csvOfSubplotCentroids, dl, DFcalcC
         
     return YearSiteVisitName, DFcalcCHM
 
+def Filter(string, substr):
+    return [str for str in string if
+            any(sub in str for sub in substr)]
+
 if __name__ == '__main__':
     
     # Modify site and year to filter results. Leaving site as 'ALL', but modifying the year returns all year_site_visits
@@ -290,13 +305,26 @@ if __name__ == '__main__':
     print(YearSiteVisitNameList)
     #YearSiteVisitNameList = ['2016_TREE_1', '2017_TREE_2', '2019_TREE_3', '2020_TREE_4', '2022_TREE_5']
     
+    # Remove aquatic and plains sites
+    ignoreSite = ['ARIK', 'BARR', 'BLUE', 'CHEQ', 'CPER', 'CUPE', 'DSNY', 'GUIL',
+                  'HOPB', 'JORN', 'KTHF', 'LAJA', 'LIRO', 'MCDI', 'MCRA', 'MOAB',
+                  'MRMF', 'MOAB', 'NOGP', 'OAES', 'ONAQ', 'PRIN', 'REDB', 'SAWB',
+                  'STER', 'SYCA', 'TEPF', 'TOOL', 'WLOU', 'WOOD', 'WTSF']
+    
+    for word in list(YearSiteVisitNameList):
+        if word in ignoreSite:
+            del YearSiteVisitNameList[word]
+    
+    removeYSVNL = Filter(YearSiteVisitNameList, ignoreSite)
+    subYSVNL = [i for i in YearSiteVisitNameList if i not in removeYSVNL]
+        
     ysv_completed = []
     ysv_fail = []
     DFcalcCHM = pd.DataFrame()
     #i = 1
     
-    for i in range(len(YearSiteVisitNameList)):
-        YearSiteVisitName = YearSiteVisitNameList[i]
+    for i in range(len(subYSVNL)):
+        YearSiteVisitName = subYSVNL[i]
         start_time = time.time()
         try:
             ysv_comp, DFcalcCHM = canopyHeightPercentage(YearSiteVisitName, csvOfSubplotCentroids, dl, DFcalcCHM)
@@ -310,6 +338,19 @@ if __name__ == '__main__':
     DFcalcCHM.to_csv("C:/Users/kmurphy/Documents/Git/neon-plant-sampling/ltr_vegArea/allLitterPlots_CalculatedCHMpct_updated.csv")
 
 # Calculate the number of times each site has been an issue and record the YSV number
-    siteSplit = [[]]
-    for x in range(len(DFcalcCHM)):
-        siteSplit = siteSplit.append(ysv_fail[x].split("_", 1)[1][0:4])
+    siteSplit = []
+    for x in range(len(ysv_fail)):
+        siteSplit.append(ysv_fail[x].split("_", 1)[1][0:4])
+    siteErrorCounts = Counter(siteSplit)
+    
+    ignoreSite = ['ARIK', 'BARR', 'BLUE', 'CHEQ', 'CPER', 'CUPE', 'DSNY', 'GUIL',
+                  'HOPB', 'JORN', 'KTHF', 'LAJA', 'LIRO', 'MCDI', 'MCRA', 'MOAB',
+                  'MRMF', 'MOAB', 'NOGP', 'OAES', 'ONAQ', 'PRIN', 'REDB', 'SAWB',
+                  'STER', 'SYCA', 'TEPF', 'TOOL', 'WLOU', 'WOOD', 'WTSF']
+    
+    for word in list(siteErrorCounts):
+        if word in ignoreSite:
+            del siteErrorCounts[word]
+            
+    substr = ['ORNL', 'SOAP', 'SERC']
+    print(Filter(ysv_fail, substr))    
