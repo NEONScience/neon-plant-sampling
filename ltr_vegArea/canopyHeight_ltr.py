@@ -335,7 +335,7 @@ if __name__ == '__main__':
             ysv_fail.append(YearSiteVisitName)
             print("Failed: " + YearSiteVisitName)
             print("--- %s seconds ---" % (time.time() - start_time))
-    DFcalcCHM.to_csv("C:/Users/kmurphy/Documents/Git/neon-plant-sampling/ltr_vegArea/allLitterPlots_CalculatedCHMpct_updated.csv")
+    DFcalcCHM.to_csv("C:/Users/kmurphy/Documents/Git/neon-plant-sampling/ltr_vegArea/allLitterPlots_CalculatedCHMpct_updatedAllSites.csv")
 
 # Calculate the number of times each site has been an issue and record the YSV number
     siteSplit = []
