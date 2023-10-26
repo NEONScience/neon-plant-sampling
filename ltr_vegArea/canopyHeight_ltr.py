@@ -283,7 +283,7 @@ def canopyHeightPercentage(YearSiteVisitName, csvOfSubplotCentroids, dl, DFcalcC
     dl2 = DownloadClass()
     missions = dl2.list_missions_from_product(YearSiteVisitName)
     missions.sort()
-    print("Add Missions")
+    print("Add Missions: ", missions)
     # = ['2022051712', '2022053113']
     bufferCalc['startDate'] = missions[0][0:4]+"-"+missions[0][4:6]+"-"+missions[0][6:8]+"T"+missions[0][8:10]+":00:00.000Z"
     bufferCalc['endDate'] = missions[-1][0:4]+"-"+missions[-1][4:6]+"-"+missions[-1][6:8]+"T"+missions[-1][8:10]+":00:00.000Z"
@@ -349,8 +349,8 @@ if __name__ == '__main__':
     #Redo
     ysv_completed_redo = []
     ysv_fail_redo = []
-    for i in range(len(ysv_fail_redo)):
-        YearSiteVisitName = ysv_fail_redo[i]
+    for i in range(len(ysv_fail)):
+        YearSiteVisitName = ysv_fail[i]
         start_time = time.time()
         try:
             ysv_comp, DFcalcCHM = canopyHeightPercentage(YearSiteVisitName, csvOfSubplotCentroids, dl, DFcalcCHM)
