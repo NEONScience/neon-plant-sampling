@@ -72,8 +72,8 @@ class DownloadClass:
                 if Row[1] == site.site_name:
                     Domain=Row[2]
         try:
-            #prefix = site.year+'/'+'FullSite/'+Domain+'/'+year_site_v+'/'+'L1/Camera/Images/'
-            prefix = site.year+'/'+'FullSite/'+Domain+'/'+year_site_v+'/'+'L1/Spectrometer/RadianceH5/'
+            prefix = site.year+'/'+'FullSite/'+Domain+'/'+year_site_v+'/'+'L1/Camera/Images/'
+            #prefix = site.year+'/'+'FullSite/'+Domain+'/'+year_site_v+'/'+'L1/Spectrometer/RadianceH5/'
 
         except:
             print(year_site_v)
