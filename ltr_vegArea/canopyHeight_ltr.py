@@ -280,6 +280,13 @@ def canopyHeightPercentage(YearSiteVisitName, csvOfSubplotCentroids, dl, DFcalcC
     bufferCalc = calculateCHMpct(ChmMosaic, bufferPlots, ysvc, CHMpctOutDir)
     bufferCalc['CHM_percent'] = (bufferCalc['CHM_area']/bufferCalc['plotArea']*100)
     bufferCalc['Year'] = ysvc.year
+    dl2 = DownloadClass()
+    missions = dl2.list_missions_from_product(YearSiteVisitName)
+    print("Add Missions")
+    bufferCalc['startDate'] = missions[0][0:4]+"-"+missions[0][4:6]+"-"+missions[0][6:8]+"T"+missions[0][8:10]+":00:00.000Z"
+    bufferCalc['endDate'] = missions[-1][0:4]+"-"+missions[-1][4:6]+"-"+missions[-1][6:8]+"T"+missions[-1][8:10]+":00:00.000Z"
+
+    #YYYY-MM-DDT00:00:00.000Z
     bufferCalc = bufferCalc.drop(columns = ['east', 'west', 'north', 'south'])
     DFcalcCHM = DFcalcCHM.append(bufferCalc)
     #bufferCalc.to_csv("C:/Users/kmurphy/Documents/Git/neon-plant-sampling/ltr_vegArea/testDat_CalculatedCHMpct.csv")
@@ -300,6 +307,8 @@ if __name__ == '__main__':
     sites = ['ALL']
     years = ['ALL']
     csvOfSubplotCentroids = "C:/Users/kmurphy/Documents/Git/neon-plant-sampling/ltr_vegArea/allLitterPlots.csv"
+    #csvOfSubplotCentroids = "C:/Users/kmurphy/Documents/Git/neon-plant-sampling/ltr_vegArea/testDat.csv"
+
     
     YearSiteVisitNameList = compileYSV(sites, years)
     print(YearSiteVisitNameList)
@@ -335,7 +344,7 @@ if __name__ == '__main__':
             ysv_fail.append(YearSiteVisitName)
             print("Failed: " + YearSiteVisitName)
             print("--- %s seconds ---" % (time.time() - start_time))
-    DFcalcCHM.to_csv("C:/Users/kmurphy/Documents/Git/neon-plant-sampling/ltr_vegArea/allLitterPlots_CalculatedCHMpct_updatedAllSites.csv")
+    DFcalcCHM.to_csv("C:/Users/kmurphy/Documents/Git/neon-plant-sampling/ltr_vegArea/allLitterPlots_CalculatedCHMpct_wDates.csv")
 
 # Calculate the number of times each site has been an issue and record the YSV number
     siteSplit = []
