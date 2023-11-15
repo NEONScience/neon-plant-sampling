@@ -41,7 +41,7 @@ queryIndividuals <- sQuote(sort(unique(multiplotID$individualid)))
 queryIndividuals <- paste(queryIndividuals, collapse = ",")
 
 #   Construct apparentindividual query
-aiQuery <- glue::glue("SELECT domainid, siteid, date, eventid, individualid, plotid, growthform, tagstatus, plantstatus, stemdiameter FROM vstqaqc.apparentindividual WHERE individualid IN ({queryIndividuals}) ORDER BY domainid, siteid, individualid, date;")
+aiQuery <- glue::glue("SELECT domainid, siteid, date, eventid, individualid, plotid, growthform, tagstatus, plantstatus, stemdiameter, remarks FROM vstqaqc.apparentindividual WHERE individualid IN ({queryIndividuals}) ORDER BY domainid, siteid, individualid, date;")
 
 #   Retrieve apparentindividual data for individualids in > 1 plotid
 multiplotDF <- RPostgres::dbGetQuery(conn = conPool,
@@ -63,7 +63,7 @@ write.csv(summaryDF,
 
 ### Retrieve and join data from mappingandtagging for more context
 #   Construct mappingandtagging query
-mtQuery <- glue::glue("SELECT date, eventid, plotid, subplotid, nestedsubplotid, taxonid, recordtype, individualid FROM vstqaqc.mappingandtagging WHERE individualid IN ({queryIndividuals}) ORDER BY domainid, siteid, individualid, date;")
+mtQuery <- glue::glue("SELECT date, eventid, plotid, subplotid, nestedsubplotid, taxonid, recordtype, individualid, previouslytaggedas FROM vstqaqc.mappingandtagging WHERE individualid IN ({queryIndividuals}) ORDER BY domainid, siteid, individualid, date;")
 
 #   Retrieve mappingandtagging data for individualids in > 1 plotid
 mtDF <- RPostgres::dbGetQuery(conn = conPool,
@@ -99,5 +99,9 @@ for (i in 1:length(theDomains)) {
 }
 
 
+
+### Close connection pool
+pool::poolClose(conPool)
+rm(conPool)
 
 
