@@ -2,10 +2,11 @@
 
 ### Setup
 #   Load required libraries
-library(neonUtilities)
 library(dplyr)
-library(stringr)
 library(ggplot2)
+library(neonUtilities)
+library(stringr)
+library(tidyr)
 
 
 
@@ -85,51 +86,28 @@ bbc_chempool <- bbc_chempool %>%
                 poolSampleID,
                 cnSampleID)
 
-temp <- data.frame()
 
-##  Expand subsampleIDList if "|" exists in string
-for (i in 1:nrow(bbc_chempool)) {
-  
-  if (grepl("\\|", bbc_chempool$subsampleIDList[1])) {
-    
-    #   Create row data for each subsampleID
-    subsampleID <- unlist(stringr::str_split(string = bbc_chempool$subsampleIDList[1],
-                                             pattern = "\\|"))
-    domainID <- rep(bbc_chempool$domainID[1],
-                    times = length(subsampleID))
-    siteID <- rep(bbc_chempool$siteID[1],
-                  times = length(subsampleID))
-    plotID <- rep(bbc_chempool$plotID[1],
-                  times = length(subsampleID))
-    poolSampleID <- rep(bbc_chempool$poolSampleID[1],
-                        times = length(subsampleID))
-    cnSampleID <- rep(bbc_chempool$cnSampleID[1],
-                      times = length(subsampleID))
-    
-    #   Create dataframe
-    tempchem <- data.frame(cbind(domainID,
-                                 siteID,
-                                 plotID,
-                                 subsampleID,
-                                 poolSampleID,
-                                 cnSampleID))
-    
-    temp <- rbind(temp,
-                  tempchem)
-    
-    
-  } else {
-    
-    tempchem <- bbc_chempool %>%
-      dplyr::filter(dplyr::row_number() == 227) %>%
-      dplyr::rename(subsampleID = subsampleIDList)
-    
-    temp <- rbind(temp,
-                  tempchem)
-    
-  }
-  
-}
+##  Expand subsampleIDList if "|" exists in string; pivot_longer() approach preserves all columns in input df
+bbc_chempool <- bbc_chempool %>%
+  #   tempSub1: If subsampleIDList contains pipe, extract everything before pipe
+  #   tempSub2: If subsamleIDList contains pipe, extract everything after pipe
+  dplyr::mutate(tempSub1 = dplyr::case_when(grepl("\\|", subsampleIDList) ~ stringr::str_extract(subsampleIDList,
+                                                                                                 pattern = "^.*?(?=\\|)"),
+                                            TRUE ~ subsampleIDList),
+                tempSub2 = dplyr::case_when(grepl("\\|", subsampleIDList) ~ stringr::str_extract(subsampleIDList,
+                                                                                                 pattern = "[^\\|]*$"),
+                                            TRUE ~ NA)) %>%
+  tidyr::pivot_longer(cols = c(tempSub1, tempSub2),
+                      names_to = NULL,
+                      values_to = "subsampleID") %>%
+  dplyr::relocate(subsampleID,
+                  .before = poolSampleID) %>%
+  dplyr::filter(!is.na(subsampleID)) %>%
+  dplyr::select(-subsampleIDList)
+
+
+
+
 
 
 
