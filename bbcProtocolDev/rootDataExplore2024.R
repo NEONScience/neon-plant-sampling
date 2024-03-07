@@ -215,7 +215,7 @@ cnPlot <- ggplot2::ggplot(bbc_masschem,
                                        y = CNratio)) +
   ggplot2::geom_boxplot(width = 0.7) +
   ggplot2::ylab("Root C:N ratio") +
-  ggplot2::xlab("Root size category (mm diameter)") +
+  ggplot2::xlab("Size category (mm diameter)") +
   ggplot2::facet_wrap(~domainID, 
                       ncol = 6, 
                       scales = "free_x") 
@@ -227,181 +227,101 @@ cnPlot <- ggplot2::ggplot(bbc_masschem,
 
 ####  Root mass data exploration ####################################################################################
 
-
-  
-#--> Per core, calculate mass per sizeCategory per unit area, combining older size categories to 0-1
-#--> Per clipID, calculate mean mass per sizeCategory per unit area
-#--> Calculate mean fragment mass per siteID
-#--> Combine data and make graphs of mass by sizeCategory (including fragment as another category) and make panels by domainID
-  
-#####################################################################################--> in DEV
-### Join bbc_rootmass with bbc_percore to retrieve eventID, clipID, and sampled area
-bbc_join <- bbc_rootmass %>%
-  dplyr::left_join(bbc_percore %>%
-                     dplyr::select(eventID,
-                                   clipID,
-                                   sampleID,
-                                   rootSampleArea),
-                   by = "sampleID") %>%
-  dplyr::relocate(eventID,
-                  clipID,
-                  .after = plotID)
-
-
-
-#   Determine root dryMass by sizeCategory, combining live/dead rootStatus in older data
+### Calculate root mass by sizeCategory in bbc_rootmass
+#   Combine live/dead root mass in older data into one total mass like newer data
 bbc_rootmass <- bbc_rootmass %>%
   dplyr::group_by(domainID,
                   siteID,
                   plotID,
+                  collectDate,
                   sampleID,
                   sizeCategory) %>%
-  dplyr::summarise(dryMass = sum(dryMass),
+  dplyr::summarise(dryMass = sum(dryMass, na.rm = TRUE),
                    .groups = "drop")
 
+#   Combine older 0-0.5mm and 0.5-1mm sizeCategories into newer 0-1mm sizeCategory
+olderFineMass <- bbc_rootmass %>%
+  dplyr::filter(sizeCategory %in% c("0-05", "05-1")) %>%
+  dplyr::group_by(domainID,
+                  siteID,
+                  plotID,
+                  collectDate,
+                  sampleID) %>%
+  dplyr::summarise(dryMass = sum(dryMass, na.rm = TRUE),
+                   .groups = "drop") %>%
+  dplyr::mutate(sizeCategory = "0-1",
+                .after = sampleID)
 
+bbc_newmass <- bbc_rootmass %>%
+  dplyr::filter(!sizeCategory %in% c("0-05", "05-1")) %>%
+  rbind(olderFineMass) %>%
+  dplyr::arrange(domainID,
+                 siteID,
+                 plotID,
+                 collectDate,
+                 sampleID,
+                 sizeCategory)
 
-### Root Mass Data ################################################################
-### Goal: Calculate fragment mass from dilution sampling per unit soil volume as
-###        percent of total belowground biomass per unit soil volume.
-
-
-### Calculate dilution sampling mass per unit soil volume
-##  Retrieve data using loadByProduct() function to pipe to R session
-#   Download data as list for all sites
-allRoot <- loadByProduct(dpID = 'DP1.10067.001', site = 'all', package = 'basic', check.size = FALSE)
-
-#   Get dilution data and write to .csv for loading later
-dil1 <- allRoot[["bbc_dilution"]]
-write.csv(dil1, file = paste(wdir, "bbc_dilution.csv", sep = "/"), row.names = FALSE, fileEncoding = "UTF-8")
-
-#   Calculate dryMass for fragments < 1 cm length for each dilutionSubsampleID; filter outliers > 99 percentile
-#   for whole dataset; filter fragMass < 0 g
-dil1 %>%
-  mutate(fragMass = round(dryMass*(sampleVolume/dilutionSubsampleVolume), digits = 4)) %>%
-  filter(fragMass < quantile(fragMass, probs = 0.99), fragMass >= 0) -> dil2
-
-#   Calculate mean dryMass of fragments < 1 cm length for each sampleID
-dil2 %>%
-  group_by(domainID, siteID, plotID, sampleID) %>%
-  summarise(dryMass = mean(fragMass), sdDM = sd(fragMass), nDM = n()) -> dil3
-
-dil3$sizeCategory <- "frag"
-
-#   Write summary dilution data table
-write.csv(dil3, file = paste(wdir, "bbc_summaryDil.csv", sep = "/"), row.names = FALSE, fileEncoding = "UTF-8")
-
-
-##  Calculate root mass per unit volume by sizeCategory, including dilution fragments
-#   Extract and save core data
-core1 <- allRoot[["bbc_percore"]]
-write.csv(core1, file = paste(wdir, "bbc_percore.csv", sep = "/"), row.names = FALSE, fileEncoding = "UTF-8")
-
-#   Extract and save root mass data
-mass1 <- allRoot[["bbc_rootmass"]]
-write.csv(mass1, file = paste(wdir, "bbc_rootmass.csv", sep = "/"), row.names = FALSE, fileEncoding = "UTF-8")
-
-#   Remove QA records from dataset and calculate dryMass per sizeCategory
-rMass %>%
-  filter(qaDryMass == 'N') %>%
-  group_by(domainID, siteID, plotID, sampleID, sizeCategory) %>%
-  summarise(dM = sum(dryMass, na.rm = TRUE)) %>%
-  rename(dryMass = dM) -> sumRoot
-
-##  Bind rows of dilution data with root mass data, keep only records that have both dilution and root mass data
-#   Before binding, check for missing sampleIDs in sumDil and sumRoot data frames
-sumDil[sumDil=='NA'] <- NA
-sumDil %>% filter(is.na(sampleID)) -> missDilSamp
-
-sumRoot[sumRoot=='NA'] <- NA
-sumRoot %>% filter(is.na(sampleID)) -> missRootSamp
-
-#   Remove sampleIDs from sumRoot with no match in sumDil
-sumRoot %>%
-  filter(sampleID %in% unique(sumDil$sampleID)) -> sumRoot2
-
-#   Remove unneeded columns from sumDil, then rowbind to sumRoot and write to .csv
-sumDil %>% select(-sdDM, -nDM) %>% bind_rows(sumRoot2) %>% arrange(sampleID) -> rootDF
-write.csv(rootDF, file = paste(wdir, "bbc_totalRootMass.csv", sep = "/"), row.names = FALSE, fileEncoding = "UTF-8")
-
-#   Make ggplot of sizeCategory vs. dryMass with siteID facet wrap
-rootP4 <- ggplot(rootDF, aes(x = sizeCategory, y = dryMass)) +
-  geom_boxplot(width = 0.7) +
-  ylab("Root Dry Mass (g)") +
-  xlab("Root size category (mm diameter)") +
-  facet_wrap(~siteID, ncol = 3, scales = "free_y") +
-  theme_bw()
-
-ggsave(filename = paste(wdir, "plot_rootDryMass_sizeCat.pdf", sep = "/"),
-       plot = rootP4, width = 6.5, units = 'in', device = 'pdf')
+#   Join with bbc_percore to get sampling area, calculate g per meters squared
+bbc_newmass <- bbc_newmass %>%
+  dplyr::left_join(bbc_percore %>%
+                     dplyr::select(sampleID,
+                                   rootSampleArea),
+                   by = "sampleID") %>%
+  dplyr::mutate(rootMassArea = round(dryMass/rootSampleArea,
+                                     digits = 2))
 
 
 
+### Calculate root fragment mass from bbc_dilution data
+bbc_dilution <- bbc$bbc_dilution
+
+#   Remove NAs, calculate fragment dryMass and remove outliers (very small masses can be difficult to weigh);
+#   inner-join with bbc_percore means that only those samples from most recent eventIDs per site are considered
+#   since bbc_percore was already filtered this way.
+bbc_fragmass <- bbc_dilution %>%
+  dplyr::filter(!is.na(dryMass)) %>%
+  dplyr::mutate(fragMass = round(dryMass*(sampleVolume/dilutionSubsampleVolume),
+                                 digits = 4),
+                .before = dryMass) %>%
+  dplyr::filter(fragMass < quantile(fragMass, probs = 0.99),
+                fragMass >= 0) %>%
+  dplyr::group_by(domainID,
+                  siteID,
+                  plotID,
+                  collectDate,
+                  sampleID) %>%
+  dplyr::summarise(dryMass = mean(fragMass, na.rm = TRUE),
+                   .groups = "drop") %>%
+  dplyr::inner_join(bbc_percore %>%
+                     dplyr::select(sampleID,
+                                   rootSampleArea),
+                   by = "sampleID") %>%
+  dplyr::mutate(rootMassArea = round(dryMass/rootSampleArea,
+                                     digits = 2)) %>%
+  dplyr::mutate(sizeCategory = "frag",
+                .before = dryMass)
 
 
 
-### Root chemistry data #################################################################
+### Combine mass from sorted sizeCategories with fragment mass and plot
+#   Bind bbc_newmass and bbc_fragmass
+bbc_allmass <- rbind(bbc_newmass,
+              bbc_fragmass) %>%
+  dplyr::arrange(domainID,
+                 siteID,
+                 plotID,
+                 sampleID,
+                 sizeCategory)
 
-##  Retrieve data using loadByProduct() function to pipe to R session
-args(loadByProduct)
-# function (dpID, site = "all", package = "basic", avg = "all", 
-#          check.size = TRUE)
-
-#   Download data as list of lists: One list per site, first list item is 'bbc_rootChemistry' table
-rootChem <- lapply(X = sites, FUN = loadByProduct, dpID = "DP1.10102.001", package = "basic", check.size = FALSE)
-
-#   Create single dataframe from list data
-chemDF <- ldply(c(rootChem[[1]][1], rootChem[[2]][1], rootChem[[3]][1], rootChem[[4]][1],
-                  rootChem[[5]][1], rootChem[[6]][1], rootChem[[7]][1], rootChem[[8]][1],
-                  rootChem[[9]][1], rootChem[[10]][1], rootChem[[11]][1]))
-
-#   Remove megapit root data; these records do not have a poolSampleID
-chemDF %>% filter(poolSampleID != "NA") -> chemDF
-
-#   Write out chemDF so source data are easily re-usable
-write.csv(chemDF, file = paste(wdir, "rootChem_2016-2017.csv", sep = "/"), row.names = FALSE, fileEncoding = "UTF-8")
-
-#   Calculate mean chemistry values for analytical replicates
-chemDF %>%
-  group_by(poolSampleID) %>%
-  summarise_all(funs(if(is.numeric(.)) mean(., na.rm = TRUE) else first(.))) -> chemDF
-
-#   Create needed variables for plotting
-chemDF %>%
-  mutate(sizeCategory = str_sub(poolSampleID, start = 25, end = -6)) -> chemDF
-chemDF$sizeCategory <- recode(chemDF$sizeCategory, '0-05' = '0-0.5', '05-1' = '0.5-1')
-
-### Create plots and save
-#   Create C:N Ratio by sizeCategory plot
-rootP1 <- ggplot(chemDF, aes(x = sizeCategory, y = CNratio)) +
-  geom_boxplot(width = 0.7) +
-  ylab("Root C:N ratio") +
-  xlab("Root size category (mm diameter)") +
-  facet_wrap(~siteID, ncol = 4, scales = "free_x") +
-  theme_bw()
-
-ggsave(filename = paste(wdir, "plot_CNratio_sizeCat.pdf", sep = "/"),
-       plot = rootP1, width = 6.5, units = 'in', device = 'pdf')
-
-#   Create carbonPercent by sizeCategory plot
-rootP2 <- ggplot(chemDF, aes(x = sizeCategory, y = carbonPercent)) +
-  geom_boxplot(width = 0.7) +
-  ylab("Root % Carbon") +
-  xlab("Root size category (mm diameter)") +
-  facet_wrap(~siteID, ncol = 4, scales = "free_x") +
-  theme_bw()
-
-ggsave(filename = paste(wdir, "plot_cPercent_sizeCat.pdf", sep = "/"),
-       plot = rootP2, width = 6.5, units = 'in', device = 'pdf')
-
-#   Create a nitrogenPercent by sizeCategory plot
-rootP3 <- ggplot(chemDF, aes(x = sizeCategory, y = nitrogenPercent)) +
-  geom_boxplot(width = 0.7) +
-  ylab("Root % Nitrogen") +
-  xlab("Root size category (mm diameter)") +
-  facet_wrap(~siteID, ncol = 4, scales = "free_x") +
-  theme_bw()
-
-ggsave(filename = paste(wdir, "plot_nPercent_sizeCat.pdf", sep = "/"),
-       plot = rootP3, width = 6.5, units = 'in', device = 'pdf')
+#   Create boxplot by sizeCategory for each domainID
+massPlot <- ggplot2::ggplot(bbc_allmass,
+                            aes(x = sizeCategory,
+                                y = rootMassArea)) +
+  ggplot2::geom_boxplot(width = 0.7) +
+  ggplot2::ylab("Root Mass (g/m2)") +
+  ggplot2::xlab("Size Category (mm diameter)") +
+  ggplot2::facet_wrap(~domainID,
+                      ncol = 6,
+                      scales = "free")
 
