@@ -1,4 +1,4 @@
-####  Download and analysis of NEON Plant Belowground Biomass data for 2024 pre-season seminar
+####  Download and analysis of NEON Plant Belowground Biomass data for 2024 pre-season seminar ####
 
 ### Setup
 #   Load required libraries
@@ -62,20 +62,12 @@ bbc_rootmass <- bbc_rootmass %>%
                 rootStatus,
                 dryMass)
 
-#   Determine root dryMass by sizeCategory, combining live/dead rootStatus in older data
-bbc_rootmass <- bbc_rootmass %>%
-  dplyr::group_by(domainID,
-                  siteID,
-                  plotID,
-                  sampleID,
-                  subsampleID,
-                  sizeCategory) %>%
-  dplyr::summarise(dryMass = sum(dryMass),
-                   .groups = "drop")
 
 
 
-### Rework bbc_chemistryPooling table to create one row per subsampleID
+####  Root chemistry data exploration ###################################################################################
+### Join bbc_chemistryPooling with bbc_rootChemistry to enable join with bbc_rootmass
+##  Rework bbc_chemistryPooling table to create one row per subsampleID
 bbc_chempool <- bbc$bbc_chemistryPooling
 
 bbc_chempool <- bbc_chempool %>%
@@ -83,7 +75,6 @@ bbc_chempool <- bbc_chempool %>%
                 siteID,
                 plotID,
                 subsampleIDList,
-                poolSampleID,
                 cnSampleID)
 
 
@@ -101,17 +92,174 @@ bbc_chempool <- bbc_chempool %>%
                       names_to = NULL,
                       values_to = "subsampleID") %>%
   dplyr::relocate(subsampleID,
-                  .before = poolSampleID) %>%
+                  .before = cnSampleID) %>%
   dplyr::filter(!is.na(subsampleID)) %>%
   dplyr::select(-subsampleIDList)
 
 
+##  Join bbc_rootChemistry with bbc_chempool
+bbc_rootchem <- bbc$bbc_rootChemistry
+
+#   Calculate mean for analytical replicates
+bbc_rootchem <- bbc_rootchem %>%
+  dplyr::group_by(cnSampleID) %>%
+  dplyr::summarise(nitrogenPercent = mean(nitrogenPercent),
+                   carbonPercent = mean(carbonPercent),
+                   CNratio = mean(CNratio),
+                   .groups = "drop")
+
+#   Join with bbc_chempool to get subsampleID, which enables join with bbc_rootmass to get sizeCategory;
+#   filter out 'dead' roots with no chemistry --> presents some difficulties comparing older chemistry 
+#   values with new ones derived from material that is a mix of live/dead
+bbc_rootchem <- bbc_chempool %>%
+  dplyr::left_join(bbc_rootchem,
+                   by = "cnSampleID")
+
+bbc_masschem <- bbc_rootmass %>%
+  dplyr::left_join(bbc_rootchem %>%
+                     dplyr::select(subsampleID,
+                                   nitrogenPercent,
+                                   carbonPercent,
+                                   CNratio),
+                   by = "subsampleID") %>%
+  dplyr::filter(rootStatus == "live" | is.na(rootStatus))
+
+
+
+### Sum mass across older 0-05 and 05-1 sizeCategories, calculate new 0-1 weighted chemistry means
+#   Sum older categories to new 0-1mm category
+olderFineMass <- bbc_masschem %>%
+  dplyr::filter(sizeCategory == "0-05" | sizeCategory == "05-1",
+                !is.na(nitrogenPercent) & !is.na(carbonPercent) & !is.na(CNratio)) %>%
+  dplyr::group_by(sampleID) %>%
+  dplyr::summarise(dryMass = sum(dryMass)) %>%
+  dplyr::mutate(subsampleID = paste(sampleID, "0-1.LIVE", sep = "."),
+                sizeCategory = "0-1",
+                .after = sampleID)
+
+#   Add data from olderFineMass to older fine root chemistry, then group_by() to calculate weighted mean chem
+olderFine <- bbc_masschem %>%
+  dplyr::filter(sizeCategory == "0-05" | sizeCategory == "05-1",
+                !is.na(nitrogenPercent) & !is.na(carbonPercent) & !is.na(CNratio)) %>%
+  dplyr::left_join(olderFineMass %>%
+                     dplyr::select(sampleID,
+                                   dryMass) %>%
+                     dplyr::rename(dryMass01 = dryMass),
+                   by = "sampleID") %>%
+  dplyr::mutate(partialN = (dryMass/dryMass01)*nitrogenPercent,
+                partialC = (dryMass/dryMass01)*carbonPercent,
+                partialCN = (dryMass/dryMass01)*CNratio) %>%
+  dplyr::group_by(domainID,
+                  siteID,
+                  plotID,
+                  sampleID) %>%
+  dplyr::summarise(nitrogenPercent = sum(partialN, na.rm = TRUE),
+                   carbonPercent = sum(partialC, na.rm = TRUE),
+                   CNratio = sum(partialCN, na.rm = TRUE),
+                   .groups = "drop") %>%
+  dplyr::mutate(subsampleID = paste(sampleID, "0-1.LIVE", sep = "."),
+                sizeCategory = "0-1",
+                .after = sampleID)
+
+
+##  Bind olderFine data with root data sorted according to newer sizeCategories
+#   Get newer sizeCategory data
+newerFine <- bbc_masschem %>%
+  dplyr::filter(sizeCategory %in% c("0-1", "1-2", "2-10"),
+                !is.na(nitrogenPercent) & !is.na(carbonPercent) & !is.na(CNratio)) %>%
+  dplyr::select(domainID,
+                siteID,
+                plotID,
+                sampleID,
+                subsampleID,
+                sizeCategory,
+                nitrogenPercent,
+                carbonPercent,
+                CNratio) %>%
+  dplyr::arrange(domainID,
+                 siteID,
+                 sampleID,
+                 sizeCategory)
+
+#   Combine newer and older root data
+bbc_masschem <- rbind(newerFine,
+                      olderFine)
+
+#   Add clipID from bbc_percore and calculate final mean per clipID x sizeCategory;
+#   for most clipIDs, North/South cores have same chemistry, but for older data the
+#   way weighted means were calculated by subsampleID means North/South differ somewhat
+#   for constructed 0-1 sizeCategory for these samples.
+bbc_masschem <- bbc_masschem %>%
+  dplyr::left_join(bbc_percore %>%
+                     dplyr::select(sampleID,
+                                   clipID),
+                   by = "sampleID") %>%
+  dplyr::relocate(clipID,
+                  .after = plotID) %>%
+  dplyr::group_by(domainID,
+                  siteID,
+                  plotID,
+                  clipID,
+                  sizeCategory) %>%
+  dplyr::summarise(nitrogenPercent = mean(nitrogenPercent, na.rm = TRUE),
+                   carbonPercent = mean(carbonPercent, na.rm = TRUE),
+                   CNratio = mean(CNratio, na.rm = TRUE),
+                   .groups = "drop")
+
+
+
+### Construct chemistry ggplots by sizeCategory with siteID panels
+#   Create CN Ratio by sizeCategory plot
+cnPlot <- ggplot2::ggplot(bbc_masschem, 
+                          ggplot2::aes(x = sizeCategory, 
+                                       y = CNratio)) +
+  ggplot2::geom_boxplot(width = 0.7) +
+  ggplot2::ylab("Root C:N ratio") +
+  ggplot2::xlab("Root size category (mm diameter)") +
+  ggplot2::facet_wrap(~domainID, 
+                      ncol = 6, 
+                      scales = "free_x") 
 
 
 
 
+  
 
-#--> Will need to combine 0-0.5 and 0.5-1 old sizeCategories as final step after calculating chemistry
+####  Root mass data exploration ####################################################################################
+
+
+  
+#--> Per core, calculate mass per sizeCategory per unit area, combining older size categories to 0-1
+#--> Per clipID, calculate mean mass per sizeCategory per unit area
+#--> Calculate mean fragment mass per siteID
+#--> Combine data and make graphs of mass by sizeCategory (including fragment as another category) and make panels by domainID
+  
+#####################################################################################--> in DEV
+### Join bbc_rootmass with bbc_percore to retrieve eventID, clipID, and sampled area
+bbc_join <- bbc_rootmass %>%
+  dplyr::left_join(bbc_percore %>%
+                     dplyr::select(eventID,
+                                   clipID,
+                                   sampleID,
+                                   rootSampleArea),
+                   by = "sampleID") %>%
+  dplyr::relocate(eventID,
+                  clipID,
+                  .after = plotID)
+
+
+
+#   Determine root dryMass by sizeCategory, combining live/dead rootStatus in older data
+bbc_rootmass <- bbc_rootmass %>%
+  dplyr::group_by(domainID,
+                  siteID,
+                  plotID,
+                  sampleID,
+                  sizeCategory) %>%
+  dplyr::summarise(dryMass = sum(dryMass),
+                   .groups = "drop")
+
+
 
 ### Root Mass Data ################################################################
 ### Goal: Calculate fragment mass from dilution sampling per unit soil volume as
