@@ -325,3 +325,12 @@ massPlot <- ggplot2::ggplot(bbc_allmass,
                       ncol = 6,
                       scales = "free")
 
+#   Mass on average by sizeCategory
+bbc_massSummary <- bbc_allmass %>%
+  dplyr::group_by(sizeCategory) %>%
+  dplyr::summarise(meanMass = round(mean(dryMass, na.rm = TRUE),
+                                    digits = 2),
+                   sdMass = round(sd(dryMass, na.rm = TRUE),
+                                  digits = 2),
+                   count = n())
+
