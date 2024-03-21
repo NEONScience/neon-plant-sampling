@@ -1,0 +1,133 @@
+
+```{r}
+
+system.time(
+  taxaInLocales <- foreach(i=1:nrow(uTaxaNativity))%dopar% {
+    inLocales <- NULL
+    for (j in locales){
+      if(max(grepl(j, uTaxaNativity$Native.Status[i]))){
+        inLocales <- c(inLocales, j)
+      }
+    }
+    return(inLocales)
+  })
+
+names(taxaInLocales) <- uTaxaNativity$acceptedTaxonID
+## this list is = to taxaInStates #
+## No examples for AK #
+
+
+#generates columns of Presence/Absence
+
+
+localesList<-list('l48NativeStatusCode'=c('L48'),
+                  'akNativeStatusCode'=c('AK'),
+                  'hiNativeStatusCode'=c('HI'),
+                  'prNativeStatusCode'=c('PR')
+                  )
+
+floristicArea<-list('L48', 'AK', 'HI', 'PR')
+
+  
+system.time(taxaInLocales2 <- foreach(i=1:nrow(uTaxaNativity))%dopar%{
+  floristicArea <- taxaInLocales[[i]]
+  inLocales <- NULL
+  for (j in locales){
+    if (length(which(floristicArea%in%localesList[[j]])) > 0){
+      inLocales <- c(inLocales, 'P')
+    } else {inLocales <- c(inLocales, 'A')}
+  }
+  return(inLocales)
+})
+
+# floristArea and locales are lists of exactly the same thing, the arguments were circular if not
+## written this way
+
+names(taxaInLocales2) <- uTaxaNativity$acceptedTaxonID
+
+#produces a list of P/A (only 'A') with columns (un-named) for each locale
+
+# are these next 2 lines of code necessary? I(k8) commented them out for now
+# z <- taxaInDomains
+# taxaInDomains <- z
+taxaInLocales2 <- data.frame(matrix(unlist(taxaInLocales2), ncol=4, byrow=TRUE))  
+names(taxaInLocales2) <- locales
+taxaInLocales2$acceptedTaxonID <- uTaxaNativity$acceptedTaxonID
+
+taxaInLocales2 <- data.frame(lapply(taxaInLocales2, as.character), 
+                            stringsAsFactors=FALSE)
+
+system.time(
+  for (i in 1:nrow(uTaxaNativity)){
+    for (a in 1:nrow(taxaInLocales2)){
+      #work with records in taxaInLocales2 for relevant taxon:
+      if (taxaInLocales2$acceptedTaxonID[a] == uTaxaNativity$acceptedTaxonID[i]){
+        #extract native status code for each region (locale)
+        for (b in locales) {
+          if(max(grepl(b, uTaxaNativity$Native.Status[i]))){
+            k <- paste(b, '\\(.*?\\)', sep = ' ')
+            l <- gsub("[\\(\\)]", "", 
+                      regmatches(uTaxaNativity$Native.Status[i],
+                                 regexpr(k, uTaxaNativity$Native.Status[i])))
+            print (nativeStatus <- strsplit(l, " ")[[1]][2])
+            #replace 'P's in relevant region with correct native status code
+            for (j in 1:length(locales)){
+              if (length(which(b%in%localesList[[j]])) > 0){
+                if (taxaInLocales2[a,j] == 'P'){
+                  taxaInLocales2[a,j] <- nativeStatus
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+)
+
+#KJ: I think this will work once I figure out why P/A = A for everything
+
+usda <- merge(usda, taxaInLocales2, by = "acceptedTaxonID")
+
+
+## rename field
+````
+
+#next repeat for Native/Introduced/ETC
+#then leave absences as A, but overwrite presences with nativeStatus
+
+replace Presence data with Native Status Codes
+
+## original code
+system.time(
+  for (i in 1:nrow(uTaxaNativity)){
+    for (a in 1:nrow(taxaInDomains)){
+      #work with records in taxaInDomains for relevant taxon:
+      if (taxaInDomains$acceptedTaxonID[a] == uTaxaNativity$acceptedTaxonID[i]){
+        #extract native status code for each region (locale)
+        for (b in locales) {
+          if(max(grepl(b, uTaxaNativity$Native.Status[i]))){
+            k <- paste(b, '\\(.*?\\)', sep = ' ')
+            l <- gsub("[\\(\\)]", "", 
+                      regmatches(uTaxaNativity$Native.Status[i],
+                                 regexpr(k, uTaxaNativity$Native.Status[i])))
+            print (nativeStatus <- strsplit(l, " ")[[1]][2])
+            #replace 'P's in relevant region with correct native status code
+            for (j in 1:length(domainIDs)){
+              if (length(which(b%in%localesInDomains[[j]])) > 0){
+                if (taxaInDomains[a,j] == 'P'){
+                  taxaInDomains[a,j] <- nativeStatus
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+)
+#end of original Code
+
+```{r replace Presence data with Native Status Codes}
+
+```
