@@ -1,0 +1,3080 @@
+domainid,siteid,taxonid,scientificname,preferredstatus,source,notes,accept_addition(y/n),botanist_notes
+D01,BART,ACPL,Acer platanoides L.,NH-NW,,,y,
+D01,BART,AIAL,Ailanthus altissima (P. Mill.) Swingle,NH-NW,,,n,no populations nearby
+D01,BART,ALPE4,Alliaria petiolata (Bieb.) Cavara &  Grande,NH-NW,,,y,
+D01,BART,ALGL2,Alnus glutinosa (L.) Gaertn,NH-NW,,,y,
+D01,BART,BETH,Berberis thunbergii DC.,NH-NW,,,y,
+D01,BART,BEVU,Berberis vulgaris L.,NH-NW,,,n,no populations nearby
+D01,BART,CEOR7 ,Celastrus orbiculatus Thunb.,NH-NW,,,y,
+D01,BART,CESTM,Centaurea stoebe L. ssp. Micranthos (Gugler) Hayek,NH-NW,,,n,wrong habitat
+D01,BART,CYLO11 ,Cynanchum louiseae Kartesz & Gandhi,NH-NW,,,n,no populations nearby
+D01,BART,CYRO8 ,Cynanchum rossicum (Kleopow) Borhidi ,NH-NW,,,n,no populations nearby
+D01,BART,ELUMP,Elaeagnus umbellata Thunb. var.parvifolia (Royle) Schneid.,NH-NW,,,n,wrong habitat
+D01,BART,EUAL13,Euonymus alatus (Thunb.) Sieb.,NH-NW,,,y,
+D01,BART,FRAL4,Frangula alnus P. Mill.,NH-NW,,,y,
+D01,BART,GLMA3,Glyceria maxima (Hartman) Holmb.,NH-NW,,,n,no populations nearby
+D01,BART,HEMA17 ,Heracleum mantegazzianum Sommier & Levier,NH-NW,,,n,no populations nearby
+D01,BART,HEMA3,Hesperis matronalis,NH-NW,,,n,no populations nearby
+D01,BART,IMGL ,Impatiens glandulifera Royle,NH-NW,,,n,wrong habitat
+D01,BART,IRPS ,Iris pseudacorus L.,NH-NW,,,n,wrong habitat
+D01,BART,LELA2 ,Lepidium latifolium L.,NH-NW,,,n,wrong habitat
+D01,BART,LIOB ,Ligustrum obtusifolium Sieb. & Zucc. var. obtusifolium,NH-NW,,,n,no populations nearby
+D01,BART,LIVU ,Ligustrum vulgare L.,NH-NW,,,n,no populations nearby
+D01,BART,LOBE,Lonicera ×bella Zabel*,NH-NW,,,y,
+D01,BART,LOJA ,Lonicera japonica Thunb.,NH-NW,,,n,no populations nearby
+D01,BART,LOMA6,Lonicera maackii (Rupr.) Herder*,NH-NW,,,n,no populations nearby
+D01,BART,LOMO2 ,Lonicera morrowii Gray*,NH-NW,,,y,
+D01,BART,LOTA,Lonicera tatarica L.*,NH-NW,,,y,
+D01,BART,MIVI ,Microstegium vimineum (Trin.) A. Camus,NH-NW,,,n,no populations nearby
+D01,BART,POPE10 ,Persicaria perfoliata (L.) H. Gross,NH-NW,,,n,no populations nearby
+D01,BART,PUMOL,Pueraria montana (Lour.) Merr. var. lobata,NH-NW,,,n,no populations nearby
+D01,BART,REBO,Reynoutria ×bohemica Chrtek & Chrtková,NH-NW,,,n,wrong habitat
+D01,BART,POCU6 ,Reynoutria japonica Houtt. var. Japonica,NH-NW,,,n,wrong habitat
+D01,BART,POSA4 ,Reynoutria sachalinensis (F. Schmidt ex Maxim.) Nakai,NH-NW,,,n,wrong habitat
+D01,BART,RHCA3 ,Rhamnus cathartica L.,NH-NW,,,n,no populations nearby
+D01,BART,ROMU ,Rosa multiflora Thunb. ex Murr.,NH-NW,,,y,
+D01,HARV,ACPL,Acer platanoides,MA-NW,,,y,
+D01,HARV,ACPS,Acer pseudoplatanus,MA-NW,,,n,no populations nearby
+D01,HARV,AEPO,Aegopodium podagraria ,MA-NW,,,n,no populations nearby
+D01,HARV,AIAL,Ailanthus altissima,MA-NW,,,n,no populations nearby
+D01,HARV,CACA,Cabomba caroliniana,MA-NW,,,n,wrong habitat
+D01,HARV,CEOR7,Celastrus orbiculatus,MA-NW,,,y,
+D01,HARV,CYLO11,Cynanchum louiseae,MA-NW,,,n,no populations nearby
+D01,HARV,ELUM,Elaeagnus umbellata,MA-NW,,,n,no populations nearby
+D01,HARV,EUAL13,Euonymus alatus ,MA-NW,,,y,
+D01,HARV,EUES,Euphorbia esula,MA-NW,,,n,no populations nearby
+D01,HARV,FRAL4,Frangula alnus,MA-NW,,,y,
+D01,HARV,GLFL,Glaucium flavum,MA-NW,,,n,no populations nearby
+D01,HARV,HEMA3,Hesperis matronalis ,MA-NW,,,n,no populations nearby
+D01,HARV,IRPS,Iris pseudacorus ,MA-NW,,,n,wrong habitat
+D01,HARV,LELA2,Lepidium latifolium,MA-NW,,,n,wrong habitat
+D01,HARV,LOJA,Lonicera japonica,MA-NW,,,n,no populations nearby
+D01,HARV,LOBE,Lonicera x bella,MA-NW,,,y,
+D01,HARV,LYNU,Lysimachia nummularia,MA-NW,,,n,wrong habitat
+D01,HARV,LYSA2,Lythrum salicaria,MA-NW,,,n,wrong habitat
+D01,HARV,MYHE2,Myriophyllum heterophyllum,MA-NW,,,n,wrong habitat
+D01,HARV,MYSI,Myriophyllum spicatum,MA-NW,,,n,wrong habitat
+D01,HARV,PHAR3,Phalaris  arundinacea ,MA-NW,,,n,wrong habitat
+D01,HARV,PHAU7,Phragmites australis,MA-NW,,,n,wrong habitat
+D01,HARV,POCU6,Polygonum cuspidatum,MA-NW,,,n,no populations nearby
+D01,HARV,POCR3,Potamogeton crispus,MA-NW,,,n,wrong habitat
+D01,HARV,RAFI,Ranunculus ficaria,MA-NW,,,n,no populations nearby
+D01,HARV,RHCA3,Rhammus cathartica,MA-NW,,,n,no populations nearby
+D01,HARV,ROPS,Robinia pseudoacacia ,MA-NW,,,n,no populations nearby
+D01,HARV,ROMU,Rose multiflora,MA-NW,,,y,
+D01,HARV,TRNA,Trapa natans,MA-NW,,,n,wrong habitat
+D02,BLAN,ALVE3 ,Aldrovanda vesiculosa*,VA-NW,,,,
+D02,BLAN,ALPH,Alternanthera philoxeroides,VA-NW,,,,
+D02,BLAN,AMBR7 ,Ampelopsis brevipedunculata,VA-NW,,,,
+D02,BLAN,CAKO2,Carex kobomugi,VA-NW,,,,
+D02,BLAN,CESTM,Centaurea stoebe ssp. micranthos,VA-NW,,,,
+D02,BLAN,CIAR4 ,Cirsium arvense,VA-NW,,,,
+D02,BLAN,DIOP,Dioscorea oppositifolia,VA-NW,,,,
+D02,BLAN,EICR,Eichhornia crassipes*,VA-NW,,,,
+D02,BLAN,ELUM,Elaeagnus umbellata,VA-NW,,,,
+D02,BLAN,EUAL13,Euonymus alatus,VA-NW,,,,
+D02,BLAN,RAFI ,Ficaria verna,VA-NW,,,,
+D02,BLAN,HYVE3 ,Hydrilla verticillata,VA-NW,,,,
+D02,BLAN,IMCY ,Imperata cylindrica*,VA-NW,,,,
+D02,BLAN,IRPS ,Iris pseudacorus,VA-NW,,,,
+D02,BLAN,LECU,Lespedeza cuneata,VA-NW,,,,
+D02,BLAN,LOMO2,Lonicera morrowii,VA-NW,,,,
+D02,BLAN,LUGRH ,Ludwigia grandiflora ssp. hexapetala*,VA-NW,,,,
+D02,BLAN,LYSA2,Lythrum salicaria,VA-NW,,,,
+D02,BLAN,MUKE ,Murdannia keisak,VA-NW,,,,
+D02,BLAN,MYAQ2,Myriophyllum aquaticum,VA-NW,,,,
+D02,BLAN,MYSI,Myriophyllum spicatum,VA-NW,,,,
+D02,BLAN,OPHIU2 ,Oplismenus hirtellus ssp. undulatifolius*,VA-NW,,,,
+D02,BLAN,POPE10 ,Persicaria perfoliata,VA-NW,,,,
+D02,BLAN,PHAUA7,Phragmites australis ssp. australis,VA-NW,,,,
+D02,BLAN,PUMOL,Pueraria montana var. lobata,VA-NW,,,,
+D02,BLAN,POCU6 ,Reynoutria japonica,VA-NW,,,,
+D02,BLAN,URDI,Urtica dioica,VA-NW,,,,
+D02,BLAN,VIRO80,Vitex rotundifolia*,VA-NW,,,,
+D02,SCBI,ALVE3 ,Aldrovanda vesiculosa*,VA-NW,,,,
+D02,SCBI,ALPH,Alternanthera philoxeroides,VA-NW,,,,
+D02,SCBI,AMBR7 ,Ampelopsis brevipedunculata,VA-NW,,,,
+D02,SCBI,CAKO2,Carex kobomugi,VA-NW,,,,
+D02,SCBI,CESTM,Centaurea stoebe ssp. micranthos,VA-NW,,,,
+D02,SCBI,CIAR4 ,Cirsium arvense,VA-NW,,,,
+D02,SCBI,DIOP,Dioscorea oppositifolia,VA-NW,,,,
+D02,SCBI,EICR,Eichhornia crassipes*,VA-NW,,,,
+D02,SCBI,EUAL13,Euonymus alatus,VA-NW,,,,
+D02,SCBI,RAFI ,Ficaria verna,VA-NW,,,,
+D02,SCBI,HYVE3 ,Hydrilla verticillata,VA-NW,,,,
+D02,SCBI,IMCY ,Imperata cylindrica*,VA-NW,,,,
+D02,SCBI,IRPS ,Iris pseudacorus,VA-NW,,,,
+D02,SCBI,LECU,Lespedeza cuneata,VA-NW,,,,
+D02,SCBI,LISI ,Ligustrum sinense,VA-NW,,,,
+D02,SCBI,LOMO2,Lonicera morrowii,VA-NW,,,,
+D02,SCBI,LUGRH ,Ludwigia grandiflora ssp. hexapetala*,VA-NW,,,,
+D02,SCBI,LYSA2,Lythrum salicaria,VA-NW,,,,
+D02,SCBI,MUKE ,Murdannia keisak,VA-NW,,,,
+D02,SCBI,MYAQ2,Myriophyllum aquaticum,VA-NW,,,,
+D02,SCBI,MYSI,Myriophyllum spicatum,VA-NW,,,,
+D02,SCBI,OPHIU2 ,Oplismenus hirtellus ssp. undulatifolius*,VA-NW,,,,
+D02,SCBI,POPE10 ,Persicaria perfoliata,VA-NW,,,,
+D02,SCBI,PHAUA7,Phragmites australis ssp. australis,VA-NW,,,,
+D02,SCBI,PUMOL,Pueraria montana var. lobata,VA-NW,,,,
+D02,SCBI,POCU6 ,Reynoutria japonica,VA-NW,,,,
+D02,SCBI,SOHA,Sorghum halepense,VA-NW,,,,
+D02,SCBI,URDI,Urtica dioica,VA-NW,,,,
+D02,SCBI,VIRO80,Vitex rotundifolia*,VA-NW,,,,
+D02,SERC,ALVE3 ,Aldrovanda vesiculosa*,VA-NW,,SERC in MD; used VA NW list per Greg Chapman,,
+D02,SERC,ALPH,Alternanthera philoxeroides,VA-NW,,,,
+D02,SERC,AMBR7 ,Ampelopsis brevipedunculata,VA-NW,,,,
+D02,SERC,CAKO2,Carex kobomugi,VA-NW,,,,
+D02,SERC,CESTM,Centaurea stoebe ssp. micranthos,VA-NW,,,,
+D02,SERC,CIAR4 ,Cirsium arvense,VA-NW,,,,
+D02,SERC,DIOP,Dioscorea oppositifolia,VA-NW,,,,
+D02,SERC,EICR,Eichhornia crassipes*,VA-NW,,,,
+D02,SERC,ELUM,Elaeagnus umbellata,VA-NW,,,,
+D02,SERC,EUAL13,Euonymus alatus,VA-NW,,,,
+D02,SERC,RAFI ,Ficaria verna,VA-NW,,,,
+D02,SERC,HYVE3 ,Hydrilla verticillata,VA-NW,,,,
+D02,SERC,IMCY ,Imperata cylindrica*,VA-NW,,,,
+D02,SERC,IRPS ,Iris pseudacorus,VA-NW,,,,
+D02,SERC,LECU,Lespedeza cuneata,VA-NW,,,,
+D02,SERC,LISI ,Ligustrum sinense,VA-NW,,,,
+D02,SERC,LOMA6,Lonicera maackii,VA-NW,,,,
+D02,SERC,LOMO2,Lonicera morrowii,VA-NW,,,,
+D02,SERC,LUGRH ,Ludwigia grandiflora ssp. hexapetala*,VA-NW,,,,
+D02,SERC,LYSA2,Lythrum salicaria,VA-NW,,,,
+D02,SERC,MUKE ,Murdannia keisak,VA-NW,,,,
+D02,SERC,MYAQ2,Myriophyllum aquaticum,VA-NW,,,,
+D02,SERC,MYSI,Myriophyllum spicatum,VA-NW,,,,
+D02,SERC,OPHIU2 ,Oplismenus hirtellus ssp. undulatifolius*,VA-NW,,,,
+D02,SERC,PHAUA7,Phragmites australis ssp. australis,VA-NW,,,,
+D02,SERC,PUMOL,Pueraria montana var. lobata,VA-NW,,,,
+D02,SERC,POCU6 ,Reynoutria japonica,VA-NW,,,,
+D02,SERC,SOHA,Sorghum halepense,VA-NW,,,,
+D02,SERC,URDI,Urtica dioica,VA-NW,,,,
+D02,SERC,VIRO80,Vitex rotundifolia*,VA-NW,,,,
+D03,DSNY,ABPR3,Abrus precatorius,FL-NW,,,n,Never been found at site
+D03,DSNY,ACAU,Acacia auriculiformis,FL-NW,,,n,Never been found at site
+D03,DSNY,ALJU,Albizia julibrissin,FL-NW,,,y,
+D03,DSNY,ALLE,Albizia lebbeck,FL-NW,,,n,Never been found at site
+D03,DSNY,ARCR80,Ardisia crenata,FL-NW,,,n,Never been found at site
+D03,DSNY,AREL4,Ardisia elliptica,FL-NW,,,n,Never been found at site
+D03,DSNY,ASAE3,Asparagus aethiopicus,FL-NW,,,y,
+D03,DSNY,BAVA,Bauhinia variegata,FL-NW,,,n,"Within range and possible, but never been found on site"
+D03,DSNY,BIJA,Bischofia javanica,FL-NW,,,n,"Within range and possible, but never been found on site"
+D03,DSNY,CAAN22,Calophyllum antillanum,FL-NW,,,n,"Within range and possible, but never been found on site"
+D03,DSNY,CAEQ,Casuarina equisetifolia,FL-NW,,,n,"Within range and possible, but never been found on site"
+D03,DSNY,CAGL11,Casuarina glauca,FL-NW,,,n,"Within range and possible, but never been found on site"
+D03,DSNY,PEPU2,Cenchrus purpureus,FL-NW,,,n,"Within range and possible, but never been found on site"
+D03,DSNY,CICA,Cinnamomum camphora,FL-NW,,,y,
+D03,DSNY,COES,Colocasia esculenta,FL-NW,,,y,
+D03,DSNY,COAS3,Colubrina asiatica,FL-NW,,,n,Never been found at site
+D03,DSNY,CUAN4,Cupaniopsis anacardioides,FL-NW,,,n,Never been found at site
+D03,DSNY,DEPE6,Deparia petersenii,FL-NW,,,n,Never been found at site
+D03,DSNY,DIAL2,Dioscorea alata,FL-NW,,,n,Never been found at site
+D03,DSNY,DIBU,Dioscorea bulbifera,FL-NW,,,y,
+D03,DSNY,MAUN3,Dolichandra unguis-cati,FL-NW,,,n,Never been found at site
+D03,DSNY,EICR,Eichhornia crassipes,FL-NW,,,y,
+D03,DSNY,EUUN2,Eugenia uniflora,FL-NW,,,n,Never been found at site
+D03,DSNY,FIMI2,Ficus microcarpa,FL-NW,,,n,Never been found at site
+D03,DSNY,HYVE3,Hydrilla verticillata,FL-NW,,,y,
+D03,DSNY,HYPO3,Hygrophila polysperma,FL-NW,,,n,Never been found at site
+D03,DSNY,HYAM2,Hymenachne amplexicaulis,FL-NW,,,n,Never been found at site
+D03,DSNY,IMCY,Imperata cylindrica,FL-NW,,,y,
+D03,DSNY,IPAQ,Ipomoea aquatica,FL-NW,,,n,Never been found at site
+D03,DSNY,JADI2,Jasminum dichotomum,FL-NW,,,n,Never been found at site
+D03,DSNY,JAFL,Jasminum fluminense,FL-NW,,,n,Never been found at site
+D03,DSNY,LACA2,Lantana strigocamara,FL-NW,,,y,
+D03,DSNY,LILU2,Ligustrum lucidum,FL-NW,,,n,Never been found at site
+D03,DSNY,LISI,Ligustrum sinense,FL-NW,,,n,Never been found at site
+D03,DSNY,LOJA,Lonicera japonica,FL-NW,,,n,Never been found at site
+D03,DSNY,LUPE6,Ludwigia peruviana,FL-NW,,,y,
+D03,DSNY,LURA3,Lumnitzera racemosa,FL-NW,,,n,Never been found at site
+D03,DSNY,LUSU18,Luziola subintegra,FL-NW,,,n,"Luziola genus has been found (Luziola fluitans), it is possible, but never been verified"
+D03,DSNY,LYJA,Lygodium japonicum,FL-NW,,,y,
+D03,DSNY,LYMI,Lygodium microphyllum,FL-NW,,,y,
+D03,DSNY,MAZA,Manilkara zapota,FL-NW,,,n,Never been found at site
+D03,DSNY,MEQU,Melaleuca quinquenervia,FL-NW,,,y,
+D03,DSNY,MERE9,Melinis repens,FL-NW,,,y,
+D03,DSNY,MIGR,Microsorum grossum,FL-NW,,,n,Never been found at site
+D03,DSNY,MIVI,Microstegium vimineum,FL-NW,,,n,Never been found at site
+D03,DSNY,MIPI,Mimosa pigra,FL-NW,,,n,Never been found at site
+D03,DSNY,NADO,Nandina domestica,FL-NW,,,n,Never been found at site
+D03,DSNY,NEBR6,Nephrolepis brownii,FL-NW,,,n,Never been found at site
+D03,DSNY,NECO3,Nephrolepis cordifolia,FL-NW,,,y,
+D03,DSNY,NERE,Neyraudia reynaudiana,FL-NW,,,n,Never been found at site
+D03,DSNY,NYCR,Nymphoides cristata,FL-NW,,,n,Never been found at site
+D03,DSNY,PACR15,Paederia cruddasiana,FL-NW,,,n,Never been found at site
+D03,DSNY,PAFO3,Paederia foetida,FL-NW,,,n,Never been found at site
+D03,DSNY,PIST2,Pistia stratiotes,FL-NW,,,n,Never been found at site
+D03,DSNY,PSCA,Psidium cattleianum,FL-NW,,,n,Never been found at site
+D03,DSNY,PSGU,Psidium guajava,FL-NW,,,y,
+D03,DSNY,PUMOL,Pueraria montana var. lobata,FL-NW,,,n,Never been found at site
+D03,DSNY,RHTO10,Rhodomyrtus tomentosa,FL-NW,,,n,Never been found at site
+D03,DSNY,RUCA19,Ruellia simplex,FL-NW,,,n,"In range, never been found during surveys by NEON or site host"
+D03,DSNY,SAMI7,Salvinia minima,FL-NW,,,y,
+D03,DSNY,SCTA,Scaevola taccada,FL-NW,,,n,Never been found at site
+D03,DSNY,SCAC2,Schefflera actinophylla,FL-NW,,,n,Never been found at site
+D03,DSNY,SCTE,Schinus terebinthifolia,FL-NW,,,y,
+D03,DSNY,SCLA15,Scleria lacustris,FL-NW,,,y,
+D03,DSNY,SCMI3,Scleria microcarpa*,FL-NW,,,n,Never been found at site
+D03,DSNY,SEPEG,Senna pendula var. glabrata,FL-NW,,,n,Never been found at site
+D03,DSNY,SOTA3,Solanum tampicense,FL-NW,,,y,
+D03,DSNY,SOVI2,Solanum viarum,FL-NW,,,y,
+D03,DSNY,SPINP2,Sporobolus jacquemontii,FL-NW,,,n,Never been found at site
+D03,DSNY,SYPO,Syngonium podophyllum,FL-NW,,,n,Never been found at site
+D03,DSNY,SYCU,Syzygium cumini,FL-NW,,,n,Never been found at site
+D03,DSNY,TEIN,Tectaria incisa,FL-NW,,,n,Never been found at site
+D03,DSNY,THOP2,Thelypteris opulenta,FL-NW,,,n,"Several species of the genus have been found, it is possible, but never been verified"
+D03,DSNY,THPO3,Thespesia populnea,FL-NW,,,n,Never been found at site
+D03,DSNY,TRFL,Tradescantia fluminensis,FL-NW,,,n,Never been found at site
+D03,DSNY,TRSP8,Tradescantia spathacea,FL-NW,,,y,
+D03,DSNY,TRSE6,Triadica sebifera (Sapium sebiferum),FL-NW,,,n,Never been found at site
+D03,DSNY,URMU,Urochloa mutica,FL-NW,,,y,
+D03,DSNY,VIRO80,Vitex rotundifolia,FL-NW,,,y,
+D03,JERC,AIAL,Ailanthus altissima (P. Mill.) Swingle ,GA-NW,,,n,Never been found at site
+D03,JERC,ALJU,Albizia julibrissin Durazz. ,GA-NW,,,y,
+D03,JERC,ALPH,Alternanthera philoxeroides (Mart.) Griseb. ,GA-NW,,,n,Never been found at site
+D03,JERC,EICR,Eichhornia crassipes (Mart.) Solms ,GA-NW,,,n,Never been found at site
+D03,JERC,ELUM,Elaeagnus umbellata Thunb. ,GA-NW,,,n,Never been found at site
+D03,JERC,HEHE,Hedera helix L. ,GA-NW,,,n,Never been found at site
+D03,JERC,HYVE3,Hydrilla verticillata (L. f.) Royle ,GA-NW,,,n,Never been found at site
+D03,JERC,LEBI2,Lespedeza bicolor Turcz. ,GA-NW,,,y,
+D03,JERC,LECU,Lespedeza cuneata (Dum.-Cours.) G. Don ,GA-NW,,,y,
+D03,JERC,LISI,Ligustrum sinense Lour. ,GA-NW,,,y,
+D03,JERC,LOJA,Lonicera japonica Thunb. ,GA-NW,,,y,
+D03,JERC,LYJA,Lygodium japonicum (Thunb. ex Murr.) Sw. ,GA-NW,,,y,
+D03,JERC,MEAZ,Melia azedarach L. ,GA-NW,,,y,
+D03,JERC,MIVI,Microstegium vimineum (Trin.) A. Camus ,GA-NW,,,n,Never been found at site
+D03,JERC,MUKE,Murdannia keisak (Hassk.) Hand.-Maz. ,GA-NW,,,n,Never been found at site
+D03,JERC,PATO2,Paulownia tomentosa (Thunb.) Sieb. & Zucc. ex Steud. ,GA-NW,,,n,Never been found at site
+D03,JERC,PUMOL,Pueraria montana var. lobata (Willd.) Maesen & S. Almeida ,GA-NW,,,y,
+D03,JERC,ROMU,Rosa multiflora Thunb. ,GA-NW,,,y,
+D03,JERC,TRSE6,Triadica sebifera (L.) Small ,GA-NW,,,n,Never been found at site
+D03,JERC,WISI,Wisteria sinensis (Sims) DC. ,GA-NW,,,n,Never been found at site
+D03,OSBS,ABPR3,Abrus precatorius,FL-NW,,,n,Never been found at site
+D03,OSBS,ACAU,Acacia auriculiformis,FL-NW,,,n,Never been found at site
+D03,OSBS,ALJU,Albizia julibrissin,FL-NW,,,y,
+D03,OSBS,ALLE,Albizia lebbeck,FL-NW,,,n,Never been found at site
+D03,OSBS,ARCR80,Ardisia crenata,FL-NW,,,y,
+D03,OSBS,AREL4,Ardisia elliptica,FL-NW,,,n,Never been found at site
+D03,OSBS,ASAE3,Asparagus aethiopicus,FL-NW,,,n,Never been found at site
+D03,OSBS,BAVA,Bauhinia variegata,FL-NW,,,n,Never been found at site
+D03,OSBS,BIJA,Bischofia javanica,FL-NW,,,n,Never been found at site
+D03,OSBS,CAAN22,Calophyllum antillanum,FL-NW,,,n,Never been found at site
+D03,OSBS,CAEQ,Casuarina equisetifolia,FL-NW,,,n,Never been found at site
+D03,OSBS,CAGL11,Casuarina glauca,FL-NW,,,n,Never been found at site
+D03,OSBS,PEPU2,Cenchrus purpureus,FL-NW,,,n,"Other species in the genus present, but this species has never been found"
+D03,OSBS,CICA,Cinnamomum camphora,FL-NW,,,y,
+D03,OSBS,COES,Colocasia esculenta,FL-NW,,,n,Never been found at site
+D03,OSBS,COAS3,Colubrina asiatica,FL-NW,,,n,Never been found at site
+D03,OSBS,CUAN4,Cupaniopsis anacardioides,FL-NW,,,n,Never been found at site
+D03,OSBS,DEPE6,Deparia petersenii,FL-NW,,,n,Never been found at site
+D03,OSBS,DIAL2,Dioscorea alata,FL-NW,,,n,Never been found at site
+D03,OSBS,DIBU,Dioscorea bulbifera,FL-NW,,,n,Never been found at site
+D03,OSBS,MAUN3,Dolichandra unguis-cati,FL-NW,,,n,Never been found at site
+D03,OSBS,EICR,Eichhornia crassipes,FL-NW,,,y,
+D03,OSBS,EUUN2,Eugenia uniflora,FL-NW,,,n,Never been found at site
+D03,OSBS,FIMI2,Ficus microcarpa,FL-NW,,,n,Never been found at site
+D03,OSBS,HYVE3,Hydrilla verticillata,FL-NW,,,n,Never been found at site
+D03,OSBS,HYPO3,Hygrophila polysperma,FL-NW,,,n,Never been found at site
+D03,OSBS,HYAM2,Hymenachne amplexicaulis,FL-NW,,,n,Never been found at site
+D03,OSBS,IMCY,Imperata cylindrica,FL-NW,,,y,
+D03,OSBS,IPAQ,Ipomoea aquatica,FL-NW,,,n,Never been found at site
+D03,OSBS,JADI2,Jasminum dichotomum,FL-NW,,,n,Never been found at site
+D03,OSBS,JAFL,Jasminum fluminense,FL-NW,,,n,Never been found at site
+D03,OSBS,LACA2,Lantana strigocamara,FL-NW,,,y,
+D03,OSBS,LILU2,Ligustrum lucidum,FL-NW,,,n,Never been found at site
+D03,OSBS,LISI,Ligustrum sinense,FL-NW,,,y,
+D03,OSBS,LOJA,Lonicera japonica,FL-NW,,,y,
+D03,OSBS,LUPE6,Ludwigia peruviana,FL-NW,,,y,
+D03,OSBS,LURA3,Lumnitzera racemosa,FL-NW,,,n,Never been found at site
+D03,OSBS,LUSU18,Luziola subintegra,FL-NW,,,n,Never been found at site
+D03,OSBS,LYJA,Lygodium japonicum,FL-NW,,,y,
+D03,OSBS,LYMI,Lygodium microphyllum,FL-NW,,,n,Never been found at site
+D03,OSBS,MAZA,Manilkara zapota,FL-NW,,,n,Never been found at site
+D03,OSBS,MEQU,Melaleuca quinquenervia,FL-NW,,,n,Never been found at site
+D03,OSBS,MERE9,Melinis repens,FL-NW,,,y,
+D03,OSBS,MI,Microsorum grossum,FL-NW,,,n,Never been found at site
+D03,OSBS,MIVI,Microstegium vimineum,FL-NW,,,n,Never been found at site
+D03,OSBS,MIPI,Mimosa pigra,FL-NW,,,n,Never been found at site
+D03,OSBS,NADO,Nandina domestica,FL-NW,,,n,Never been found at site
+D03,OSBS,NEBR6,Nephrolepis brownii,FL-NW,,,n,Never been found at site
+D03,OSBS,NECO3,Nephrolepis cordifolia,FL-NW,,,y,
+D03,OSBS,NERE,Neyraudia reynaudiana,FL-NW,,,n,Never been found at site
+D03,OSBS,NYCR,Nymphoides cristata,FL-NW,,,n,Never been found at site
+D03,OSBS,PACR15,Paederia cruddasiana,FL-NW,,,n,Never been found at site
+D03,OSBS,PAFO3,Paederia foetida,FL-NW,,,n,Never been found at site
+D03,OSBS,PARE3,Panicum repens,FL-NW,,,y,
+D03,OSBS,PIST2,Pistia stratiotes,FL-NW,,,n,Never been found at site
+D03,OSBS,PSCA,Psidium cattleianum,FL-NW,,,n,Never been found at site
+D03,OSBS,PSGU,Psidium guajava,FL-NW,,,n,Never been found at site
+D03,OSBS,PUMOL,Pueraria montana var. lobata,FL-NW,,,n,Never been found at site
+D03,OSBS,RHTO10,Rhodomyrtus tomentosa,FL-NW,,,n,Never been found at site
+D03,OSBS,RUCA19,Ruellia simplex,FL-NW,,,n,Never been found at site
+D03,OSBS,SAMI7,Salvinia minima,FL-NW,,,y,
+D03,OSBS,SCTA,Scaevola taccada,FL-NW,,,n,Never been found at site
+D03,OSBS,SCAC2,Schefflera actinophylla,FL-NW,,,n,Never been found at site
+D03,OSBS,SCTE,Schinus terebinthifolia,FL-NW,,,n,Never been found at site
+D03,OSBS,SCLA15,Scleria lacustris,FL-NW,,,n,Never been found at site
+D03,OSBS,SCMI3,Scleria microcarpa*,FL-NW,,,n,Never been found at site
+D03,OSBS,SEPEG,Senna pendula var. glabrata,FL-NW,,,n,Never been found at site
+D03,OSBS,SOTA3,Solanum tampicense,FL-NW,,,n,Never been found at site
+D03,OSBS,SOVI2,Solanum viarum,FL-NW,,,y,
+D03,OSBS,SPINP2,Sporobolus jacquemontii,FL-NW,,,n,Never been found at site
+D03,OSBS,SYPO,Syngonium podophyllum,FL-NW,,,n,Never been found at site
+D03,OSBS,SYCU,Syzygium cumini,FL-NW,,,n,Never been found at site
+D03,OSBS,TEIN,Tectaria incisa,FL-NW,,,n,Never been found at site
+D03,OSBS,THOP2,Thelypteris opulenta,FL-NW,,,n,Never been found at site
+D03,OSBS,THPO3,Thespesia populnea,FL-NW,,,n,Never been found at site
+D03,OSBS,TRFL,Tradescantia fluminensis,FL-NW,,,n,Never been found at site
+D03,OSBS,TRSP8,Tradescantia spathacea,FL-NW,,,n,Never been found at site
+D03,OSBS,TRSE6,Triadica sebifera (Sapium sebiferum),FL-NW,,,y,
+D03,OSBS,URLO,Urena lobata,FL-NW,,,y,
+D03,OSBS,URMU,Urochloa mutica,FL-NW,,,n,Never been found at site
+D03,OSBS,VIRO80,Vitex rotundifolia,FL-NW,,,y,
+D04,GUAN,ALFL2,Alectra fluminensis,PR-NW,,,n,No records of occurance near site
+D04,GUAN,ALSE4,Alternanthera sessilis,PR-NW,,,n,No records of occurance near site
+D04,GUAN,COBE2,Commelina benghalensis,PR-NW,,,n,No records of occurance near site
+D04,GUAN,EIAZ2,"Eichhornia azurea	",PR-NW,,,n,No records of occurance near site
+D04,GUAN,IMBR,Imperata brasiliensis,PR-NW,,,n,No records of occurance near site
+D04,GUAN,IPAQ,Ipomoea aquatica,PR-NW,,,n,Semi aquatic plant
+D04,GUAN,MEQU,Melaleuca quinquenervia,PR-NW,,,n,No records of occurance near site
+D04,GUAN,MIMI5,Mikania micrantha,PR-NW,,,n,No records of occurance near site
+D04,GUAN,MIDI8,Mimosa diplotricha,PR-NW,,,n,No records of occurance near site
+D04,GUAN,MIIN80,Mimosa invisa,PR-NW,,,n,No records of occurance near site
+D04,GUAN,MIPE2,Mimosa pellita,PR-NW,,,n,No records of occurance near site
+D04,GUAN,MIPI,Mimosa pigra,PR-NW,,,n,No records of occurance near site
+D04,GUAN,PEPO14,Pennisetum polystachion,PR-NW,,,n,No records of occurance near site
+D04,GUAN,PEPO4,Pennisetum polystachyon,PR-NW,,,n,No records of occurance near site
+D04,GUAN,PECL2,Pennisetum clandestinum,PR-NW,,,n,No records of occurance near site
+D04,GUAN,PRPA4,Prosopis pallida,PR-NW,,,n,Common along the cosat in oppen grassy areas.
+D04,GUAN,ROEX2,Rottboellia exaltata,PR-NW,,,n,No records of occurance near site
+D04,GUAN,ROCO6,Rottboellia cochinchinensis,PR-NW,,,n,No records of occurance near site
+D04,GUAN,SASP,Saccharum spontaneum,PR-NW,,,n,No records of occurance near site
+D04,GUAN,SAAU,Salvinia auriculata,PR-NW,,,n,No records of occurance near site
+D04,GUAN,SOTO4,Solanum torvum,PR-NW,,,n,In disturb areas a long the road
+D04,GUAN,TRPR5,Tridax procumbens,PR-NW,,,n,In disturb areas a long the road
+D04,LAJA,ALFL2,Alectra fluminensis,PR-NW,,,n,No records of occurance near site
+D04,LAJA,ALSE4,Alternanthera sessilis,PR-NW,,,n,No records of occurance near site
+D04,LAJA,COBE2,Commelina benghalensis,PR-NW,,,n,No records of occurance near site
+D04,LAJA,EIAZ2,Eichhornia azurea,PR-NW,,,n,aquatic plant
+D04,LAJA,IMBR,Imperata brasiliensis,PR-NW,,,n,No records of occurance near site
+D04,LAJA,IPAQ,Ipomoea aquatica,PR-NW,,,n,aquatic plant
+D04,LAJA,MEQU,Melaleuca quinquenervia,PR-NW,,,n,No records of occurance near site
+D04,LAJA,MIMI5,Mikania micrantha,PR-NW,,,n,"Could be present in the site, but not in the phenology loop"
+D04,LAJA,MIDI8,Mimosa diplotricha,PR-NW,,,n,No records of occurance near site
+D04,LAJA,MIIN80,Mimosa invisa,PR-NW,,Mimosa pudica,y,"Native plant, present in the site but uncommon in the phenology loop"
+D04,LAJA,MIPE2,Mimosa pellita,PR-NW,,Mimosa pigra,n,Present in 1 distributed base plot
+D04,LAJA,MIPI,Mimosa pigra,PR-NW,,Mimosa pellita,n,Present in 1 distributed base plot
+D04,LAJA,PEPO14,Pennisetum polystachion,PR-NW,,,n,"Could be present in the site, but not in the phenology loop"
+D04,LAJA,PEPO4,Pennisetum polystachyon,PR-NW,,Cenchrus polystachios,n,"Could be present in the site, but not in the phenology loop"
+D04,LAJA,PECL2,Pennisetum clandestinum,PR-NW,,,n,"Could be present in the site, but not in the phenology loop"
+D04,LAJA,PRPA4,Prosopis pallida,PR-NW,,,n,No records of occurance near site
+D04,LAJA,ROEX2,Rottboellia exaltata,PR-NW,,Rottboellia cochinchinensis,n,"Could be present in the site, but not in the phenology loop"
+D04,LAJA,ROCO6,Rottboellia cochinchinensis,PR-NW,,Rottboellia exaltata,n,"Could be present in the site, but not in the phenology loop"
+D04,LAJA,SASP,Saccharum spontaneum,PR-NW,,,n,"Could be present in the site, but not in the phenology loop"
+D04,LAJA,SAAU,Salvinia auriculata,PR-NW,,,n,aquatic plant
+D04,LAJA,SOTO4,Solanum torvum,PR-NW,,,n,"Could be present in the site, but not in the phenology loop"
+D04,LAJA,TRPR5,Tridax procumbens,PR-NW,,,n,"Could be present in the site, but not in the phenology loop"
+D05,STEI,ACPL,Acer platanoides,WI-NW,,,,No PHE done at this site
+D05,STEI,ALPE4,Alliaria petiolata,WI-NW,,,,No PHE done at this site
+D05,STEI,ARMI2,Arctium minus,WI-NW,,,,No PHE done at this site
+D05,STEI,BETH,Berberis thunbergii,WI-NW,,,,No PHE done at this site
+D05,STEI,BRIN2,Bromus inermis,WI-NW,,,,No PHE done at this site
+D05,STEI,CARA,Campanula rapunculoides,WI-NW,,,,No PHE done at this site
+D05,STEI,CEOR7,Celastrus orbiculatus,WI-NW,,,,No PHE done at this site
+D05,STEI,CESTM,Centaurea maculosa,WI-NW,,,,No PHE done at this site
+D05,STEI,COMA7,Convallaria majalis,WI-NW,,,,No PHE done at this site
+D05,STEI,COAR4,Convolvulus arvensis,WI-NW,,,,No PHE done at this site
+D05,STEI,SEVA4,Cornilla varia,WI-NW,,,,No PHE done at this site
+D05,STEI,CRTE3,Crepis tectorum,WI-NW,,,,No PHE done at this site
+D05,STEI,DACA6,Daucus carota,WI-NW,,,,No PHE done at this site
+D05,STEI,DILA4,Dipsacus laciniatus,WI-NW,,,,No PHE done at this site
+D05,STEI,DIFU2,Dipsacus sylvestris,WI-NW,,,,No PHE done at this site
+D05,STEI,ELAN,Elaeagnus angustifolia,WI-NW,,,,No PHE done at this site
+D05,STEI,ELUM,Elaeagnus umbellata,WI-NW,,,,No PHE done at this site
+D05,STEI,ELRE4,Elytrigia repens,WI-NW,,,,No PHE done at this site
+D05,STEI,EPHE,Epipactis helleborine,WI-NW,,,,No PHE done at this site
+D05,STEI,EUCY2,Euphorbia cyparissias,WI-NW,,,,No PHE done at this site
+D05,STEI,EUES,Euphorbia esula,WI-NW,,,,No PHE done at this site
+D05,STEI,SCAR7,Festuca arundinacea,WI-NW,,,,No PHE done at this site
+D05,STEI,GLHE2,Glechoma hederacea,WI-NW,,,,No PHE done at this site
+D05,STEI,HEFU,Hemerocallis fulva,WI-NW,,,,No PHE done at this site
+D05,STEI,HEMA3,Hesperis matronalis,WI-NW,,,,No PHE done at this site
+D05,STEI,HICA10,Hieracium caespitosum,WI-NW,,,,No PHE done at this site
+D05,STEI,HYPE,Hypericum perforatum,WI-NW,,,,No PHE done at this site
+D05,STEI,IRPS,Iris pseudacorus,WI-NW,,,,No PHE done at this site
+D05,STEI,LECA2,Leonurus cardiaca,WI-NW,,,,No PHE done at this site
+D05,STEI,LOMA6,Lonicera maackii,WI-NW,,,,No PHE done at this site
+D05,STEI,LOMO2,Lonicera morrowii,WI-NW,,,,No PHE done at this site
+D05,STEI,LOTAL,Lonicera tatarica,WI-NW,,,,No PHE done at this site
+D05,STEI,LOBE,Lonicera x bella,WI-NW,,,,No PHE done at this site
+D05,STEI,LOCO6,Lotus corniculatus,WI-NW,,,,No PHE done at this site
+D05,STEI,LYNU,Lysimachia nummularia,WI-NW,,,,No PHE done at this site
+D05,STEI,LYSA2,Lythrum salicaria,WI-NW,,,,No PHE done at this site
+D05,STEI,MEOF,Melilotus alba,WI-NW,,,,No PHE done at this site
+D05,STEI,MEOF,Melilotus officinalis,WI-NW,,,,No PHE done at this site
+D05,STEI,MOAL,Morus alba,WI-NW,,,,No PHE done at this site
+D05,STEI,MYAR,Myosotis scorpioides,WI-NW,,,,No PHE done at this site
+D05,STEI,MYSI,Myriophyllum spicatum,WI-NW,,,,No PHE done at this site
+D05,STEI,PASA2,Pastinaca sativa,WI-NW,,,,No PHE done at this site
+D05,STEI,PHAR3,Phalaris arundinacea (nn),WI-NW,,,,No PHE done at this site
+D05,STEI,PHAU7,Phragmites australis (nn),WI-NW,,,,No PHE done at this site
+D05,STEI,PISY,Pinus sylvestris,WI-NW,,,,No PHE done at this site
+D05,STEI,POCO,Poa compressa,WI-NW,,,,No PHE done at this site
+D05,STEI,POCU6,Polygonum cuspidatum,WI-NW,,,,No PHE done at this site
+D05,STEI,POAL7,Populus alba,WI-NW,,,,No PHE done at this site
+D05,STEI,POCR3,Potamogeton crispus,WI-NW,,,,No PHE done at this site
+D05,STEI,RHCA3,Rhamnus cathartica,WI-NW,,,,No PHE done at this site
+D05,STEI,FRAL4,Rhamnus frangula,WI-NW,,,,No PHE done at this site
+D05,STEI,ROPS,Robinia pseudoacacia,WI-NW,,,,No PHE done at this site
+D05,STEI,ROMU,Rosa multiflora,WI-NW,,,,No PHE done at this site
+D05,STEI,SAOF4,Saponaria officinalis,WI-NW,,,,No PHE done at this site
+D05,STEI,SODU,Solanum dulcamara,WI-NW,,,,No PHE done at this site
+D05,STEI,TAVU,Tanacetum vulgare,WI-NW,,,,No PHE done at this site
+D05,STEI,TRPR2,Trifolium pratense,WI-NW,,,,No PHE done at this site
+D05,STEI,TRRE3,Trifolium repens,WI-NW,,,,No PHE done at this site
+D05,STEI,TYAN,Typha angustifolia,WI-NW,,,,No PHE done at this site
+D05,STEI,TYGL,Typha x glauca,WI-NW,,,,No PHE done at this site
+D05,STEI,ULPU,Ulmus pumila,WI-NW,,,,No PHE done at this site
+D05,STEI,VIMI2,Vinca minor,WI-NW,,,,No PHE done at this site
+D05,TREE,ACPL,Acer platanoides,WI-NW,,,n,Never observed. Site not likely to have new cultivation escapes
+D05,TREE,ALPE4,Alliaria petiolata,WI-NW,,,y,
+D05,TREE,ARMI2,Arctium minus,WI-NW,,,y,
+D05,TREE,BETH,Berberis thunbergii,WI-NW,,,y,
+D05,TREE,BRIN2,Bromus inermis,WI-NW,,,y,
+D05,TREE,CARA,Campanula rapunculoides,WI-NW,,,n,Never observed. Site not likely to have new cultivation escapes
+D05,TREE,CEOR7,Celastrus orbiculatus,WI-NW,,,y,
+D05,TREE,CESTM,Centaurea maculosa,WI-NW,,,y,
+D05,TREE,CIAR4,Cirsium arvense,WI-NW,,,y,
+D05,TREE,COMA7,Convallaria majalis,WI-NW,,,y,
+D05,TREE,COAR4,Convolvulus arvensis,WI-NW,,,y,
+D05,TREE,SEVA4,Cornilla varia,WI-NW,,,y,
+D05,TREE,CRTE3,Crepis tectorum,WI-NW,,,y,
+D05,TREE,DACA6,Daucus carota,WI-NW,,,y,
+D05,TREE,DILA4,Dipsacus laciniatus,WI-NW,,,n,Range
+D05,TREE,DIFU2,Dipsacus sylvestris,WI-NW,,,n,Range
+D05,TREE,ELAN,Elaeagnus angustifolia,WI-NW,,,n,Does not range here
+D05,TREE,ELUM,Elaeagnus umbellata,WI-NW,,,y,
+D05,TREE,ELRE4,Elytrigia repens,WI-NW,,,y,
+D05,TREE,EPHE,Epipactis helleborine,WI-NW,,,y,
+D05,TREE,EUCY2,Euphorbia cyparissias,WI-NW,,,y,
+D05,TREE,EUES,Euphorbia esula,WI-NW,,,y,
+D05,TREE,SCAR7,Festuca arundinacea,WI-NW,,,y,
+D05,TREE,GLHE2,Glechoma hederacea,WI-NW,,,y,
+D05,TREE,HEFU,Hemerocallis fulva,WI-NW,,,n,Never observed. Site not likely to have new cultivation escapes
+D05,TREE,HEMA3,Hesperis matronalis,WI-NW,,,y,
+D05,TREE,HYPE,Hypericum perforatum,WI-NW,,,y,
+D05,TREE,IRPS,Iris pseudacorus,WI-NW,,,n,Never observed. Site not likely to have new cultivation escapes
+D05,TREE,LECA2,Leonurus cardiaca,WI-NW,,,y,
+D05,TREE,LOMA6,Lonicera maackii,WI-NW,,,n,Range
+D05,TREE,LOMO2,Lonicera morrowii,WI-NW,,,y,
+D05,TREE,LOTAL,Lonicera tatarica,WI-NW,,,y,
+D05,TREE,LOBE,Lonicera x bella,WI-NW,,,y,
+D05,TREE,LOCO6,Lotus corniculatus,WI-NW,,,y,
+D05,TREE,LYNU,Lysimachia nummularia,WI-NW,,,n,Range
+D05,TREE,LYSA2,Lythrum salicaria,WI-NW,,,y,
+D18,BARR,ACRE3,Acroptilon repens,AK-NW,,,y,
+D18,BARR,ACRE3,Centaurea repens ,AK-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D05,TREE,MOAL,Morus alba,WI-NW,,,y,
+D05,TREE,MYAR,Myosotis scorpioides,WI-NW,,,y,
+D05,TREE,MYSI,Myriophyllum spicatum,WI-NW,,,n,Aquatic plant
+D05,TREE,PASA2,Pastinaca sativa,WI-NW,,,y,
+D05,TREE,PHAR3,Phalaris arundinacea (nn),WI-NW,,,y,
+D05,TREE,PHAU7,Phragmites australis (nn),WI-NW,,,y,
+D05,TREE,PISY,Pinus sylvestris,WI-NW,,,y,
+D05,TREE,POCO,Poa compressa,WI-NW,,,y,
+D05,TREE,POCU6,Polygonum cuspidatum,WI-NW,,,y,
+D05,TREE,POAL7,Populus alba,WI-NW,,,n,Unlikely to espcae
+D05,TREE,POCR3,Potamogeton crispus,WI-NW,,,n,Aquatic plant
+D05,TREE,RHCA3,Rhamnus cathartica,WI-NW,,,y,
+D05,TREE,FRAL4,Rhamnus frangula,WI-NW,,,y,
+D05,TREE,ROPS,Robinia pseudoacacia,WI-NW,,,n,Unlikely to escape
+D05,TREE,ROMU,Rosa multiflora,WI-NW,,,y,
+D05,TREE,RUAC3,Rumex acetosella,WI-NW,,,y,
+D05,TREE,SAOF4,Saponaria officinalis,WI-NW,,,y,
+D05,TREE,SODU,Solanum dulcamara,WI-NW,,,y,
+D05,TREE,TAVU,Tanacetum vulgare,WI-NW,,,y,
+D05,TREE,TRRE3,Trifolium repens,WI-NW,,,y,
+D05,TREE,TYAN,Typha angustifolia,WI-NW,,,y,
+D05,TREE,TYGL,Typha x glauca,WI-NW,,,y,
+D05,TREE,ULPU,Ulmus pumila,WI-NW,,,y,
+D05,TREE,VIMI2,Vinca minor,WI-NW,,,y,
+D05,UNDE,ABTH,Abutilon theophrasti,MI-NW,,,n,Scare in Northern MI. Possible but not likely
+D05,UNDE,ACRE3,Acroptilon repens,MI-NW,,,n,No nearby populations
+D05,UNDE,AGRE2,Agropyron repens,MI-NW,,,y,
+D05,UNDE,ALCA3,Allium canadense,MI-NW,,,n,Possible but not likely
+D05,UNDE,ALVI,Allium vineale,MI-NW,,,n,No nearby populations. Wrong habitat
+D05,UNDE,AVFA,Avena fatua,MI-NW,,,n,No nearby populations. Wrong habitat
+D05,UNDE,BAVU,Barbarea vulgaris,MI-NW,,,y,
+D05,UNDE,BEIN2,Berteroa incana,MI-NW,,,y,
+D05,UNDE,BRJU,Brassica juncea,MI-NW,,,n,No nearby populations. Wrong habitat
+D05,UNDE,BRNI,Brassica nigra,MI-NW,,,n,No nearby populations. Wrong habitat
+D05,UNDE,CADR,Cardaria draba,MI-NW,,,n,No nearby populations
+D05,UNDE,CAAC,Carduus acanthoides,MI-NW,,,y,
+D05,UNDE,CANU4,Carduus nutans,MI-NW,,,y,
+D05,UNDE,CESTM,Centaurea stoebe ssp. Micranthos,MI-NW,,,y,
+D05,UNDE,CIAR4,Cirsium arvense,MI-NW,,,y,
+D05,UNDE,CIVU,Cirsium vulgare,MI-NW,,,y,
+D05,UNDE,COAR4,Convolvulus arvensis,MI-NW,,,y,
+D05,UNDE,COSE14,Convolvulus sepium,MI-NW,,,y,
+D05,UNDE,CUSCU,Cuscuta spp.,MI-NW,,,n,Range
+D05,UNDE,CYES,Cyperus esculentus,MI-NW,,,y,
+D05,UNDE,DAST,Datura stramonium,MI-NW,,,y,
+D05,UNDE,DACA6,Daucus carota,MI-NW,,,y,
+D05,UNDE,EUES,Euphorbia esula,MI-NW,,,y,
+D05,UNDE,IPOMO,Ipomoea spp.,MI-NW,,,n,Range
+D05,UNDE,NATR3,Nasella trichotoma,MI-NW,,,n,Range
+D05,UNDE,PLLA,Plantago lanceolata,MI-NW,,,y,
+D05,UNDE,RARA2,Raphanus raphanistrum,MI-NW,,,y,
+D05,UNDE,RUCR,Rumex crispus,MI-NW,,,y,
+D05,UNDE,SEFA,Seteria faberi,MI-NW,,,y,
+D05,UNDE,SIAR4,Sinapis arvensis ,MI-NW,,,y,
+D05,UNDE,SOCA3,Solanum carolinense,MI-NW,,,n,No nearby populations
+D05,UNDE,SODU,Solanum dulcamara,MI-NW,,,y,
+D05,UNDE,SOEL,Solanum elaeagnifolium,MI-NW,,,n,Range
+D05,UNDE,SONI,Solanum nigrum,MI-NW,,,n,Range
+D05,UNDE,SOPT7,Solanum ptycanthum,MI-NW,,,y,
+D05,UNDE,SOSA9,Solanum sarrachoides,MI-NW,,,n,Range
+D05,UNDE,SOAR2,Sonchus arvensis,MI-NW,,,y,
+D05,UNDE,SOHA,Sorghum halepense,MI-NW,,,n,Range
+D05,UNDE,TRTE,Tribulus terrestris,MI-NW,,,n,Range
+D05,UNDE,XAST,Xanthium strumarium,MI-NW,,,y,
+D06,KONA,ACRE3,Acroptilon repens,KS-NW,,,,
+D06,KONA,BETH,Berberis thunbergii,KS-NW,,,,
+D06,KONA,BOBL,Bothriochloa bladhii,KS-NW,,,,
+D06,KONA,BOISS,Bothriochloa ischaemum var. songarica,KS-NW,,,,
+D06,KONA,BRIN2,Bromus inermis,KS-NW,,,,
+D06,KONA,BRJA,Bromus japonicus,KS-NW,,,,
+D06,KONA,BRTE,Bromus tectorum,KS-NW,,,,
+D06,KONA,CACH42,Cardaria chalepensis,KS-NW,,,,
+D06,KONA,CANU4,Carduus nutans,KS-NW,,,,
+D06,KONA,CESO3,Centaurea solstitialis,KS-NW,,,,
+D06,KONA,CIAR4,Cirsium arvense,KS-NW,,,,
+D06,KONA,CIVU,Cirsium vulgare,KS-NW,,,,
+D06,KONA,COAR4,Convolvulus arvensis,KS-NW,,,,
+D06,KONA,DILA3,Digitalis lanata,KS-NW,,,,
+D06,KONA,DIFU2,Dipsacus fullonum,KS-NW,,,,
+D06,KONA,DILA4,Dipsacus laciniatus,KS-NW,,,,
+D06,KONA,ELAN,Elaeagnus angustifolia,KS-NW,,,,
+D06,KONA,ELUM,Elaeagnus umbellata,KS-NW,,,,
+D06,KONA,ELRE4,Elymus repens,KS-NW,,,,
+D06,KONA,EUAL13,Euonymus alatus,KS-NW,,,,
+D06,KONA,EUFO5,Euonymus fortunei,KS-NW,,,,
+D06,KONA,EUVI7,Euphorbia virgata,KS-NW,,,,
+D06,KONA,HYVE3,Hydrilla verticillata,KS-NW,,,,
+D06,KONA,LECU,Lespedeza cuneata,KS-NW,,,,
+D06,KONA,LOJA,Lonicera japonica,KS-NW,,,,
+D06,KONA,LOMA6,Lonicera maackii,KS-NW,,,,
+D06,KONA,LOTA,Lonicera tatarica,KS-NW,,,,
+D06,KONA,LYSA2,Lythrum salicaria,KS-NW,,,,
+D06,KONA,MYSP2,Myriophyllum spicatum,KS-NW,,,,
+D06,KONA,PHAR3,Phalaris arundinacea,KS-NW,,,,
+D06,KONA,PHAU7,Phragmites australis,KS-NW,,,,
+D06,KONA,POCU6,Polygonum cuspidatum,KS-NW,,,,
+D06,KONA,POCR3,Potamogeton crispus ,KS-NW,,,,
+D06,KONA,PUMOL,Pueraria montana var. lobata,KS-NW,,,,
+D06,KONA,PYCA80,Pyrus calleryana,KS-NW,,,,
+D06,KONA,RHCA3,Rhamnus cathartica,KS-NW,,,,
+D06,KONA,SCAR7,Schedonorus arundinaceus,KS-NW,,,,
+D06,KONA,SCPR4,Schedonorus pratensis,KS-NW,,,,
+D06,KONA,SEVA4,Securigera varia,KS-NW,,,,
+D06,KONA,SOHA,Sorghum halepense,KS-NW,,,,
+D06,KONA,TAPA4,Tamarix parviflora,KS-NW,,,,
+D06,KONA,TARA,Tamarix ramosissima,KS-NW,,,,
+D06,KONZ,ACRE3,Acroptilon repens,KS-NW,,,,
+D06,KONZ,BETH,Berberis thunbergii,KS-NW,,,,
+D06,KONZ,BOBL,Bothriochloa bladhii,KS-NW,,,,
+D06,KONZ,BOISS,Bothriochloa ischaemum var. songarica,KS-NW,,,,
+D06,KONZ,BRIN2,Bromus inermis,KS-NW,,,,
+D06,KONZ,BRJA,Bromus japonicus,KS-NW,,,,
+D06,KONZ,BRTE,Bromus tectorum,KS-NW,,,,
+D06,KONZ,CACH42,Cardaria chalepensis,KS-NW,,,,
+D06,KONZ,CANU4,Carduus nutans,KS-NW,,,,
+D06,KONZ,CESO3,Centaurea solstitialis,KS-NW,,,,
+D06,KONZ,CIAR4,Cirsium arvense,KS-NW,,,,
+D06,KONZ,CIVU,Cirsium vulgare,KS-NW,,,,
+D06,KONZ,COAR4,Convolvulus arvensis,KS-NW,,,,
+D06,KONZ,DILA3,Digitalis lanata,KS-NW,,,,
+D06,KONZ,DIFU2,Dipsacus fullonum,KS-NW,,,,
+D06,KONZ,DILA4,Dipsacus laciniatus,KS-NW,,,,
+D06,KONZ,ELAN,Elaeagnus angustifolia,KS-NW,,,,
+D06,KONZ,ELUM,Elaeagnus umbellata,KS-NW,,,,
+D06,KONZ,ELRE4,Elymus repens,KS-NW,,,,
+D06,KONZ,EUAL13,Euonymus alatus,KS-NW,,,,
+D06,KONZ,EUFO5,Euonymus fortunei,KS-NW,,,,
+D06,KONZ,EUVI7,Euphorbia virgata,KS-NW,,,,
+D06,KONZ,HYVE3,Hydrilla verticillata,KS-NW,,,,
+D06,KONZ,LECU,Lespedeza cuneata,KS-NW,,,,
+D06,KONZ,LOJA,Lonicera japonica,KS-NW,,,,
+D06,KONZ,LOMA6,Lonicera maackii,KS-NW,,,,
+D06,KONZ,LOTA,Lonicera tatarica,KS-NW,,,,
+D06,KONZ,LYSA2,Lythrum salicaria,KS-NW,,,,
+D06,KONZ,MYSP2,Myriophyllum spicatum,KS-NW,,,,
+D06,KONZ,PHAR3,Phalaris arundinacea,KS-NW,,,,
+D06,KONZ,PHAU7,Phragmites australis,KS-NW,,,,
+D06,KONZ,POCU6,Polygonum cuspidatum,KS-NW,,,,
+D06,KONZ,POCR3,Potamogeton crispus ,KS-NW,,,,
+D06,KONZ,PUMOL,Pueraria montana var. lobata,KS-NW,,,,
+D06,KONZ,PYCA80,Pyrus calleryana,KS-NW,,,,
+D06,KONZ,RHCA3,Rhamnus cathartica,KS-NW,,,,
+D06,KONZ,SCAR7,Schedonorus arundinaceus,KS-NW,,,,
+D06,KONZ,SCPR4,Schedonorus pratensis,KS-NW,,,,
+D06,KONZ,SEVA4,Securigera varia,KS-NW,,,,
+D06,KONZ,SOHA,Sorghum halepense,KS-NW,,,,
+D06,KONZ,TAPA4,Tamarix parviflora,KS-NW,,,,
+D06,KONZ,TARA,Tamarix ramosissima,KS-NW,,,,
+D06,UKFS,ACRE3,Acroptilon repens,KS-NW,,,,
+D06,UKFS,BETH,Berberis thunbergii,KS-NW,,,,
+D06,UKFS,BOBL,Bothriochloa bladhii,KS-NW,,,,
+D06,UKFS,BOISS,Bothriochloa ischaemum var. songarica,KS-NW,,,,
+D06,UKFS,BRIN2,Bromus inermis,KS-NW,,,,
+D06,UKFS,BRJA,Bromus japonicus,KS-NW,,,,
+D06,UKFS,BRTE,Bromus tectorum,KS-NW,,,,
+D06,UKFS,CACH42,Cardaria chalepensis,KS-NW,,,,
+D06,UKFS,CANU4,Carduus nutans,KS-NW,,,,
+D06,UKFS,CESO3,Centaurea solstitialis,KS-NW,,,,
+D06,UKFS,CIAR4,Cirsium arvense,KS-NW,,,,
+D06,UKFS,CIVU,Cirsium vulgare,KS-NW,,,,
+D06,UKFS,COAR4,Convolvulus arvensis,KS-NW,,,,
+D06,UKFS,DILA3,Digitalis lanata,KS-NW,,,,
+D06,UKFS,DIFU2,Dipsacus fullonum,KS-NW,,,,
+D06,UKFS,DILA4,Dipsacus laciniatus,KS-NW,,,,
+D06,UKFS,ELAN,Elaeagnus angustifolia,KS-NW,,,,
+D06,UKFS,ELUM,Elaeagnus umbellata,KS-NW,,,,
+D06,UKFS,ELRE4,Elymus repens,KS-NW,,,,
+D06,UKFS,EUAL13,Euonymus alatus,KS-NW,,,,
+D06,UKFS,EUFO5,Euonymus fortunei,KS-NW,,,,
+D06,UKFS,EUVI7,Euphorbia virgata,KS-NW,,,,
+D06,UKFS,HYVE3,Hydrilla verticillata,KS-NW,,,,
+D06,UKFS,LECU,Lespedeza cuneata,KS-NW,,,,
+D06,UKFS,LOJA,Lonicera japonica,KS-NW,,,,
+D06,UKFS,LOMA6,Lonicera maackii,KS-NW,,,,
+D06,UKFS,LOTA,Lonicera tatarica,KS-NW,,,,
+D06,UKFS,LYSA2,Lythrum salicaria,KS-NW,,,,
+D06,UKFS,MYSP2,Myriophyllum spicatum,KS-NW,,,,
+D06,UKFS,PHAR3,Phalaris arundinacea,KS-NW,,,,
+D06,UKFS,PHAU7,Phragmites australis,KS-NW,,,,
+D06,UKFS,POCU6,Polygonum cuspidatum,KS-NW,,,,
+D06,UKFS,POCR3,Potamogeton crispus ,KS-NW,,,,
+D06,UKFS,PUMOL,Pueraria montana var. lobata,KS-NW,,,,
+D06,UKFS,PYCA80,Pyrus calleryana,KS-NW,,,,
+D06,UKFS,RHCA3,Rhamnus cathartica,KS-NW,,,,
+D06,UKFS,SCAR7,Schedonorus arundinaceus,KS-NW,,,,
+D06,UKFS,SCPR4,Schedonorus pratensis,KS-NW,,,,
+D06,UKFS,SEVA4,Securigera varia,KS-NW,,,,
+D06,UKFS,SOHA,Sorghum halepense,KS-NW,,,,
+D06,UKFS,TAPA4,Tamarix parviflora,KS-NW,,,,
+D06,UKFS,TARA,Tamarix ramosissima,KS-NW,,,,
+D07,GRSM,ACRE3,Acroptilon repens,TN-NW,,,n,No records of occurance near site
+D07,GRSM,AIAL,Ailanthus altissima,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,AKQU,Akebia quinata,TN-NW,,,n,No records of occurance near site
+D07,GRSM,ALJU,Albizia julibrissin,TN-NW,,,y,Occurs on site
+D07,GRSM,ALPE4,Alliaria petiolata,TN-NW,,,y,Likely occurs near site
+D07,GRSM,ALPH,Alternanthera philoxeroides,TN-NW,,,n,No records of occurance near site
+D07,GRSM,AMBR7,Ampelopsis glandulosa,TN-NW,,Syn.,n,No records of occurance near site
+D07,GRSM,ARHI3,Arthraxon hispidus,TN-NW,,,y,Likely occurs near site
+D07,GRSM,ARDO4,Arundo donax,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,BRIN2,Bromus inermis,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,BUDA2,Buddleja davidii,TN-NW,,,y,Likely occurs near site
+D07,GRSM,CEOR7,Celastrus orbiculatus,TN-NW,,,y,Likely occurs near site
+D07,GRSM,CESO3,Centaurea stoebe,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,CLTE4,Clematis terniflora,TN-NW,,,y,Likely occurs near site
+D07,GRSM,DIOP,Dioscorea polystachya,TN-NW,,Syn. Not in USDA,n,Possible but no observations in or around site
+D07,GRSM,ELUM,Elaeagnus umbellata,TN-NW,,,y,Likely occurs near site
+D07,GRSM,EUAL13,Euonymus alatus,TN-NW,,,y,Likely occurs near site
+D07,GRSM,EUFO5,Euonymus hederaceus,TN-NW,,Syn. Not in USDA,n,Possible but no observations in or around site
+D07,GRSM,FISI2,Firmiana simplex,TN-NW,,Updated NW Sp. Based on USDA,n,Possible but no observations in or around site
+D07,GRSM,HEMA17,Heracleum mantegazzianum,TN-NW,,,n,No records of occurance near site
+D07,GRSM,HUJA,Humulus japonicus,TN-NW,,,n,No records of occurance near site
+D07,GRSM,HYVE3,Hydrilla verticillata,TN-NW,,,n,No records of occurance near site
+D07,GRSM,IMCY,Imperata cylindrica,TN-NW,,,n,No records of occurance near site
+D07,GRSM,LEBI2,Lespedeza bicolor,TN-NW,,,y,Likely occurs near site
+D07,GRSM,LECU,Lespedeza cuneata,TN-NW,,,y,Occurs on site
+D07,GRSM,LISI,Ligustrum sinense,TN-NW,,,y,Occurs on site
+D07,GRSM,LISP10,Liriope spicata,TN-NW,,,n,No records of occurance near site
+D07,GRSM,LOMA6,Lonicera maackii,TN-NW,,,y,Likely occurs near site
+D07,GRSM,LYJA,Lygodium japonicum,TN-NW,,,n,No records of occurance near site
+D07,GRSM,LYSA2,Lythrum salicaria,TN-NW,,,n,No records of occurance near site
+D07,GRSM,MABE2,Mahonia bealei,TN-NW,,,n,No records of occurance near site
+D07,GRSM,MEAZ,Melia azedarach,TN-NW,,,n,No records of occurance near site
+D07,GRSM,MISI,Miscanthus sinensis,TN-NW,,,y,Likely occurs near site
+D07,GRSM,MUKE,Murdannia keisak,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,MYAQ2,Myriophyllum aquaticum,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,MYSP2,Myriophyllum spicatum,TN-NW,,,n,No records of occurance near site
+D07,GRSM,NADO,Nandina domestica,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,PATO2,Paulownia tomentosa,TN-NW,,,y,Likely occurs near site
+D07,GRSM,PEFR4,Perilla frutescens,TN-NW,,,y,Likely occurs near site
+D07,GRSM,POPE10,Persicaria perfoliata,TN-NW,,In USDA as Polygonum perfoliatum,n,Possible but no observations in or around site
+D07,GRSM,PHAU7,Phragmites australis,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,PHAU8,Phyllostachys aurea,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,POCU6,Polygonum cuspidatum,TN-NW,,Fallopia japonica,y,Likely occurs near site
+D07,GRSM,PUMO,Pueraria montana,TN-NW,,,y,Likely occurs near site
+D07,GRSM,PYCA80,Pyrus calleryana,TN-NW,,,y,Likely occurs near site
+D07,GRSM,RAFI,Ranunculus ficaria,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,RHCA3,Rhamnus cathartica,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,ROMU,Rosa multiflora,TN-NW,,,y,Occurs on site
+D07,GRSM,ROCO6,Rottboellia cochinchinensis,TN-NW,,,n,No records of occurance near site
+D07,GRSM,RUPH,Rubus phoenicolasius,TN-NW,,,y,Likely occurs near site
+D07,GRSM,SAMO5,Salvinia molesta,TN-NW,,,n,No records of occurance near site
+D07,GRSM,SOVI2,Solanum viarum,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,SOHA,Sorghum halepense,TN-NW,,,y,Likely occurs near site
+D07,GRSM,SPJA,Spiraea japonica,TN-NW,,,n,Possible but no observations in or around site
+D07,GRSM,TRNA,Trapa natans,TN-NW,,,n,No records of occurance near site
+D07,GRSM,TRSE6,Triadica sebifera,TN-NW,,,n,No records of occurance near site
+D07,GRSM,TRTE,Tribulus terrestris,TN-NW,,,n,No records of occurance near site
+D07,GRSM,TUFA,Tussilago farfara,TN-NW,,,y,Occurs on site
+D07,GRSM,VIMI2,Vinca minor,TN-NW,,,y,Likely occurs near site
+D07,GRSM,WIFL,Wisteria floribunda,TN-NW,,,y,Likely occurs near site
+D07,GRSM,WISI,Wisteria sinensis,TN-NW,,,n,Possible but no observations in or around site
+D07,MLBS,AIAL,Ailanthus altissima,VA-NW,,,y,Occurs on site
+D07,MLBS,ALVE3 ,Aldrovanda vesiculosa*,VA-NW,,,n,No records of occurance near site
+D07,MLBS,ALPE4 ,Alliaria petiolata,VA-NW,,,y,Likely occurs near site
+D07,MLBS,ALPH,Alternanthera philoxeroides,VA-NW,,,n,No records of occurance near site
+D07,MLBS,AMBR7 ,Ampelopsis brevipedunculata,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,CAKO2,Carex kobomugi,VA-NW,,,n,No records of occurance near site
+D07,MLBS,CEOR7 ,Celastrus orbiculatus,VA-NW,,,y,Likely occurs near site
+D07,MLBS,CESTM,Centaurea stoebe ssp. micranthos,VA-NW,,,y,Likely occurs near site
+D07,MLBS,CIAR4 ,Cirsium arvense,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,DIOP,Dioscorea polystachya,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,EICR,Eichhornia crassipes*,VA-NW,,,n,No records of occurance near site
+D07,MLBS,ELUM,Elaeagnus umbellata,VA-NW,,,y,Occurs on site
+D07,MLBS,EUAL13,Euonymus alatus,VA-NW,,,y,Likely occurs near site
+D07,MLBS,RAFI ,Ficaria verna,VA-NW,,,n,No records of occurance near site
+D07,MLBS,HYVE3 ,Hydrilla verticillata,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,IMCY ,Imperata cylindrica*,VA-NW,,,n,No records of occurance near site
+D07,MLBS,IRPS ,Iris pseudacorus,VA-NW,,,y,Likely occurs near site
+D07,MLBS,LECU,Lespedeza cuneata,VA-NW,,,y,Occurs on site
+D07,MLBS,LISI ,Ligustrum sinense,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,LOJA ,Lonicera japonica,VA-NW,,,y,Likely occurs near site
+D07,MLBS,LOMA6,Lonicera maackii,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,LOMO2,Lonicera morrowii,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,LUGRH ,Ludwigia grandiflora ssp. hexapetala*,VA-NW,,,n,No records of occurance near site
+D07,MLBS,LYSA2,Lythrum salicaria,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,MIVI ,Microstegium vimineum,VA-NW,,,y,Occurs on site
+D07,MLBS,MUKE ,Murdannia keisak,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,MYAQ2,Myriophyllum aquaticum,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,MYSI,Myriophyllum spicatum,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,OPHIU2 ,Oplismenus hirtellus ssp. undulatifolius*,VA-NW,,,n,No records of occurance near site
+D07,MLBS,POPE10 ,Persicaria perfoliata,VA-NW,,,n,No records of occurance near site
+D07,MLBS,PHAUA7,Phragmites australis ssp. australis,VA-NW,,,n,No records of occurance near site
+D07,MLBS,PUMOL,Pueraria montana var. lobata,VA-NW,,,y,Likely occurs near site
+D07,MLBS,POCU6 ,Reynoutria japonica,VA-NW,,,n,Possible but no observations in or around site
+D07,MLBS,ROMU ,Rosa multiflora,VA-NW,,,y,Occurs on site
+D07,MLBS,RUPH ,Rubus phoenicolasius,VA-NW,,,y,Likely occurs near site
+D07,MLBS,SOHA ,Sorghum halepense,VA-NW,,,y,Likely occurs near site
+D07,MLBS,URDI,Urtica dioica,VA-NW,,,n,No records of occurance near site
+D07,MLBS,VIRO80,Vitex rotundifolia*,VA-NW,,,n,No records of occurance near site
+D07,ORNL,ACRE3,Acroptilon repens,TN-NW,,,n,No records of occurance near site
+D07,ORNL,AIAL,Ailanthus altissima,TN-NW,,,y,Occurs on site
+D07,ORNL,AKQU,Akebia quinata,TN-NW,,,n,No records of occurance near site
+D07,ORNL,ALJU,Albizia julibrissin,TN-NW,,,y,Occurs on site
+D07,ORNL,ALPE4,Alliaria petiolata,TN-NW,,,y,Likely occurs near site
+D07,ORNL,ALPH,Alternanthera philoxeroides,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,AMBR7,Ampelopsis glandulosa,TN-NW,,Syn.,n,No records of occurance near site
+D07,ORNL,ARHI3,Arthraxon hispidus,TN-NW,,,y,Likely occurs near site
+D07,ORNL,ARDO4,Arundo donax,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,BRIN2,Bromus inermis,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,BUDA2,Buddleja davidii,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,CEOR7,Celastrus orbiculatus,TN-NW,,,y,Occurs on site
+D07,ORNL,CESO3,Centaurea stoebe,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,CLTE4,Clematis terniflora,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,DIOP,Dioscorea polystachya,TN-NW,,Syn. Not in USDA,y,Likely occurs near site
+D07,ORNL,EUAL13,Euonymus alatus,TN-NW,,,y,Occurs on site
+D07,ORNL,EUFO5,Euonymus hederaceus,TN-NW,,Syn. Not in USDA,y,Occurs on site
+D07,ORNL,FISI2,Firmiana simplex,TN-NW,,Updated NW Sp. Based on USDA,n,No records of occurance near site
+D07,ORNL,HEHE,Hedera helix,TN-NW,,,y,Occurs on site
+D07,ORNL,HEMA17,Heracleum mantegazzianum,TN-NW,,,n,No records of occurance near site
+D07,ORNL,HUJA,Humulus japonicus,TN-NW,,,n,No records of occurance near site
+D07,ORNL,HYVE3,Hydrilla verticillata,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,IMCY,Imperata cylindrica,TN-NW,,,n,No records of occurance near site
+D07,ORNL,LEBI2,Lespedeza bicolor,TN-NW,,,y,Occurs on site
+D07,ORNL,LECU,Lespedeza cuneata,TN-NW,,,y,Occurs on site
+D07,ORNL,LISP10,Liriope spicata,TN-NW,,,n,No records of occurance near site
+D07,ORNL,LOMA6,Lonicera maackii,TN-NW,,,y,Occurs on site
+D07,ORNL,LYJA,Lygodium japonicum,TN-NW,,,n,No records of occurance near site
+D07,ORNL,LYSA2,Lythrum salicaria,TN-NW,,,y,Likely occurs near site
+D07,ORNL,MABE2,Mahonia bealei,TN-NW,,,y,Likely occurs near site
+D07,ORNL,MEAZ,Melia azedarach,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,MISI,Miscanthus sinensis,TN-NW,,,y,Likely occurs near site
+D07,ORNL,MUKE,Murdannia keisak,TN-NW,,,y,Likely occurs near site
+D07,ORNL,MYAQ2,Myriophyllum aquaticum,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,MYSP2,Myriophyllum spicatum,TN-NW,,,y,Likely occurs near site
+D07,ORNL,NADO,Nandina domestica,TN-NW,,,y,Occurs on site
+D07,ORNL,PATO2,Paulownia tomentosa,TN-NW,,,y,Occurs on site
+D07,ORNL,PEFR4,Perilla frutescens,TN-NW,,,y,Occurs on site
+D07,ORNL,POPE10,Persicaria perfoliata,TN-NW,,In USDA as Polygonum perfoliatum,n,Possible but no observations in or around site
+D07,ORNL,PHAU7,Phragmites australis,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,PHAU8,Phyllostachys aurea,TN-NW,,,n,No records of occurance near site
+D07,ORNL,POCU6,Polygonum cuspidatum,TN-NW,,Fallopia japonica,y,Likely occurs near site
+D07,ORNL,PUMO,Pueraria montana,TN-NW,,,y,Occurs on site
+D07,ORNL,PYCA80,Pyrus calleryana,TN-NW,,,y,Occurs on site
+D07,ORNL,RAFI,Ranunculus ficaria,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,RHCA3,Rhamnus cathartica,TN-NW,,,n,No records of occurance near site
+D07,ORNL,ROMU,Rosa multiflora,TN-NW,,,y,Occurs on site
+D07,ORNL,ROCO6,Rottboellia cochinchinensis,TN-NW,,,n,No records of occurance near site
+D07,ORNL,RUPH,Rubus phoenicolasius,TN-NW,,,y,Likely occurs near site
+D07,ORNL,SAMO5,Salvinia molesta,TN-NW,,,n,No records of occurance near site
+D07,ORNL,SOVI2,Solanum viarum,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,SOHA,Sorghum halepense,TN-NW,,,y,Occurs on site
+D07,ORNL,SPJA,Spiraea japonica,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,TRNA,Trapa natans,TN-NW,,,n,No records of occurance near site
+D07,ORNL,TRSE6,Triadica sebifera,TN-NW,,,n,No records of occurance near site
+D07,ORNL,TRTE,Tribulus terrestris,TN-NW,,,n,No records of occurance near site
+D07,ORNL,TUFA,Tussilago farfara,TN-NW,,,y,Likely occurs near site
+D07,ORNL,WIFL,Wisteria floribunda,TN-NW,,,n,Possible but no observations in or around site
+D07,ORNL,WISI,Wisteria sinensis,TN-NW,,,n,No records of occurance near site
+D08,DELA,AIAL,Ailanthus altissima,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,ALJU,Albizia julibrissin,AL-NW,,,y,Occurs near site
+D08,DELA,ALPH,Alternanthera philoxeroides,AL-NW,,,y,Occurs on site
+D08,DELA,ARCR80,Ardisia crenata,AL-NW,,,n,No records of occurance near site
+D08,DELA,ARDO4,Arundo donax,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,CANU4,Carduus nutans,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,CEOR7,Celastrus orbiculatus,AL-NW,,,n,No records of occurance near site
+D08,DELA,CICA,Cinnamomum camphora,AL-NW,,,n,No records of occurance near site
+D08,DELA,CLTE4,Clematis terniflora,AL-NW,,,y,Occurs on site
+D08,DELA,COES,Colocasia esculenta,AL-NW,,,y,Occurs on site
+D08,DELA,COBE2,Commelina benghalensis,AL-NW,,,n,No records of occurance near site
+D08,DELA,COSE4,Cortaderia selloana,AL-NW,,,n,No records of occurance near site
+D08,DELA,DIOP,Dioscorea oppositifolia,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,EGDE,Egeria densa,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,EICR,Eichhornia crassipes,AL-NW,,,y,Occurs on site
+D08,DELA,ELPU2,Elaeagnus pungens,AL-NW,,,y,Likely occurs near site
+D08,DELA,ELUM,Elaeagnus umbellata,AL-NW,,,y,Occurs near site
+D08,DELA,FAVI,Fatoua villosa,AL-NW,,,n,No records of occurance near site
+D08,DELA,FISI2,Firmiana simplex,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,HEHE,Hedera helix,AL-NW,,,y,Occurs near site
+D08,DELA,HYVE3,Hydrilla verticillata,AL-NW,,,y,Likely occurs on site
+D08,DELA,IMCY,Imperata cylindrica,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,LACA2,Lantana camara,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,LEBI2,Lespedeza bicolor,AL-NW,,,y,Likely occurs near site
+D08,DELA,LECU,Lespedeza cuneata,AL-NW,,,y,Occurs on site
+D08,DELA,LIJA,Ligustrum japonicum,AL-NW,,,y,Occurs on site
+D08,DELA,LILU2,Ligustrum lucidum,AL-NW,,,y,Likely occurs near site
+D08,DELA,LOFR,Lonicera fragrantissima,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,LOMA6,Lonicera maackii,AL-NW,,,n,No records of occurance near site
+D08,DELA,LOBE,Lonicera X bella,AL-NW,,,n,No records of occurance near site
+D08,DELA,LYSA2,Lythrum salicaria ,AL-NW,,,n,No records of occurance near site
+D08,DELA,MABE2,Mahonia bealei,AL-NW,,,y,Likely occurs near site
+D08,DELA,MEAZ,Melia azedarach,AL-NW,,,y,Occurs near site
+D08,DELA,MIVI,Microstegium vimineum,AL-NW,,,y,Occurs on site
+D08,DELA,MUKE,Murdannia keisak,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,MYAQ2,Myriophyllum aquaticum,AL-NW,,,y,Likely occurs on site
+D08,DELA,MYSP2,Myriophyllum spicatum,AL-NW,,,n,No records of occurance near site
+D08,DELA,NADO,Nandina domestica,AL-NW,,,y,Occurs on site
+D08,DELA,OXCU2,Oxycaryum cubense,AL-NW,,,y,Likely occurs on site
+D08,DELA,PARE3,Panicum repens,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,PAUR2,Paspalum urvillei,AL-NW,,,y,Likely occurs on site
+D08,DELA,PATO2,Paulownia tomentosa,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,PHAU7,Phragmites australis,AL-NW,,,n,No records of occurance near site
+D08,DELA,PHUR,Phyllanthus urinaria,AL-NW,,,y,Occurs on site
+D08,DELA,PHAU8,Phyllostachys aurea,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,PIST2,Pistia stratiotes,AL-NW,,,n,No records of occurance near site
+D08,DELA,POTR4,Poncirus trifoliata,AL-NW,,,y,Likely occurs near site
+D08,DELA,PUMOL,Pueraria montana var. lobata,AL-NW,,,y,Occurs near site
+D08,DELA,PYCA80,Pyrus calleryana,AL-NW,,,y,Occurs near site
+D08,DELA,ROBR,Rosa bracteata,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,ROLA,Rosa laevigata,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,ROMU,Rosa multiflora,AL-NW,,,n,Possible but no observations in or around site
+D08,DELA,SAMO5,Salvinia molesta,AL-NW,,,y,Occurs on site
+D08,DELA,SEPU7,Sesbania punicea,AL-NW,,,y,Occurs near site
+D08,DELA,SOVI2,Solanum viarum,AL-NW,,,n,No records of occurance near site
+D08,DELA,SOHA,Sorghum halepense,AL-NW,,,y,Occurs on site
+D08,DELA,VEFO,Vernicia fordii,AL-NW,,,n,No records of occurance near site
+D08,DELA,VIMA,Vinca major,AL-NW,,,y,Occurs near site
+D08,DELA,VIMI2,Vinca minor,AL-NW,,,n,No records of occurance near site
+D08,DELA,VIRO80,Vitex rotundifolia,AL-NW,,,n,No records of occurance near site
+D08,DELA,WISI,Wisteria sinensis,AL-NW,,,y,Occurs on site
+D08,LENO,AIAL,Ailanthus altissima,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,ALJU,Albizia julibrissin,AL-NW,,,y,Likely occurs near site
+D08,LENO,ALPH,Alternanthera philoxeroides,AL-NW,,,y,Occurs on site
+D08,LENO,ARCR80,Ardisia crenata,AL-NW,,,n,No records of occurance near site
+D08,LENO,ARDO4,Arundo donax,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,CANU4,Carduus nutans,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,CEOR7,Celastrus orbiculatus,AL-NW,,,n,No records of occurance near site
+D08,LENO,CICA,Cinnamomum camphora,AL-NW,,,n,No records of occurance near site
+D08,LENO,CLTE4,Clematis terniflora,AL-NW,,,y,Occurs on site
+D08,LENO,COES,Colocasia esculenta,AL-NW,,,y,Occurs on site
+D08,LENO,COBE2,Commelina benghalensis,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,COSE4,Cortaderia selloana,AL-NW,,,n,No records of occurance near site
+D08,LENO,DIOP,Dioscorea oppositifolia,AL-NW,,,n,No records of occurance near site
+D08,LENO,EGDE,Egeria densa,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,EICR,Eichhornia crassipes,AL-NW,,,y,Occurs on site
+D08,LENO,ELPU2,Elaeagnus pungens,AL-NW,,,y,Likely occurs on site
+D08,LENO,ELUM,Elaeagnus umbellata,AL-NW,,,y,Occurs near site
+D08,LENO,FAVI,Fatoua villosa,AL-NW,,,n,No records of occurance near site
+D08,LENO,FISI2,Firmiana simplex,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,HEHE,Hedera helix,AL-NW,,,y,Occurs on site
+D08,LENO,HYVE3,Hydrilla verticillata,AL-NW,,,y,Likely occurs on site
+D08,LENO,IMCY,Imperata cylindrica,AL-NW,,,y,Occurs near site
+D08,LENO,LACA2,Lantana camara,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,LEBI2,Lespedeza bicolor,AL-NW,,,y,Likely occurs near site
+D08,LENO,LECU,Lespedeza cuneata,AL-NW,,,y,Occurs on site
+D08,LENO,LIJA,Ligustrum japonicum,AL-NW,,,y,Occurs on site
+D08,LENO,LILU2,Ligustrum lucidum,AL-NW,,,y,Likely occurs near site
+D08,LENO,LOFR,Lonicera fragrantissima,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,LOMA6,Lonicera maackii,AL-NW,,,n,No records of occurance near site
+D08,LENO,LOBE,Lonicera X bella,AL-NW,,,n,No records of occurance near site
+D08,LENO,LYJA,Lygodium japonicum,AL-NW,,,y,Occurs on site
+D08,LENO,LYSA2,Lythrum salicaria ,AL-NW,,,n,No records of occurance near site
+D08,LENO,MABE2,Mahonia bealei,AL-NW,,,y,Likely occurs near site
+D08,LENO,MEAZ,Melia azedarach,AL-NW,,,y,Occurs near site
+D08,LENO,MIVI,Microstegium vimineum,AL-NW,,,y,Occurs on site
+D08,LENO,MUKE,Murdannia keisak,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,MYAQ2,Myriophyllum aquaticum,AL-NW,,,y,Likely occurs on site
+D08,LENO,MYSP2,Myriophyllum spicatum,AL-NW,,,n,No records of occurance near site
+D08,LENO,NADO,Nandina domestica,AL-NW,,,y,Occurs on site
+D08,LENO,OXCU2,Oxycaryum cubense,AL-NW,,,y,Likely occurs on site
+D08,LENO,PARE3,Panicum repens,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,PAUR2,Paspalum urvillei,AL-NW,,,y,Likely occurs on site
+D08,LENO,PATO2,Paulownia tomentosa,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,PHAU7,Phragmites australis,AL-NW,,,n,No records of occurance near site
+D08,LENO,PHUR,Phyllanthus urinaria,AL-NW,,,y,Occurs on site
+D08,LENO,PHAU8,Phyllostachys aurea,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,PIST2,Pistia stratiotes,AL-NW,,,n,No records of occurance near site
+D08,LENO,POTR4,Poncirus trifoliata,AL-NW,,,y,Occurs near site
+D08,LENO,PUMOL,Pueraria montana var. lobata,AL-NW,,,y,Occurs near site
+D08,LENO,PYCA80,Pyrus calleryana,AL-NW,,,y,Occurs near site
+D08,LENO,ROBR,Rosa bracteata,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,ROLA,Rosa laevigata,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,ROMU,Rosa multiflora,AL-NW,,,n,Possible but no observations in or around site
+D08,LENO,SAMO5,Salvinia molesta,AL-NW,,,y,Occurs on site
+D08,LENO,SEPU7,Sesbania punicea,AL-NW,,,y,Occurs near site
+D08,LENO,SOVI2,Solanum viarum,AL-NW,,,n,No records of occurance near site
+D08,LENO,SOHA,Sorghum halepense,AL-NW,,,y,Occurs near site
+D08,LENO,TRSE6,Triadica sebifera,AL-NW,,,y,Occurs on site
+D08,LENO,VEFO,Vernicia fordii,AL-NW,,,n,No records of occurance near site
+D08,LENO,VIMA,Vinca major,AL-NW,,,y,Occurs on site
+D08,LENO,VIMI2,Vinca minor,AL-NW,,,n,No records of occurance near site
+D08,LENO,VIRO80,Vitex rotundifolia,AL-NW,,,n,No records of occurance near site
+D08,LENO,WISI,Wisteria sinensis,AL-NW,,,y,Occurs on site
+D08,TALL,AIAL,Ailanthus altissima,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,ALJU,Albizia julibrissin,AL-NW,,,y,Occurs on site
+D08,TALL,ALPH,Alternanthera philoxeroides,AL-NW,,,y,Likely occurs on site
+D08,TALL,ARCR80,Ardisia crenata,AL-NW,,,n,No records of occurance near site
+D08,TALL,ARDO4,Arundo donax,AL-NW,,,y,Occurs near site
+D08,TALL,CANU4,Carduus nutans,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,CEOR7,Celastrus orbiculatus,AL-NW,,,n,No records of occurance near site
+D08,TALL,CICA,Cinnamomum camphora,AL-NW,,,n,No records of occurance near site
+D08,TALL,CLTE4,Clematis terniflora,AL-NW,,,y,Occurs on site
+D08,TALL,COES,Colocasia esculenta,AL-NW,,,y,Occurs on site
+D08,TALL,COBE2,Commelina benghalensis,AL-NW,,,n,No records of occurance near site
+D08,TALL,COSE4,Cortaderia selloana,AL-NW,,,n,No records of occurance near site
+D08,TALL,DIOP,Dioscorea oppositifolia,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,EGDE,Egeria densa,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,EICR,Eichhornia crassipes,AL-NW,,,y,Occurs on site
+D08,TALL,ELPU2,Elaeagnus pungens,AL-NW,,,y,Occurs near site
+D08,TALL,ELUM,Elaeagnus umbellata,AL-NW,,,y,Occurs near site
+D08,TALL,FAVI,Fatoua villosa,AL-NW,,,n,No records of occurance near site
+D08,TALL,FISI2,Firmiana simplex,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,HEHE,Hedera helix,AL-NW,,,y,Occurs near site
+D08,TALL,HYVE3,Hydrilla verticillata,AL-NW,,,y,Likely occurs on site
+D08,TALL,IMCY,Imperata cylindrica,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,LACA2,Lantana camara,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,LEBI2,Lespedeza bicolor,AL-NW,,,y,Likely occurs near site
+D08,TALL,LECU,Lespedeza cuneata,AL-NW,,,y,Occurs on site
+D08,TALL,LIJA,Ligustrum japonicum,AL-NW,,,y,Occurs on site
+D08,TALL,LILU2,Ligustrum lucidum,AL-NW,,,y,Likely occurs near site
+D08,TALL,LOFR,Lonicera fragrantissima,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,LOMA6,Lonicera maackii,AL-NW,,,n,No records of occurance near site
+D08,TALL,LOBE,Lonicera X bella,AL-NW,,,n,No records of occurance near site
+D08,TALL,LYJA,Lygodium japonicum,AL-NW,,,y,Occurs on site
+D08,TALL,LYSA2,Lythrum salicaria ,AL-NW,,,n,No records of occurance near site
+D08,TALL,MABE2,Mahonia bealei,AL-NW,,,y,Likely occurs near site
+D08,TALL,MEAZ,Melia azedarach,AL-NW,,,y,Occurs near site
+D08,TALL,MIVI,Microstegium vimineum,AL-NW,,,y,Occurs on site
+D08,TALL,MUKE,Murdannia keisak,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,MYAQ2,Myriophyllum aquaticum,AL-NW,,,y,Likely occurs on site
+D08,TALL,MYSP2,Myriophyllum spicatum,AL-NW,,,n,No records of occurance near site
+D08,TALL,NADO,Nandina domestica,AL-NW,,,y,Occurs on site
+D08,TALL,OXCU2,Oxycaryum cubense,AL-NW,,,y,Likely occurs on site
+D08,TALL,PARE3,Panicum repens,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,PAUR2,Paspalum urvillei,AL-NW,,,y,Likely occurs on site
+D08,TALL,PATO2,Paulownia tomentosa,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,PHAU7,Phragmites australis,AL-NW,,,n,No records of occurance near site
+D08,TALL,PHUR,Phyllanthus urinaria,AL-NW,,,y,Occurs on site
+D08,TALL,PHAU8,Phyllostachys aurea,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,PIST2,Pistia stratiotes,AL-NW,,,n,No records of occurance near site
+D08,TALL,POTR4,Poncirus trifoliata,AL-NW,,,y,Likely occurs near site
+D08,TALL,PUMOL,Pueraria montana var. lobata,AL-NW,,,y,Occurs near site
+D08,TALL,PYCA80,Pyrus calleryana,AL-NW,,,y,Occurs near site
+D08,TALL,ROBR,Rosa bracteata,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,ROLA,Rosa laevigata,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,ROMU,Rosa multiflora,AL-NW,,,n,Possible but no observations in or around site
+D08,TALL,SAMO5,Salvinia molesta,AL-NW,,,y,Occurs on site
+D08,TALL,SEPU7,Sesbania punicea,AL-NW,,,y,Occurs near site
+D08,TALL,SOVI2,Solanum viarum,AL-NW,,,n,No records of occurance near site
+D08,TALL,SOHA,Sorghum halepense,AL-NW,,,y,Occurs on site
+D08,TALL,TRSE6,Triadica sebifera,AL-NW,,,y,Occurs on site
+D08,TALL,VEFO,Vernicia fordii,AL-NW,,,n,No records of occurance near site
+D08,TALL,VIMA,Vinca major,AL-NW,,,y,Occurs near site
+D08,TALL,VIMI2,Vinca minor,AL-NW,,,n,No records of occurance near site
+D08,TALL,VIRO80,Vitex rotundifolia,AL-NW,,,n,No records of occurance near site
+D08,TALL,WISI,Wisteria sinensis,AL-NW,,,y,Occurs on site
+D09,DCFS,ACRE3,Acroptilon repens,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,DCFS,AMPA,Amaranthus palmeri,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,DCFS,ARMI2,Arctium minus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,BAPR5,Bassia prostrata,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,BRTE,Bromus tectorum,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,CADR,Cardaria draba,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,CAAC,Carduus acanthoides,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,CANU4,Carduus nutans,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,DCFS,CEDI3,Centaurea diffusa,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,DCFS,CESO3,Centaurea solstitalis,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,CESTM,Centaurea stoebe spp. Micranthos,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,DCFS,CIVU,Cirsium vulgare,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,COAR4,Convolvulus arvensis,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,CRTE3,Crepis tectorum,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,GYPA,Gypsophila paniculata,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,HAGL,Halogeton glomeratus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,HIAU,Hieracium aurantiacum,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,HYNI,Hyoscyamus niger,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,LIDA,Linaria dalmatica,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,DCFS,LIVU2,Linaria vulgaris,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,DCFS,LYSA2,Lythrum salicaria,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,DCFS,MARE6,Matricaria recutita,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,ONAC,Onopordum acannthium,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,SOARU,Sonchus arvensis ssp. uliginosus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,SOAS,Sonchus asper,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,SOOL,Sonchus oleraceus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,TAMAR2,Tamarix spp. ,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,DCFS,TAVU,Tanacetum vulgare,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,DCFS,VETH,Verbascum thapsus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,ACRE3,Acroptilon repens,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,NOGP,AMPA,Amaranthus palmeri,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,NOGP,ASSY,Asclepias syriaca,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,BAPR5,Bassia prostrata,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,BRTE,Bromus tectorum,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,CADR,Cardaria draba,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,CAAC,Carduus acanthoides,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,CANU4,Carduus nutans,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,NOGP,CEDI3,Centaurea diffusa,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,NOGP,CESO3,Centaurea solstitalis,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,CESTM,Centaurea stoebe spp. Micranthos,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,NOGP,CIVU,Cirsium vulgare,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,COAR4,Convolvulus arvensis,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,CRTE3,Crepis tectorum,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,GYPA,Gypsophila paniculata,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,HAGL,Halogeton glomeratus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,HIAU,Hieracium aurantiacum,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,HYNI,Hyoscyamus niger,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,LIDA,Linaria dalmatica,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,NOGP,LIVU2,Linaria vulgaris,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,NOGP,LYSA2,Lythrum salicaria,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,NOGP,MARE6,Matricaria recutita,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,ONAC,Onopordum acannthium,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,SOARU,Sonchus arvensis ssp. uliginosus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,SOAS,Sonchus asper,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,SOOL,Sonchus oleraceus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,TAMAR2,Tamarix spp. ,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,NOGP,TAVU,Tanacetum vulgare,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,NOGP,VETH,Verbascum thapsus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,ACRE3,Acroptilon repens,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,WOOD,AMPA,Amaranthus palmeri,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,WOOD,ARMI2,Arctium minus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,BAPR5,Bassia prostrata,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,BRTE,Bromus tectorum,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,CADR,Cardaria draba,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,CAAC,Carduus acanthoides,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,CANU4,Carduus nutans,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,WOOD,CEDI3,Centaurea diffusa,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,WOOD,CESO3,Centaurea solstitalis,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,CESTM,Centaurea stoebe spp. Micranthos,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,WOOD,CIVU,Cirsium vulgare,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,CRTE3,Crepis tectorum,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,CYOF,Cynoglossum officinale,ND-NW,,,y,this is a state listed noxious weed and has been found on site
+D09,WOOD,EUES,Euphorbia esula,ND-NW,,,y,this is a state listed noxious weed and has been found on site
+D09,WOOD,GYPA,Gypsophila paniculata,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,HAGL,Halogeton glomeratus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,HIAU,Hieracium aurantiacum,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,HYNI,Hyoscyamus niger,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,LIDA,Linaria dalmatica,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,WOOD,LIVU2,Linaria vulgaris,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,WOOD,LYSA2,Lythrum salicaria,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,WOOD,MARE6,Matricaria recutita,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,ONAC,Onopordum acannthium,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,SOARU,Sonchus arvensis ssp. uliginosus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,SOAS,Sonchus asper,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,SOOL,Sonchus oleraceus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,TAMAR2,Tamarix spp. ,ND-NW,,,n,this is a state listed noxious weed but not likely to occur on site
+D09,WOOD,TAVU,Tanacetum vulgare,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D09,WOOD,VETH,Verbascum thapsus,ND-NW,,,n,not a state listed noxious weed. possibly county listed
+D10,CPER,ABTH,Abutilon theophrasti,CO-NW,,,y,"culitvated fields, roadsides & disturbed areas "
+D10,CPER,AECY,Aegilops cylindrica,CO-NW,,,y,"grasslands, wheat fields, roadsides"
+D10,CPER,ALMA12,Alhagi maurorum,CO-NW,,,n,"disturbed/rangeland species <5000 ft elevation, not known in CO"
+D10,CPER,ANCO2,Anthemis cotula,CO-NW,,,n,"disturbed and paved areas, drained soils."
+D10,CPER,ARMI2,Arctium minus,CO-NW,,,y,"roadsides, ditch banks, waste places, pastures, fence rows."
+D10,CPER,ARAB3,Artemisia absinthium,CO-NW,,,n,"rangeland, 5000-7000 ft"
+D10,CPER,ARDO4,Arundo donax,CO-NW,,,n,wetland species
+D10,CPER,BREL2,Brassica elongata,CO-NW,,,y,"disturbed soils, woodlands, deserts, no nearby pops"
+D10,CPER,BRTE,Bromus tectorum,CO-NW,,,y,"arid, semi arid, and cold environment as high as 9,500 feet"
+D10,CPER,BUUM,Butomus umbellatus,CO-NW,,,n,wetland species
+D10,CPER,CADR,Cardaria draba,CO-NW,,,y,"waste places, meadows, pastures, croplands"
+D10,CPER,CAAC,Carduus acanthoides,CO-NW,,,y,"rangeland, over-grazed pastures, roadsides, and irrigation ditches"
+D10,CPER,CANU4,Carduus nutans,CO-NW,,,y,"shortgrass prairie to alpine, disturbed areas,"
+D10,CPER,CACA19,Carum carvi,CO-NW,,,y,"Dry soils, montane grasslands & woodlands, subalpine forests Elevation ranges from 1500 to 4300 meters.
+"
+D10,CPER,CEDI3,Centaurea diffusa,CO-NW,,,,"rangeland, roadsides, riparian"
+D10,CPER,CESO3,Centaurea solstitialis,CO-NW,,,y,"rangeland, lower elevations"
+D10,CPER,CESTM,Centaurea stoebe L. ssp. Micranthos,CO-NW,,,y,"disturbed, overgrazed areas, grasslands, pastures, foothill clearings, sandy soils,"
+D10,CPER,CEVI,Centaurea virgata,CO-NW,,,n,"rangeland, not known in CO"
+D10,CPER,CEMO6,Centaurea x moncktonii,CO-NW,,,n,"stream banks and moist disturbed areas, no nearby pops"
+D10,CPER,CEPS,Centaurea x psammogena,CO-NW,,,y,"disturbed, overgrazed areas, grasslands, pastures, foothill clearings, sandy soils,"
+D10,CPER,CHJU,Chondrilla juncea,CO-NW,,,y,rangeland
+D10,CPER,CIIN,Cichorium intybus,CO-NW,,,y,"roadsides, disturbed areas at elevations below 8,000 feet"
+D10,CPER,CIAR4,Cirsium arvense,CO-NW,,,y,seems to grow pretty mch anywhere
+D10,CPER,CIVU,Cirsium vulgare,CO-NW,,,y,seems to grow pretty mch anywhere
+D10,CPER,CLOR,Clematis orientalis,CO-NW,,,n,"roadsides, riparian, open woods"
+D10,CPER,COMA2,Conium maculatum,CO-NW,,,y,"streams, rivers, irrigation and roadside ditches"
+D10,CPER,COAR4,Convolvulus arvensis,CO-NW,,,y,"cultivated areas, pastures, roadsides, 4,000 to 8,000 ft"
+D10,CPER,CRVU2,Crupina vulgaris,CO-NW,,,n,"rangeland species, not known in CO"
+D10,CPER,CYOF,Cynoglossum officinale,CO-NW,,,y,"rangelands, pastures, forest edges"
+D10,CPER,CYES,Cyperus esculentus,CO-NW,,,y,"disturbed areas, as high as 8,200ft"
+D10,CPER,DIFU2,Dipsacus fullonum,CO-NW,,,n,"wetlands, fens, riparian coridors, roads"
+D10,CPER,DILA4,Dipsacus laciniatus,CO-NW,,,n,"wetlands, fens, riparian coridors, roads"
+D10,CPER,ELAN,Elaeagnus angustifolia,CO-NW,,,y,"open moist riparian zones, floodplains, fields, up to 8,000"
+D10,CPER,ELRE4,Elymus repens,CO-NW,,,y,"crops, pastures, rangelands, roadsides, ditches, disturbed moist areas, temp 68-77"
+D10,CPER,EPHI,Epilobium hirsutum,CO-NW,,,n,wetland species
+D10,CPER,ERCI6,Erodium cicutarium,CO-NW,,,y,"dry pasturelands, rangelands, turf grass and sandy soils"
+D10,CPER,EUCY2,Euphorbia cyparissias,CO-NW,,,y,"meadows, pastures, forest edges"
+D10,CPER,EUES,Euphorbia esula,CO-NW,,,y,"rangelands, pastures, forest openings"
+D10,CPER,EUMY2,Euphorbia myrsinites,CO-NW,,,y,"rocky sunny areas, well drained soils"
+D10,CPER,FAJA2,Fallopia japonica,CO-NW,,,n,"found along streams, rivers, ditches"
+D10,CPER,FASA3,Fallopia sachalinensis,CO-NW,,,n,"found along streams, rivers, ditches"
+D10,CPER,FABO,Fallopia x bohemicum,CO-NW,,,n,"found along streams, rivers, ditches"
+D10,CPER,HAGL,Halogeton glomeratus,CO-NW,,,y,"roadsides, trails, overgrazed sites,  highdesert/alkaline soils"
+D10,CPER,HEMA3,Hesperis matronalis,CO-NW,,,n,disturbed areas with wet alkaline soils
+D10,CPER,HIAU,Hieracium aurantiacum,CO-NW,,,y,"rangelands, woodlands, alpine meadows"
+D10,CPER,HYVE3,Hydrilla verticillata,CO-NW,,,,aquatic species
+D10,CPER,HYNI,Hyoscyamus niger,CO-NW,,,n,"west slope, disturbed open places"
+D10,CPER,HYPE,Hypericum perforatum,CO-NW,,,y,"disturbed sites,  roadsides, rangeland, meadows, dry pastures, and open woodlands."
+D10,CPER,ISTI,Isatis tinctoria,CO-NW,,,y,"rangelands, forests"
+D10,CPER,LELA2,Lepidium latifolium,CO-NW,,,y,disturbed and bareground areas low or high-saline soils
+D10,CPER,LEVU,Leucanthemum vulgare,CO-NW,,,y,"mountain meadows, grasslands, pastures, streams, roadsides, up to 11,000 ft"
+D10,CPER,LIDA,Linaria dalmatica,CO-NW,,,y,"pastures, rangelands, forest openings"
+D10,CPER,LIGE,Linaria genistifolia,CO-NW,,,y,"pastures, rangelands, forest openings"
+D10,CPER,LIVU2,Linaria vulgaris,CO-NW,,,y,"fields, other disturbed sites and rangeland "
+D10,CPER,LYSA2,Lythrum salicaria,CO-NW,,,n,river banks and wet meadows
+D10,CPER,MYAQ2,Myriophyllum aquaticum,CO-NW,,,n,aquatic species
+D10,CPER,MYSP2,Myriophyllum spicatum,CO-NW,,,n,aquatic species
+D10,CPER,ONAC,Onopordum acanthium,CO-NW,,,y,"rangeland, over-grazed pastures, roadsides, and moist soil"
+D10,CPER,ONTA,Onopordum tauricum,CO-NW,,,y,"rangeland, over-grazed pastures, roadsides, and moist soil"
+D10,CPER,PAMI2,Panicum miliaceum,CO-NW,,,y,"culitvated fields, roadsides & disturbed areas "
+D10,CPER,PEHA,Peganum harmala,CO-NW,,,y,desert/arid rangeland plant
+D10,CPER,POBU,Poa bulbosa,CO-NW,,,y,"up to 5,500ft, too low of elevation "
+D10,CPER,PORE5,Potentilla recta,CO-NW,,,n,"full sun, moist soil, wet meadows, riparian areas, roadsides, tolerate dry soil"
+D10,CPER,ACRE3,Rhaponticum repens,CO-NW,,,y,"roadsides, ditch banks, pastures, rangeland, saline soils, clear cuts, and cropland."
+D10,CPER,SAAE,Salvia aethiopis,CO-NW,,,y,rangeland
+D10,CPER,SAMO5,Salvinia molesta,CO-NW,,,n,aquatic species
+D10,CPER,SAOF4,Saponaria officinalis,CO-NW,,,n,moist well drained soils
+D10,CPER,SEJA,Senecio jacobaea,CO-NW,,,n,"rangeland or logged areas, no nearby pops"
+D10,CPER,SOAR2,Sonchus arvensis,CO-NW,,,y,"roadsides, fertile waste areas, cultivated fields,woods, ditches, and rivers"
+D10,CPER,SOHA,Sorghum halepense,CO-NW,,,y,"crop fields, hay fields, roadsides, fence rows, and waste areas"
+D10,CPER,TACA8,Taeniatherum caput-medusae,CO-NW,,,n,"ag/rangeland, not known in CO"
+D10,CPER,TACH2,Tamarix chinensis,CO-NW,,,n,"floodplains, riverbanks,streambanks, marshes"
+D10,CPER,TARA,Tamarix Ramosissima,CO-NW,,,n,"floodplains, riverbanks,streambanks, marshes"
+D10,CPER,TAVU,Tanacetum vulgare,CO-NW,,,y,"irrigation ditches, streams, seeps, roads"
+D10,CPER,TRTE,Tribulus terrestris,CO-NW,,,y,"roadsides, pastures, disturbed areas, cultivated fields"
+D10,CPER,TRPE21,Tripleurospermum inodorum,CO-NW,,,n,disturbed sites in upper montane and subalpine
+D10,CPER,VEBL,Verbascum blattaria,CO-NW,,,y,"infertile, nutrient poor and unproductive soils, northern front range"
+D10,CPER,VETH,Verbascum thapsus,CO-NW,,,y,"roadsides, waste places, pastures, hay fields, abandoned lands"
+D10,RMNP,ABTH,Abutilon theophrasti,CO-NW,,,n,"culitvated fields, roadsides & disturbed areas "
+D10,RMNP,AECY,Aegilops cylindrica,CO-NW,,,n,"grasslands, wheat fields, roadsides"
+D10,RMNP,ALMA12,Alhagi maurorum,CO-NW,,,n,"disturbed/rangeland species <5000 ft elevation, not known in CO"
+D10,RMNP,ANCO2,Anthemis cotula,CO-NW,,,n,"disturbed and paved areas, drained soils."
+D10,RMNP,ARMI2,Arctium minus,CO-NW,,,n,"roadsides, ditch banks, waste places, pastures, fence rows."
+D10,RMNP,ARAB3,Artemisia absinthium,CO-NW,,,n,"rangeland, 5000-7000 ft"
+D10,RMNP,ARDO4,Arundo donax,CO-NW,,,n,wetland species
+D10,RMNP,BREL2,Brassica elongata,CO-NW,,,n,"disturbed soils, woodlands, deserts, no nearby pops"
+D10,RMNP,BRTE,Bromus tectorum,CO-NW,,,y,"arid, semi arid, and cold environment as high as 9,500 feet"
+D10,RMNP,BUUM,Butomus umbellatus,CO-NW,,,n,wetland species
+D10,RMNP,CADR,Cardaria draba,CO-NW,,,n,"waste places, meadows, pastures, croplands"
+D10,RMNP,CAAC,Carduus acanthoides,CO-NW,,,n,"rangeland, over-grazed pastures, roadsides, and irrigation ditches"
+D10,RMNP,CANU4,Carduus nutans,CO-NW,,,y,"shortgrass prairie to alpine, disturbed areas,"
+D10,RMNP,CACA19,Carum carvi,CO-NW,,,y,"Dry soils, montane grasslands & woodlands, subalpine forests Elevation ranges from 1500 to 4300 meters.
+"
+D10,RMNP,CEDI3,Centaurea diffusa,CO-NW,,,n,"rangeland, roadsides, riparian"
+D10,RMNP,CESO3,Centaurea solstitialis,CO-NW,,,n,"rangeland, lower elevations"
+D10,RMNP,CESTM,Centaurea stoebe L. ssp. Micranthos,CO-NW,,,y,"disturbed, overgrazed areas, grasslands, pastures, foothill clearings, sandy soils,"
+D10,RMNP,CEVI,Centaurea virgata,CO-NW,,,n,"rangeland, not known in CO"
+D10,RMNP,CEMO6,Centaurea x moncktonii,CO-NW,,,n,"stream banks and moist disturbed areas, no nearby pops"
+D10,RMNP,CEPS,Centaurea x psammogena,CO-NW,,,y,"disturbed, overgrazed areas, grasslands, pastures, foothill clearings, sandy soils,"
+D10,RMNP,CHJU,Chondrilla juncea,CO-NW,,,n,rangeland
+D10,RMNP,CIIN,Cichorium intybus,CO-NW,,,y,"roadsides, disturbed areas at elevations below 8,000 feet"
+D10,RMNP,CIAR4,Cirsium arvense,CO-NW,,,y,seems to grow pretty mch anywhere
+D10,RMNP,CIVU,Cirsium vulgare,CO-NW,,,y,seems to grow pretty mch anywhere
+D10,RMNP,CLOR,Clematis orientalis,CO-NW,,,y,"roadsides, riparian, open woods"
+D10,RMNP,COMA2,Conium maculatum,CO-NW,,,y,"streams, rivers, irrigation and roadside ditches"
+D10,RMNP,COAR4,Convolvulus arvensis,CO-NW,,,n,"cultivated areas, pastures, roadsides, 4,000 to 8,000 ft"
+D10,RMNP,CRVU2,Crupina vulgaris,CO-NW,,,n,"rangeland species, not known in CO"
+D10,RMNP,CYOF,Cynoglossum officinale,CO-NW,,,y,"rangelands, pastures, forest edges"
+D10,RMNP,CYES,Cyperus esculentus,CO-NW,,,y,"disturbed areas, moist areas, as high as 8,200ft"
+D10,RMNP,DIFU2,Dipsacus fullonum,CO-NW,,,n,"wetlands, fens, riparian coridors, roads"
+D10,RMNP,DILA4,Dipsacus laciniatus,CO-NW,,,n,"wetlands, fens, riparian coridors, roads"
+D10,RMNP,ELAN,Elaeagnus angustifolia,CO-NW,,,y,"open moist riparian zones, floodplains, fields, up to 8,000"
+D10,RMNP,ELRE4,Elymus repens,CO-NW,,,y,"crops, pastures, rangelands, roadsides, ditches, disturbed moist areas, temp 68-77"
+D10,RMNP,EPHI,Epilobium hirsutum,CO-NW,,,n,wetland species
+D10,RMNP,ERCI6,Erodium cicutarium,CO-NW,,,n,"dry pasturelands, rangelands, turf grass and sandy soils"
+D10,RMNP,EUCY2,Euphorbia cyparissias,CO-NW,,,y,"meadows, pastures, forest edges"
+D10,RMNP,EUES,Euphorbia esula,CO-NW,,,y,"rangelands, pastures, forest openings"
+D10,RMNP,EUMY2,Euphorbia myrsinites,CO-NW,,,y,"rocky sunny areas, well drained soils"
+D10,RMNP,FAJA2,Fallopia japonica,CO-NW,,,n,"found along streams, rivers, ditches"
+D10,RMNP,FASA3,Fallopia sachalinensis,CO-NW,,,n,"found along streams, rivers, ditches"
+D10,RMNP,FABO,Fallopia x bohemicum,CO-NW,,,n,"found along streams, rivers, ditches"
+D10,RMNP,HAGL,Halogeton glomeratus,CO-NW,,,n,"roadsides, trails, overgrazed sites,  highdesert/alkaline soils"
+D10,RMNP,HEMA3,Hesperis matronalis,CO-NW,,,n,disturbed areas with wet alkaline soils
+D10,RMNP,HIAU,Hieracium aurantiacum,CO-NW,,,y,"rangelands, woodlands, alpine meadows"
+D10,RMNP,HYVE3,Hydrilla verticillata,CO-NW,,,n,aquatic species
+D10,RMNP,HYNI,Hyoscyamus niger,CO-NW,,,n,"west slope, disturbed open places"
+D10,RMNP,HYPE,Hypericum perforatum,CO-NW,,,y,"disturbed sites,  roadsides, rangeland, meadows, dry pastures, and open woodlands."
+D10,RMNP,ISTI,Isatis tinctoria,CO-NW,,,y,"rangelands, forests"
+D10,RMNP,LELA2,Lepidium latifolium,CO-NW,,,n,disturbed and bareground areas low or high-saline soils
+D10,RMNP,LEVU,Leucanthemum vulgare,CO-NW,,,y,"mountain meadows, grasslands, pastures, streams, roadsides, up to 11,000 ft"
+D10,RMNP,LIDA,Linaria dalmatica,CO-NW,,,y,"pastures, rangelands, forest openings"
+D10,RMNP,LIGE,Linaria genistifolia,CO-NW,,,y,"pastures, rangelands, forest openings"
+D10,RMNP,LIVU2,Linaria vulgaris,CO-NW,,,n,"fields, other disturbed sites and rangeland "
+D10,RMNP,LYSA2,Lythrum salicaria,CO-NW,,,y,river banks and wet meadows
+D10,RMNP,MYAQ2,Myriophyllum aquaticum,CO-NW,,,n,aquatic species
+D10,RMNP,MYSP2,Myriophyllum spicatum,CO-NW,,,n,aquatic species
+D10,RMNP,ONAC,Onopordum acanthium,CO-NW,,,n,"rangeland, over-grazed pastures, roadsides, and moist soil"
+D10,RMNP,ONTA,Onopordum tauricum,CO-NW,,,n,"rangeland, over-grazed pastures, roadsides, and moist soil"
+D10,RMNP,PAMI2,Panicum miliaceum,CO-NW,,,n,"culitvated fields, roadsides & disturbed areas "
+D10,RMNP,PEHA,Peganum harmala,CO-NW,,,n,desert/arid rangeland plant
+D10,RMNP,POBU,Poa bulbosa,CO-NW,,,n,"up to 5,500ft, too low of elevation "
+D10,RMNP,PORE5,Potentilla recta,CO-NW,,,y,"full sun, moist soil, wet meadows, riparian areas, roadsides, tolerate dry soil"
+D10,RMNP,ACRE3,Rhaponticum repens,CO-NW,,,n,"roadsides, ditch banks, pastures, rangeland, saline soils, clear cuts, and cropland."
+D10,RMNP,SAAE,Salvia aethiopis,CO-NW,,,n,rangeland
+D10,RMNP,SAMO5,Salvinia molesta,CO-NW,,,n,aquatic species
+D10,RMNP,SAOF4,Saponaria officinalis,CO-NW,,,y,moist well drained soils
+D10,RMNP,SEJA,Senecio jacobaea,CO-NW,,,n,"rangeland or logged areas, no nearby pops"
+D10,RMNP,SOAR2,Sonchus arvensis,CO-NW,,,y,"roadsides, fertile waste areas, cultivated fields,woods, ditches, and rivers"
+D10,RMNP,SOHA,Sorghum halepense,CO-NW,,,n,"crop fields, hay fields, roadsides, fence rows, and waste areas"
+D10,RMNP,TACA8,Taeniatherum caput-medusae,CO-NW,,,n,"ag/rangeland, not known in CO"
+D10,RMNP,TACH2,Tamarix chinensis,CO-NW,,,n,"floodplains, riverbanks,streambanks, marshes"
+D10,RMNP,TARA,Tamarix Ramosissima,CO-NW,,,n,"floodplains, riverbanks,streambanks, marshes"
+D10,RMNP,TAVU,Tanacetum vulgare,CO-NW,,,n,"irrigation ditches, streams, seeps, roads"
+D10,RMNP,TRTE,Tribulus terrestris,CO-NW,,,n,"roadsides, pastures, disturbed areas, cultivated fields"
+D10,RMNP,TRPE21,Tripleurospermum inodorum,CO-NW,,,y,disturbed sites in upper montane and subalpine
+D10,RMNP,VEBL,Verbascum blattaria,CO-NW,,,n,"infertile, nutrient poor and unproductive soils, northern front range"
+D10,RMNP,VETH,Verbascum thapsus,CO-NW,,,n,"roadsides, waste places, pastures, hay fields, abandoned lands"
+D11,CLBJ,ALMA12,Alhagi camelorum,TX-NW,,,n,range
+D11,CLBJ,ALPH,Alternanthera philoxeroides,TX-NW,,,y,
+D11,CLBJ,ARDO4,Arundo donax,TX-NW,,,y,
+D11,CLBJ,CASE13,Calystegia sepium,TX-NW,,,y,
+D11,CLBJ,CAHA13,Cardiospermum halicacabum,TX-NW,,,y,
+D11,CLBJ,CUJA,Cuscuta japonica,TX-NW,,,y,
+D11,CLBJ,EIAZ2,Eichhornia azurea,TX-NW,,,n,range
+D11,CLBJ,EICR,Eichhornia crassipes,TX-NW,,,y,
+D11,CLBJ,HYVE3,Hydrilla verticillata,TX-NW,,,y,
+D11,CLBJ,IPAQ,Ipomoea aquatica,TX-NW,,,n,range
+D11,CLBJ,LAMA15,Lagarosiphon major,TX-NW,,,n,range
+D11,CLBJ,LYJA,Lygodium japonicum,TX-NW,,,n,range
+D11,CLBJ,LYSA2,Lythrum salicaria,TX-NW,,,n,range
+D11,CLBJ,MEQU,Melaleuca quinquenervia,TX-NW,,,n,range
+D11,CLBJ,MEAZ,Melia azedarach,TX-NW,,,y,
+D11,CLBJ,MYSP2,Myriophyllum spicatum,TX-NW,,,y,
+D11,CLBJ,NATR3,Nassella trichotoma,TX-NW,,,n,range
+D11,CLBJ,ORRA,Orobanche ramosa,TX-NW,,,y,
+D11,CLBJ,PARE3,Panicum repens,TX-NW,,,n,not near our site
+D11,CLBJ,PISTI2,Pistia stratiotes,TX-NW,,,y,
+D11,CLBJ,PUMOL,Pueraria montana var. lobata,TX-NW,,,y,
+D11,CLBJ,ROCO6,Rottboellia cochinchinensis,TX-NW,,,n,range
+D11,CLBJ,SALVI2,Salvinia spp.,TX-NW,,,y,
+D11,CLBJ,SCTE,Schinus terebinthifolius,TX-NW,,,n,
+D11,CLBJ,SOVI2,Solanum viarum,TX-NW,,,n,range
+D11,CLBJ,LAPU12,Spirodela oligorrhiza,TX-NW,,,y,
+D11,CLBJ,TAMAR2,Tamarix spp.,TX-NW,,,y,
+D11,CLBJ,TRSE6,Triadica sebifera,TX-NW,,,y,
+D11,OAES,ELRE4,Agropyron repens,OK-NW,,,y,
+D11,OAES,AGGI,Agrostemma githago,OK-NW,,,y,
+D11,OAES,ALLIU,Allium spp.,OK-NW,,,y,
+D11,OAES,AVENA,Avena spp.,OK-NW,,,y,
+D11,OAES,BRASS2,Brassica spp.,OK-NW,,,y,
+D11,OAES,BRSE,Bromus secalinus,OK-NW,,,y,
+D11,OAES,IPTU3,Calonyction muricatum,OK-NW,,,n,range
+D11,OAES,CADR,Cardaria draba,OK-NW,,,y,
+D11,OAES,CAHA13,Cardiospermum halicacabum,OK-NW,,,y,
+D11,OAES,CANU4,Carduus nutans,OK-NW,,,y,
+D11,OAES,SEOB4,Cassia obtusifolia,OK-NW,,,y,
+D11,OAES,ACRE3,Centaurea picris,OK-NW,,,n,range
+D11,OAES,CIAR4,Cirsium arvense,OK-NW,,,y,
+D11,OAES,COAR4,Convolvulus arvensis,OK-NW,,,y,
+D11,OAES,COSE14,Convolvulus sepium,OK-NW,,,y,
+D11,OAES,CYRO,Cyperus rotundus,OK-NW,,,y,
+D11,OAES,ECAL,Eclipta alba,OK-NW,,,y,
+D11,OAES,GLCO3,Glaucium corniculatum,OK-NW,,,n,range
+D11,OAES,HECI,Helianthus ciliaris,OK-NW,,,y,
+D11,OAES,IPOMO,Ipomoea spp.,OK-NW,,,y,
+D11,OAES,LECU,Lespedeza Cuneata,OK-NW,,,n,range
+D11,OAES,LOTE2,Lolium temulentum,OK-NW,,,n,range
+D11,OAES,NATR3,Nassella trichotoma,OK-NW,,,n,range
+D11,OAES,ONAC,Onoprodum acanthium,OK-NW,,,n,range
+D11,OAES,PLLA,Plantago lanceolata,OK-NW,,,y,
+D11,OAES,POCO10,Polygonum convolvulus,OK-NW,,,y,
+D11,OAES,RUAC3,Rumex acetosella,OK-NW,,,y,
+D11,OAES,RUMEX,Rumex spp.,OK-NW,,,y,
+D11,OAES,SEFA,Setaria faberi,OK-NW,,,y,
+D11,OAES,SOCA3,Solanum carolinense,OK-NW,,,y,
+D11,OAES,SOEL,Solanum elaeagnifolium,OK-NW,,,y,
+D11,OAES,XANTH2,Xanthium spp.,OK-NW,,,y,
+D12,YELL,ELRE4,Agropyron repens,WY-NW,,,,
+D12,YELL,ARMI2,Arctium minus,WY-NW,,,,
+D12,YELL,CADR,Cardaria draba,WY-NW,,,,
+D12,YELL,CAAC,Carduus acanthoides,WY-NW,,,,
+D12,YELL,CANU4,Carduus nutans,WY-NW,,,,
+D12,YELL,CEDI3,Centaurea diffusa,WY-NW,,,,
+D12,YELL,CESTM,Centaurea maculosa,WY-NW,,,,
+D12,YELL,ACRE3,Centaurea repens,WY-NW,,,,
+D12,YELL,CESO3,Centaurea solstitialis,WY-NW,,,,
+D12,YELL,LEVU,Chrysanthemum leucanthemum,WY-NW,,,,
+D12,YELL,CIAR4,Cirsium arvense,WY-NW,,,,
+D12,YELL,COAR4,Convolvulus arvensis,WY-NW,,,,
+D12,YELL,CYOF,Cynoglossum officinale,WY-NW,,,,
+D12,YELL,ELAN,Elaeagnus angustifolia,WY-NW,,,,
+D12,YELL,EUES,Euphorbia esula,WY-NW,,,,
+D12,YELL,AMTO3,Franseria discolor,WY-NW,,,,
+D12,YELL,HYNI,Hyoscyamus Niger,WY-NW,,,,
+D12,YELL,HYPE,Hypericum perforatum,WY-NW,,,,
+D12,YELL,ISTI,Isatis tinctoria,WY-NW,,,,
+D12,YELL,LELA2,Lepidium latifolium,WY-NW,,,,
+D12,YELL,LIVU2,Linaria vulgaris,WY-NW,,,,
+D12,YELL,LYSA2,Lythrum salicaria,WY-NW,,,,
+D12,YELL,ONAC,Onopordum acanthium,WY-NW,,,,
+D12,YELL,SOAR2,Sonchus arvensis,WY-NW,,,,
+D12,YELL,TACA8,Taeniatherum caput-medusae,WY-NW,,,,
+D12,YELL,TAMAR2,Tamarix spp.,WY-NW,,,,
+D12,YELL,TAVU,Tanacetum vulgare,WY-NW,,,,
+D12,YELL,VEDU,Ventenata dubia,WY-NW,,,,
+D12,YELL,VETH,Verbascum thapsus,WY-NW,,,,
+D13,MOAB,ACRE3,Acroptilon repens (L.) DC.,UT-NW,,,y,
+D13,MOAB,AECY,Aegilops cylindrica Host,UT-NW,,,y,
+D13,MOAB,ALMA12,Alhagi maurorum Medik.,UT-NW,,,y,
+D13,MOAB,ALPE4,Alliaria petiolata (M. Bieb.) Cavara & Grande,UT-NW,,,y,
+D13,MOAB,ANAR16,Anchusa arvensis (L.) M. Bieb.,UT-NW,,,y,
+D13,MOAB,ARDO4,Arundo donax L.,UT-NW,,,n,
+D13,MOAB,BREL2,Brassica elongata Ehrh.,UT-NW,,,y,
+D13,MOAB,BRTO,Brassica tournefortii Gouan,UT-NW,,,y,
+D13,MOAB,CARDA2,Cardaria Desv.,UT-NW,,,n,Cardaria Draba?
+D13,MOAB,CAAC,Carduus acanthoides L.,UT-NW,,,y,
+D13,MOAB,CANU4,Carduus nutans L.,UT-NW,,,y,
+D13,MOAB,CECA2,Centaurea calcitrapa L.,UT-NW,,,y,
+D13,MOAB,CEDI3,Centaurea diffusa Lam.,UT-NW,,,y,
+D13,MOAB,CEME2,Centaurea melitensis L.,UT-NW,,,y,
+D13,MOAB,CESO3,Centaurea solstitialis L.,UT-NW,,,y,
+D13,MOAB,CEST8,Centaurea stoebe L.,UT-NW,,,y,
+D13,MOAB,CEVI,Centaurea virgata Lam.,UT-NW,,,y,
+D13,MOAB,CHJU,Chondrilla juncea L.,UT-NW,,,y,
+D13,MOAB,CIAR4,Cirsium arvense (L.) Scop.,UT-NW,,,y,
+D13,MOAB,COMA2,Conium maculatum L.,UT-NW,,,y,
+D13,MOAB,CONVO,Convolvulus L.,UT-NW,,,n,specific species?
+D13,MOAB,CRVU2,Crupina vulgaris Cass.,UT-NW,,,y,
+D13,MOAB,CYDA,Cynodon dactylon (L.) Pers.,UT-NW,,,y,
+D13,MOAB,CYOF,Cynoglossum officinale L.,UT-NW,,,y,
+D13,MOAB,CYSC4,Cytisus scoparius (L.) Link,UT-NW,,,y,
+D13,MOAB,ECVU,Echium vulgare L.,UT-NW,,,y,
+D13,MOAB,ELAN,Elaeagnus angustifolia L.,UT-NW,,,y,"unlikely, but possible"
+D13,MOAB,ELRE4,Elymus repens (L.) Gould,UT-NW,,,y,
+D13,MOAB,EUES,Euphorbia esula L.,UT-NW,,,y,
+D13,MOAB,EUMY2,Euphorbia myrsinites L.,UT-NW,,,y,
+D13,MOAB,GAOF,Galega officinalis L.,UT-NW,,,y,
+D13,MOAB,HEMA3,Hesperis matronalis L.,UT-NW,,,y,
+D13,MOAB,HYNI,Hyoscyamus niger L.,UT-NW,,,y,
+D13,MOAB,HYPE,Hypericum perforatum L.,UT-NW,,,y,"unlikely, but possible"
+D13,MOAB,IMCY,Imperata cylindrica (L.) P. Beauv.,UT-NW,,,y,
+D13,MOAB,ISTI,Isatis tinctoria L.,UT-NW,,,y,
+D13,MOAB,LELA2,Lepidium latifolium L.,UT-NW,,,y,
+D13,MOAB,LEVU,Leucanthemum vulgare Lam.,UT-NW,,,y,
+D13,MOAB,LIDA,Linaria dalmatica (L.) Mill.,UT-NW,,,y,
+D13,MOAB,LIVU2,Linaria vulgaris Mill.,UT-NW,,,y,
+D13,MOAB,LYSA2,Lythrum salicaria L.,UT-NW,,,n,wrong habitat
+D13,MOAB,MIVE3,Milium vernale M. Bieb.,UT-NW,,,y,
+D13,MOAB,ONAC,Onopordum acanthium L.,UT-NW,,,y,
+D13,MOAB,PEHA,Peganum harmala L.,UT-NW,,,y,
+D13,MOAB,PHAU7,Phragmites australis (Cav.) Trin. Ex Steud.,UT-NW,,,n,wrong habitat
+D13,MOAB,POCU6,Polygonum cuspidatum Siebold & Zucc.,UT-NW,,,n,
+D13,MOAB,SAAE,Salvia aethiopis L.,UT-NW,,,y,
+D13,MOAB,SCLA6,Scorzonera laciniata L.,UT-NW,,,y,
+D13,MOAB,SOAL,Sorghum almum Parodi,UT-NW,,,y,
+D13,MOAB,SOHA,Sorghum halepense (L.) Pers.,UT-NW,,,y,
+D13,MOAB,TACA8,Taeniatherum caput-medusae (L.) Nevski,UT-NW,,,y,
+D13,MOAB,TARA,Tamarix ramosissima Ledeb.,UT-NW,,,y,
+D13,MOAB,TRTE,Tribulus terrestris L.,UT-NW,,,y,
+D13,MOAB,VEDU,Ventenata dubia (Leers) Coss.,UT-NW,,,y,
+D13,MOAB,ZYFA,Zygophyllum fabago L.,UT-NW,,,y,
+D13,NIWO,ABTH,Abutilon theophrasti,CO-NW,,,n,"culitvated fields, roadsides & disturbed areas "
+D13,NIWO,AECY,Aegilops cylindrica,CO-NW,,,n,"grasslands, wheat fields, roadsides"
+D13,NIWO,AIAL,Ailanthus altissima,CO-NW,,,n,"disturbed/rangeland species <5000 ft elevation, not known in CO"
+D13,NIWO,ALMA12,Alhagi maurorum,CO-NW,,,n,"disturbed and paved areas, drained soils."
+D13,NIWO,ALPE4,Alliaria petiolata,CO-NW,,,n,"roadsides, ditch banks, waste places, pastures, fence rows."
+D13,NIWO,ANOF,Anchusa officinalis,CO-NW,,,n,"rangeland, 5000-7000 ft"
+D13,NIWO,ANCO2,Anthemis cotula,CO-NW,,,n,wetland species
+D13,NIWO,ARMI2,Arctium minus,CO-NW,,,n,"disturbed soils, woodlands, deserts, no nearby pops"
+D13,NIWO,ARAB3,Artemisia absinthium,CO-NW,,,y,"arid, semi arid, and cold environment as high as 9,500 feet"
+D13,NIWO,ARDO4,Arundo donax,CO-NW,,,n,wetland species
+D13,NIWO,ASFI2,Asphodelus fistulosus,CO-NW,,,n,"waste places, meadows, pastures, croplands"
+D13,NIWO,BEIN2,Berteroa incana,CO-NW,,,n,"rangeland, over-grazed pastures, roadsides, and irrigation ditches"
+D13,NIWO,BOBL,Bothriochloa bladhii,CO-NW,,,y,"shortgrass prairie to alpine, disturbed areas,"
+D13,NIWO,BOIS,Bothriochloa ischaemum,CO-NW,,,y,"Dry soils, montane grasslands & woodlands, subalpine forests Elevation ranges from 1500 to 4300 meters.
+"
+D13,NIWO,BREL2,Brassica elongata,CO-NW,,,n,"rangeland, roadsides, riparian"
+D13,NIWO,BRTE,Bromus tectorum,CO-NW,,,n,"rangeland, lower elevations"
+D13,NIWO,BRAL4,Bryonia alba,CO-NW,,,y,"disturbed, overgrazed areas, grasslands, pastures, foothill clearings, sandy soils,"
+D13,NIWO,BUUM,Butomus umbellatus,CO-NW,,,n,"rangeland, not known in CO"
+D13,NIWO,CADR,Cardaria draba,CO-NW,,,n,"stream banks and moist disturbed areas, no nearby pops"
+D13,NIWO,CAAC,Carduus acanthoides,CO-NW,,,y,"disturbed, overgrazed areas, grasslands, pastures, foothill clearings, sandy soils,"
+D13,NIWO,CANU4,Carduus nutans,CO-NW,,,n,rangeland
+D13,NIWO,CACA19,Carum carvi,CO-NW,,,y,"roadsides, disturbed areas at elevations below 8,000 feet"
+D13,NIWO,CEDI3,Centaurea diffusa,CO-NW,,,y,seems to grow pretty mch anywhere
+D13,NIWO,CESO3,Centaurea solstitialis,CO-NW,,,y,seems to grow pretty mch anywhere
+D13,NIWO,CESTM,Centaurea stoebe ssp. micranthos,CO-NW,,,y,"roadsides, riparian, open woods"
+D13,NIWO,CEVI,Centaurea virgata,CO-NW,,,y,"streams, rivers, irrigation and roadside ditches"
+D13,NIWO,NA,Centaurea x moncktonii,CO-NW,,,n,"cultivated areas, pastures, roadsides, 4,000 to 8,000 ft"
+D13,NIWO,NA,Centaurea x psammogena,CO-NW,,,n,"rangeland species, not known in CO"
+D13,NIWO,CHJU,Chondrilla juncea,CO-NW,,,y,"rangelands, pastures, forest edges"
+D13,NIWO,CIIN,Cichorium intybus,CO-NW,,,y,"disturbed areas, moist areas, as high as 8,200ft"
+D13,NIWO,CIAR4,Cirsium arvense,CO-NW,,,n,"wetlands, fens, riparian coridors, roads"
+D13,NIWO,CIVU,Cirsium vulgare,CO-NW,,,n,"wetlands, fens, riparian coridors, roads"
+D13,NIWO,CLOR,Clematis orientalis,CO-NW,,,y,"open moist riparian zones, floodplains, fields, up to 8,000"
+D13,NIWO,COMA2,Conium maculatum,CO-NW,,,y,"crops, pastures, rangelands, roadsides, ditches, disturbed moist areas, temp 68-77"
+D13,NIWO,COAR4,Convolvulus arvensis,CO-NW,,,n,wetland species
+D13,NIWO,CRVU2,Crupina vulgaris,CO-NW,,,n,"dry pasturelands, rangelands, turf grass and sandy soils"
+D13,NIWO,CYOF,Cynoglossum officinale,CO-NW,,,y,"meadows, pastures, forest edges"
+D13,NIWO,CYES,Cyperus esculentus,CO-NW,,,y,"rangelands, pastures, forest openings"
+D13,NIWO,CYSC4,Cytisus scoparius,CO-NW,,,y,"rocky sunny areas, well drained soils"
+D13,NIWO,DIFU2,Dipsacus fullonum,CO-NW,,,n,"found along streams, rivers, ditches"
+D13,NIWO,DILA4,Dipsacus laciniatus,CO-NW,,,n,"found along streams, rivers, ditches"
+D13,NIWO,ELAN,Elaeagnus angustifolia,CO-NW,,,n,"found along streams, rivers, ditches"
+D13,NIWO,ELRE4,Elymus repens,CO-NW,,,n,"roadsides, trails, overgrazed sites,  highdesert/alkaline soils"
+D13,NIWO,EPHI,Epilobium hirsutum,CO-NW,,,n,disturbed areas with wet alkaline soils
+D13,NIWO,ERCI6,Erodium cicutarium,CO-NW,,,y,"rangelands, woodlands, alpine meadows"
+D13,NIWO,EUCY2,Euphorbia cyparissias,CO-NW,,,n,aquatic species
+D13,NIWO,EUES,Euphorbia esula,CO-NW,,,n,"west slope, disturbed open places"
+D13,NIWO,EUMY2,Euphorbia myrsinites,CO-NW,,,y,"disturbed sites,  roadsides, rangeland, meadows, dry pastures, and open woodlands."
+D13,NIWO,POCU6,Fallopia japonica,CO-NW,,,y,"rangelands, forests"
+D13,NIWO,POSA4,Fallopia sachalinensis,CO-NW,,,n,disturbed and bareground areas low or high-saline soils
+D13,NIWO,NA,Fallopia x bohemicum,CO-NW,,,y,"mountain meadows, grasslands, pastures, streams, roadsides, up to 11,000 ft"
+D13,NIWO,GYPA,Gypsophila paniculata,CO-NW,,,y,"pastures, rangelands, forest openings"
+D13,NIWO,HAGL,Halogeton glomeratus,CO-NW,,,y,"pastures, rangelands, forest openings"
+D13,NIWO,HEMA3,Hesperis matronalis,CO-NW,,,n,"fields, other disturbed sites and rangeland "
+D13,NIWO,HIAU,Hieracium aurantiacum,CO-NW,,,y,river banks and wet meadows
+D13,NIWO,HICA10,Hieracium caespitosum,CO-NW,,,n,aquatic species
+D13,NIWO,HYVE3,Hydrilla verticillata,CO-NW,,,n,aquatic species
+D13,NIWO,HYNI,Hyoscyamus niger,CO-NW,,,n,"rangeland, over-grazed pastures, roadsides, and moist soil"
+D13,NIWO,HYPE,Hypericum perforatum,CO-NW,,,n,"rangeland, over-grazed pastures, roadsides, and moist soil"
+D13,NIWO,IRPS,Iris pseudacorus,CO-NW,,,n,"culitvated fields, roadsides & disturbed areas "
+D13,NIWO,ISTI,Isatis tinctoria,CO-NW,,,n,desert/arid rangeland plant
+D13,NIWO,LELA2,Lepidium latifolium,CO-NW,,,n,"up to 5,500ft, too low of elevation "
+D13,NIWO,LEVU,Leucanthemum vulgare,CO-NW,,,y,"full sun, moist soil, wet meadows, riparian areas, roadsides, tolerate dry soil"
+D13,NIWO,LIDA,Linaria dalmatica,CO-NW,,,n,"roadsides, ditch banks, pastures, rangeland, saline soils, clear cuts, and cropland."
+D13,NIWO,LIGE,Linaria genistifolia,CO-NW,,,n,rangeland
+D13,NIWO,LIVU2,Linaria vulgaris,CO-NW,,,n,aquatic species
+D13,NIWO,LYVU,Lysimachia vulgaris,CO-NW,,,y,moist well drained soils
+D13,NIWO,LYSA2,Lythrum salicaria,CO-NW,,,n,"rangeland or logged areas, no nearby pops"
+D13,NIWO,MYAQ2,Myriophyllum aquaticum,CO-NW,,,y,"roadsides, fertile waste areas, cultivated fields,woods, ditches, and rivers"
+D13,NIWO,MYSP2,Myriophyllum spicatum,CO-NW,,,n,"crop fields, hay fields, roadsides, fence rows, and waste areas"
+D13,NIWO,ONAC,Onopordum acanthium,CO-NW,,,n,"ag/rangeland, not known in CO"
+D13,NIWO,PAMI2,Panicum miliaceum,CO-NW,,,n,"floodplains, riverbanks,streambanks, marshes"
+D13,NIWO,PEHA,Peganum harmala,CO-NW,,,n,"floodplains, riverbanks,streambanks, marshes"
+D13,NIWO,PHAU7,Phragmites australis,CO-NW,,,n,"irrigation ditches, streams, seeps, roads"
+D13,NIWO,POBU,Poa bulbosa,CO-NW,,,n,"roadsides, pastures, disturbed areas, cultivated fields"
+D13,NIWO,PORE5,Potentilla recta,CO-NW,,,y,disturbed sites in upper montane and subalpine
+D13,NIWO,ACRE3,Rhaponticum repens,CO-NW,,,n,"infertile, nutrient poor and unproductive soils, northern front range"
+D13,NIWO,RUAR9,Rubus armeniacus,CO-NW,,,n,"roadsides, waste places, pastures, hay fields, abandoned lands"
+D13,NIWO,SAAE,Salvia aethiopis,CO-NW,,,,
+D13,NIWO,SAMO5,Salvinia molesta,CO-NW,,,,
+D13,NIWO,SAOF4,Saponaria officinalis,CO-NW,,,,
+D13,NIWO,SEJA,Senecio jacobaea,CO-NW,,,,
+D13,NIWO,SOAR2,Sonchus arvensis,CO-NW,,,,
+D13,NIWO,SOHA,Sorghum halepense,CO-NW,,,,
+D13,NIWO,SPSA3,Sphaerophysa salsula,CO-NW,,,,
+D13,NIWO,TACA8,Taeniatherum caput-medusae,CO-NW,,,,
+D13,NIWO,NA,Tamarix. ramosissima,CO-NW,,,,
+D13,NIWO,TAVU,Tanacetum vulgare,CO-NW,,,,
+D13,NIWO,TRTE,Tribulus terrestris,CO-NW,,,,
+D13,NIWO,TRPE21,Tripleurospermum inodorum,CO-NW,,,,
+D13,NIWO,ULPU,Ulmus pumila,CO-NW,,,,
+D13,NIWO,VEDU,Ventenata dubia,CO-NW,,,,
+D13,NIWO,VEBL,Verbascum blattaria,CO-NW,,,,
+D13,NIWO,VETH,Verbascum thapsus,CO-NW,,,,
+D13,NIWO,ZYFA,Zygophyllum fabago,CO-NW,,,,
+D14,JORN,ACRE3,Acroptilon repens (L.) DC,NM-NW,,,y,
+D14,JORN,AECY,Aegilops cylindrica Host,NM-NW,,,y,
+D14,JORN,AIAL,Ailanthus altissima (Mill.) Swingle,NM-NW,,,y,
+D14,JORN,ALMA12,Alhagi pseudalhagi cameltorn,NM-NW,,,n,generally along riparian areas and fields
+D14,JORN,ARDO4,Arundo donax L.,NM-NW,,,y,
+D14,JORN,BRTE,Bromus tectorum L.,NM-NW,,,y,
+D14,JORN,CARDA2,Cardaria spp. Desv.,NM-NW,,,n,
+D14,JORN,CANU4,Carduus nutans L.,NM-NW,,,n,does not occur in county
+D14,JORN,CEBI2,Centaurea biebersteinii DC.,NM-NW,,,n,does not occur in county
+D14,JORN,CECA2,Centaurea calcitrapa L.,NM-NW,,,n,does not occur in county
+D14,JORN,CEDI3,Centaurea diffusa Lam.,NM-NW,,,n,not in S. New Mexico
+D14,JORN,CEME2,Centaurea melitensis L.,NM-NW,,,y,
+D14,JORN,CESO3,Centaurea solstitialis L.,NM-NW,,,y,
+D14,JORN,CIIN,Cichorium intybus L.,NM-NW,,,n,does not occur in county
+D14,JORN,CIAR4,Cirsium arvense (L.) Scop.,NM-NW,,,n,plant of higher elevations
+D14,JORN,CIVU,Cirsium vulgare (Savi) Ten.,NM-NW,,,n,plant of higher elevations
+D14,JORN,COMA2,Conium maculatum L.,NM-NW,,,n,plant of higher elevations and moist sites
+D14,JORN,DIFU2,Dipsacus fullonum L.,NM-NW,,,n,plant of moist sites
+D14,JORN,DRAR7,Drymaria arenarioides Humb. & Bonpl. Ex Schult.,NM-NW,,,n,no documented specimens in New Mexico
+D14,JORN,EGDE,Egeria densa Planch.,NM-NW,,,n,aquatic plant
+D14,JORN,ELAN,Elaeagnus angustifolia L.,NM-NW,,,n,mostly found near riparian areas
+D14,JORN,ELRE4,Elytrigia repens (L.) Gould,NM-NW,,,n,plant of higher elevations
+D14,JORN,EUES,Euphorbia esula L.,NM-NW,,,n,not occuring in New Mexico
+D14,JORN,HAGL,Halogeton glomeratus (M. Beib.) C.A. Mey.,NM-NW,,,n,not in S. New Mexico
+D14,JORN,HYVE3,Hydrilla verticillata (L. f.) Royle,NM-NW,,,n,aquatic plant
+D14,JORN,HYNI,Hyoscyamus niger L.,NM-NW,,,n,not in S. New Mexico
+D14,JORN,ISTI,Isatis tinctoria,NM-NW,,,n,not in S. New Mexico
+D14,JORN,LELA2,Lepidium latifolium L.,NM-NW,,,n,plant of higher elevation
+D14,JORN,LEVU,Leucanthemum vulgare Lam.,NM-NW,,,n,plant of higher elevations
+D14,JORN,LIDA,Linaria dalmatica (L.) Mill.,NM-NW,,,n,plant of higher elevations
+D14,JORN,LIVU2,Linaria vulgaris Mill.,NM-NW,,,n,plant of higher elevations
+D14,JORN,LYSA2,Lythrum salicaria L.,NM-NW,,,n,plant of higher elevation
+D14,JORN,TRPE21,Matricaria perforata (Merat) M. Lainz,NM-NW,,,n,not found in S. New Mexico
+D14,JORN,MYAQ2,Myriophyllum aquaticum (Vell.) Verdc.,NM-NW,,,n,aquatic plant
+D14,JORN,MYSP2,Myriophyllum spicatum L.,NM-NW,,,n,aquatic plant
+D14,JORN,ONAC,Onopordum acanthium L.,NM-NW,,,n,does not occur in county
+D14,JORN,PEHA,Peganum harmala L.,NM-NW,,,y,
+D14,JORN,POCR3,Potamogeton crispus L.,NM-NW,,,n ,aquatic plant
+D14,JORN,SARA3,Saccharum ravennae (L.) L.,NM-NW,,,n ,not present around JORN
+D14,JORN,SAMO5,Salvinia molesta,NM-NW,,,n ,aquatic plant
+D14,JORN,TAMAR2,Tamarix spp. L.,NM-NW,,,y,
+D14,JORN,ULPU,Ulmus pumila L.,NM-NW,,,y,
+D14,JORN,XASP2,Xanthium spinosum L.,NM-NW,,,y,
+D14,SRER,ACRE3,Acroptilon repens (L.) DC.,AZ-NW,,,y,
+D14,SRER,AECY,Aegilops cylindrica Host,AZ-NW,,,y,
+D14,SRER,AIAL,Ailanthus altissima (Mill.) Swingle,AZ-NW,,,y,
+D14,SRER,ALMA12,Alhagi maurorum Medik.,AZ-NW,,,n,not found near site
+D14,SRER,ARDO4,Arundo donax L.,AZ-NW,,,y,
+D14,SRER,ASFI2,Asphodelus fistulosus L.,AZ-NW,,,y,
+D14,SRER,BOIS,Bothriochloa ischaemum (L.) Keng,AZ-NW,,,y,Found at site
+D14,SRER,BRNI,Brassica nigra (L.) W.D.J. Koch,AZ-NW,,,y,
+D14,SRER,BRTO,Brassica tournefortii Gouan,AZ-NW,,,y,Found near site
+D14,SRER,CADR,Cardaria draba (L.) Desv.,AZ-NW,,,n,does not occur in desert areas
+D14,SRER,CAAC,Carduus acanthoides L.,AZ-NW,,,n,does not occur in our region
+D14,SRER,CANU4,Carduus nutans L.,AZ-NW,,,n,"occurs at higher elevations, not found in county."
+D14,SRER,CEEC,Cenchrus echinatus L.,AZ-NW,,,y,
+D14,SRER,CESP4,Cenchrus spinifex Cav.,AZ-NW,,,y,Found near site
+D14,SRER,CECA2,Centaurea calcitrapa L.,AZ-NW,,,n,not found in any counties near site
+D14,SRER,CEDI3,Centaurea diffusa Lam.,AZ-NW,,,n,"not found in any surrounding counties, more temperate regions"
+D14,SRER,CEME2,Centaurea melitensis L.,AZ-NW,,,y,Found at site
+D14,SRER,CESO3,Centaurea solstitialis L.,AZ-NW,,,y,
+D14,SRER,CESTM,Centaurea stoebe L. ssp. micranthos (Gugler) Hayek,AZ-NW,,,n,not found in county
+D14,SRER,CHJU,Chondrilla juncea L.,AZ-NW,,,n,not reocrd in state
+D14,SRER,CIAR4,Cirsium arvense (L.) Scop.,AZ-NW,,,n,not found in hot desert regions
+D14,SRER,CIVU,Cirsium vulgare (Savi) Ten.,AZ-NW,,,n,not found in county
+D14,SRER,COAR4,Convolvulus arvensis L.,AZ-NW,,,y,
+D14,SRER,CUMED,Cucumis melo L. var. dudaim (L.) Naud.,AZ-NW,,,n,not found growing out of cultivation in region
+D14,SRER,EICR,Eichhornia crassipes (Mart.) Solms,AZ-NW,,,n,aquatic plant
+D14,SRER,ELAN,Elaeagnus angustifolia L.,AZ-NW,,,n,plant found around riparian areas which do not occur at site
+D14,SRER,ELRE4,Elymus repens (L.) Gould ,AZ-NW,,,n,found at higher elevations than site
+D14,SRER,EUES,Euphorbia esula L.,AZ-NW,,,n,not found in county or surrounding areas
+D14,SRER,EUMU,Euryops subcarnosus (Thunb.) DC.,AZ-NW,,,y,
+D14,SRER,HAGL,Halogeton glomeratus (M. Bieb.) C.A. Mey.,AZ-NW,,,n,not in S. Arizona
+D14,SRER,HYVE3,Hydrilla verticillata (L. f.) Royle,AZ-NW,,,n,aquatic plant
+D14,SRER,IPHE,Ipomoea hederacea Jacq.,AZ-NW,,,y,Found at site
+D14,SRER,IPPU2,Ipomoea purpurea (L.) Roth,AZ-NW,,,y,
+D14,SRER,IPTR3,Ipomoea tricolor Cav.,AZ-NW,,,n,not found in county or surrounding areas
+D14,SRER,IPTR2,Ipomoea triloba L.,AZ-NW,,,n,"very few recorded specimens in state, and only at higher elevations"
+D14,SRER,IPLE4,Ipomoea x leucantha Jacq.,AZ-NW,,,n,not found in county or surrounding areas
+D14,SRER,ISTI,Isatis tinctoria L.,AZ-NW,,,n,not in S. Arizona
+D14,SRER,BASC5,Kochia scoparia(L.) A.J. Scott,AZ-NW,,,y,
+D14,SRER,LIDAD,Linaria dalmatica (L.) Mill. ssp. Dalmatica,AZ-NW,,,n,not in S. Arizona
+D14,SRER,LYSA2,Lythrum salicaria L.,AZ-NW,,,n,not in S. Arizona
+D14,SRER,MERE9,Melinis repens (Willd.) Zizka,AZ-NW,,,y,Found at site
+D14,SRER,ONPI,Oncosiphon piluliferum (L. f.) Kallersjo,AZ-NW,,,y,
+D14,SRER,ONAC,Onopordum acanthium L.,AZ-NW,,,n,not in S. Arizona
+D14,SRER,ORRA,Orobanche ramosa L.,AZ-NW,,,n,not found in state
+D14,SRER,PEHA,Peganum harmala L.,AZ-NW,,,y,
+D14,SRER,PESE3,Pennisetum setaceum (Forssk.) Chiov.,AZ-NW,,,y,Found near site
+D14,SRER,SAMO5,Salvinia molesta Mitchell,AZ-NW,,,n,aquatic plant
+D14,SRER,SIAR4,Sinapis arvensis L.,AZ-NW,,,n,primarily a weed of farmland
+D14,SRER,SOHA,Sorghum halepense (L.) Pers.,AZ-NW,,,y,
+D14,SRER,TARA,Tamarix ramosissima Ledeb.,AZ-NW,,,y,
+D14,SRER,TRTE,Tribulus terrestris L.,AZ-NW,,,y,Found at site
+D14,SRER,,Vella annua,AZ-NW,,not listed in USDA,n,"now known as Carrichtera annua, not found in AZ yet"
+D15,ONAQ,ACRE3,Acroptilon repens (L.) DC.,UT-NW,,,y,
+D15,ONAQ,AECY,Aegilops cylindrica Host,UT-NW,,,y,
+D15,ONAQ,ALMA12,Alhagi maurorum Medik.,UT-NW,,,y,
+D15,ONAQ,ALPE4,Alliaria petiolata (M. Bieb.) Cavara & Grande,UT-NW,,,y,
+D15,ONAQ,ANAR16,Anchusa arvensis (L.) M. Bieb.,UT-NW,,,y,
+D15,ONAQ,ARDO4,Arundo donax L.,UT-NW,,,n,wrong habitat
+D15,ONAQ,BREL2,Brassica elongata Ehrh.,UT-NW,,,y,
+D15,ONAQ,BRTO,Brassica tournefortii Gouan,UT-NW,,,y,
+D15,ONAQ,CARDA2,Cardaria Desv.,UT-NW,,,n,Cardaria Draba?
+D15,ONAQ,CAAC,Carduus acanthoides L.,UT-NW,,,y,
+D15,ONAQ,CANU4,Carduus nutans L.,UT-NW,,,y,
+D15,ONAQ,CECA2,Centaurea calcitrapa L.,UT-NW,,,y,
+D15,ONAQ,CEDI3,Centaurea diffusa Lam.,UT-NW,,,y,
+D15,ONAQ,CEME2,Centaurea melitensis L.,UT-NW,,,y,
+D15,ONAQ,CESO3,Centaurea solstitialis L.,UT-NW,,,y,
+D15,ONAQ,CEST8,Centaurea stoebe L.,UT-NW,,,y,
+D15,ONAQ,CEVI,Centaurea virgata Lam.,UT-NW,,,y,"unlikely, but possible"
+D15,ONAQ,CHJU,Chondrilla juncea L.,UT-NW,,,y,
+D15,ONAQ,CIAR4,Cirsium arvense (L.) Scop.,UT-NW,,,y,
+D15,ONAQ,COMA2,Conium maculatum L.,UT-NW,,,y,
+D15,ONAQ,CONVO,Convolvulus L.,UT-NW,,,n,"Genus Level, should this be a specific Convolvulus? "
+D15,ONAQ,CRVU2,Crupina vulgaris Cass.,UT-NW,,,y,
+D15,ONAQ,CYDA,Cynodon dactylon (L.) Pers.,UT-NW,,,y,
+D15,ONAQ,CYOF,Cynoglossum officinale L.,UT-NW,,,y,there is a population at ONAQ
+D15,ONAQ,CYSC4,Cytisus scoparius (L.) Link,UT-NW,,,y,
+D15,ONAQ,ECVU,Echium vulgare L.,UT-NW,,,y,
+D15,ONAQ,ELAN,Elaeagnus angustifolia L.,UT-NW,,,y,"unlikely, but possible"
+D15,ONAQ,ELRE4,Elymus repens (L.) Gould,UT-NW,,,y,
+D15,ONAQ,EUES,Euphorbia esula L.,UT-NW,,,y,
+D15,ONAQ,EUMY2,Euphorbia myrsinites L.,UT-NW,,,y,there is a population at ONAQ
+D15,ONAQ,GAOF,Galega officinalis L.,UT-NW,,,y,
+D15,ONAQ,HEMA3,Hesperis matronalis L.,UT-NW,,,y,
+D15,ONAQ,HYNI,Hyoscyamus niger L.,UT-NW,,,y,there is a population at ONAQ
+D15,ONAQ,HYPE,Hypericum perforatum L.,UT-NW,,,y,"unlikely, but possible"
+D15,ONAQ,IMCY,Imperata cylindrica (L.) P. Beauv.,UT-NW,,,y,
+D15,ONAQ,ISTI,Isatis tinctoria L.,UT-NW,,,y,there is a population at ONAQ
+D15,ONAQ,LELA2,Lepidium latifolium L.,UT-NW,,,y,
+D15,ONAQ,LEVU,Leucanthemum vulgare Lam.,UT-NW,,,y,
+D15,ONAQ,LIDA,Linaria dalmatica (L.) Mill.,UT-NW,,,y,
+D15,ONAQ,LIVU2,Linaria vulgaris Mill.,UT-NW,,,y,
+D15,ONAQ,LYSA2,Lythrum salicaria L.,UT-NW,,,n,wrong habitat
+D15,ONAQ,MIVE3,Milium vernale M. Bieb.,UT-NW,,,y,
+D15,ONAQ,ONAC,Onopordum acanthium L.,UT-NW,,,y,
+D15,ONAQ,PEHA,Peganum harmala L.,UT-NW,,,y,
+D15,ONAQ,PHAU7,Phragmites australis (Cav.) Trin. Ex Steud.,UT-NW,,,n,wrong habitat
+D15,ONAQ,POCU6,Polygonum cuspidatum Siebold & Zucc.,UT-NW,,,n,wrong habitat
+D15,ONAQ,SAAE,Salvia aethiopis L.,UT-NW,,,y,
+D15,ONAQ,SCLA6,Scorzonera laciniata L.,UT-NW,,,y,
+D15,ONAQ,SOAL,Sorghum almum Parodi,UT-NW,,,y,
+D15,ONAQ,SOHA,Sorghum halepense (L.) Pers.,UT-NW,,,y,
+D15,ONAQ,TACA8,Taeniatherum caput-medusae (L.) Nevski,UT-NW,,,y,should check they synonomy
+D15,ONAQ,TARA,Tamarix ramosissima Ledeb.,UT-NW,,,y,
+D15,ONAQ,TRTE,Tribulus terrestris L.,UT-NW,,,y,
+D15,ONAQ,VEDU,Ventenata dubia (Leers) Coss.,UT-NW,,,y,
+D15,ONAQ,ZYFA,Zygophyllum fabago L.,UT-NW,,,y,
+D16,ABBY,ABTH,Abutilon theophrasti,WA-NW,,,,EH; maybe
+D16,ABBY,AECY,Aegilops cylindrica,WA-NW,,,,EH; maybe
+D16,ABBY,AIAL,Ailanthus altissima,WA-NW,,,,EH; maybe
+D16,ABBY,ALMA12,Alhagi maurorum,WA-NW,,,n,EH
+D16,ABBY,ALPE4,Alliaria petiolata,WA-NW,,,y,
+D16,ABBY,ALMY,Alopecurus myosuroides,WA-NW,,,n,EH
+D16,ABBY,AMFR,Amorpha fruticosa,WA-NW,,,y,EH
+D16,ABBY,ANARD16,Anchusa arvensis,WA-NW,,,n,EH
+D16,ABBY,ANOF,Anchusa officinalis,WA-NW,,,,EH; maybe
+D16,ABBY,ANSY,Anthriscus sylvestris,WA-NW,,,,EH; maybe
+D16,ABBY,ARAB3,Artemisia absinthium,WA-NW,,,,EH; maybe
+D16,ABBY,ARIT,Arum italicum,WA-NW,,,n,EH
+D16,ABBY,BASC5,Bassia scoparia,WA-NW,,,n,EH
+D16,ABBY,BEVU,Berberis vulgaris,WA-NW,,,n,EH
+D16,ABBY,BEIN2,Berteroa incana,WA-NW,,,n,EH
+D16,ABBY,BRSY,Brachypodium sylvaticum,WA-NW,,,y,
+D16,ABBY,BRAL4,Bryonia alba,WA-NW,,,n,EH
+D16,ABBY,BUDA2,Buddleja davidii,WA-NW,,,y,EH
+D16,ABBY,BUUM,Butomus umbellatus,WA-NW,,,n,"observed in freshwater marshes upper Col River, Washington"
+D16,ABBY,CACA,Cabomba caroliniana,WA-NW,,,n,EH
+D16,ABBY,CAAC,Carduus acanthoides,WA-NW,,,n,EH
+D16,ABBY,CANU4,Carduus nutans,WA-NW,,,,EH; maybe
+D16,ABBY,CAPY2,Carduus pycnocephalus,WA-NW,,,,EH; maybe
+D16,ABBY,CATE2,Carduus tenuiflorus,WA-NW,,,,EH; maybe
+D16,ABBY,CELO3,Cenchrus longispinus,WA-NW,,,n,EH
+D16,ABBY,CECA2,Centaurea calcitrapa,WA-NW,,,n,EH
+D16,ABBY,CEDI3,Centaurea diffusa,WA-NW,,,y,EH
+D16,ABBY,CEJA,Centaurea jacea,WA-NW,,,y,EH
+D16,ABBY,CEMA9,Centaurea macrocephala,WA-NW,,,n,EH
+D16,ABBY,CEME2,Centaurea melitensis,WA-NW,,,,EH; maybe
+D16,ABBY,CENI2,Centaurea nigra,WA-NW,,,,EH; maybe
+D16,ABBY,CENI3,Centaurea nigrescens,WA-NW,,,,EH; maybe
+D16,ABBY,CESO3,Centaurea solstitialis,WA-NW,,,,EH; maybe
+D16,ABBY,CEST8,Centaurea stoebe,WA-NW,,,y,EH
+D16,ABBY,CEPU14,Centromadia pungens,WA-NW,,,,EH; maybe
+D16,ABBY,CHJU,Chondrilla juncea,WA-NW,,,,EH; maybe
+D16,ABBY,CIAR4,Cirsium arvense,WA-NW,,,y,EH
+D16,ABBY,CIVU,Cirsium vulgare,WA-NW,,,y,EH
+D16,ABBY,CLOR,Clematis orientalis,WA-NW,,,n,EH
+D16,ABBY,COMA2,Conium maculatum,WA-NW,,,y,EH
+D16,ABBY,COAR4,Convolvulus arvensis,WA-NW,,,y,EH
+D16,ABBY,COJU2,Cortaderia jubata,WA-NW,,,n,EH
+D16,ABBY,CRMO3,Crataegus monogyna,WA-NW,,,y,EH
+D16,ABBY,CRVU2,Crupina vulgaris,WA-NW,,,n,observed east of Cascade divide
+D16,ABBY,CUAP2,Cuscuta approximata,WA-NW,,,n,EH
+D16,ABBY,CYOF,Cynoglossum officinale,WA-NW,,,,EH; maybe
+D16,ABBY,CYES,Cyperus esculentus,WA-NW,,,y,EH
+D16,ABBY,CYSC4,Cytisus scoparius,WA-NW,,,y,EH
+D16,ABBY,DALA11,Daphne laureola,WA-NW,,,y,EH
+D16,ABBY,DACA6,Daucus carota,WA-NW,,,y,EH
+D16,ABBY,DIFU2,Dipsacus fullonum,WA-NW,,,,AC; maybe
+D16,ABBY,EGDE,Egeria densa,WA-NW,,,n,AC; aquatic
+D16,ABBY,EPHI,Epilobium hirsutum,WA-NW,,,n,AC
+D16,ABBY,EUMY2,Euphorbia myrsinites,WA-NW,,,n,AC
+D16,ABBY,EUOB4,Euphorbia oblongata,WA-NW,,,y,AC
+D16,ABBY,EUESU,Euphorbia virgata,WA-NW,,,n,AC
+D16,ABBY,RAFI,Ficaria verna,WA-NW,,,,AC; maybe
+D16,ABBY,FOVU,Foeniculum vulgare (except F. vulgare var. azoricum),WA-NW,,,,AC; maybe
+D16,ABBY,GAOF,Galega officinalis,WA-NW,,,,AC; maybe
+D16,ABBY,GEMO2,Genista monspessulana,WA-NW,,,n,AC
+D16,ABBY,GELU,Geranium lucidum,WA-NW,,,y,AC
+D16,ABBY,GERO,Geranium robertianum,WA-NW,,,y,AC
+D16,ABBY,GLMA3,Glyceria maxima,WA-NW,,,n,AC
+D16,ABBY,GYPA,Gypsophila paniculata,WA-NW,,,n,AC
+D16,ABBY,HEHE,Hedera helix 'Baltica',WA-NW,,,y,AC
+D16,ABBY,HECI,Helianthus ciliaris,WA-NW,,,n,AC
+D16,ABBY,HEMA17,Heracleum mantegazzianum,WA-NW,,,,AC; maybe
+D16,ABBY,HIAU,Hieracium aurantiacum,WA-NW,,,,AC; maybe
+D16,ABBY,HYVE3,Hydrilla verticillata,WA-NW,,,n,AC; aquatic
+D16,ABBY,HYNI,Hyoscyamus niger,WA-NW,,,,AC; maybe
+D16,ABBY,HYPE,Hypericum perforatum,WA-NW,,,y,AC
+D16,ABBY,HYRA3,Hypochaeris radicata,WA-NW,,,y,AC
+D16,ABBY,IMCA,Impatiens capensis,WA-NW,,,,AC; maybe
+D16,ABBY,IMGL,Impatiens glandulifera,WA-NW,,,n,AC
+D16,ABBY,IMPA2,Impatiens parviflora,WA-NW,,,n,AC
+D16,ABBY,IRPS,Iris pseudacorus,WA-NW,,,n,AC; aquatic
+D16,ABBY,ISTI,Isatis tinctoria,WA-NW,,,n,AC
+D16,ABBY,SEJA,Jacobaea vulgaris,WA-NW,,,y,AC
+D16,ABBY,LAGA2,Lamiastrum galeobdolon,WA-NW,,,,AC; maybe
+D16,ABBY,CAPU6,Lepidium appelianum,WA-NW,,,n,AC
+D16,ABBY,CADR,Lepidium draba,WA-NW,,,n,AC
+D16,ABBY,LELA2,Lepidium latifolium,WA-NW,,,n,AC
+D16,ABBY,LILA7,Limnobium laevigatum,WA-NW,,,n,AC; aquatic
+D16,ABBY,LIDAD,Linaria dalmatica ssp. dalmatica,WA-NW,,,,AC; maybe
+D16,ABBY,LIVU2,Linaria vulgaris,WA-NW,,,n,AC
+D16,ABBY,LUGRH,Ludwigia hexapetala,WA-NW,,,n,AC; aquatic
+D16,ABBY,LUPE5,Ludwigia peploides,WA-NW,,,n,"observed in freshwater marshes I-5 coridor, Oregon"
+D16,ABBY,LYVU,Lysimachia vulgaris,WA-NW,,,n,AC
+D16,ABBY,LYSA2,Lythrum salicaria,WA-NW,,,,"AC; maybe, likes standing water"
+D16,ABBY,LYVI3,Lythrum virgatum,WA-NW,,,n,AC
+D16,ABBY,TRPE21,Matricaria perforata,WA-NW,,,n,AC
+D16,ABBY,MINY,Mirabilis nyctaginea,WA-NW,,,n,AC
+D16,ABBY,MYAQ2,Myriophyllum aquaticum,WA-NW,,,n,AC; aquatic
+D16,ABBY,MYHE2,Myriophyllum heterophyllum,WA-NW,,,n,AC; aquatic
+D16,ABBY,MYSP2,Myriophyllum spicatum,WA-NW,,,n,AC; aquatic
+D16,ABBY,MYSP2,Myriophyllum spicatum x Myriophyllum sibiricum,WA-NW,,,n,AC; aquatic
+D16,ABBY,NYOD,Nymphaea odorata,WA-NW,,,n,AC; aquatic
+D16,ABBY,NYPE,Nymphoides peltata,WA-NW,,,n,AC; aquatic
+D16,ABBY,ONAC,Onopordum acanthium,WA-NW,,,n,AC
+D16,ABBY,POPO5,Persicaria wallichii,WA-NW,,,n,AC
+D16,ABBY,PHAU7,Phragmites australis,WA-NW,,,n,AC; wetlands
+D16,ABBY,PIHI,Picris hieracioides,WA-NW,,,n,AC
+D16,ABBY,POCU6,Polygonum cuspidatum,WA-NW,,,n,AC
+D16,ABBY,POSA4,Polygonum sachalinense,WA-NW,,,n,AC
+D16,ABBY,POCR3,Potamogeton crispus,WA-NW,,,n,AC; aquatic
+D16,ABBY,PORE5,Potentilla recta,WA-NW,,,,AC; maybe
+D16,ABBY,PUMOL,Pueraria montana var. lobata,WA-NW,,,n,AC
+D16,ABBY,ACRE3,Rhaponticum repens,WA-NW,,,n,AC
+D16,ABBY,ROAU,Rorippa austriaca,WA-NW,,,n,AC
+D16,ABBY,RUAR9,Rubus armeniacus,WA-NW,,,y,AC
+D16,ABBY,RULA,Rubus laciniatus,WA-NW,,,y,AC
+D16,ABBY,SARA3,Saccharum ravennae,WA-NW,,,n,AC
+D16,ABBY,SAGR,Sagittaria graminea,WA-NW,,,n,AC; aquatic
+D16,ABBY,SAAE,Salvia aethiopis,WA-NW,,,n,AC
+D16,ABBY,SAPR2,Salvia pratensis,WA-NW,,,n,AC
+D16,ABBY,SASC2,Salvia sclarea,WA-NW,,,n,AC
+D16,ABBY,SCMU15,Schoenoplectus mucronatus,WA-NW,,,,"AC; maybe, wetland species"
+D16,ABBY,SECE,Secale cereale,WA-NW,,,n,AC
+D16,ABBY,SEVU,Senecio vulgaris,WA-NW,,,,AC; maybe
+D16,ABBY,SIVU,Silene latifolia ssp. alba,WA-NW,,,n,AC
+D16,ABBY,SIMA3,Silybum marianum,WA-NW,,,,AC; maybe
+D16,ABBY,SOEL,Solanum elaeagnifolium,WA-NW,,,n,AC
+D16,ABBY,SORO,Solanum rostratum,WA-NW,,,n,AC
+D16,ABBY,SOSE2,Soliva sessilis,WA-NW,,,n,AC
+D16,ABBY,SOHA,Sorghum halepense,WA-NW,,,n,AC
+D16,ABBY,SPAL,Spartina alterniflora,WA-NW,,,n,observed in brackish waters
+D16,ABBY,SPAN5,Spartina anglica,WA-NW,,,n,observed NW bay area saltmarsh
+D16,ABBY,SPDE2,Spartina densiflora,WA-NW,,,n,observed NW bay area saltmarsh
+D16,ABBY,SPPA,Spartina patens,WA-NW,,,n,observed NW bay area saltmarsh 
+D16,ABBY,SPJU2,Spartium junceum,WA-NW,,,n,AC
+D16,ABBY,SPSA3,Sphaerophysa salsula,WA-NW,,,n,AC
+D16,ABBY,TACA8,Taeniatherum caput-medusae,WA-NW,,,n,AC
+D16,ABBY,TARA,Tamarix ramosissima,WA-NW,,,n,AC
+D16,ABBY,TAVU,Tanacetum vulgare,WA-NW,,,n,AC
+D16,ABBY,THPA7,Thymelaea passerina,WA-NW,,,n,AC
+D16,ABBY,TRTE,Tribulus terrestris,WA-NW,,,n,AC
+D16,ABBY,TUFA,Tussilago farfara,WA-NW,,,n,AC
+D16,ABBY,ULEU,Ulex europaeus,WA-NW,,,n,AC
+D16,ABBY,VEDU,Ventenata dubia,WA-NW,,,n,AC
+D16,ABBY,XASP2,Xanthium spinosum,WA-NW,,,n,AC
+D16,ABBY,NAJA5,Zostera japonica,WA-NW,,,n,AC; aquatic
+D16,ABBY,ZYFA,Zygophyllum fabago,WA-NW,,,n,AC
+D16,WREF,ABTH,Abutilon theophrasti,WA-NW,,,n,EH
+D16,WREF,AECY,Aegilops cylindrica,WA-NW,,,n,EH
+D16,WREF,AIAL,Ailanthus altissima,WA-NW,,,n,EH
+D16,WREF,ALMA12,Alhagi maurorum,WA-NW,,,n,EH
+D16,WREF,ALPE4,Alliaria petiolata,WA-NW,,,,EH; maybe
+D16,WREF,ALMY,Alopecurus myosuroides,WA-NW,,,n,EH
+D16,WREF,AMFR,Amorpha fruticosa,WA-NW,,,y,EH
+D16,WREF,ANARD16,Anchusa arvensis,WA-NW,,,n,EH
+D16,WREF,ANOF,Anchusa officinalis,WA-NW,,,n,EH
+D16,WREF,ANSY,Anthriscus sylvestris,WA-NW,,,n,EH
+D16,WREF,ARAB3,Artemisia absinthium,WA-NW,,,y,EH
+D16,WREF,ARIT,Arum italicum,WA-NW,,,n,EH
+D16,WREF,BASC5,Bassia scoparia,WA-NW,,,n,EH
+D16,WREF,BEVU,Berberis vulgaris,WA-NW,,,n,EH
+D16,WREF,BEIN2,Berteroa incana,WA-NW,,,n,EH
+D16,WREF,BRSY,Brachypodium sylvaticum,WA-NW,,,n,EH
+D16,WREF,BRAL4,Bryonia alba,WA-NW,,,n,EH
+D16,WREF,BUDA2,Buddleja davidii,WA-NW,,,,EH; maybe
+D16,WREF,BUUM,Butomus umbellatus,WA-NW,,,n,"observed in freshwater marshes upper Col River, Washington"
+D16,WREF,CACA,Cabomba caroliniana,WA-NW,,,n,EH
+D16,WREF,CAAC,Carduus acanthoides,WA-NW,,,n,EH
+D16,WREF,CANU4,Carduus nutans,WA-NW,,,n,EH
+D16,WREF,CAPY2,Carduus pycnocephalus,WA-NW,,,n,EH
+D16,WREF,CATE2,Carduus tenuiflorus,WA-NW,,,n,EH
+D16,WREF,CELO3,Cenchrus longispinus,WA-NW,,,n,EH
+D16,WREF,CECA2,Centaurea calcitrapa,WA-NW,,,n,EH
+D16,WREF,CEDI3,Centaurea diffusa,WA-NW,,,,EH; maybe
+D16,WREF,CEJA,Centaurea jacea,WA-NW,,,,EH; maybe
+D16,WREF,CEMA9,Centaurea macrocephala,WA-NW,,,n,EH
+D16,WREF,CEME2,Centaurea melitensis,WA-NW,,,n,EH
+D16,WREF,CENI2,Centaurea nigra,WA-NW,,,n,EH
+D16,WREF,CENI3,Centaurea nigrescens,WA-NW,,,n,EH
+D16,WREF,CESO3,Centaurea solstitialis,WA-NW,,,y,EH
+D16,WREF,CEST8,Centaurea stoebe,WA-NW,,,y,EH
+D16,WREF,CEPU14,Centromadia pungens,WA-NW,,,n,EH
+D16,WREF,CHJU,Chondrilla juncea,WA-NW,,,n,EH
+D16,WREF,CIAR4,Cirsium arvense,WA-NW,,,y,EH
+D16,WREF,CIVU,Cirsium vulgare,WA-NW,,,y,EH
+D16,WREF,CLOR,Clematis orientalis,WA-NW,,,n,EH
+D16,WREF,COMA2,Conium maculatum,WA-NW,,,,EH; maybe
+D16,WREF,COAR4,Convolvulus arvensis,WA-NW,,,n,EH
+D16,WREF,COJU2,Cortaderia jubata,WA-NW,,,n,EH
+D16,WREF,CRMO3,Crataegus monogyna,WA-NW,,,y,EH
+D16,WREF,CRVU2,Crupina vulgaris,WA-NW,,,n,EH
+D16,WREF,CUAP2,Cuscuta approximata,WA-NW,,,n,EH
+D16,WREF,CYOF,Cynoglossum officinale,WA-NW,,,y,EH
+D16,WREF,CYES,Cyperus esculentus,WA-NW,,,,EH; maybe
+D16,WREF,CYSC4,Cytisus scoparius,WA-NW,,,y,EH
+D16,WREF,DALA11,Daphne laureola,WA-NW,,,,EH; maybe
+D16,WREF,DACA6,Daucus carota,WA-NW,,,y,EH
+D16,WREF,DIFU2,Dipsacus fullonum,WA-NW,,,n,AC
+D16,WREF,EGDE,Egeria densa,WA-NW,,,n,AC; aquatic
+D16,WREF,EPHI,Epilobium hirsutum,WA-NW,,,n,AC
+D16,WREF,EUMY2,Euphorbia myrsinites,WA-NW,,,n,AC
+D16,WREF,EUOB4,Euphorbia oblongata,WA-NW,,,y,AC
+D16,WREF,EUESU,Euphorbia virgata,WA-NW,,,n,AC
+D16,WREF,RAFI,Ficaria verna,WA-NW,,,,AC; maybe
+D16,WREF,FOVU,Foeniculum vulgare (except F. vulgare var. azoricum),WA-NW,,,n,AC
+D16,WREF,GAOF,Galega officinalis,WA-NW,,,n,AC
+D16,WREF,GEMO2,Genista monspessulana,WA-NW,,,n,AC
+D16,WREF,GELU,Geranium lucidum,WA-NW,,,y,AC
+D16,WREF,GERO,Geranium robertianum,WA-NW,,,y,AC
+D16,WREF,GLMA3,Glyceria maxima,WA-NW,,,n,AC
+D16,WREF,GYPA,Gypsophila paniculata,WA-NW,,,n,AC
+D16,WREF,HEHE,Hedera helix 'Baltica',WA-NW,,,y,AC
+D16,WREF,HECI,Helianthus ciliaris,WA-NW,,,n,AC
+D16,WREF,HEMA17,Heracleum mantegazzianum,WA-NW,,,n,AC
+D16,WREF,HIAU,Hieracium aurantiacum,WA-NW,,,,AC; maybe
+D16,WREF,HYVE3,Hydrilla verticillata,WA-NW,,,n,AC
+D16,WREF,HYNI,Hyoscyamus niger,WA-NW,,,n,AC
+D16,WREF,HYPE,Hypericum perforatum,WA-NW,,,y,AC
+D16,WREF,HYRA3,Hypochaeris radicata,WA-NW,,,n,AC
+D16,WREF,IMCA,Impatiens capensis,WA-NW,,,,AC; maybe
+D16,WREF,IMGL,Impatiens glandulifera,WA-NW,,,n,AC
+D16,WREF,IMPA2,Impatiens parviflora,WA-NW,,,n,AC
+D16,WREF,IRPS,Iris pseudacorus,WA-NW,,,n,AC
+D16,WREF,ISTI,Isatis tinctoria,WA-NW,,,n,AC
+D16,WREF,SEJA,Jacobaea vulgaris,WA-NW,,,,AC; maybe
+D16,WREF,LAGA2,Lamiastrum galeobdolon,WA-NW,,,,AC; maybe
+D16,WREF,CAPU6,Lepidium appelianum,WA-NW,,,n,AC
+D16,WREF,CADR,Lepidium draba,WA-NW,,,n,AC
+D16,WREF,LELA2,Lepidium latifolium,WA-NW,,,n,AC
+D16,WREF,LILA7,Limnobium laevigatum,WA-NW,,,n,AC; aquatic
+D16,WREF,LIDAD,Linaria dalmatica ssp. dalmatica,WA-NW,,,,AC; maybe
+D16,WREF,LIVU2,Linaria vulgaris,WA-NW,,,n,AC
+D16,WREF,LUGRH,Ludwigia hexapetala,WA-NW,,,n,AC
+D16,WREF,LUPE5,Ludwigia peploides,WA-NW,,,n,
+D16,WREF,LYVU,Lysimachia vulgaris,WA-NW,,,n,AC
+D16,WREF,LYSA2,Lythrum salicaria,WA-NW,,,,"AC; maybe, likes standing water"
+D16,WREF,LYVI3,Lythrum virgatum,WA-NW,,,n,AC
+D16,WREF,TRPE21,Matricaria perforata,WA-NW,,,n,AC
+D16,WREF,MINY,Mirabilis nyctaginea,WA-NW,,,n,AC
+D16,WREF,MYAQ2,Myriophyllum aquaticum,WA-NW,,,n,AC; aquatic
+D16,WREF,MYHE2,Myriophyllum heterophyllum,WA-NW,,,n,AC; aquatic
+D16,WREF,MYSP2,Myriophyllum spicatum,WA-NW,,,n,AC; aquatic
+D16,WREF,MYSP2,Myriophyllum spicatum x Myriophyllum sibiricum,WA-NW,,,n,AC; aquatic
+D16,WREF,NYOD,Nymphaea odorata,WA-NW,,,n,AC; aquatic
+D16,WREF,NYPE,Nymphoides peltata,WA-NW,,,n,AC; aquatic
+D16,WREF,ONAC,Onopordum acanthium,WA-NW,,,n,AC
+D16,WREF,POPO5,Persicaria wallichii,WA-NW,,,n,AC
+D16,WREF,PHAU7,Phragmites australis,WA-NW,,,n,AC; wetlands
+D16,WREF,PIHI,Picris hieracioides,WA-NW,,,,"AC; maybe - found in Skamania, but habitat is different"
+D16,WREF,POCU6,Polygonum cuspidatum,WA-NW,,,n,AC
+D16,WREF,POSA4,Polygonum sachalinense,WA-NW,,,n,AC
+D16,WREF,POCR3,Potamogeton crispus,WA-NW,,,n,AC; aquatic
+D16,WREF,PORE5,Potentilla recta,WA-NW,,,,AC; maybe
+D16,WREF,PUMOL,Pueraria montana var. lobata,WA-NW,,,n,AC
+D16,WREF,ACRE3,Rhaponticum repens,WA-NW,,,n,AC
+D16,WREF,ROAU,Rorippa austriaca,WA-NW,,,n,AC
+D16,WREF,RUAR9,Rubus armeniacus,WA-NW,,,y,AC
+D16,WREF,RULA,Rubus laciniatus,WA-NW,,,y,AC
+D16,WREF,SARA3,Saccharum ravennae,WA-NW,,,n,AC
+D16,WREF,SAGR,Sagittaria graminea,WA-NW,,,n,AC; aquatic
+D16,WREF,SAAE,Salvia aethiopis,WA-NW,,,n,AC
+D16,WREF,SAPR2,Salvia pratensis,WA-NW,,,n,AC
+D16,WREF,SASC2,Salvia sclarea,WA-NW,,,n,AC
+D16,WREF,SCMU15,Schoenoplectus mucronatus,WA-NW,,,,"AC; maybe, wetland species"
+D16,WREF,SECE,Secale cereale,WA-NW,,,n,AC
+D16,WREF,SEVU,Senecio vulgaris,WA-NW,,,,AC; maybe
+D16,WREF,SIVU,Silene latifolia ssp. alba,WA-NW,,,n,AC
+D16,WREF,SIMA3,Silybum marianum,WA-NW,,,n,AC
+D16,WREF,SOEL,Solanum elaeagnifolium,WA-NW,,,n,AC
+D16,WREF,SORO,Solanum rostratum,WA-NW,,,n,AC
+D16,WREF,SOSE2,Soliva sessilis,WA-NW,,,n,AC
+D16,WREF,SOHA,Sorghum halepense,WA-NW,,,n,AC
+D16,WREF,SPAL,Spartina alterniflora,WA-NW,,,n,
+D16,WREF,SPAN5,Spartina anglica,WA-NW,,,n,
+D16,WREF,SPDE2,Spartina densiflora,WA-NW,,,n,
+D16,WREF,SPPA,Spartina patens,WA-NW,,,n,
+D16,WREF,SPJU2,Spartium junceum,WA-NW,,,n,AC
+D16,WREF,SPSA3,Sphaerophysa salsula,WA-NW,,,n,AC
+D16,WREF,TACA8,Taeniatherum caput-medusae,WA-NW,,,n,AC
+D16,WREF,TARA,Tamarix ramosissima,WA-NW,,,,AC; maybe
+D16,WREF,TAVU,Tanacetum vulgare,WA-NW,,,n,AC
+D16,WREF,THPA7,Thymelaea passerina,WA-NW,,,n,AC
+D16,WREF,TRTE,Tribulus terrestris,WA-NW,,,n,AC
+D16,WREF,TUFA,Tussilago farfara,WA-NW,,,n,AC
+D16,WREF,ULEU,Ulex europaeus,WA-NW,,,n,AC
+D16,WREF,VEDU,Ventenata dubia,WA-NW,,,n,AC
+D16,WREF,XASP2,Xanthium spinosum,WA-NW,,,n,AC
+D16,WREF,NAJA5,Zostera japonica,WA-NW,,,n,AC; aquatic
+D16,WREF,ZYFA,Zygophyllum fabago,WA-NW,,,n,AC
+D17,SJER,ACBA,Acacia baileyana,CA-NW,,,n,no nearby pops
+D17,SJER,ACCY2,Acacia cyclops,CA-NW,,,n,wrong habitat
+D17,SJER,ACDE3,Acacia dealbata,CA-NW,,,n,no nearby pops
+D17,SJER,ACME,Acacia melanoxylon,CA-NW,,,n,no nearby pops
+D17,SJER,ACPA8,Acacia paradoxa,CA-NW,,,n,no nearby pops
+D17,SJER,ACPY3,Acacia pycnantha,CA-NW,,,n,no nearby pops
+D17,SJER,ACNO7,Acaena novae-zelandiae,CA-NW,,,n,no nearby pops
+D17,SJER,ACRE3,Acroptilon repens,CA-NW,,,y,
+D17,SJER,AECY,Aegilops cylindrica,CA-NW,,,y,
+D17,SJER,AETR,Aegilops triuncialis,CA-NW,,,y,
+D17,SJER,AGAD2,Ageratina adenophora,CA-NW,,,n,no nearby pops
+D17,SJER,AGAV,Agrostis avenacea,CA-NW,,,y,
+D17,SJER,AGST2,Agrostis stolonifera,CA-NW,,,y,
+D17,SJER,AIAL,Ailanthus altissima,CA-NW,,,y,
+D17,SJER,ALMA12,Alhagi maurorum,CA-NW,,,y,
+D17,SJER,ALPR3,Alopecurus pratensis,CA-NW,,,n,no nearby pops
+D17,SJER,ALPH,Alternanthera philoxeroides,CA-NW,,,n,wrong habitat
+D17,SJER,ALCO16,Alyssum corsicum,CA-NW,,,n,no nearby pops
+D17,SJER,ALMU,Alyssum murale,CA-NW,,,n,no nearby pops
+D17,SJER,AMTR,Ambrosia trifida,CA-NW,,,n,no nearby pops
+D17,SJER,AMAR4,Ammophila arenaria,CA-NW,,,n,no nearby pops
+D17,SJER,ANOD,Anthoxanthum odoratum,CA-NW,,,n,no nearby pops
+D17,SJER,ARSE8,Araujia sericifera,CA-NW,,,n,no nearby pops
+D17,SJER,ARCA45,Arctotheca calendula,CA-NW,,,n,no nearby pops
+D17,SJER,NA,Arctotheca prostrata,CA-NW,,,n,no nearby pops
+D17,SJER,ARDO4,Arundo donax,CA-NW,,,n,wrong habitat
+D17,SJER,ASAS4,Asparagus asparagoides,CA-NW,,,n,no nearby pops
+D17,SJER,ASFI2,Asphodelus fistulosus,CA-NW,,,n,no nearby pops
+D17,SJER,ATSE,Atriplex semibaccata,CA-NW,,,n,no nearby pops
+D17,SJER,AVFA,Avena fatua,CA-NW,,,y,
+D17,SJER,BAHY,Bassia hyssopifolia,CA-NW,,,y,
+D17,SJER,BETR,Bellardia trixago,CA-NW,,,n,no nearby pops
+D17,SJER,BEDA,Berberis darwinii,CA-NW,,,n,wrong habitat
+D17,SJER,BEIN2,Berteroa incana,CA-NW,,,n,no nearby pops
+D17,SJER,BRDI2,Brachypodium distachyon,CA-NW,,,y,
+D17,SJER,BRSY,Brachypodium sylvaticum,CA-NW,,,n,no nearby pops
+D17,SJER,BRNI,Brassica nigra,CA-NW,,,y,
+D17,SJER,BRRA,Brassica rapa,CA-NW,,,y,
+D17,SJER,BRTO,Brassica tournefortii,CA-NW,,,n,no nearby pops
+D17,SJER,BRMA,Briza maxima,CA-NW,,,y,
+D17,SJER,BRAR5,Bromus japonicus,CA-NW,,,y,
+D17,SJER,BRMAR,Bromus madritensis ssp. rubens,CA-NW,,,y,
+D17,SJER,BUDA2,Buddleja davidii,CA-NW,,,n,wrong habitat
+D17,SJER,CAMA,Cakile maritima,CA-NW,,,n,wrong habitat
+D17,SJER,CAAC,Carduus acanthoides,CA-NW,,,n,no nearby pops
+D17,SJER,CANU4,Carduus nutans,CA-NW,,,n,no nearby pops
+D17,SJER,CAPY2,Carduus pycnocephalus,CA-NW,,,y,
+D17,SJER,CATE2,Carduus tenuiflorus,CA-NW,,,y,
+D17,SJER,CAPE45,Carex pendula,CA-NW,,,n,no nearby pops
+D17,SJER,CACH38,Carpobrotus chilensis,CA-NW,,,n,wrong habitat
+D17,SJER,CAED3,Carpobrotus edulis,CA-NW,,,n,wrong habitat
+D17,SJER,NA,Carrichtera annua,CA-NW,,,n,no nearby pops
+D17,SJER,CALA20,Carthamus lanatus,CA-NW,,,n,no nearby pops
+D17,SJER,CAEQ,Casuarina equisetifolia,CA-NW,,,n,no nearby pops
+D17,SJER,CARO14,Catharanthus roseus,CA-NW,,,n,no nearby pops
+D17,SJER,CEEC,Cenchrus echinatus,CA-NW,,,n,no nearby pops
+D17,SJER,CELO3,Cenchrus longispinus,CA-NW,,,y,
+D17,SJER,CECA2,Centaurea calcitrapa,CA-NW,,,n,no nearby pops
+D17,SJER,CEDI3,Centaurea diffusa,CA-NW,,,y,
+D17,SJER,CEDI4,Centaurea diluta,CA-NW,,,n,no nearby pops
+D17,SJER,CEJA,Centaurea jacea ssp. pratensis,CA-NW,,,n,no nearby pops
+D17,SJER,CESO3,Centaurea solstitialis,CA-NW,,,y,
+D17,SJER,CEST8,Centaurea stoebe ssp. micranthos,CA-NW,,,y,
+D17,SJER,CEVI,Centaurea virgata var. squarrosa,CA-NW,,,n,no nearby pops
+D17,SJER,CENO,Cestrum parqui,CA-NW,,,n,no nearby pops
+D17,SJER,CHFL9,Chasmanthe floribunda,CA-NW,,,n,wrong habitat
+D17,SJER,CHJU,Chondrilla juncea,CA-NW,,,n,no nearby pops
+D17,SJER,NA,Chrysanthemoides monilifera ssp. monilifera,CA-NW,,,n,no nearby pops
+D17,SJER,CIAR4,Cirsium arvense,CA-NW,,,y,
+D17,SJER,CIVU,Cirsium vulgare,CA-NW,,,y,
+D17,SJER,CLVI6,Clematis vitalba,CA-NW,,,n,wrong habitat
+D17,SJER,COES,Colocasia esculenta,CA-NW,,,n,no nearby pops
+D17,SJER,COPU18,Conicosia pugioniformis,CA-NW,,,n,wrong habitat
+D17,SJER,COMA2,Conium maculatum,CA-NW,,,n,wrong habitat
+D17,SJER,COJU2,Cortaderia jubata,CA-NW,,,n,wrong habitat
+D17,SJER,COSE4,Cortaderia selloana,CA-NW,,,n,wrong habitat
+D17,SJER,COFR3,Cotoneaster franchetii,CA-NW,,,n,wrong habitat
+D17,SJER,COLA18,Cotoneaster lacteus,CA-NW,,,n,wrong habitat
+D17,SJER,COPA14,Cotoneaster pannosus,CA-NW,,,n,wrong habitat
+D17,SJER,COCO7,Cotula coronopifolia,CA-NW,,,n,wrong habitat
+D17,SJER,CRMO3,Crataegus monogyna,CA-NW,,,n,no nearby pops
+D17,SJER,NA,Crocosmia x crocosmiiflora,CA-NW,,,n,wrong habitat
+D17,SJER,CRVU2,Crupina vulgaris,CA-NW,,,n,no nearby pops
+D17,SJER,CYCA,Cynara cardunculus,CA-NW,,,n,no nearby pops
+D17,SJER,CYDA,Cynodon dactylon,CA-NW,,,y,
+D17,SJER,CYOF,Cynoglossum officinale,CA-NW,,,n,no nearby pops
+D17,SJER,CYEC,Cynosurus echinatus,CA-NW,,,y,
+D17,SJER,CYMU3,Cytisus multiflorus,CA-NW,,,n,no nearby pops
+D17,SJER,CHPR14,Cytisus proliferus,CA-NW,,,n,no nearby pops
+D17,SJER,CYSC4,Cytisus scoparius,CA-NW,,,n,no nearby pops
+D17,SJER,CYST7,Cytisus striatus,CA-NW,,,n,no nearby pops
+D17,SJER,DAGL,Dactylis glomerata,CA-NW,,,y,
+D17,SJER,DAIN2,Datura inoxia,CA-NW,,,n,no nearby pops
+D17,SJER,DEOD,Delairea odorata,CA-NW,,,n,no nearby pops
+D17,SJER,DESO2,Descurainia sophia,CA-NW,,,y,
+D17,SJER,DIPU,Digitalis purpurea,CA-NW,,,n,wrong habitat
+D17,SJER,DILI8,Dipogon lignosus,CA-NW,,,n,no nearby pops
+D17,SJER,DIFU2,Dipsacus fullonum,CA-NW,,,n,no nearby pops
+D17,SJER,DILA4,Dipsacus laciniatus,CA-NW,,,n,no nearby pops
+D17,SJER,DISA9,Dipsacus sativus,CA-NW,,,n,no nearby pops
+D17,SJER,DIGR3,Dittrichia graveolens,CA-NW,,,y,
+D17,SJER,DIVI6,Dittrichia viscosa,CA-NW,,,n,no nearby pops
+D17,SJER,ECCA5,Echium candicans,CA-NW,,,n,wrong habitat
+D17,SJER,ECPL,Echium plantagineum,CA-NW,,,n,wrong habitat
+D17,SJER,EGDE,Egeria densa,CA-NW,,,n,wrong habitat
+D17,SJER,EHCA,Ehrharta calycina,CA-NW,,,n,wrong habitat
+D17,SJER,EHER,Ehrharta erecta,CA-NW,,,n,wrong habitat
+D17,SJER,EHLO3,Ehrharta longiflora,CA-NW,,,n,no nearby pops
+D17,SJER,EICR,Eichhornia crassipes,CA-NW,,,n,wrong habitat
+D17,SJER,ELAN,Elaeagnus angustifolia,CA-NW,,,n,no nearby pops
+D17,SJER,TACA8,Elymus caput-medusae,CA-NW,,,y,
+D17,SJER,EMSP,Emex spinosa,CA-NW,,,n,wrong habitat
+D17,SJER,ERLU6,Erica lusitanica,CA-NW,,,n,wrong habitat
+D17,SJER,EUCA2,Eucalyptus camaldulensis,CA-NW,,,n,no nearby pops
+D17,SJER,EUCL,Eucalyptus cladocalyx,CA-NW,,,n,no nearby pops
+D17,SJER,EUGL,Eucalyptus globulus,CA-NW,,,n,no nearby pops
+D17,SJER,EULA4,Euphorbia lathyris,CA-NW,,,n,no nearby pops
+D17,SJER,EUOB4,Euphorbia oblongata,CA-NW,,,n,no nearby pops
+D17,SJER,EUTE10,Euphorbia terracina,CA-NW,,,n,wrong habitat
+D17,SJER,EUESU,Euphorbia virgata,CA-NW,,,n,no nearby pops
+D17,SJER,NA,Fallopia ?óbohemica,CA-NW,,,n,no nearby pops
+D17,SJER,POCU6,Fallopia japonica,CA-NW,,,n,no nearby pops
+D17,SJER,POSA4,Fallopia sachalinensis,CA-NW,,,n,no nearby pops
+D17,SJER,SCAR7,Festuca arundinacea,CA-NW,,,n,no nearby pops
+D17,SJER,VUMY,Festuca myuros,CA-NW,,,y,
+D17,SJER,NA,Festuca perennis,CA-NW,,,y,
+D17,SJER,FICA,Ficus carica,CA-NW,,,n,wrong habitat
+D17,SJER,FOVU,Foeniculum vulgare,CA-NW,,,n,no nearby pops
+D17,SJER,GAOF,Galega officinalis,CA-NW,,,n,no nearby pops
+D17,SJER,GALI4,Gazania linearis,CA-NW,,,n,wrong habitat
+D17,SJER,GELI5,Genista linifolia,CA-NW,,,n,no nearby pops
+D17,SJER,REMO2,Genista monosperma,CA-NW,,,n,no nearby pops
+D17,SJER,GEMO2,Genista monspessulana,CA-NW,,,y,
+D17,SJER,GEDI,Geranium dissectum,CA-NW,,,y,
+D17,SJER,GELU,Geranium lucidum,CA-NW,,,n,wrong habitat
+D17,SJER,GEROP,Geranium purpureum,CA-NW,,,n,wrong habitat
+D17,SJER,NA,Glebionis coronaria,CA-NW,,,n,wrong habitat
+D17,SJER,GLDE,Glyceria declinata,CA-NW,,,n,no nearby pops
+D17,SJER,GRRO,Grevillea robusta,CA-NW,,,n,no nearby pops
+D17,SJER,GUTI,Gunnera tinctoria,CA-NW,,,n,wrong habitat
+D17,SJER,GYPA,Gypsophila paniculata,CA-NW,,,n,no nearby pops
+D17,SJER,HAGL,Halogeton glomeratus,CA-NW,,,n,wrong habitat
+D17,SJER,HEHEC,Hedera canariensis,CA-NW,,,n,wrong habitat
+D17,SJER,HEHE,Hedera helix,CA-NW,,,y,
+D17,SJER,HETU,Helianthus tuberosus,CA-NW,,,n,no nearby pops
+D17,SJER,HEPE8,Helichrysum petiolare,CA-NW,,,n,wrong habitat
+D17,SJER,HEAM4,Heliotropium amplexicaule,CA-NW,,,n,wrong habitat
+D17,SJER,PIEC,Helminthotheca echioides,CA-NW,,,n,no nearby pops
+D17,SJER,HEMA17,Heracleum mantegazzianum,CA-NW,,,n,no nearby pops
+D17,SJER,HOLA,Holcus lanatus,CA-NW,,,y,
+D17,SJER,HYVE3,Hydrilla verticillata,CA-NW,,,n,wrong habitat
+D17,SJER,HYHI,Hyparrhenia hirta,CA-NW,,,n,wrong habitat
+D17,SJER,HYAN8,Hypericum androsaemum,CA-NW,,,n,no nearby pops
+D17,SJER,HYCA11,Hypericum canariense,CA-NW,,,n,wrong habitat
+D17,SJER,HYGR6,Hypericum grandifolium,CA-NW,,,n,wrong habitat
+D17,SJER,HYPE,Hypericum perforatum,CA-NW,,,y,
+D17,SJER,HYRA3,Hypochaeris radicata,CA-NW,,,y,
+D17,SJER,ILAQ80,Ilex aquifolium,CA-NW,,,n,wrong habitat
+D17,SJER,IPIN,Ipomoea indica,CA-NW,,,n,wrong habitat
+D17,SJER,IRPS,Iris pseudacorus,CA-NW,,,n,wrong habitat
+D17,SJER,ISTI,Isatis tinctoria,CA-NW,,,n,no nearby pops
+D17,SJER,KNUV80,Kniphofia uvaria,CA-NW,,,n,wrong habitat
+D17,SJER,BASC5,Kochia scoparia,CA-NW,,,n,no nearby pops
+D17,SJER,LACA2,Lantana camara,CA-NW,,,n,wrong habitat
+D17,SJER,NA,Lepidium chalepense,CA-NW,,,n,no nearby pops
+D17,SJER,CADR,Lepidium draba,CA-NW,,,n,no nearby pops
+D17,SJER,LELA2,Lepidium latifolium,CA-NW,,,n,no nearby pops
+D17,SJER,LELA29,Leptospermum laevigatum,CA-NW,,,n,wrong habitat
+D17,SJER,LEVU,Leucanthemum vulgare,CA-NW,,,n,no nearby pops
+D17,SJER,LILU2,Ligustrum lucidum,CA-NW,,,n,no nearby pops
+D17,SJER,LISP2,Limnobium spongia,CA-NW,,,n,wrong habitat
+D17,SJER,NA,Limonium duriusculum,CA-NW,,,n,no nearby pops
+D17,SJER,LIRA2,Limonium ramosissimum,CA-NW,,,n,wrong habitat
+D17,SJER,LIDA,Linaria dalmatica ssp. dalmatica,CA-NW,,,y,
+D17,SJER,LIVU2,Linaria vulgaris,CA-NW,,,n,no nearby pops
+D17,SJER,LOMA,Lobularia maritima,CA-NW,,,n,no nearby pops
+D17,SJER,LUGRH,Ludwigia hexapetala,CA-NW,,,n,wrong habitat
+D17,SJER,LUPE5,Ludwigia peploides,CA-NW,,,n,wrong habitat
+D17,SJER,LYHY3,Lythrum hyssopifolium,CA-NW,,,y,
+D17,SJER,LYSA2,Lythrum salicaria,CA-NW,,,n,wrong habitat
+D17,SJER,MACR3,Malephora crocea,CA-NW,,,n,wrong habitat
+D17,SJER,MAVU,Marrubium vulgare,CA-NW,,,y,
+D17,SJER,MABO8,Maytenus boaria,CA-NW,,,n,no nearby pops
+D17,SJER,MEPO3,Medicago polymorpha,CA-NW,,,y,
+D17,SJER,MEPU,Mentha pulegium,CA-NW,,,y,
+D17,SJER,MECR3,Mesembryanthemum crystallinum,CA-NW,,,n,wrong habitat
+D17,SJER,MENO2,Mesembryanthemum nodiflorum,CA-NW,,,n,wrong habitat
+D17,SJER,MYLA5,Myoporum laetum,CA-NW,,,n,wrong habitat
+D17,SJER,MYLA4,Myosotis latifolia,CA-NW,,,n,wrong habitat
+D17,SJER,MYAQ2,Myriophyllum aquaticum,CA-NW,,,n,wrong habitat
+D17,SJER,MYSP2,Myriophyllum spicatum,CA-NW,,,n,wrong habitat
+D17,SJER,NAST3,Nardus stricta,CA-NW,,,n,no nearby pops
+D17,SJER,NIGL,Nicotiana glauca,CA-NW,,,n,no nearby pops
+D17,SJER,NOGR3,Nothoscordum gracile,CA-NW,,,n,no nearby pops
+D17,SJER,OLEU,Olea europaea,CA-NW,,,n,no nearby pops
+D17,SJER,ONPI,Oncosiphon piluliferum,CA-NW,,,n,wrong habitat
+D17,SJER,ONAL5,Ononis alopecuroides,CA-NW,,,n,no nearby pops
+D17,SJER,ONAC,Onopordum acanthium,CA-NW,,,n,no nearby pops
+D17,SJER,ONIL,Onopordum illyricum,CA-NW,,,n,no nearby pops
+D17,SJER,ORAE3,Orobanche aegyptiaca,CA-NW,,,n,no nearby pops
+D17,SJER,OXPE,Oxalis pes-caprae,CA-NW,,,n,no nearby pops
+D17,SJER,PALO8,Paraserianthes lophantha,CA-NW,,,n,no nearby pops
+D17,SJER,PAVI3,Parentucellia viscosa,CA-NW,,,n,no nearby pops
+D17,SJER,PAHY,Parthenium hysterophorus,CA-NW,,,n,no nearby pops
+D17,SJER,PAUR2,Paspalum urvillei,CA-NW,,,n,no nearby pops
+D17,SJER,PAVA,Paspalum vaginatum,CA-NW,,,n,wrong habitat
+D17,SJER,PATA6,Passiflora tarminiana,CA-NW,,,n,wrong habitat
+D17,SJER,PEHA,Peganum harmala,CA-NW,,,n,no nearby pops
+D17,SJER,PECL2,Pennisetum clandestinum,CA-NW,,,n,no nearby pops
+D17,SJER,PESE3,Pennisetum setaceum,CA-NW,,,n,no nearby pops
+D17,SJER,PEVI2,Pennisetum villosum,CA-NW,,,n,no nearby pops
+D17,SJER,POPO5,Persicaria wallichii,CA-NW,,,n,wrong habitat
+D17,SJER,PHAQ,Phalaris aquatica,CA-NW,,,y,
+D17,SJER,PHCA13,Phoenix canariensis,CA-NW,,,n,wrong habitat
+D17,SJER,PHAM4,Phytolacca americana,CA-NW,,,n,no nearby pops
+D17,SJER,PIUN2,Pittosporum undulatum,CA-NW,,,n,wrong habitat
+D17,SJER,PLLA,Plantago lanceolata,CA-NW,,,y,
+D17,SJER,PLSE7,Plecostachys serpyllifolia,CA-NW,,,n,wrong habitat
+D17,SJER,POPR,Poa pratensis,CA-NW,,,y,
+D17,SJER,POMY5,Polygala myrtifolia,CA-NW,,,n,wrong habitat
+D17,SJER,POMO5,Polypogon monspeliensis,CA-NW,,,y,
+D17,SJER,POCR3,Potamogeton crispus,CA-NW,,,n,wrong habitat
+D17,SJER,PRCE2,Prunus cerasifera,CA-NW,,,n,no nearby pops
+D17,SJER,PYAN,Pyracantha angustifolia,CA-NW,,,n,no nearby pops
+D17,SJER,PYCO2,Pyracantha coccinea,CA-NW,,,n,wrong habitat
+D17,SJER,PYCR7,Pyracantha crenulata,CA-NW,,,n,no nearby pops
+D17,SJER,PYCA80,Pyrus calleryana,CA-NW,,,n,no nearby pops
+D17,SJER,RARE3,Ranunculus repens,CA-NW,,,n,no nearby pops
+D17,SJER,RASA2,Raphanus sativus,CA-NW,,,y,
+D17,SJER,RHAL12,Rhamnus alaternus,CA-NW,,,n,no nearby pops
+D17,SJER,RICO3,Ricinus communis,CA-NW,,,n,no nearby pops
+D17,SJER,ROPS,Robinia pseudoacacia,CA-NW,,,n,no nearby pops
+D17,SJER,RORO,Romulea rosea var. australis,CA-NW,,,n,no nearby pops
+D17,SJER,RUAR9,Rubus armeniacus,CA-NW,,,y,
+D17,SJER,RUAC3,Rumex acetosella ,CA-NW,,,y,
+D17,SJER,RUCR,Rumex crispus,CA-NW,,,y,
+D17,SJER,RYCA,Rytidosperma caespitosum,CA-NW,,,n,wrong habitat
+D17,SJER,NA,Rytidosperma penicillatum,CA-NW,,,n,wrong habitat
+D17,SJER,SARA3,Saccharum ravennae,CA-NW,,,n,no nearby pops
+D17,SJER,SAOR4,Salpichroa origanifolia,CA-NW,,,n,no nearby pops
+D17,SJER,SAPA8,Salsola paulsenii,CA-NW,,,n,no nearby pops
+D17,SJER,NA,Salsola ryanii,CA-NW,,,n,no nearby pops
+D17,SJER,SASO3,Salsola soda,CA-NW,,,n,wrong habitat
+D17,SJER,SATR12,Salsola tragus,CA-NW,,,n,no nearby pops
+D17,SJER,SAAE,Salvia aethiopis,CA-NW,,,n,wrong habitat
+D17,SJER,SAMO5,Salvinia molesta,CA-NW,,,n,wrong habitat
+D17,SJER,SAOF4,Saponaria officinalis,CA-NW,,,n,no nearby pops
+D17,SJER,SCAT,Scabiosa atropurpurea,CA-NW,,,n,no nearby pops
+D17,SJER,SCMO,Schinus molle,CA-NW,,,n,no nearby pops
+D17,SJER,SCTE,Schinus terebinthifolius,CA-NW,,,n,no nearby pops
+D17,SJER,SCAR,Schismus arabicus,CA-NW,,,n,no nearby pops
+D17,SJER,SCBA,Schismus barbatus,CA-NW,,,n,no nearby pops
+D17,SJER,SCHI,Scolymus hispanicus,CA-NW,,,n,no nearby pops
+D17,SJER,ERGL11,Senecio glomeratus,CA-NW,,,n,wrong habitat
+D17,SJER,SEJA,Senecio jacobaea,CA-NW,,,n,no nearby pops
+D17,SJER,SELI,Senecio linearifolius,CA-NW,,,n,no nearby pops
+D17,SJER,SEPU7,Sesbania punicea,CA-NW,,,n,no nearby pops
+D17,SJER,SIMA3,Silybum marianum,CA-NW,,,y,
+D17,SJER,SIAR4,Sinapis arvensis,CA-NW,,,n,no nearby pops
+D17,SJER,SIIR,Sisymbrium irio,CA-NW,,,n,no nearby pops
+D17,SJER,SOAV,Solanum aviculare,CA-NW,,,n,no nearby pops
+D17,SJER,SOCA3,Solanum carolinense,CA-NW,,,n,no nearby pops
+D17,SJER,SPAL,Spartina alterniflora x S. foliosa,CA-NW,,,n,wrong habitat
+D17,SJER,SPAN5,Spartina anglica,CA-NW,,,n,wrong habitat
+D17,SJER,SPDE2,Spartina densiflora,CA-NW,,,n,wrong habitat
+D17,SJER,SPPA,Spartina patens,CA-NW,,,n,wrong habitat
+D17,SJER,SPJU2,Spartium junceum,CA-NW,,,y,
+D17,SJER,SPSA3,Sphaerophysa salsula,CA-NW,,,n,no nearby pops
+D17,SJER,ACBR5,Stipa brachychaeta,CA-NW,,,n,no nearby pops
+D17,SJER,ACCA34,Stipa capensis,CA-NW,,,n,no nearby pops
+D17,SJER,NAMA7,Stipa manicata,CA-NW,,,n,no nearby pops
+D17,SJER,PIMI3,Stipa miliacea var. miliacea,CA-NW,,,n,no nearby pops
+D17,SJER,NATE3,Stipa tenuissima,CA-NW,,,n,no nearby pops
+D17,SJER,TAAP,Tamarix aphylla,CA-NW,,,n,wrong habitat
+D17,SJER,TACH2,Tamarix chinensis,CA-NW,,,n,no nearby pops
+D17,SJER,TAGA,Tamarix gallica,CA-NW,,,n,no nearby pops
+D17,SJER,TAPA4,Tamarix parviflora,CA-NW,,,n,no nearby pops
+D17,SJER,TARA,Tamarix ramosissima,CA-NW,,,n,no nearby pops
+D17,SJER,TAVU,Tanacetum vulgare,CA-NW,,,n,no nearby pops
+D17,SJER,TETE3,Tetragonia tetragonioides,CA-NW,,,n,wrong habitat
+D17,SJER,THJU3,Thinopyrum junceiforme,CA-NW,,,n,wrong habitat
+D17,SJER,TOAR,Torilis arvensis,CA-NW,,,y,
+D17,SJER,TRSE6,Triadica sebifera,CA-NW,,,n,no nearby pops
+D17,SJER,TRTE,Tribulus terrestris,CA-NW,,,n,no nearby pops
+D17,SJER,TRHI4,Trifolium hirtum,CA-NW,,,y,
+D17,SJER,ULEU,Ulex europaeus,CA-NW,,,n,no nearby pops
+D17,SJER,NA,Undaria pinnatifida,CA-NW,,,n,wrong habitat
+D17,SJER,VEDU,Ventenata dubia,CA-NW,,,n,no nearby pops
+D17,SJER,VETH,Verbascum thapsus,CA-NW,,,y,
+D17,SJER,VEBO,Verbena bonariensis,CA-NW,,,n,no nearby pops
+D17,SJER,VIMA,Vinca major,CA-NW,,,y,
+D17,SJER,NA,Volutaria tubuliflora,CA-NW,,,n,wrong habitat
+D17,SJER,WARO,Washingtonia robusta,CA-NW,,,n,no nearby pops
+D17,SJER,WAME,Watsonia meriana,CA-NW,,,n,wrong habitat
+D17,SJER,ZAAE,Zantedeschia aethiopica,CA-NW,,,n,wrong habitat
+D17,SJER,NAJA5,Zostera japonica,CA-NW,,,n,wrong habitat
+D17,SJER,ZYFA,Zygophyllum fabago,CA-NW,,,n,no nearby pops
+D17,SOAP,ACBA,Acacia baileyana,CA-NW,,,n,no nearby pops
+D17,SOAP,ACCY2,Acacia cyclops,CA-NW,,,n,wrong habitat
+D17,SOAP,ACDE3,Acacia dealbata,CA-NW,,,n,no nearby pops
+D17,SOAP,ACME,Acacia melanoxylon,CA-NW,,,n,no nearby pops
+D17,SOAP,ACPA8,Acacia paradoxa,CA-NW,,,n,no nearby pops
+D17,SOAP,ACPY3,Acacia pycnantha,CA-NW,,,n,no nearby pops
+D17,SOAP,ACNO7,Acaena novae-zelandiae,CA-NW,,,n,no nearby pops
+D17,SOAP,ACRE3,Acroptilon repens,CA-NW,,,y,
+D17,SOAP,AECY,Aegilops cylindrica,CA-NW,,,y,
+D17,SOAP,AETR,Aegilops triuncialis,CA-NW,,,y,
+D17,SOAP,AGAD2,Ageratina adenophora,CA-NW,,,n,no nearby pops
+D17,SOAP,AGAV,Agrostis avenacea,CA-NW,,,y,
+D17,SOAP,AGST2,Agrostis stolonifera,CA-NW,,,y,
+D17,SOAP,AIAL,Ailanthus altissima,CA-NW,,,y,
+D17,SOAP,ALMA12,Alhagi maurorum,CA-NW,,,y,
+D17,SOAP,ALPR3,Alopecurus pratensis,CA-NW,,,n,no nearby pops
+D17,SOAP,ALPH,Alternanthera philoxeroides,CA-NW,,,n,wrong habitat
+D17,SOAP,ALCO16,Alyssum corsicum,CA-NW,,,n,no nearby pops
+D17,SOAP,ALMU,Alyssum murale,CA-NW,,,n,no nearby pops
+D17,SOAP,AMTR,Ambrosia trifida,CA-NW,,,n,no nearby pops
+D17,SOAP,AMAR4,Ammophila arenaria,CA-NW,,,n,no nearby pops
+D17,SOAP,ANOD,Anthoxanthum odoratum,CA-NW,,,y,
+D17,SOAP,ARSE8,Araujia sericifera,CA-NW,,,n,no nearby pops
+D17,SOAP,ARCA45,Arctotheca calendula,CA-NW,,,n,no nearby pops
+D17,SOAP,NA,Arctotheca prostrata,CA-NW,,,n,no nearby pops
+D17,SOAP,ARDO4,Arundo donax,CA-NW,,,n,wrong habitat
+D17,SOAP,ASAS4,Asparagus asparagoides,CA-NW,,,n,no nearby pops
+D17,SOAP,ASFI2,Asphodelus fistulosus,CA-NW,,,n,no nearby pops
+D17,SOAP,ATSE,Atriplex semibaccata,CA-NW,,,n,no nearby pops
+D17,SOAP,AVFA,Avena fatua,CA-NW,,,y,
+D17,SOAP,BAHY,Bassia hyssopifolia,CA-NW,,,n,wrong habitat
+D17,SOAP,BETR,Bellardia trixago,CA-NW,,,n,no nearby pops
+D17,SOAP,BEDA,Berberis darwinii,CA-NW,,,n,wrong habitat
+D17,SOAP,BEIN2,Berteroa incana,CA-NW,,,n,no nearby pops
+D17,SOAP,BRDI2,Brachypodium distachyon,CA-NW,,,n,wrong habitat
+D17,SOAP,BRSY,Brachypodium sylvaticum,CA-NW,,,n,no nearby pops
+D17,SOAP,BRNI,Brassica nigra,CA-NW,,,y,
+D17,SOAP,BRRA,Brassica rapa,CA-NW,,,n,no nearby pops
+D17,SOAP,BRTO,Brassica tournefortii,CA-NW,,,n,no nearby pops
+D17,SOAP,BRMA,Briza maxima,CA-NW,,,n,no nearby pops
+D17,SOAP,BRAR5,Bromus japonicus,CA-NW,,,n,no nearby pops
+D17,SOAP,BRMAR,Bromus madritensis ssp. rubens,CA-NW,,,y,
+D17,SOAP,BUDA2,Buddleja davidii,CA-NW,,,n,wrong habitat
+D17,SOAP,CAMA,Cakile maritima,CA-NW,,,n,wrong habitat
+D17,SOAP,CAAC,Carduus acanthoides,CA-NW,,,n,no nearby pops
+D17,SOAP,CANU4,Carduus nutans,CA-NW,,,n,no nearby pops
+D17,SOAP,CAPY2,Carduus pycnocephalus,CA-NW,,,y,
+D17,SOAP,CATE2,Carduus tenuiflorus,CA-NW,,,y,
+D17,SOAP,CAPE45,Carex pendula,CA-NW,,,n,no nearby pops
+D17,SOAP,CACH38,Carpobrotus chilensis,CA-NW,,,n,wrong habitat
+D17,SOAP,CAED3,Carpobrotus edulis,CA-NW,,,n,wrong habitat
+D17,SOAP,NA,Carrichtera annua,CA-NW,,,n,no nearby pops
+D17,SOAP,CALA20,Carthamus lanatus,CA-NW,,,n,no nearby pops
+D17,SOAP,CAEQ,Casuarina equisetifolia,CA-NW,,,n,no nearby pops
+D17,SOAP,CARO14,Catharanthus roseus,CA-NW,,,n,no nearby pops
+D17,SOAP,CEEC,Cenchrus echinatus,CA-NW,,,n,no nearby pops
+D17,SOAP,CELO3,Cenchrus longispinus,CA-NW,,,n,wrong habitat
+D17,SOAP,CECA2,Centaurea calcitrapa,CA-NW,,,n,no nearby pops
+D17,SOAP,CEDI3,Centaurea diffusa,CA-NW,,,n,wrong habitat
+D17,SOAP,CEDI4,Centaurea diluta,CA-NW,,,n,no nearby pops
+D17,SOAP,CEJA,Centaurea jacea ssp. pratensis,CA-NW,,,n,no nearby pops
+D17,SOAP,CEME2,Centaurea melitensis ,CA-NW,,,y,
+D17,SOAP,CESO3,Centaurea solstitialis,CA-NW,,,y,
+D17,SOAP,CEST8,Centaurea stoebe ssp. micranthos,CA-NW,,,y,
+D17,SOAP,CEVI,Centaurea virgata var. squarrosa,CA-NW,,,n,no nearby pops
+D17,SOAP,CENO,Cestrum parqui,CA-NW,,,n,no nearby pops
+D17,SOAP,CHFL9,Chasmanthe floribunda,CA-NW,,,n,wrong habitat
+D17,SOAP,CHJU,Chondrilla juncea,CA-NW,,,n,no nearby pops
+D17,SOAP,NA,Chrysanthemoides monilifera ssp. monilifera,CA-NW,,,n,no nearby pops
+D17,SOAP,CIAR4,Cirsium arvense,CA-NW,,,y,
+D17,SOAP,CIVU,Cirsium vulgare,CA-NW,,,y,
+D17,SOAP,CLVI6,Clematis vitalba,CA-NW,,,n,wrong habitat
+D17,SOAP,COES,Colocasia esculenta,CA-NW,,,n,no nearby pops
+D17,SOAP,COPU18,Conicosia pugioniformis,CA-NW,,,n,wrong habitat
+D17,SOAP,COMA2,Conium maculatum,CA-NW,,,n,wrong habitat
+D17,SOAP,COJU2,Cortaderia jubata,CA-NW,,,n,wrong habitat
+D17,SOAP,COSE4,Cortaderia selloana,CA-NW,,,n,wrong habitat
+D17,SOAP,COFR3,Cotoneaster franchetii,CA-NW,,,n,wrong habitat
+D17,SOAP,COLA18,Cotoneaster lacteus,CA-NW,,,n,wrong habitat
+D17,SOAP,COPA14,Cotoneaster pannosus,CA-NW,,,n,wrong habitat
+D17,SOAP,COCO7,Cotula coronopifolia,CA-NW,,,n,wrong habitat
+D17,SOAP,CRMO3,Crataegus monogyna,CA-NW,,,n,no nearby pops
+D17,SOAP,NA,Crocosmia x crocosmiiflora,CA-NW,,,n,wrong habitat
+D17,SOAP,CRVU2,Crupina vulgaris,CA-NW,,,n,no nearby pops
+D17,SOAP,CYCA,Cynara cardunculus,CA-NW,,,n,no nearby pops
+D17,SOAP,CYDA,Cynodon dactylon,CA-NW,,,y,
+D17,SOAP,CYOF,Cynoglossum officinale,CA-NW,,,n,no nearby pops
+D17,SOAP,CYEC,Cynosurus echinatus,CA-NW,,,y,
+D17,SOAP,CYMU3,Cytisus multiflorus,CA-NW,,,n,no nearby pops
+D17,SOAP,CHPR14,Cytisus proliferus,CA-NW,,,n,no nearby pops
+D17,SOAP,CYSC4,Cytisus scoparius,CA-NW,,,n,no nearby pops
+D17,SOAP,CYST7,Cytisus striatus,CA-NW,,,n,no nearby pops
+D17,SOAP,DAGL,Dactylis glomerata,CA-NW,,,y,
+D17,SOAP,DAIN2,Datura inoxia,CA-NW,,,n,no nearby pops
+D17,SOAP,DEOD,Delairea odorata,CA-NW,,,n,no nearby pops
+D17,SOAP,DESO2,Descurainia sophia,CA-NW,,,y,
+D17,SOAP,DIPU,Digitalis purpurea,CA-NW,,,y,
+D17,SOAP,DILI8,Dipogon lignosus,CA-NW,,,n,no nearby pops
+D17,SOAP,DIFU2,Dipsacus fullonum,CA-NW,,,n,no nearby pops
+D17,SOAP,DILA4,Dipsacus laciniatus,CA-NW,,,n,no nearby pops
+D17,SOAP,DISA9,Dipsacus sativus,CA-NW,,,n,no nearby pops
+D17,SOAP,DIGR3,Dittrichia graveolens,CA-NW,,,n,wrong habitat
+D17,SOAP,DIVI6,Dittrichia viscosa,CA-NW,,,n,no nearby pops
+D17,SOAP,ECCA5,Echium candicans,CA-NW,,,n,wrong habitat
+D17,SOAP,ECPL,Echium plantagineum,CA-NW,,,n,wrong habitat
+D17,SOAP,EGDE,Egeria densa,CA-NW,,,n,wrong habitat
+D17,SOAP,EHCA,Ehrharta calycina,CA-NW,,,n,wrong habitat
+D17,SOAP,EHER,Ehrharta erecta,CA-NW,,,n,wrong habitat
+D17,SOAP,EHLO3,Ehrharta longiflora,CA-NW,,,n,no nearby pops
+D17,SOAP,EICR,Eichhornia crassipes,CA-NW,,,n,wrong habitat
+D17,SOAP,ELAN,Elaeagnus angustifolia,CA-NW,,,n,no nearby pops
+D17,SOAP,TACA8,Elymus caput-medusae,CA-NW,,,y,
+D17,SOAP,EMSP,Emex spinosa,CA-NW,,,n,wrong habitat
+D17,SOAP,ERLU6,Erica lusitanica,CA-NW,,,n,wrong habitat
+D17,SOAP,ERCI6,Erodium cicutarium ,CA-NW,,,y,
+D17,SOAP,EUCA2,Eucalyptus camaldulensis,CA-NW,,,n,no nearby pops
+D17,SOAP,EUCL,Eucalyptus cladocalyx,CA-NW,,,n,no nearby pops
+D17,SOAP,EUGL,Eucalyptus globulus,CA-NW,,,n,no nearby pops
+D17,SOAP,EULA4,Euphorbia lathyris,CA-NW,,,n,no nearby pops
+D17,SOAP,EUOB4,Euphorbia oblongata,CA-NW,,,n,no nearby pops
+D17,SOAP,EUTE10,Euphorbia terracina,CA-NW,,,n,wrong habitat
+D17,SOAP,EUESU,Euphorbia virgata,CA-NW,,,n,no nearby pops
+D17,SOAP,NA,Fallopia ?óbohemica,CA-NW,,,n,no nearby pops
+D17,SOAP,POCU6,Fallopia japonica,CA-NW,,,n,no nearby pops
+D17,SOAP,POSA4,Fallopia sachalinensis,CA-NW,,,n,no nearby pops
+D17,SOAP,SCAR7,Festuca arundinacea,CA-NW,,,n,no nearby pops
+D17,SOAP,VUMY,Festuca myuros,CA-NW,,,y,
+D17,SOAP,LOPE,Festuca perennis,CA-NW,,,y,
+D17,SOAP,FICA,Ficus carica,CA-NW,,,n,wrong habitat
+D17,SOAP,FOVU,Foeniculum vulgare,CA-NW,,,n,no nearby pops
+D17,SOAP,GAOF,Galega officinalis,CA-NW,,,n,no nearby pops
+D17,SOAP,GALI4,Gazania linearis,CA-NW,,,n,wrong habitat
+D17,SOAP,GELI5,Genista linifolia,CA-NW,,,n,no nearby pops
+D17,SOAP,REMO2,Genista monosperma,CA-NW,,,n,no nearby pops
+D17,SOAP,GEMO2,Genista monspessulana,CA-NW,,,n,no nearby pops
+D17,SOAP,GEDI,Geranium dissectum,CA-NW,,,y,
+D17,SOAP,GELU,Geranium lucidum,CA-NW,,,n,wrong habitat
+D17,SOAP,GEROP,Geranium purpureum,CA-NW,,,n,wrong habitat
+D17,SOAP,NA,Glebionis coronaria,CA-NW,,,n,wrong habitat
+D17,SOAP,GLDE,Glyceria declinata,CA-NW,,,n,no nearby pops
+D17,SOAP,GRRO,Grevillea robusta,CA-NW,,,n,no nearby pops
+D17,SOAP,GUTI,Gunnera tinctoria,CA-NW,,,n,wrong habitat
+D17,SOAP,GYPA,Gypsophila paniculata,CA-NW,,,n,no nearby pops
+D17,SOAP,HAGL,Halogeton glomeratus,CA-NW,,,n,wrong habitat
+D17,SOAP,HEHEC,Hedera canariensis,CA-NW,,,n,wrong habitat
+D17,SOAP,HEHE,Hedera helix,CA-NW,,,n,no nearby pops
+D17,SOAP,HETU,Helianthus tuberosus,CA-NW,,,n,no nearby pops
+D17,SOAP,HEPE8,Helichrysum petiolare,CA-NW,,,n,wrong habitat
+D17,SOAP,HEAM4,Heliotropium amplexicaule,CA-NW,,,n,wrong habitat
+D17,SOAP,PIEC,Helminthotheca echioides,CA-NW,,,n,no nearby pops
+D17,SOAP,HEMA17,Heracleum mantegazzianum,CA-NW,,,n,no nearby pops
+D17,SOAP,HIIN3,Hirschfeldia incana ,CA-NW,,,y,
+D17,SOAP,HOLA,Holcus lanatus,CA-NW,,,y,
+D17,SOAP,HOMA2,Hordeum marinum,CA-NW,,,y,
+D17,SOAP,HOMUL,Hordeum murinum ,CA-NW,,,y,
+D17,SOAP,HYVE3,Hydrilla verticillata,CA-NW,,,n,wrong habitat
+D17,SOAP,HYHI,Hyparrhenia hirta,CA-NW,,,n,wrong habitat
+D17,SOAP,HYAN8,Hypericum androsaemum,CA-NW,,,n,no nearby pops
+D17,SOAP,HYCA11,Hypericum canariense,CA-NW,,,n,wrong habitat
+D17,SOAP,HYGR6,Hypericum grandifolium,CA-NW,,,n,wrong habitat
+D17,SOAP,HYPE,Hypericum perforatum,CA-NW,,,y,
+D17,SOAP,HYRA3,Hypochaeris radicata,CA-NW,,,y,
+D17,SOAP,ILAQ80,Ilex aquifolium,CA-NW,,,n,wrong habitat
+D17,SOAP,IPIN,Ipomoea indica,CA-NW,,,n,wrong habitat
+D17,SOAP,IRPS,Iris pseudacorus,CA-NW,,,n,wrong habitat
+D17,SOAP,ISTI,Isatis tinctoria,CA-NW,,,n,no nearby pops
+D17,SOAP,KNUV80,Kniphofia uvaria,CA-NW,,,n,wrong habitat
+D17,SOAP,BASC5,Kochia scoparia,CA-NW,,,n,no nearby pops
+D17,SOAP,LACA2,Lantana camara,CA-NW,,,n,wrong habitat
+D17,SOAP,NA,Lepidium chalepense,CA-NW,,,n,no nearby pops
+D17,SOAP,CADR,Lepidium draba,CA-NW,,,n,no nearby pops
+D17,SOAP,LELA2,Lepidium latifolium,CA-NW,,,n,no nearby pops
+D17,SOAP,LELA29,Leptospermum laevigatum,CA-NW,,,n,wrong habitat
+D17,SOAP,LEVU,Leucanthemum vulgare,CA-NW,,,n,no nearby pops
+D17,SOAP,LILU2,Ligustrum lucidum,CA-NW,,,n,no nearby pops
+D17,SOAP,LISP2,Limnobium spongia,CA-NW,,,n,wrong habitat
+D17,SOAP,NA,Limonium duriusculum,CA-NW,,,n,no nearby pops
+D17,SOAP,LIRA2,Limonium ramosissimum,CA-NW,,,n,wrong habitat
+D17,SOAP,LIDA,Linaria dalmatica ssp. dalmatica,CA-NW,,,n,no nearby pops
+D17,SOAP,LIVU2,Linaria vulgaris,CA-NW,,,n,no nearby pops
+D17,SOAP,LOMA,Lobularia maritima,CA-NW,,,n,no nearby pops
+D17,SOAP,LUGRH,Ludwigia hexapetala,CA-NW,,,n,wrong habitat
+D17,SOAP,LUPE5,Ludwigia peploides,CA-NW,,,n,wrong habitat
+D17,SOAP,LYHY3,Lythrum hyssopifolium,CA-NW,,,y,
+D17,SOAP,LYSA2,Lythrum salicaria,CA-NW,,,n,wrong habitat
+D17,SOAP,MACR3,Malephora crocea,CA-NW,,,n,wrong habitat
+D17,SOAP,MAVU,Marrubium vulgare,CA-NW,,,y,
+D17,SOAP,MABO8,Maytenus boaria,CA-NW,,,n,no nearby pops
+D17,SOAP,MEPO3,Medicago polymorpha,CA-NW,,,y,
+D17,SOAP,MEPU,Mentha pulegium,CA-NW,,,y,
+D17,SOAP,MECR3,Mesembryanthemum crystallinum,CA-NW,,,n,wrong habitat
+D17,SOAP,MENO2,Mesembryanthemum nodiflorum,CA-NW,,,n,wrong habitat
+D17,SOAP,MYLA5,Myoporum laetum,CA-NW,,,n,wrong habitat
+D17,SOAP,MYLA4,Myosotis latifolia,CA-NW,,,n,wrong habitat
+D17,SOAP,MYAQ2,Myriophyllum aquaticum,CA-NW,,,n,wrong habitat
+D17,SOAP,MYSP2,Myriophyllum spicatum,CA-NW,,,n,wrong habitat
+D17,SOAP,NAST3,Nardus stricta,CA-NW,,,n,no nearby pops
+D17,SOAP,NIGL,Nicotiana glauca,CA-NW,,,n,no nearby pops
+D17,SOAP,NOGR3,Nothoscordum gracile,CA-NW,,,n,no nearby pops
+D17,SOAP,OLEU,Olea europaea,CA-NW,,,n,no nearby pops
+D17,SOAP,ONPI,Oncosiphon piluliferum,CA-NW,,,n,wrong habitat
+D17,SOAP,ONAL5,Ononis alopecuroides,CA-NW,,,n,no nearby pops
+D17,SOAP,ONAC,Onopordum acanthium,CA-NW,,,n,no nearby pops
+D17,SOAP,ONIL,Onopordum illyricum,CA-NW,,,n,no nearby pops
+D17,SOAP,ORAE3,Orobanche aegyptiaca,CA-NW,,,n,no nearby pops
+D17,SOAP,OXPE,Oxalis pes-caprae,CA-NW,,,n,no nearby pops
+D17,SOAP,PALO8,Paraserianthes lophantha,CA-NW,,,n,no nearby pops
+D17,SOAP,PAVI3,Parentucellia viscosa,CA-NW,,,n,no nearby pops
+D17,SOAP,PAHY,Parthenium hysterophorus,CA-NW,,,n,no nearby pops
+D17,SOAP,PAUR2,Paspalum urvillei,CA-NW,,,n,no nearby pops
+D17,SOAP,PAVA,Paspalum vaginatum,CA-NW,,,n,wrong habitat
+D17,SOAP,PATA6,Passiflora tarminiana,CA-NW,,,n,wrong habitat
+D17,SOAP,PEHA,Peganum harmala,CA-NW,,,n,no nearby pops
+D17,SOAP,PECL2,Pennisetum clandestinum,CA-NW,,,n,no nearby pops
+D17,SOAP,PESE3,Pennisetum setaceum,CA-NW,,,n,no nearby pops
+D17,SOAP,PEVI2,Pennisetum villosum,CA-NW,,,n,no nearby pops
+D17,SOAP,POPO5,Persicaria wallichii,CA-NW,,,n,wrong habitat
+D17,SOAP,PHAQ,Phalaris aquatica,CA-NW,,,y,
+D17,SOAP,PHCA13,Phoenix canariensis,CA-NW,,,n,wrong habitat
+D17,SOAP,PHAM4,Phytolacca americana,CA-NW,,,n,no nearby pops
+D17,SOAP,PIUN2,Pittosporum undulatum,CA-NW,,,n,wrong habitat
+D17,SOAP,PLLA,Plantago lanceolata,CA-NW,,,y,
+D17,SOAP,PLSE7,Plecostachys serpyllifolia,CA-NW,,,n,wrong habitat
+D17,SOAP,POPR,Poa pratensis,CA-NW,,,y,
+D17,SOAP,POMY5,Polygala myrtifolia,CA-NW,,,n,wrong habitat
+D17,SOAP,POMO5,Polypogon monspeliensis,CA-NW,,,y,
+D17,SOAP,POCR3,Potamogeton crispus,CA-NW,,,n,wrong habitat
+D17,SOAP,PRCE2,Prunus cerasifera,CA-NW,,,n,no nearby pops
+D17,SOAP,PYAN,Pyracantha angustifolia,CA-NW,,,n,no nearby pops
+D17,SOAP,PYCO2,Pyracantha coccinea,CA-NW,,,n,wrong habitat
+D17,SOAP,PYCR7,Pyracantha crenulata,CA-NW,,,n,no nearby pops
+D17,SOAP,PYCA80,Pyrus calleryana,CA-NW,,,n,no nearby pops
+D17,SOAP,RARE3,Ranunculus repens,CA-NW,,,n,no nearby pops
+D17,SOAP,RASA2,Raphanus sativus,CA-NW,,,y,
+D17,SOAP,RHAL12,Rhamnus alaternus,CA-NW,,,n,no nearby pops
+D17,SOAP,RICO3,Ricinus communis,CA-NW,,,n,no nearby pops
+D17,SOAP,ROPS,Robinia pseudoacacia,CA-NW,,,n,no nearby pops
+D17,SOAP,RORO,Romulea rosea var. australis,CA-NW,,,n,no nearby pops
+D17,SOAP,RUAR9,Rubus armeniacus,CA-NW,,,y,
+D17,SOAP,RUCR,Rumex crispus,CA-NW,,,y,
+D17,SOAP,RYCA,Rytidosperma caespitosum,CA-NW,,,n,wrong habitat
+D17,SOAP,NA,Rytidosperma penicillatum,CA-NW,,,n,wrong habitat
+D17,SOAP,SARA3,Saccharum ravennae,CA-NW,,,n,no nearby pops
+D17,SOAP,SAOR4,Salpichroa origanifolia,CA-NW,,,n,no nearby pops
+D17,SOAP,SAPA8,Salsola paulsenii,CA-NW,,,n,no nearby pops
+D17,SOAP,NA,Salsola ryanii,CA-NW,,,n,no nearby pops
+D17,SOAP,SASO3,Salsola soda,CA-NW,,,n,wrong habitat
+D17,SOAP,SATR12,Salsola tragus,CA-NW,,,n,no nearby pops
+D17,SOAP,SAAE,Salvia aethiopis,CA-NW,,,n,wrong habitat
+D17,SOAP,SAMO5,Salvinia molesta,CA-NW,,,n,wrong habitat
+D17,SOAP,SAOF4,Saponaria officinalis,CA-NW,,,n,no nearby pops
+D17,SOAP,SCAT,Scabiosa atropurpurea,CA-NW,,,n,no nearby pops
+D17,SOAP,SCMO,Schinus molle,CA-NW,,,n,no nearby pops
+D17,SOAP,SCTE,Schinus terebinthifolius,CA-NW,,,n,no nearby pops
+D17,SOAP,SCAR,Schismus arabicus,CA-NW,,,n,no nearby pops
+D17,SOAP,SCBA,Schismus barbatus,CA-NW,,,n,no nearby pops
+D17,SOAP,SCHI,Scolymus hispanicus,CA-NW,,,n,no nearby pops
+D17,SOAP,ERGL11,Senecio glomeratus,CA-NW,,,n,wrong habitat
+D17,SOAP,SEJA,Senecio jacobaea,CA-NW,,,n,no nearby pops
+D17,SOAP,SELI,Senecio linearifolius,CA-NW,,,n,no nearby pops
+D17,SOAP,SEPU7,Sesbania punicea,CA-NW,,,n,no nearby pops
+D17,SOAP,SIMA3,Silybum marianum,CA-NW,,,n,no nearby pops
+D17,SOAP,SIAR4,Sinapis arvensis,CA-NW,,,n,no nearby pops
+D17,SOAP,SIIR,Sisymbrium irio,CA-NW,,,n,no nearby pops
+D17,SOAP,SOAV,Solanum aviculare,CA-NW,,,n,no nearby pops
+D17,SOAP,SOCA3,Solanum carolinense,CA-NW,,,n,no nearby pops
+D17,SOAP,SPAL,Spartina alterniflora x S. foliosa,CA-NW,,,n,wrong habitat
+D17,SOAP,SPAN5,Spartina anglica,CA-NW,,,n,wrong habitat
+D17,SOAP,SPDE2,Spartina densiflora,CA-NW,,,n,wrong habitat
+D17,SOAP,SPPA,Spartina patens,CA-NW,,,n,wrong habitat
+D17,SOAP,SPJU2,Spartium junceum,CA-NW,,,y,
+D17,SOAP,SPSA3,Sphaerophysa salsula,CA-NW,,,n,no nearby pops
+D17,SOAP,ACBR5,Stipa brachychaeta,CA-NW,,,n,no nearby pops
+D17,SOAP,ACCA34,Stipa capensis,CA-NW,,,n,no nearby pops
+D17,SOAP,NAMA7,Stipa manicata,CA-NW,,,n,no nearby pops
+D17,SOAP,PIMI3,Stipa miliacea var. miliacea,CA-NW,,,n,no nearby pops
+D17,SOAP,NATE3,Stipa tenuissima,CA-NW,,,n,no nearby pops
+D17,SOAP,TAAP,Tamarix aphylla,CA-NW,,,n,wrong habitat
+D17,SOAP,TACH2,Tamarix chinensis,CA-NW,,,n,no nearby pops
+D17,SOAP,TAGA,Tamarix gallica,CA-NW,,,n,no nearby pops
+D17,SOAP,TAPA4,Tamarix parviflora,CA-NW,,,n,no nearby pops
+D17,SOAP,TARA,Tamarix ramosissima,CA-NW,,,n,no nearby pops
+D17,SOAP,TAVU,Tanacetum vulgare,CA-NW,,,n,no nearby pops
+D17,SOAP,TETE3,Tetragonia tetragonioides,CA-NW,,,n,wrong habitat
+D17,SOAP,THJU3,Thinopyrum junceiforme,CA-NW,,,n,wrong habitat
+D17,SOAP,TOAR,Torilis arvensis,CA-NW,,,y,
+D17,SOAP,TRSE6,Triadica sebifera,CA-NW,,,n,no nearby pops
+D17,SOAP,TRTE,Tribulus terrestris,CA-NW,,,n,no nearby pops
+D17,SOAP,TRHI4,Trifolium hirtum,CA-NW,,,y,
+D17,SOAP,ULEU,Ulex europaeus,CA-NW,,,n,no nearby pops
+D17,SOAP,NA,Undaria pinnatifida,CA-NW,,,n,wrong habitat
+D17,SOAP,VEDU,Ventenata dubia,CA-NW,,,n,no nearby pops
+D17,SOAP,VETH,Verbascum thapsus,CA-NW,,,y,
+D17,SOAP,VEBO,Verbena bonariensis,CA-NW,,,n,no nearby pops
+D17,SOAP,VIMA,Vinca major,CA-NW,,,y,
+D17,SOAP,NA,Volutaria tubuliflora,CA-NW,,,n,wrong habitat
+D17,SOAP,WARO,Washingtonia robusta,CA-NW,,,n,no nearby pops
+D17,SOAP,WAME,Watsonia meriana,CA-NW,,,n,wrong habitat
+D17,SOAP,ZAAE,Zantedeschia aethiopica,CA-NW,,,n,wrong habitat
+D17,SOAP,NAJA5,Zostera japonica,CA-NW,,,n,wrong habitat
+D17,SOAP,ZYFA,Zygophyllum fabago,CA-NW,,,n,no nearby pops
+D17,TEAK,ABTH,Abutilon theophrasti ,CA-NW,,,n,no nearby pops
+D17,TEAK,ACBA,Acacia baileyana,CA-NW,,,n,no nearby pops
+D17,TEAK,ACCY2,Acacia cyclops,CA-NW,,,n,wrong habitat
+D17,TEAK,ACDE3,Acacia dealbata,CA-NW,,,n,no nearby pops
+D17,TEAK,ACME,Acacia melanoxylon,CA-NW,,,n,no nearby pops
+D17,TEAK,ACPA8,Acacia paradoxa,CA-NW,,,n,no nearby pops
+D17,TEAK,ACPY3,Acacia pycnantha,CA-NW,,,n,no nearby pops
+D17,TEAK,ACNO7,Acaena novae-zelandiae,CA-NW,,,n,no nearby pops
+D17,TEAK,ACRE3,Acroptilon repens,CA-NW,,,y,
+D17,TEAK,AECY,Aegilops cylindrica,CA-NW,,,y,
+D17,TEAK,AETR,Aegilops triuncialis,CA-NW,,,y,
+D17,TEAK,AGAD2,Ageratina adenophora,CA-NW,,,n,no nearby pops
+D17,TEAK,AGAV,Agrostis avenacea,CA-NW,,,y,
+D17,TEAK,AGST2,Agrostis stolonifera,CA-NW,,,y,
+D17,TEAK,AIAL,Ailanthus altissima,CA-NW,,,y,
+D17,TEAK,ALMA12,Alhagi maurorum,CA-NW,,,y,
+D17,TEAK,ALPR3,Alopecurus pratensis,CA-NW,,,n,no nearby pops
+D17,TEAK,ALPH,Alternanthera philoxeroides,CA-NW,,,n,wrong habitat
+D17,TEAK,ALCO16,Alyssum corsicum,CA-NW,,,n,no nearby pops
+D17,TEAK,ALMU,Alyssum murale,CA-NW,,,n,no nearby pops
+D17,TEAK,AMTR,Ambrosia trifida,CA-NW,,,n,no nearby pops
+D17,TEAK,AMAR4,Ammophila arenaria,CA-NW,,,n,no nearby pops
+D17,TEAK,ANOD,Anthoxanthum odoratum,CA-NW,,,y,
+D17,TEAK,ARSE8,Araujia sericifera,CA-NW,,,n,no nearby pops
+D17,TEAK,ARCA45,Arctotheca calendula,CA-NW,,,n,no nearby pops
+D17,TEAK,NA,Arctotheca prostrata,CA-NW,,,n,no nearby pops
+D17,TEAK,ARDO4,Arundo donax,CA-NW,,,n,wrong habitat
+D17,TEAK,ASAS4,Asparagus asparagoides,CA-NW,,,n,no nearby pops
+D17,TEAK,ASFI2,Asphodelus fistulosus,CA-NW,,,n,no nearby pops
+D17,TEAK,ATSE,Atriplex semibaccata,CA-NW,,,n,no nearby pops
+D17,TEAK,AVBA,Avena barbata ,CA-NW,,,y,
+D17,TEAK,AVFA,Avena fatua,CA-NW,,,y,
+D17,TEAK,BAHY,Bassia hyssopifolia,CA-NW,,,n,wrong habitat
+D17,TEAK,BETR,Bellardia trixago,CA-NW,,,n,no nearby pops
+D17,TEAK,BEDA,Berberis darwinii,CA-NW,,,n,wrong habitat
+D17,TEAK,BEIN2,Berteroa incana,CA-NW,,,n,no nearby pops
+D17,TEAK,BRDI2,Brachypodium distachyon,CA-NW,,,n,wrong habitat
+D17,TEAK,BRSY,Brachypodium sylvaticum,CA-NW,,,n,no nearby pops
+D17,TEAK,BRNI,Brassica nigra,CA-NW,,,y,
+D17,TEAK,BRRA,Brassica rapa,CA-NW,,,n,no nearby pops
+D17,TEAK,BRTO,Brassica tournefortii,CA-NW,,,n,no nearby pops
+D17,TEAK,BRMA,Briza maxima,CA-NW,,,n,no nearby pops
+D17,TEAK,BRDI3,Bromus diandrus,CA-NW,,,n,no nearby pops
+D17,TEAK,BRHO2,Bromus hordeaceus ,CA-NW,,,y,
+D17,TEAK,BRAR5,Bromus japonicus,CA-NW,,,n,no nearby pops
+D17,TEAK,BRMAR,Bromus madritensis ssp. rubens,CA-NW,,,y,
+D17,TEAK,BRTE,Bromus tectorum,CA-NW,,,y,
+D17,TEAK,BUDA2,Buddleja davidii,CA-NW,,,n,wrong habitat
+D17,TEAK,CAMA,Cakile maritima,CA-NW,,,n,wrong habitat
+D17,TEAK,CAAC,Carduus acanthoides,CA-NW,,,n,no nearby pops
+D17,TEAK,CANU4,Carduus nutans,CA-NW,,,n,no nearby pops
+D17,TEAK,CAPY2,Carduus pycnocephalus,CA-NW,,,y,
+D17,TEAK,CATE2,Carduus tenuiflorus,CA-NW,,,y,
+D17,TEAK,CAPE45,Carex pendula,CA-NW,,,n,no nearby pops
+D17,TEAK,CACH38,Carpobrotus chilensis,CA-NW,,,n,wrong habitat
+D17,TEAK,CAED3,Carpobrotus edulis,CA-NW,,,n,wrong habitat
+D17,TEAK,NA,Carrichtera annua,CA-NW,,,n,no nearby pops
+D17,TEAK,CALA20,Carthamus lanatus,CA-NW,,,n,no nearby pops
+D17,TEAK,CAEQ,Casuarina equisetifolia,CA-NW,,,n,no nearby pops
+D17,TEAK,CARO14,Catharanthus roseus,CA-NW,,,n,no nearby pops
+D17,TEAK,CEEC,Cenchrus echinatus,CA-NW,,,n,no nearby pops
+D17,TEAK,CELO3,Cenchrus longispinus,CA-NW,,,n,wrong habitat
+D17,TEAK,CECA2,Centaurea calcitrapa,CA-NW,,,n,no nearby pops
+D17,TEAK,CEDI3,Centaurea diffusa,CA-NW,,,n,wrong habitat
+D17,TEAK,CEDI4,Centaurea diluta,CA-NW,,,n,no nearby pops
+D17,TEAK,CEJA,Centaurea jacea ssp. pratensis,CA-NW,,,n,no nearby pops
+D17,TEAK,CEME2,Centaurea melitensis ,CA-NW,,,y,
+D17,TEAK,CESO3,Centaurea solstitialis,CA-NW,,,y,
+D17,TEAK,CEST8,Centaurea stoebe ssp. micranthos,CA-NW,,,y,
+D17,TEAK,CEVI,Centaurea virgata var. squarrosa,CA-NW,,,n,no nearby pops
+D17,TEAK,CENO,Cestrum parqui,CA-NW,,,n,no nearby pops
+D17,TEAK,CHFL9,Chasmanthe floribunda,CA-NW,,,n,wrong habitat
+D17,TEAK,CHJU,Chondrilla juncea,CA-NW,,,n,no nearby pops
+D17,TEAK,NA,Chrysanthemoides monilifera ssp. monilifera,CA-NW,,,n,no nearby pops
+D17,TEAK,CIAR4,Cirsium arvense,CA-NW,,,y,
+D17,TEAK,CIVU,Cirsium vulgare,CA-NW,,,y,
+D17,TEAK,CLVI6,Clematis vitalba,CA-NW,,,n,wrong habitat
+D17,TEAK,COES,Colocasia esculenta,CA-NW,,,n,no nearby pops
+D17,TEAK,COPU18,Conicosia pugioniformis,CA-NW,,,n,wrong habitat
+D17,TEAK,COMA2,Conium maculatum,CA-NW,,,n,wrong habitat
+D17,TEAK,COJU2,Cortaderia jubata,CA-NW,,,n,wrong habitat
+D17,TEAK,COSE4,Cortaderia selloana,CA-NW,,,n,wrong habitat
+D17,TEAK,COFR3,Cotoneaster franchetii,CA-NW,,,n,wrong habitat
+D17,TEAK,COLA18,Cotoneaster lacteus,CA-NW,,,n,wrong habitat
+D17,TEAK,COPA14,Cotoneaster pannosus,CA-NW,,,n,wrong habitat
+D17,TEAK,COCO7,Cotula coronopifolia,CA-NW,,,n,wrong habitat
+D17,TEAK,CRMO3,Crataegus monogyna,CA-NW,,,n,no nearby pops
+D17,TEAK,CRVU2,Crupina vulgaris,CA-NW,,,n,no nearby pops
+D17,TEAK,CYCA,Cynara cardunculus,CA-NW,,,n,no nearby pops
+D17,TEAK,CYDA,Cynodon dactylon,CA-NW,,,y,
+D17,TEAK,CYOF,Cynoglossum officinale,CA-NW,,,n,no nearby pops
+D17,TEAK,CYEC,Cynosurus echinatus,CA-NW,,,y,
+D17,TEAK,CYMU3,Cytisus multiflorus,CA-NW,,,n,no nearby pops
+D17,TEAK,CHPR14,Cytisus proliferus,CA-NW,,,n,no nearby pops
+D17,TEAK,CYSC4,Cytisus scoparius,CA-NW,,,n,no nearby pops
+D17,TEAK,CYST7,Cytisus striatus,CA-NW,,,n,no nearby pops
+D17,TEAK,DAGL,Dactylis glomerata,CA-NW,,,y,
+D17,TEAK,DAIN2,Datura inoxia,CA-NW,,,n,no nearby pops
+D17,TEAK,DEOD,Delairea odorata,CA-NW,,,n,no nearby pops
+D17,TEAK,DESO2,Descurainia sophia,CA-NW,,,y,
+D17,TEAK,DIPU,Digitalis purpurea,CA-NW,,,y,
+D17,TEAK,DILI8,Dipogon lignosus,CA-NW,,,n,no nearby pops
+D17,TEAK,DIFU2,Dipsacus fullonum,CA-NW,,,n,no nearby pops
+D17,TEAK,DILA4,Dipsacus laciniatus,CA-NW,,,n,no nearby pops
+D17,TEAK,DISA9,Dipsacus sativus,CA-NW,,,n,no nearby pops
+D17,TEAK,DIGR3,Dittrichia graveolens,CA-NW,,,n,wrong habitat
+D17,TEAK,DIVI6,Dittrichia viscosa,CA-NW,,,n,no nearby pops
+D17,TEAK,ECCA5,Echium candicans,CA-NW,,,n,wrong habitat
+D17,TEAK,ECPL,Echium plantagineum,CA-NW,,,n,wrong habitat
+D17,TEAK,EGDE,Egeria densa,CA-NW,,,n,wrong habitat
+D17,TEAK,EHCA,Ehrharta calycina,CA-NW,,,n,wrong habitat
+D17,TEAK,EHER,Ehrharta erecta,CA-NW,,,n,wrong habitat
+D17,TEAK,EHLO3,Ehrharta longiflora,CA-NW,,,n,no nearby pops
+D17,TEAK,EICR,Eichhornia crassipes,CA-NW,,,n,wrong habitat
+D17,TEAK,ELAN,Elaeagnus angustifolia,CA-NW,,,n,no nearby pops
+D17,TEAK,TACA8,Elymus caput-medusae,CA-NW,,,y,
+D17,TEAK,EMSP,Emex spinosa,CA-NW,,,n,wrong habitat
+D17,TEAK,ERLU6,Erica lusitanica,CA-NW,,,n,wrong habitat
+D17,TEAK,ERCI6,Erodium cicutarium ,CA-NW,,,y,
+D17,TEAK,EUCA2,Eucalyptus camaldulensis,CA-NW,,,n,no nearby pops
+D17,TEAK,EUCL,Eucalyptus cladocalyx,CA-NW,,,n,no nearby pops
+D17,TEAK,EUGL,Eucalyptus globulus,CA-NW,,,n,no nearby pops
+D17,TEAK,EULA4,Euphorbia lathyris,CA-NW,,,n,no nearby pops
+D17,TEAK,EUOB4,Euphorbia oblongata,CA-NW,,,n,no nearby pops
+D17,TEAK,EUTE10,Euphorbia terracina,CA-NW,,,n,wrong habitat
+D17,TEAK,EUESU,Euphorbia virgata,CA-NW,,,n,no nearby pops
+D17,TEAK,POCU6,Fallopia japonica,CA-NW,,,n,no nearby pops
+D17,TEAK,POSA4,Fallopia sachalinensis,CA-NW,,,n,no nearby pops
+D17,TEAK,SCAR7,Festuca arundinacea,CA-NW,,,n,no nearby pops
+D17,TEAK,VUMY,Festuca myuros,CA-NW,,,y,
+D17,TEAK,LOPE,Festuca perennis,CA-NW,,,y,
+D17,TEAK,FICA,Ficus carica,CA-NW,,,n,wrong habitat
+D17,TEAK,FOVU,Foeniculum vulgare,CA-NW,,,n,no nearby pops
+D17,TEAK,GAOF,Galega officinalis,CA-NW,,,n,no nearby pops
+D17,TEAK,GALI4,Gazania linearis,CA-NW,,,n,wrong habitat
+D17,TEAK,GELI5,Genista linifolia,CA-NW,,,n,no nearby pops
+D17,TEAK,REMO2,Genista monosperma,CA-NW,,,n,no nearby pops
+D17,TEAK,GEMO2,Genista monspessulana,CA-NW,,,n,no nearby pops
+D17,TEAK,GEDI,Geranium dissectum,CA-NW,,,y,
+D17,TEAK,GELU,Geranium lucidum,CA-NW,,,n,wrong habitat
+D17,TEAK,GEROP,Geranium purpureum,CA-NW,,,n,wrong habitat
+D17,TEAK,NA,Glebionis coronaria,CA-NW,,,n,wrong habitat
+D17,TEAK,GLDE,Glyceria declinata,CA-NW,,,n,no nearby pops
+D17,TEAK,GRRO,Grevillea robusta,CA-NW,,,n,no nearby pops
+D17,TEAK,GUTI,Gunnera tinctoria,CA-NW,,,n,wrong habitat
+D17,TEAK,GYPA,Gypsophila paniculata,CA-NW,,,n,no nearby pops
+D17,TEAK,HAGL,Halogeton glomeratus,CA-NW,,,n,wrong habitat
+D17,TEAK,HEHEC,Hedera canariensis,CA-NW,,,n,wrong habitat
+D17,TEAK,HEHE,Hedera helix,CA-NW,,,n,no nearby pops
+D17,TEAK,HETU,Helianthus tuberosus,CA-NW,,,n,no nearby pops
+D17,TEAK,HEPE8,Helichrysum petiolare,CA-NW,,,n,wrong habitat
+D17,TEAK,HEAM4,Heliotropium amplexicaule,CA-NW,,,n,wrong habitat
+D17,TEAK,PIEC,Helminthotheca echioides,CA-NW,,,n,no nearby pops
+D17,TEAK,HEMA17,Heracleum mantegazzianum,CA-NW,,,n,no nearby pops
+D17,TEAK,HIIN3,Hirschfeldia incana ,CA-NW,,,y,
+D17,TEAK,HOLA,Holcus lanatus,CA-NW,,,y,
+D17,TEAK,HOMA2,Hordeum marinum,CA-NW,,,y,
+D17,TEAK,HOMUL,Hordeum murinum ,CA-NW,,,y,
+D17,TEAK,HYVE3,Hydrilla verticillata,CA-NW,,,n,wrong habitat
+D17,TEAK,HYHI,Hyparrhenia hirta,CA-NW,,,n,wrong habitat
+D17,TEAK,HYAN8,Hypericum androsaemum,CA-NW,,,n,no nearby pops
+D17,TEAK,HYCA11,Hypericum canariense,CA-NW,,,n,wrong habitat
+D17,TEAK,HYGR6,Hypericum grandifolium,CA-NW,,,n,wrong habitat
+D17,TEAK,HYPE,Hypericum perforatum,CA-NW,,,y,
+D17,TEAK,HYGL2,Hypochaeris glabra ,CA-NW,,,y,
+D17,TEAK,HYRA3,Hypochaeris radicata,CA-NW,,,y,
+D17,TEAK,ILAQ80,Ilex aquifolium,CA-NW,,,n,wrong habitat
+D17,TEAK,IPIN,Ipomoea indica,CA-NW,,,n,wrong habitat
+D17,TEAK,IRPS,Iris pseudacorus,CA-NW,,,n,wrong habitat
+D17,TEAK,ISTI,Isatis tinctoria,CA-NW,,,n,no nearby pops
+D17,TEAK,KNUV80,Kniphofia uvaria,CA-NW,,,n,wrong habitat
+D17,TEAK,BASC5,Kochia scoparia,CA-NW,,,n,no nearby pops
+D17,TEAK,LACA2,Lantana camara,CA-NW,,,n,wrong habitat
+D17,TEAK,NA,Lepidium chalepense,CA-NW,,,n,no nearby pops
+D17,TEAK,CADR,Lepidium draba,CA-NW,,,n,no nearby pops
+D17,TEAK,LELA2,Lepidium latifolium,CA-NW,,,n,no nearby pops
+D17,TEAK,LELA29,Leptospermum laevigatum,CA-NW,,,n,wrong habitat
+D17,TEAK,LEVU,Leucanthemum vulgare,CA-NW,,,n,no nearby pops
+D17,TEAK,LILU2,Ligustrum lucidum,CA-NW,,,n,no nearby pops
+D17,TEAK,LISP2,Limnobium spongia,CA-NW,,,n,wrong habitat
+D17,TEAK,NA,Limonium duriusculum,CA-NW,,,n,no nearby pops
+D17,TEAK,LIRA2,Limonium ramosissimum,CA-NW,,,n,wrong habitat
+D17,TEAK,LIDA,Linaria dalmatica ssp. dalmatica,CA-NW,,,n,no nearby pops
+D17,TEAK,LIVU2,Linaria vulgaris,CA-NW,,,n,no nearby pops
+D17,TEAK,LOMA,Lobularia maritima,CA-NW,,,n,no nearby pops
+D17,TEAK,LUGRH,Ludwigia hexapetala,CA-NW,,,n,wrong habitat
+D17,TEAK,LUPE5,Ludwigia peploides,CA-NW,,,n,wrong habitat
+D17,TEAK,LYHY3,Lythrum hyssopifolium,CA-NW,,,y,
+D17,TEAK,LYSA2,Lythrum salicaria,CA-NW,,,n,wrong habitat
+D17,TEAK,MACR3,Malephora crocea,CA-NW,,,n,wrong habitat
+D17,TEAK,MAVU,Marrubium vulgare,CA-NW,,,y,
+D17,TEAK,MABO8,Maytenus boaria,CA-NW,,,n,no nearby pops
+D17,TEAK,MEPO3,Medicago polymorpha,CA-NW,,,y,
+D17,TEAK,MEPU,Mentha pulegium,CA-NW,,,y,
+D17,TEAK,MECR3,Mesembryanthemum crystallinum,CA-NW,,,n,wrong habitat
+D17,TEAK,MENO2,Mesembryanthemum nodiflorum,CA-NW,,,n,wrong habitat
+D17,TEAK,MYLA5,Myoporum laetum,CA-NW,,,n,wrong habitat
+D17,TEAK,MYLA4,Myosotis latifolia,CA-NW,,,n,wrong habitat
+D17,TEAK,MYAQ2,Myriophyllum aquaticum,CA-NW,,,n,wrong habitat
+D17,TEAK,MYSP2,Myriophyllum spicatum,CA-NW,,,n,wrong habitat
+D17,TEAK,NAST3,Nardus stricta,CA-NW,,,n,no nearby pops
+D17,TEAK,NIGL,Nicotiana glauca,CA-NW,,,n,no nearby pops
+D17,TEAK,NOGR3,Nothoscordum gracile,CA-NW,,,n,no nearby pops
+D17,TEAK,OLEU,Olea europaea,CA-NW,,,n,no nearby pops
+D17,TEAK,ONPI,Oncosiphon piluliferum,CA-NW,,,n,wrong habitat
+D17,TEAK,ONAL5,Ononis alopecuroides,CA-NW,,,n,no nearby pops
+D17,TEAK,ONAC,Onopordum acanthium,CA-NW,,,n,no nearby pops
+D17,TEAK,ONIL,Onopordum illyricum,CA-NW,,,n,no nearby pops
+D17,TEAK,ORAE3,Orobanche aegyptiaca,CA-NW,,,n,no nearby pops
+D17,TEAK,OXPE,Oxalis pes-caprae,CA-NW,,,n,no nearby pops
+D17,TEAK,PALO8,Paraserianthes lophantha,CA-NW,,,n,no nearby pops
+D17,TEAK,PAVI3,Parentucellia viscosa,CA-NW,,,n,no nearby pops
+D17,TEAK,PAHY,Parthenium hysterophorus,CA-NW,,,n,no nearby pops
+D17,TEAK,PAUR2,Paspalum urvillei,CA-NW,,,n,no nearby pops
+D17,TEAK,PAVA,Paspalum vaginatum,CA-NW,,,n,wrong habitat
+D17,TEAK,PATA6,Passiflora tarminiana,CA-NW,,,n,wrong habitat
+D17,TEAK,PEHA,Peganum harmala,CA-NW,,,n,no nearby pops
+D17,TEAK,PECL2,Pennisetum clandestinum,CA-NW,,,n,no nearby pops
+D17,TEAK,PESE3,Pennisetum setaceum,CA-NW,,,n,no nearby pops
+D17,TEAK,PEVI2,Pennisetum villosum,CA-NW,,,n,no nearby pops
+D17,TEAK,POPO5,Persicaria wallichii,CA-NW,,,n,wrong habitat
+D17,TEAK,PHAQ,Phalaris aquatica,CA-NW,,,y,
+D17,TEAK,PHCA13,Phoenix canariensis,CA-NW,,,n,wrong habitat
+D17,TEAK,PHAM4,Phytolacca americana,CA-NW,,,n,no nearby pops
+D17,TEAK,PIUN2,Pittosporum undulatum,CA-NW,,,n,wrong habitat
+D17,TEAK,PLLA,Plantago lanceolata,CA-NW,,,y,
+D17,TEAK,PLSE7,Plecostachys serpyllifolia,CA-NW,,,n,wrong habitat
+D17,TEAK,POPR,Poa pratensis,CA-NW,,,y,
+D17,TEAK,POMY5,Polygala myrtifolia,CA-NW,,,n,wrong habitat
+D17,TEAK,POMO5,Polypogon monspeliensis,CA-NW,,,y,
+D17,TEAK,POCR3,Potamogeton crispus,CA-NW,,,n,wrong habitat
+D17,TEAK,PRCE2,Prunus cerasifera,CA-NW,,,n,no nearby pops
+D17,TEAK,PYAN,Pyracantha angustifolia,CA-NW,,,n,no nearby pops
+D17,TEAK,PYCO2,Pyracantha coccinea,CA-NW,,,n,wrong habitat
+D17,TEAK,PYCR7,Pyracantha crenulata,CA-NW,,,n,no nearby pops
+D17,TEAK,PYCA80,Pyrus calleryana,CA-NW,,,n,no nearby pops
+D17,TEAK,RARE3,Ranunculus repens,CA-NW,,,n,no nearby pops
+D17,TEAK,RASA2,Raphanus sativus,CA-NW,,,y,
+D17,TEAK,RHAL12,Rhamnus alaternus,CA-NW,,,n,no nearby pops
+D17,TEAK,RICO3,Ricinus communis,CA-NW,,,n,no nearby pops
+D17,TEAK,ROPS,Robinia pseudoacacia,CA-NW,,,n,no nearby pops
+D17,TEAK,RORO,Romulea rosea var. australis,CA-NW,,,n,no nearby pops
+D17,TEAK,RUAR9,Rubus armeniacus,CA-NW,,,y,
+D17,TEAK,RUCR,Rumex crispus,CA-NW,,,y,
+D17,TEAK,RYCA,Rytidosperma caespitosum,CA-NW,,,n,wrong habitat
+D17,TEAK,NA,Rytidosperma penicillatum,CA-NW,,,n,wrong habitat
+D17,TEAK,SARA3,Saccharum ravennae,CA-NW,,,n,no nearby pops
+D17,TEAK,SAOR4,Salpichroa origanifolia,CA-NW,,,n,no nearby pops
+D17,TEAK,SAPA8,Salsola paulsenii,CA-NW,,,n,no nearby pops
+D17,TEAK,NA,Salsola ryanii,CA-NW,,,n,no nearby pops
+D17,TEAK,SASO3,Salsola soda,CA-NW,,,n,wrong habitat
+D17,TEAK,SATR12,Salsola tragus,CA-NW,,,n,no nearby pops
+D17,TEAK,SAAE,Salvia aethiopis,CA-NW,,,n,wrong habitat
+D17,TEAK,SAMO5,Salvinia molesta,CA-NW,,,n,wrong habitat
+D17,TEAK,SAOF4,Saponaria officinalis,CA-NW,,,n,no nearby pops
+D17,TEAK,SCAT,Scabiosa atropurpurea,CA-NW,,,n,no nearby pops
+D17,TEAK,SCMO,Schinus molle,CA-NW,,,n,no nearby pops
+D17,TEAK,SCTE,Schinus terebinthifolius,CA-NW,,,n,no nearby pops
+D17,TEAK,SCAR,Schismus arabicus,CA-NW,,,n,no nearby pops
+D17,TEAK,SCBA,Schismus barbatus,CA-NW,,,n,no nearby pops
+D17,TEAK,SCHI,Scolymus hispanicus,CA-NW,,,n,no nearby pops
+D17,TEAK,ERGL11,Senecio glomeratus,CA-NW,,,n,wrong habitat
+D17,TEAK,SEJA,Senecio jacobaea,CA-NW,,,n,no nearby pops
+D17,TEAK,SELI,Senecio linearifolius,CA-NW,,,n,no nearby pops
+D17,TEAK,SEPU7,Sesbania punicea,CA-NW,,,n,no nearby pops
+D17,TEAK,SIMA3,Silybum marianum,CA-NW,,,n,no nearby pops
+D17,TEAK,SIAR4,Sinapis arvensis,CA-NW,,,n,no nearby pops
+D17,TEAK,SIIR,Sisymbrium irio,CA-NW,,,n,no nearby pops
+D17,TEAK,SOAV,Solanum aviculare,CA-NW,,,n,no nearby pops
+D17,TEAK,SOCA3,Solanum carolinense,CA-NW,,,n,no nearby pops
+D17,TEAK,SPAL,Spartina alterniflora x S. foliosa,CA-NW,,,n,wrong habitat
+D17,TEAK,SPAN5,Spartina anglica,CA-NW,,,n,wrong habitat
+D17,TEAK,SPDE2,Spartina densiflora,CA-NW,,,n,wrong habitat
+D17,TEAK,SPPA,Spartina patens,CA-NW,,,n,wrong habitat
+D17,TEAK,SPJU2,Spartium junceum,CA-NW,,,y,
+D17,TEAK,SPSA3,Sphaerophysa salsula,CA-NW,,,n,no nearby pops
+D17,TEAK,ACBR5,Stipa brachychaeta,CA-NW,,,n,no nearby pops
+D17,TEAK,ACCA34,Stipa capensis,CA-NW,,,n,no nearby pops
+D17,TEAK,NAMA7,Stipa manicata,CA-NW,,,n,no nearby pops
+D17,TEAK,PIMI3,Stipa miliacea var. miliacea,CA-NW,,,n,no nearby pops
+D17,TEAK,NATE3,Stipa tenuissima,CA-NW,,,n,no nearby pops
+D17,TEAK,TAAP,Tamarix aphylla,CA-NW,,,n,wrong habitat
+D17,TEAK,TACH2,Tamarix chinensis,CA-NW,,,n,no nearby pops
+D17,TEAK,TAGA,Tamarix gallica,CA-NW,,,n,no nearby pops
+D17,TEAK,TAPA4,Tamarix parviflora,CA-NW,,,n,no nearby pops
+D17,TEAK,TARA,Tamarix ramosissima,CA-NW,,,n,no nearby pops
+D17,TEAK,TAVU,Tanacetum vulgare,CA-NW,,,n,no nearby pops
+D17,TEAK,TETE3,Tetragonia tetragonioides,CA-NW,,,n,wrong habitat
+D17,TEAK,THJU3,Thinopyrum junceiforme,CA-NW,,,n,wrong habitat
+D17,TEAK,TOAR,Torilis arvensis,CA-NW,,,y,
+D17,TEAK,TRSE6,Triadica sebifera,CA-NW,,,n,no nearby pops
+D17,TEAK,TRTE,Tribulus terrestris,CA-NW,,,n,no nearby pops
+D17,TEAK,TRHI4,Trifolium hirtum,CA-NW,,,y,
+D17,TEAK,ULEU,Ulex europaeus,CA-NW,,,n,no nearby pops
+D17,TEAK,NA,Undaria pinnatifida,CA-NW,,,n,wrong habitat
+D17,TEAK,VEDU,Ventenata dubia,CA-NW,,,n,no nearby pops
+D17,TEAK,VETH,Verbascum thapsus,CA-NW,,,y,
+D17,TEAK,VEBO,Verbena bonariensis,CA-NW,,,n,no nearby pops
+D17,TEAK,VIMA,Vinca major,CA-NW,,,y,
+D17,TEAK,NA,Volutaria tubuliflora,CA-NW,,,n,wrong habitat
+D17,TEAK,WARO,Washingtonia robusta,CA-NW,,,n,no nearby pops
+D17,TEAK,WAME,Watsonia meriana,CA-NW,,,n,wrong habitat
+D17,TEAK,ZAAE,Zantedeschia aethiopica,CA-NW,,,n,wrong habitat
+D17,TEAK,NAJA5,Zostera japonica,CA-NW,,,n,wrong habitat
+D17,TEAK,ZYFA,Zygophyllum fabago,CA-NW,,,n,no nearby pops
+D18,TOOL,ACRE3,Acroptilon repens,AK-NW,,,y,
+D18,TOOL,ACRE3,Centaurea repens ,AK-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D18,BARR,AVFA,Avena fatua,AK-NW,,,y,
+D18,BARR,BRJUJ,Brassica juncea,AK-NW,,,y,
+D18,BARR,CADR,"Cardaria draba, C. pubescens, Lapidium latifolium",AK-NW,,,y,
+D19,BONA,ACRE3,Acroptilon repens,AK-NW,,,y,
+D18,BARR,CIAR4,Cirsium arvense,AK-NW,,,y,
+D19,BONA,ACRE3,Centaurea repens ,AK-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D19,DEJU,ACRE3,Acroptilon repens,AK-NW,,,y,
+D18,BARR,EGDE,Egeria densa,AK-NW,,,y,
+D18,BARR,ELCA7,Elodea Canadensis,AK-NW,,,y,
+D18,BARR,ELNU2,Elodea nuttallii,AK-NW,,,y,
+D19,DEJU,ACRE3,Centaurea repens ,AK-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D18,BARR,EUES,Euphorbia esula,AK-NW,,,y,
+D18,BARR,GAPA2,Galensoga parviflora,AK-NW,,,y,
+D18,BARR,GATE2,Galeopsis tetrahit,AK-NW,,,y,
+D18,BARR,HIAU,Hieracium aurantiacum,AK-NW,,,y,
+D18,BARR,HYDRI,Hydrilla verticullata,AK-NW,,,y,
+D18,BARR,LAPU,Lactuca pulchella,AK-NW,,,y,
+D18,BARR,LAECO,Lappula echinata,AK-NW,,,y,
+D18,BARR,LATAP,Latuca punchella,AK-NW,,,y,
+D18,BARR,LIVU2,Linaria vulgaris,AK-NW,,,y,
+D18,BARR,LYSA2,Lythrum salicaria,AK-NW,,,y,
+D18,BARR,MYSI,Myriophyllum spicatum,AK-NW,,,y,
+D18,BARR,PLSP5,Plantago sp.,AK-NW,,,y,
+D18,BARR,POAN,Poa annua,AK-NW,,,y,
+D18,BARR,POCO10,Polygonum convolvulus,AK-NW,,,y,
+D18,BARR,RARA2,Raphanus raphanistrum,AK-NW,,,y,
+D18,BARR,ROAU,Rorippa austriaca,AK-NW,,,y,
+D18,BARR,SIAR4,Sinapis arvensis,AK-NW,,,y,
+D18,BARR,SOCA3,Solanum carolinense,AK-NW,,,y,
+D18,BARR,SOAR2,Sonchus arvensis,AK-NW,,,y,
+D18,BARR,VICR,Vicia cracca,AK-NW,,,y,
+D19,HEAL,ACRE3,Acroptilon repens,AK-NW,,,y,
+D19,HEAL,ACRE3,Centaurea repens ,AK-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D18,TOOL,AVFA,Avena fatua,AK-NW,,,y,
+D18,TOOL,BRJUJ,Brassica juncea,AK-NW,,,y,
+D18,TOOL,CADR,"Cardaria draba, C. pubescens, Lapidium latifolium",AK-NW,,,y,
+D18,BARR,COAR4,Convolvulus arvensis,AK-NW,,,y,
+D18,TOOL,CIAR4,Cirsium arvense,AK-NW,,,y,
+D18,TOOL,COAR4,Convolvulus arvensis,AK-NW,,,y,
+D18,TOOL,EGDE,Egeria densa,AK-NW,,,y,
+D18,TOOL,ELCA7,Elodea Canadensis,AK-NW,,,y,
+D18,TOOL,ELNU2,Elodea nuttallii,AK-NW,,,y,
+D18,BARR,COAR4,Convolvulus arvensisi,AK-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D18,TOOL,EUES,Euphorbia esula,AK-NW,,,y,
+D18,TOOL,GAPA2,Galensoga parviflora,AK-NW,,,y,
+D18,TOOL,GATE2,Galeopsis tetrahit,AK-NW,,,y,
+D18,TOOL,HIAU,Hieracium aurantiacum,AK-NW,,,y,
+D18,TOOL,HYDRI,Hydrilla verticullata,AK-NW,,,y,
+D18,TOOL,LAPU,Lactuca pulchella,AK-NW,,,y,
+D18,TOOL,LAECO,Lappula echinata,AK-NW,,,y,
+D18,TOOL,LATAP,Latuca punchella,AK-NW,,,y,
+D18,TOOL,LIVU2,Linaria vulgaris,AK-NW,,,y,
+D18,TOOL,LYSA2,Lythrum salicaria,AK-NW,,,y,
+D18,TOOL,MYSI,Myriophyllum spicatum,AK-NW,,,y,
+D18,TOOL,PLSP5,Plantago sp.,AK-NW,,,y,
+D18,TOOL,POAN,Poa annua,AK-NW,,,y,
+D18,TOOL,POCO10,Polygonum convolvulus,AK-NW,,,y,
+D18,TOOL,RARA2,Raphanus raphanistrum,AK-NW,,,y,
+D18,TOOL,ROAU,Rorippa austriaca,AK-NW,,,y,
+D18,TOOL,SIAR4,Sinapis arvensis,AK-NW,,,y,
+D18,TOOL,SOCA3,Solanum carolinense,AK-NW,,,y,
+D18,TOOL,SOAR2,Sonchus arvensis,AK-NW,,,y,
+D18,TOOL,VICR,Vicia cracca,AK-NW,,,y,
+D18,BARR,ELRE4,Agropyron repens,AK-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D18,BARR,ELRE4,Elymus repens,AK-NW,,,y,
+D19,BONA,AVFA,Avena fatua,AK-NW,,,y,
+D19,BONA,BRJUJ,Brassica juncea,AK-NW,,,y,
+D19,BONA,CADR,"Cardaria draba, C. pubescens, Lapidium latifolium",AK-NW,,,y,
+D18,TOOL,ELRE4,Agropyron repens,AK-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D19,BONA,CIAR4,Cirsium arvense,AK-NW,,,y,
+D19,BONA,COAR4,Convolvulus arvensis,AK-NW,,,y,
+D19,BONA,EGDE,Egeria densa,AK-NW,,,y,
+D19,BONA,ELCA7,Elodea Canadensis,AK-NW,,,y,
+D19,BONA,ELNU2,Elodea nuttallii,AK-NW,,,y,
+D18,TOOL,ELRE4,Elymus repens,AK-NW,,,y,
+D19,BONA,EUES,Euphorbia esula,AK-NW,,,y,
+D19,BONA,GAPA2,Galensoga parviflora,AK-NW,,,y,
+D19,BONA,GATE2,Galeopsis tetrahit,AK-NW,,,y,
+D19,BONA,HIAU,Hieracium aurantiacum,AK-NW,,,y,
+D19,BONA,HYDRI,Hydrilla verticullata,AK-NW,,,y,
+D19,BONA,LAPU,Lactuca pulchella,AK-NW,,,y,
+D19,BONA,LAECO,Lappula echinata,AK-NW,,,y,
+D19,BONA,LATAP,Latuca punchella,AK-NW,,,y,
+D19,BONA,LIVU2,Linaria vulgaris,AK-NW,,,y,
+D19,BONA,LYSA2,Lythrum salicaria,AK-NW,,,y,
+D19,BONA,MYSI,Myriophyllum spicatum,AK-NW,,,y,
+D19,BONA,PLSP5,Plantago sp.,AK-NW,,,y,
+D19,BONA,POAN,Poa annua,AK-NW,,,y,
+D19,BONA,POCO10,Polygonum convolvulus,AK-NW,,,y,
+D19,BONA,RARA2,Raphanus raphanistrum,AK-NW,,,y,
+D19,BONA,ROAU,Rorippa austriaca,AK-NW,,,y,
+D19,BONA,SIAR4,Sinapis arvensis,AK-NW,,,y,
+D19,BONA,SOCA3,Solanum carolinense,AK-NW,,,y,
+D19,BONA,SOAR2,Sonchus arvensis,AK-NW,,,y,
+D19,BONA,VICR,Vicia cracca,AK-NW,,,y,
+D19,BONA,ELRE4,Agropyron repens,AK-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D19,BONA,ELRE4,Elymus repens,AK-NW,,,y,
+D19,DEJU,AVFA,Avena fatua,AK-NW,,,y,
+D19,DEJU,BRJUJ,Brassica juncea,AK-NW,,,y,
+D19,DEJU,CADR,"Cardaria draba, C. pubescens, Lapidium latifolium",AK-NW,,,y,
+D19,DEJU,ELRE4,Agropyron repens,AK-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D19,DEJU,CIAR4,Cirsium arvense,AK-NW,,,y,
+D19,DEJU,COAR4,Convolvulus arvensis,AK-NW,,,y,
+D19,DEJU,EGDE,Egeria densa,AK-NW,,,y,
+D19,DEJU,ELCA7,Elodea Canadensis,AK-NW,,,y,
+D19,DEJU,ELNU2,Elodea nuttallii,AK-NW,,,y,
+D19,DEJU,ELRE4,Elymus repens,AK-NW,,,y,
+D19,DEJU,EUES,Euphorbia esula,AK-NW,,,y,
+D19,DEJU,GAPA2,Galensoga parviflora,AK-NW,,,y,
+D19,DEJU,GATE2,Galeopsis tetrahit,AK-NW,,,y,
+D19,DEJU,HIAU,Hieracium aurantiacum,AK-NW,,,y,
+D19,DEJU,HYDRI,Hydrilla verticullata,AK-NW,,,y,
+D19,DEJU,LAPU,Lactuca pulchella,AK-NW,,,y,
+D19,DEJU,LAECO,Lappula echinata,AK-NW,,,y,
+D19,DEJU,LATAP,Latuca punchella,AK-NW,,,y,
+D19,DEJU,LIVU2,Linaria vulgaris,AK-NW,,,y,
+D19,DEJU,LYSA2,Lythrum salicaria,AK-NW,,,y,
+D19,DEJU,MYSI,Myriophyllum spicatum,AK-NW,,,y,
+D19,DEJU,PLSP5,Plantago sp.,AK-NW,,,y,
+D19,DEJU,POAN,Poa annua,AK-NW,,,y,
+D19,DEJU,POCO10,Polygonum convolvulus,AK-NW,,,y,
+D19,DEJU,RARA2,Raphanus raphanistrum,AK-NW,,,y,
+D19,DEJU,ROAU,Rorippa austriaca,AK-NW,,,y,
+D19,DEJU,SIAR4,Sinapis arvensis,AK-NW,,,y,
+D19,DEJU,SOCA3,Solanum carolinense,AK-NW,,,y,
+D19,DEJU,SOAR2,Sonchus arvensis,AK-NW,,,y,
+D19,DEJU,VICR,Vicia cracca,AK-NW,,,y,
+D19,HEAL,ELRE4,Agropyron repens,AK-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D19,HEAL,ELRE4,Elymus repens,AK-NW,,,y,
+D19,HEAL,AVFA,Avena fatua,AK-NW,,,y,
+D19,HEAL,BRJUJ,Brassica juncea,AK-NW,,,y,
+D19,HEAL,CADR,"Cardaria draba, C. pubescens, Lapidium latifolium",AK-NW,,,y,
+D05,TREE,MEOF,Melilotus alba,WI-NW,,,n,"kj changed accepted_addition, this is a synonym and the accepted name already flagged for addition"
+D19,HEAL,CIAR4,Cirsium arvense,AK-NW,,,y,
+D19,HEAL,COAR4,Convolvulus arvensis,AK-NW,,,y,
+D19,HEAL,EGDE,Egeria densa,AK-NW,,,y,
+D19,HEAL,ELCA7,Elodea Canadensis,AK-NW,,,y,
+D19,HEAL,ELNU2,Elodea nuttallii,AK-NW,,,y,
+D05,TREE,MEOF,Melilotus officinalis,WI-NW,,,y,
+D19,HEAL,EUES,Euphorbia esula,AK-NW,,,y,
+D19,HEAL,GAPA2,Galensoga parviflora,AK-NW,,,y,
+D19,HEAL,GATE2,Galeopsis tetrahit,AK-NW,,,y,
+D19,HEAL,HIAU,Hieracium aurantiacum,AK-NW,,,y,
+D19,HEAL,HYDRI,Hydrilla verticullata,AK-NW,,,y,
+D19,HEAL,LAPU,Lactuca pulchella,AK-NW,,,y,
+D19,HEAL,LAECO,Lappula echinata,AK-NW,,,y,
+D19,HEAL,LATAP,Latuca punchella,AK-NW,,,y,
+D19,HEAL,LIVU2,Linaria vulgaris,AK-NW,,,y,
+D19,HEAL,LYSA2,Lythrum salicaria,AK-NW,,,y,
+D19,HEAL,MYSI,Myriophyllum spicatum,AK-NW,,,y,
+D19,HEAL,PLSP5,Plantago sp.,AK-NW,,,y,
+D19,HEAL,POAN,Poa annua,AK-NW,,,y,
+D19,HEAL,POCO10,Polygonum convolvulus,AK-NW,,,y,
+D19,HEAL,RARA2,Raphanus raphanistrum,AK-NW,,,y,
+D19,HEAL,ROAU,Rorippa austriaca,AK-NW,,,y,
+D19,HEAL,SIAR4,Sinapis arvensis,AK-NW,,,y,
+D19,HEAL,SOCA3,Solanum carolinense,AK-NW,,,y,
+D19,HEAL,SOAR2,Sonchus arvensis,AK-NW,,,y,
+D19,HEAL,VICR,Vicia cracca,AK-NW,,,y,
+D20,PUUM,ACME80,Acacia mearnsii,HI-NW,USDA,,y,
+D20,PUUM,ACNO4,Acaena novae-zelandica,HI-NW,USDA,,y,
+D20,PUUM,ACRE3,Acroptilon repens,HI-NW,USDA,,y,
+D20,PUUM,AEIN,Aeschynomene indica,HI-NW,USDA,,y,
+D20,PUUM,AGAD2,Ageratina adenophora,HI-NW,USDA,,y,
+D20,PUUM,AGRI2,Ageratina riparia,HI-NW,USDA,,y,
+D20,PUUM,ALVIC3,Allium vineale,HI-NW,USDA,,y,
+D20,PUUM,ANBI,Andropogon bicornis,HI-NW,USDA,,y,
+D20,PUUM,ANVI2,Andropogon virginicus,HI-NW,USDA,,y,
+D20,PUUM,ANCO6,Anredera cordifolia,HI-NW,USDA,,y,
+D20,PUUM,AREL4,Ardisia elliptica,HI-NW,USDA,,y,
+D20,PUUM,BOFR2,Bocconia frutescens,HI-NW,USDA,,y,
+D20,PUUM,BUMA80,Buddleja madagascariensis,HI-NW,BIISC,,y,
+D20,PUUM,CAPU6,Cardaria pubescens,HI-NW,USDA,,y,
+D20,PUUM,CEUR,Cereus uruguayanus,HI-NW,USDA,,y,
+D20,PUUM,CHOD,Chromolaena odorata,HI-NW,USDA,,y,
+D20,PUUM,CLHI3,Clidemia hirta,HI-NW,USDA,,y,
+D20,PUUM,COGR9,Coccinia grandis,HI-NW,USDA,,y,
+D20,PUUM,COAR4,Convolvulus arvensis,HI-NW,USDA,,y,
+D20,PUUM,COJU2,Cortaderia jubata,HI-NW,USDA,,y,
+D20,PUUM,COPA14,Cotoneaster pannosus,HI-NW,BIISC,,y,
+D20,PUUM,CRGR6,Cryptostegia grandiflora,HI-NW,BIISC,,y,
+D20,PUUM,CRMA10,Cryptostegia madagascariensis,HI-NW,BIISC,,y,
+D20,PUUM,CYRE,Cymbopogon refractus,HI-NW,USDA,,y,
+D20,PUUM,CYES,Cyperus esculentus,HI-NW,USDA,,y,
+D20,PUUM,CYMO5,Cytisus monspessulanus,HI-NW,USDA,,y,
+D20,PUUM,DICI2,Dichrostachys cinerea,HI-NW,USDA,,y,
+D20,PUUM,DINU6,Dichrostachys nutans,HI-NW,USDA,,y,
+D20,PUUM,ELMO5,Elephantopus mollis,HI-NW,USDA,,y,
+D20,PUUM,ELRE3,Elytrigia repens,HI-NW,USDA,,y,
+D20,PUUM,EMSP,Emex spinosa,HI-NW,USDA,,y,
+D20,PUUM,ERMA16,Eriocereus martinii,HI-NW,USDA,,y,
+D20,PUUM,EUES,Euphorbia esula,HI-NW,USDA,,y,
+D20,PUUM,GRBA,Grevillea banksii,HI-NW,USDA,,y,
+D20,PUUM,HAGL,Halogeton glomeratus,HI-NW,USDA,,y,
+D20,PUUM,HYPE3,Hyptis pectinata,HI-NW,USDA,,y,
+D20,PUUM,HYSU3,Hyptis suaveolens,HI-NW,USDA,,y,
+D20,PUUM,ILCA,Ilex cassine,HI-NW,BIISC,,y,
+D20,PUUM,LAMO5,Lagascea mollis,HI-NW,USDA,,y,
+D20,PUUM,LELA2,Lepidium latifolium,HI-NW,USDA,,y,
+D20,PUUM,MAAL4,Malachra alceifolia,HI-NW,USDA,,y,
+D20,PUUM,MALU4,Markhamia lutea,HI-NW,BIISC,,y,
+D20,PUUM,MEVE3,Medinilla venosa ,HI-NW,USDA,,y,
+D20,PUUM,MECA9,Melastoma candidum,HI-NW,USDA,,y,
+D20,PUUM,MICA20,Miconia calvescens,HI-NW,USDA,,y,
+D20,PUUM,MIMI5,Mikania micrantha,HI-NW,USDA,,y,
+D20,PUUM,MISC,Mikania scandens,HI-NW,USDA,,y,
+D20,PUUM,MIDI8,Mimosa diplotricha,HI-NW,USDA,,y,
+D20,PUUM,MIIN80,Mimosa invisa,HI-NW,USDA,,y,
+D20,PUUM,MIPI,Mimosa pigra,HI-NW,USDA,,y,
+D20,PUUM,MIFL3,Miscanthus floridulus,HI-NW,USDA,,y,
+D20,PUUM,MOHI,Montanoa hibiscifolia,HI-NW,USDA,,y,
+D20,PUUM,MOFA,Morella faya,HI-NW,USDA,,y,
+D20,PUUM,OXPA3,Oxyspora paniculata,HI-NW,USDA,,y,
+D20,PUUM,PARE3,Panicum repens,HI-NW,USDA,,y,
+D20,PUUM,PAMO5,Passiflora mollissima,HI-NW,USDA,,y,
+D20,PUUM,PAPU13,Passiflora pulchella,HI-NW,USDA,,y,
+D20,PUUM,PESE3,Pennisetum setaceum,HI-NW,USDA,,y,
+D20,PUUM,PHDA5,Photinia davidiana,HI-NW,BIISC,,y,
+D20,PUUM,PIAD,Piper aduncum,HI-NW,USDA,,y,
+D20,PUUM,PIUN2,Pittosporum undulatum,HI-NW,USDA,,y,
+D20,PUUM,PRJU3,Prosopis juliflora,HI-NW,USDA,,y,
+D20,PUUM,PUPH2,Pueraria phaseoloides,HI-NW,USDA,,y,
+D20,PUUM,RHTO10,Rhodomyrtus tomentosa,HI-NW,USDA,,y,
+D20,PUUM,RUAR2,Rubus argutus,HI-NW,USDA,,y,
+D20,PUUM,RUEL3,Rubus ellipticus,HI-NW,USDA,,y,
+D20,PUUM,RUNI4,Rubus niveus,HI-NW,USDA,,y,
+D20,PUUM,RUSI4,Rubus sieboldii,HI-NW,USDA,,y,
+D20,PUUM,SAKA,Salsola kali,HI-NW,USDA,,y,
+D20,PUUM,SEMA15,Senecio madagascariensis,HI-NW,USDA,,y,
+D20,PUUM,SOCA3,Solanum carolinense,HI-NW,USDA,,y,
+D20,PUUM,SOEL,Solanum elaeagnifolium,HI-NW,USDA,,y,
+D20,PUUM,SORO3,Solanum robustum,HI-NW,USDA,,y,
+D20,PUUM,SOTO4,Solanum torvum,HI-NW,USDA,,y,
+D20,PUUM,SOAR2,Sonchus arvensis,HI-NW,USDA,,y,
+D20,PUUM,SPJU2,Spartium junceum,HI-NW,USDA,,y,
+D20,PUUM,STTR8,Stipa trichotoma,HI-NW,USDA,,y,
+D20,PUUM,THVI2,Themeda villosa,HI-NW,USDA,,y,
+D20,PUUM,TIHE2,Tibouchina herbacea,HI-NW,USDA,,y,
+D20,PUUM,TIUR,Tibouchina urvilleana,HI-NW,USDA,,y,
+D20,PUUM,TRRH,Triumfetta rhomboidea,HI-NW,USDA,,y,
+D20,PUUM,TRSE4,Triumfetta semitriloba,HI-NW,USDA,,y,
+D20,PUUM,ULEU,Ulex europaeus,HI-NW,USDA,,y,
+D20,PUUM,URLO,Urena lobata,HI-NW,USDA,,y,
+D20,PUUM,VETH,Verbascum thapsus,HI-NW,USDA,,y,
