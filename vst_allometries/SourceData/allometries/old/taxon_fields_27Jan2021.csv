@@ -1,0 +1,447 @@
+compiled_by,allometry_ID_manual,group,subgroup,Family,taxonID,acceptedTaxonID,Common name,genus,specificEpithet,FIA Species Code,spg_gcm3,minDiameter,maxDiameter,dbh range (cm),Taxon ID Notes,Zanne et al Reference Number,Initials and References Used and Other Notes,Excluding Factor,density_source,need_density,decid_vs_ever,decid_vs_ever_source,woodland_vs_forest,woodland_vs_forest_source
+WG_75,C2,conifer,Abies >= 0.35 spg,Pinaceae,ABAM,,"Fir, Pacific silver",Abies,amabilis,11,0.4,4,9,4 – 109,,,,,,,,,forest,WG_75
+WG_75,C1,conifer,Abies < 0.35 spg*,Pinaceae,ABBA,,"Fir, balsam",Abies,balsamea,12,0.33,3,51,3 – 51,,,,,,,,,forest,WG_75
+WG_75,C2,conifer,Abies >= 0.35 spg,Pinaceae,ABCO,,"Fir, white",Abies,concolor,15,0.37,7,8,7–158,,,,,,,,,forest,WG_75
+WG_75,C1,conifer,Abies < 0.35 spg*,Pinaceae,ABFR,,"Fir, Fraser",Abies,fraseri,16,0.33,7,25,7 – 25,,,,,,,,,forest,WG_75
+WG_75,C2,conifer,Abies >= 0.35 spg,Pinaceae,ABGR,,"Fir, grand",Abies,grandis,,0.35,,,,,,Added by kj - based on worldagroforstr.org,,,,,,forest,WG_75
+WG_75,C1,conifer,Abies < 0.35 spg*,Pinaceae,ABLA,,"Fir, subalpine",Abies,lasiocarpa,19,0.31,3,69,3 – 69,,,,,,,,,forest,WG_75
+WG_75,C1,conifer,Abies < 0.35 spg*,Pinaceae,ABLAL,,"Fir, subalpine",Abies,lasiocarpa var.lasiocarpa,19,0.31,3,69,3 – 69,,,,,,,,,forest,WG_75
+WG_75,C2,conifer,Abies >= 0.35 spg,Pinaceae,ABLO,,"Fir, white",Abies,lowiana,,0.37,,,,syn ABCOL Abies concolor var lowiana,,added by kj - A. concolor var lowania syn; Sr- SPG of higher taxonomic level used,,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,C2,conifer,Abies >= 0.35 spg,Pinaceae,ABMA,,"Fir, California red",Abies,magnifica,,0.36,,,,,,added by kj,,,,,,forest,WG_75
+SMS,,,,Pinaceae,ABPR,ABPR,,Abies,procera,,0.37,,,,,,,,Zanne et al 2009,yes,,,forest,http://usnvc.org/explore-classification/
+WG_75,C2,conifer,Abies >= 0.35 spg,Pinaceae,ABIES,,"Fir, Pacific silver - noble - other",Abies,sp.,10,0.39,9,11,9 – 111,,,,,,,,,forest,WG_75
+SMS,H9,,,Fabaceae,ABPR3,ABPR3,,Abrus,precatorius,,,,,,,,,,,no,,,woodland,
+WG_75,W2,woodland,Fabaceae/Rosaceae,Fabaceae,ACCO2,,,Acacia,constricta,,,,,,syn VACC09 Vachellia constricta,,SR - SPG not known; Woodland allometry assigned based on multi bole growth and desert distribution. Could potentially be H9,,,,,,woodland,WG_75
+SMS,H9,,,Fabaceae,ACFA,ACFA,,Acacia,farnesiana,,0.813,,,,,,,,average of 4 Mexican or Central American species in Zanne et al 2009,no,,,woodland,http://usnvc.org/explore-classification/
+WG_75,W2,woodland,Fabaceae/Rosaceae,Fabaceae,ACGR,,,Acacia,greggii,,,,,,syn SEGR4 Senagalia greggii,,SR - SPG not known; Woodland allometry assigned based on multi bole growth and desert distribution. Could potentially be H9,,,,,,woodland,WG_75
+WG_75,,,,Fabaceae,ACKO,,,Acacia,koa,,0.55,,,,,,SR - SPG from Skolmen 1974; Hawaii,Hawaii,Asner et al 2011 FEE - citing Chave et al 2009 - same value as Skolmen 1974,,,,forest,http://usnvc.org/explore-classification/
+SMS,H9,,,Fabaceae,ACRE4,ACRE4,,Acacia,retusa,,0.813,,,,,,,,average of 4 Mexican or Central American species in Zanne et al 2009,no,,,woodland,http://usnvc.org/explore-classification/
+WG_75,H2,hardwood,Aceraceae >= 0.50 spg,Aceraceae,ACBA3,,,Acer,barbatum,,0.56,,,,,,"SR- syn for A. floridanum, spg for that species used. Allometry assigned based on SPG.",,,,,,,
+WG_75,H2,hardwood,Aceraceae >= 0.50 spg,Aceraceae,ACCI,,Vine maple,Acer,circinatum,,0.51,,,,,,"SR- other species in the palmatum group of maples have SPG >0.5, used this as a guide for allometry selection",,,,,,,
+WG_75,H2,hardwood,Aceraceae >= 0.50 spg,Aceraceae,ACFL,,,Acer,floridanum,,0.56,,,,,,"SR - SPG from Jenkins, Chojnacky, et al 2004. Allometry asigned based on SPG",,,,,,,
+SMS,,,,Aceraceae,ACGL,ACGL,,Acer,glabrum,,0.468,,,,,,,,average of 8 NA species in Zanne et al 2009,yes,,,,
+SMS,,,,Aceraceae,ACGLD4,ACGLD4,,Acer,glabrum,,0.468,,,,,,,,average of 8 NA species in Zanne et al 2009,yes,,,,
+WG_75,H1,hardwood,Aceraceae < 0.50 spg*,Aceraceae,ACMA3,,"Maple, bigleaf",Acer,macrophyllum,312,0.44,5,46,5 – 46,,,,,,,,,,
+WG_75,H1,hardwood,Aceraceae < 0.50 spg*,Aceraceae,ACNE2,,Box elder,Acer,negundo,,0.416,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H1,hardwood,Aceraceae < 0.50 spg*,Aceraceae,ACNEN,,Box elder,Acer,negundo var. negundo,,0.416,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H2,hardwood,Aceraceae >= 0.50 spg,Aceraceae,ACNI5,,Black maple,Acer,nigrum,,0.52,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H1,hardwood,Aceraceae < 0.50 spg*,Aceraceae,ACPE,,"Maple, striped",Acer,pensylvanicum,315,0.44,3,13,3 – 13,,,,,,,,,,
+WG_75,H1,hardwood,Aceraceae < 0.50 spg*,Aceraceae,ACRU,,"Maple, red",Acer,rubrum,316,0.49,3,66,3 – 66,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H1,hardwood,Aceraceae < 0.50 spg*,Aceraceae,ACRUR,,Red maple,Acer,rubrum var. rubrum,,0.49,3,66,3 – 66,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H1,hardwood,Aceraceae < 0.50 spg*,Aceraceae,ACSA2,,"Maple, silver",Acer,saccharinum,317,0.44,4,45,4 – 45,,,,,,,,,,
+WG_75,H2,hardwood,Aceraceae >= 0.50 spg,Aceraceae,ACSA3,,"Maple, sugar",Acer,saccharum,318,0.56,3,70,3 – 70,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H2,hardwood,Aceraceae >= 0.50 spg,Aceraceae,ACSAS,,Sugar maple,Acer,saccharum var. saccharum,,0.56,3,70,3 – 70,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H1,hardwood,Aceraceae < 0.50 spg*,Aceraceae,ACER,,,Acer,sp.,,0.49,,,,,,"SR- Assigning this allometry based on the fact that most maples have a SPG <0.5, however this is a tenuous assumption especially if sugar maple is common in a region, and in that case it should be H2",,,,,,,
+WG_75,H1,hardwood,Aceraceae < 0.50 spg*,Aceraceae,ACSP2,,"Maple, mountain",Acer,spicatum,319,0.47,3,10,3 – 10,,,,,,,,,,
+SMS,H7,,,Euphorbiaceae,ADRI,ADRI,,Adelia,ricinella,,0.707,,,,,,,,average of 2 species in Americas from Zanne et al 2009,,,,,
+WG_75,H13,hardwood,Hippocastanaceae/Tiliaceae,Hippocastanaceae,AECA,,,Aesculus,californica,,0.33,,,,,,"SR-SPG from Jenkins, Chojnacky, et all 2004; H13 used based on family",,,,,,,
+WG_75,H13,hardwood,Hippocastanaceae/Tiliaceae,Hippocastanaceae,AEFL,,"Aesculus, yellow",Aesculus,flava,332,0.33,8,56,8 – 56,,,,,,,,,,
+SMS,H13,,,Hippocastanaceae,AEPA,AEPA,,Aesculus,pavia,,,,,,,,,,,no,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Simaroubaceae,AIAL,,Tree of heaven,Ailanthus,altissima,,0.457191,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. There were 6 spg values for this species and the one entered here is only one from the North American region; Allometry assigned based on family not included in other allometries",,,,,,,
+WG_75,H4,hardwood,Betulaceae 0.40 – 0.49 spg,Betulaceae,ALINR,,Speckled alder,Alnus,incana ssp. rugosa,,0.43911,,,,,28,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H3,hardwood,Betulaceae  < 0.40 spg,Betulaceae,ALRU2,,"Alder, red",Alnus,rubra,351,0.37,3,64,3 – 64,,,,,,,,,,
+SMS,,,,Betulaceae,ALNUS,ALNUS,,Alnus,sp.,,0.37,,,,,,,,average of 1 NA specie in Zanne et al 2009,yes,,,,
+WG_75,H3,hardwood,Betulaceae  < 0.40 spg,Betulaceae,ALVI5,,"Alder, sitka",Alnus,viridis,350,0.37,3,7,3 – 7,,,,,,,,,,
+SMS,,,,Rosaceae,AMAL2,AMAL2,,Amelanchier,alnifolia,,,,,,,,,,,,,,forest,17 of 21 associations forested in http://usnvc.org/explore-classification/ 
+SMS,,,,Rosaceae,AMAR3,AMAR3,,Amelanchier,arborea,,,,,,,,,,,,,,woodland,http://usnvc.org/explore-classification/
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,AMLA,,,Amelanchier,laevis,,,,,,,,"SR- SPG not known, H7 chosen based on Rosaceae",,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,AMELA,,Serviceberry,Amelanchier,sp.,356,0.66,3,25,3 – 25,,,,,,,,,forest,WG_75
+SMS,H9,,,Fabaceae,AMFR,AMFR,,Amorpha,fruticosa,,,,,,,,,,,no,,,woodland,http://usnvc.org/explore-classification/
+WG_75,,,,Rutaceae,AMEL,,Sea torchwood,Amyris,elemifera,,1.05,,,,,111,"AQ, spg added from Zanne et al. Global wood density database. Tropical species, not sure if covered by one of these allometries.",Tropical,,,,,,
+WG_75,,,,Fabaceae,ANIN,,Cabbagebark tree,Andira,inermis,,0.635,,,,,141,"AQ, spg added from Zanne et al. Global wood density database. There were 8 spg values and the value closest to the average was entered",Range expands all of Florida and Puerto Rico,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ericaceae,ARME,,"Madrone, Pacific",Arbutus,menziesii,361,0.58,3,64,3 – 64,,,,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ericaceae,ARVIM,,"Manzanita, Mariposa",Arctostaphylos,viscida ssp. mariposa,,0.71,,,,,,Added by kj - based on Chave et al & Zanne et al. database  (other Acrotstaphylos sp.),,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Annonaceae,ASTR,,,Asimina,triloba,,0.47,,,,,,"SR-SPG from Jenkins, Chojnacky, et all 2004; H7 used due to family not represented in other groups",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rhamnaceae,BESC,,Alabama supplejack,Berchemia,scandens,,0.855,,,,,,"kj assigned, spg not known *** other Berchemia sp. from Africa have extremely high spg, H7 may underestimate AGB",,Average of 4 species (none from Americas) from Zanne et al 2009,,,,,
+WG_75,H4,hardwood,Betulaceae 0.40 – 0.49 spg,Betulaceae,BECAC,,,Betula,× caerulea var. caerulea,,0.465,,,,,,SR- SPG not known; H4 chosen because both hybrid parents are contained with this allometry. Assumption is that hybrid would also be within this allometry,,Zanne et al – average of B. populifolia and B. papyrifera parents,,,,,
+WG_75,H5,hardwood,Betulaceae 0.50 – 0.59 spg,Betulaceae,BEAL2,,"Birch, yellow",Betula,alleghaniensis,371,0.55,3,70,3 – 70,,,,,,,,,,
+SMS,,,,Betulaceae,BEGL,BEGL,"Birch, resin",Betula,glandulosa,,0.517,,,,,,,,average of 6 NA species in Zanne et al 2009,yes,,,,
+SMS,,,,Betulaceae,BEGL/BENA,BEGL/BENA,"Birch, resin or dwarf",Betula,glandulosa or nana,,0.517,,,,,,,,average of 6 NA species in Zanne et al 2009,yes,,,,
+WG_75,H6,hardwood,Betulaceae  >= 0.60 spg,Betulaceae,BELE,,"Birch, sweet",Betula,lenta,372,0.6,3,47,3 – 47,,,,,,,,,,
+WG_75,H5,hardwood,Betulaceae 0.50 – 0.59 spg,Betulaceae,BENE4,,"Birch, resin",Betula,neoalaskana,,0.53,,,,,,Added by kj - based on worldagroforstr.org,,,,,,,
+WG_75,H4,hardwood,Betulaceae 0.40 – 0.49 spg,Betulaceae,BENI,,River birch,Betula,nigra,,0.49,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H5,hardwood,Betulaceae 0.50 – 0.59 spg,Betulaceae,BEOC2,,,Betula,occidentalis,,0.53,,,,,,"SR- spg from Jenkins, Chojnacky, et al 2004; allometry chosen based on this SPG",,,,,,,
+WG_75,H4,hardwood,Betulaceae 0.40 – 0.49 spg,Betulaceae,BEPA,,"Birch, paper",Betula,papyrifera,375,0.48,3,51,3 – 51,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H4,hardwood,Betulaceae 0.40 – 0.49 spg,Betulaceae,BEPAC2,,Mountain paper birch,Betula,papyrifera var. cordifolia,,0.48,3,51,3 – 51,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H4,hardwood,Betulaceae 0.40 – 0.49 spg,Betulaceae,BEPAP,,Paper birch,Betula,papyrifera var. papyrifera,,0.48,3,51,3 – 51,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,,
+WG_75,H4,hardwood,Betulaceae 0.40 – 0.49 spg,Betulaceae,BEPO,,"Birch, gray",Betula,populifolia,379,0.45,3,23,3 – 23,,,,,,,,,,
+WG_75,H5,hardwood,Betulaceae 0.50 – 0.59 spg,Betulaceae,BETUL,,,Betula,sp.,,0.54,,,,,,"SR - SPG from Jenkins, Chojnacky, et al 2004. Allometry assigned using this SPG ",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Boraginaceae,BOURR,,,Bourreria,sp.,,0.54,,,,,,spg from Bourreria succulenta copied,,,,,,,
+WG_75,,,,Boraginaceae,BOSU2,,,Bourreria,succulenta,,0.54,,,,,,"SR- spg from Brandeis, T.J., et al 2006; Puerto Rico",Puerto Rico,,,,,,
+SMS,H7,,,Hydrangeaceae,BRAR6,BRAR6,,Broussaisia,arguta,,0.21,,,,,,,,Asner et al 2011 FEE field data; Selmants et al 2014 have alternate value of 0.36,,,,,
+WG_75,,,,Combretaceae,BUBU,,Gregorywood,Bucida,buceras,,0.69,,,,,204,"AQ, spg added from Zanne et al. Global wood density database. 3 spg values, median value from South America assigned.","Tropical, Florida/Puerto Rico only",,,,,,
+SMS,H7,,,Malpighiaceae,BUGL,BUGL,,Bunchosia,glandulosa,,0.695,,,,,,,,average of 2 species in Americas from Zanne et al 2009,,,,,
+WG_75,,,,Burseraceae,BUSI,,Gumbo limbo,Bursera,simaruba,,0.31,,,,,141,"AQ, spg added from Zanne et al. Global wood density database. 6 spg values, value closest to average assigned.","Tropical, Florida/Puerto Rico only",,,,,,
+WG_75,C4,conifer,Cupressaceae 0.30 – 0.39 spg,Cupressaceae,CADE27,,incense-cedar,Calocedrus,decurrens,81,0.35,25,44,25– 144,,,,,,,,,forest,WG_75
+WG_75,,,,Capparaceae ,CACY,,,Capparis,cynophallophora,,0.673,,,,,,SR- SPG not known,Tropical,Zanne et al – average of 3 species from Mexico,,,,,
+WG_75,,,,Capparaceae ,CAHA9,,,Capparis,hastata,,0.673,,,,,,SR- SPG not known,Puerto Rico,Zanne et al – average of 3 species from Mexico,,,,,
+SMS,H7,,,Capparaceae,CAIN5,CAIN5,,Capparis,indica,,0.68,,,,,,,,Zanne et al 2009,,,,,
+WG_75,H5,hardwood,Betulaceae 0.50 – 0.59 spg,Betulaceae,CACA18,,American hornbeam ,Carpinus,caroliniana,,0.58,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. ",,Zanne et al 2009,yes,,,,
+WG_75,H5,hardwood,Betulaceae 0.50 – 0.59 spg,Betulaceae,CACAV,,American hornbeam,Carpinus,caroliniana,,0.58,,,,syn CACAV2,6,"AQ, spg added from Zanne et al. Global wood density database. ",,Zanne et al 2009,yes,,,,
+WG_75,H8,hardwood,"Fabaceae/Juglandaceae, Carya",Juglandaceae,CAAQ2,,Water hickory,Carya,aquatica,,0.61,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. ",,,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Juglandaceae,CACA38,CACA38,,Carya,carolinae-septentrionalis,,0.611,,,,,,,,average of 10 NA species in Zanne et al 2009,yes,,,forest,http://usnvc.org/explore-classification/
+WG_75,H8,hardwood,"Fabaceae/Juglandaceae, Carya",Juglandaceae,CACO15,,Bitternut hickory ,Carya,cordiformis,,0.6,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. ",,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,H8,hardwood,"Fabaceae/Juglandaceae, Carya",Juglandaceae,CAGL8,,"Hickory, pignut",Carya,glabra (Carya spp.),,0.66,,,,,,"Added by kj - based on spg Zanne et al. 2009 - Could be either H8 or H9, matched by genus",,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,H8,hardwood,"Fabaceae/Juglandaceae, Carya",Juglandaceae,CAIL2,,Pecan,Carya,illinoinensis,404,0.6,22,33,22– 33,,,,,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,H8,hardwood,"Fabaceae/Juglandaceae, Carya",Juglandaceae,CAOV3,,,Carya,ovalis,,0.66,,,,,,"SR- syn for C. glabra (source: FNA, ITIS) same SPG as that species. Allometry assigned based on genus Carya.",,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,H8,hardwood,"Fabaceae/Juglandaceae, Carya",Juglandaceae,CAOV2,,"Hickory, shagbark",Carya,ovata,407,0.64,5,43,5 – 43,,,,,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,H8,hardwood,"Fabaceae/Juglandaceae, Carya",Juglandaceae,CARYA,,Hickory,Carya,sp.,400,0.62,3,70,3 – 70,,,,,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,H8,hardwood,"Fabaceae/Juglandaceae, Carya",Juglandaceae,CATO6,,"Hickory, mockernut",Carya,tomentosa,,0.64,,,,syn CAAL27 Carya alba,,Added by kj - based on Zanne et al. 2009,,Miles and Smith 2009 have 0.64 green volume basis and 0.72 12 pct moisture volume basis,,,,forest,http://usnvc.org/explore-classification/
+SMS,H7,,,Flacourtiaceae,CAAC3,CAAC3,,Casearia,aculeata,,0.66,,,,,,,,Zanne et al 2009,,,,,
+SMS,H7,,,Flacourtiaceae,CASY2,CASY2,,Casearia,sylvestris,,0.66,,,,,3014,,,Zanne et al 2009,,,,,
+SMS,H7,,,Celastraceae,CAXY,CAXY,,Cassine,xylocarpa,,0.722,,,,,,,,average of 6 species around world in Zanne et al 2009 (none from Americas),,,,,
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,CADE12,,"Chestnut, American",Castanea,dentata,421,0.4,3,32,3 – 32,,,,,,,decid,WG_75,forest,WG_75
+SMS,,,,Fagaceae,CASTA,CASTA,,Castanea,sp.,,,,,,,,,,,no,decid,www.efloras.org ,forest,http://usnvc.org/explore-classification/
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rhamnaceae,CEIN3,,Deerbrush,Ceanothus,integerrimus,,,,,,,,"kj assigned, spg not known; SR- This is a shrub should probably be removed?",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ulmaceae,CELA,,Sugarberry,Celtis,laevigata,,0.47,,,,,118,"AQ, spg added from Zanne et al. Global wood density database. ",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ulmaceae,CEOC,,Common hackberry ,Celtis,occidentalis,,0.49,,,,syn CEOCO2,118,"AQ, spg added from Zanne et al. Global wood density database. ",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ulmaceae,CELTI,,,Celtis,sp.,,,,,,,,Allometry assigned using family.,,,,,,,
+WG_75,H9,hardwood,"Fabaceae/Juglandaceae, other",Fabaceae,CECA4,,Eastern redbud,Cercis,canadensis,,0.65,,,,,136,"AQ, spg added from Zanne et al. Global wood density database. ",,,,,,forest,WG_75
+WG_75,H9,hardwood,"Fabaceae/Juglandaceae, other",Fabaceae,CECAC,,Eastern redbud,Cercis,canadensis var. canadensis,,0.65,,,,,136,"AQ, spg added from Zanne et al. Global wood density database. ",,,,,,forest,WG_75
+SMS,H9,,,Fabaceae,CERCI2,CERCI2,,Cercis,sp.,,,,,,,,,,,no,,,forest,http://usnvc.org/explore-classification/
+WG_75,W2,woodland,Fabaceae/Rosaceae,Rosaceae,CELE3,,Mountain mahogany,Cercocarpus,ledifolius,475,0.81,5,56,5 – 56,,,,,,,,,woodland,WG_75
+WG_75,W2,woodland,Fabaceae/Rosaceae,Rosaceae,CEMOG,,"Mountain mahogany, birchleaf",Cercocarpus,montanus var. glaber,,0.81,3,5,3 – 5,,,Added by kj - based on worldagroforstr.org; SR- SPG based on other C. montanus,,,,,,woodland,WG_75
+WG_75,W2,woodland,Fabaceae/Rosaceae,Rosaceae,CEMOP,,Mountain Mahogany,Cercocarpus,montanus var. pauciden,477,0.81,3,5,3 – 5,,,Added by kj - based on worldagroforstr.org; SR- SPG based on other C. montanus,,,,,,woodland,WG_75
+WG_75,C5,conifer,Cupressaceae >= 0.40 spg,Cupressaceae,CANO9,,"Cedar, Alaska",Chamaecyparis,nootkatensis,42,0.42,8,9,8 – 109,,,,,,,,,forest,WG_75
+WG_75,,,,Araliaceae ,CHTR2,,,Cheirodendron,trigynum,,0.47,,,,,,"SR - spg from Asner, G. P. et al (2011); Hawaii",Hawaii,Asner et al 2011 FEE field data,,,,,
+WG_75,H11,hardwood,"Fagaceae, evergreen",Fagaceae,CHCH7,,"Chinkapin, golden",Chrysolepis,chrysophylla,431,0.42,3,61,3 – 61,,,,,,,ever,WG_75,forest,WG_75
+SMS,,,,Fagaceae,CHSE11,CHSE11,,Chrysolepis,sempervirens,,,,,,,,,,,no,ever,calscape.org,forest,http://usnvc.org/explore-classification/
+WG_75,,,,Dicksoniaceae,CIGL,,,Cibotium,glaucum,,0.22,,,,,,"SR - spg from Asner, G. P. et al (2011); Hawaii",Hawaii,Asner et al 2011 FEE field data,,,,,
+WG_75,,,,Dicksoniaceae,CIME8,,,Cibotium,menziesii,,0.21,,,,,,"SR - spg from Asner, G. P. et al (2011); Hawaii",Hawaii,Asner et al 2011 FEE field data,,,,,
+SMS,H7,,,Dicksoniaceae,CIBOT,CIBOT,,Cibotium,sp.,,0.21,,,,,,,,Asner et al 2011 FEE field data,,,,,
+SMS,H9,,,Fabaceae,CLADR,CLADR,,Cladrastis,sp.,,,,,,,,,,,no,,,woodland,http://usnvc.org/explore-classification/
+SMS,H9,,,Fabaceae,CLTE3,CLTE3,,Clitoria,ternatea,,,,,,,,,,,no,,,woodland,http://usnvc.org/explore-classification/
+SMS,H7,,,Polygonaceae,COKR,COKR,,Coccoloba,krugii,,0.738,,,,,,,,Average of 9 Mexican and Central American species in Zanne et al 2009,,,,,
+SMS,H7,,,Polygonaceae,COMI,COMI,,Coccoloba,microstachya,,0.738,,,,,,,,Average of 9 Mexican and Central American species in Zanne et al 2009,,,,,
+WG_75,,,,Polygonaceae,CODI8,,tietongue,Coccoloba diversifolia,diversifolia,,0.8,,,,,111,"BS, spg added from Zanne et al. Global wood density database. ",Only occurs in select counties in southern florida,,,,,,
+WG_75,,,,Anacardiaceae,CODO,,,Comocladia,dodonaea,,0.79,,,,,,SR - SPG not known,Puerto Rico,Zanne et al – used other Comocladia species from Mexico,,,,,
+SMS,H7,,,Rubiaceae,COER3,COER3,,Coprosma,ernodeoides,,0.48,,,,,,,,Asner et al 2011 FEE field data,,,,,
+WG_75,,,,Rubiaceae,COOC3,,,Coprosma,ochracea,,0.48,,,,,,SR - SPG not known,Hawaii,Asner et al 2011 FEE field data,,,,,
+WG_75,,,,Boraginaceae,COCO5,,red manjack,Cordia,collococca,,0.38,,,,,116,"BS, spg added from Zanne et al. Global wood density database. Assigned Central America value. Hawaii, Puerto Rico",Tropical,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Cornaceae,CODR,,,Cornus,drummondii,,,,,,,,SR- SPG not known; H7 based on Cornaceae,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Cornaceae,COFL2,,Dogwood,Cornus,florida,491,0.64,3,12,3 – 12,previously CYFL7,,,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Cornaceae,COFO,,"Dogwood, stiff",Cornus,foemina Mill.,,,,,,,,"kj assigned, spg not known",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Cornaceae,CONU4,,"Dogwood, Pacific",Cornus,nuttallii,,0.58,,,,,,Added by kj - based on worldagroforstr.org,,,,,,,
+SMS,,,,Betulaceae,COAM3,COAM3,,Corylus,americana,,0.55,,,,,,,,Zanne et al – average of 2 other Corylus species,yes,,,,
+WG_75,H5,hardwood,Betulaceae 0.50 – 0.59 spg,Betulaceae,COCO6,,,Corylus,cornuta,,0.55,,,,,,"SR- SPG not known; H5 chosen based on several other species of Corylus having SPG within this range. However, could be other Betulaceae allometry",,Zanne et al – average of 2 other Corylus species,yes,,,,
+WG_75,H5,hardwood,Betulaceae 0.50 – 0.59 spg,Betulaceae,COCOC,,,Corylus,cornuta var. californica,,0.55,,,,,,"SR- SPG not known; H5 chosen based on several other species of Corylus having SPG within this range. However, could be other Betulaceae allometry",,Zanne et al – average of 2 other Corylus species,yes,,,,
+SMS,,,,Betulaceae,COCOC2,COCOC2,,Corylus,cornuta var. cornuta,,0.55,,,,,,"SR- SPG not known; H5 chosen based on several other species of Corylus having SPG within this range. However, could be other Betulaceae allometry",,Zanne et al – average of 2 other Corylus species,yes,,,,
+SMS,,,,Rosaceae,CRCH,CRCH,,Crataegus,chrysocarpa,,,,,,,,,,,,,,woodland,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,CRCR2,CRCR2,,Crataegus,crus-galli,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,CRFL2,CRFL2,,Crataegus,flava,,,,,,,,,,,,,,woodland,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,CRMA3,CRMA3,,Crataegus,macrosperma,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,CRATA,,,Crataegus,sp.,,,,,,,,Allometry assigned based on Rosaceae,,,,,,forest,WG_75
+SMS,,,,Rosaceae,CRATASPP,CRATASPP,,Crataegus,spp.,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+SMS,H7,,,Euphorbiaceae,CRBE4,CRBE4,,Croton,betulinus,,0.565,,,,,,,,Average of 2 Mexican and Central American species in Zanne et al 2009,,,,,
+SMS,H7,,,Euphorbiaceae,CRDI8,CRDI8,,Croton,discolor,,0.565,,,,,,,,Average of 2 Mexican and Central American species in Zanne et al 2009,,,,,
+SMS,H7,,,Euphorbiaceae,CRFL23,CRFL23,,Croton,flavens,,0.565,,,,,,,,Average of 2 Mexican and Central American species in Zanne et al 2009,,,,,
+SMS,H7,,,Euphorbiaceae,CRLU2,CRLU2,,Croton,lucidus,,0.565,,,,,,,,Average of 2 Mexican and Central American species in Zanne et al 2009,,,,,
+SMS,H7,,,Euphorbiaceae,CROTO,CROTO,,Croton,sp.,,0.565,,,,,,,,Average of 2 Mexican and Central American species in Zanne et al 2009,,,,,
+SMS,H7,,,Euphorbiaceae,CROTOSPP,CROTOSPP,,Croton,spp.,,0.565,,,,,,,,Average of 2 Mexican and Central American species in Zanne et al 2009,,,,,
+WG_75,W1,woodland,Cupressaceae,Cupressaceae,CUPRE,,"Cypress, pygmy",Cupressus,sp.,50,0.41,4,12,4 – 12,,,,,,,,,woodland,WG_75
+SMS,,,,Rosaceae,DAFRF,DAFRF,,Dasiphora,fruticosa,,,,,,,,,,,,,,woodland,http://usnvc.org/explore-classification/
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ebenaceae,DIVI5,,Common persimmon,Diospyros,virginiana,,0.67,,,,,170,"AQ, spg added from Zanne et al. Global wood density database. ",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Elaeagnaceae,ELAN,,Russian olive,Elaeagnus,angustifolia,,0.464,,,,,33,"AQ, spg added from Zanne et al. Global wood density database. 3 spg values, the median value was assigned.","Introduced not sure if this should be removed, RAC",,,,,,
+SMS,H7,,,Erythroxylaceae,ERAR17,ERAR17,,Erythroxylum,areolatum,,0.99,,,,,6180,,,Used value for Erythroxylum havanense which is only Mexican or Central American species in Zanne et al 2009,,,,,
+SMS,H7,,,Erythroxylaceae,ERBR11,ERBR11,,Erythroxylum,brevipes,,0.99,,,,,6180,,,Used value for Erythroxylum havanense which is only Mexican or Central American species in Zanne et al 2009,,,,,
+SMS,H7,,,Erythroxylaceae,ERRO3,ERRO3,,Erythroxylum,rotundifolium,,0.99,,,,,6180,,,Used value for Erythroxylum havanense which is only Mexican or Central American species in Zanne et al 2009,,,,,
+SMS,H7,,,Myrtaceae,EULI,EULI,,Eugenia,ligustrina,,0.981,,,,,6794,,,Zanne et al 2009,,,,,
+WG_75,,,,Myrtaceae,EURH,,,Eugenia,rhombea,,,,,,,,SR - SPG not known,Tropical,,,,,,
+SMS,H7,,,Myrtaceae,EUXE,EUXE,,Eugenia,xerophytica,,0.815,,,,,,,,Average of 2 Mexican and North American species in Zanne et al 2009,,,,,
+WG_75,,,,Rubiaceae,EXCA,,Caribbean princewood,Exostema,caribaeum,,0.99,,,,,23,"AQ, spg added from Zanne et al. Global wood density database. 2 spg values, assigned value from Mexico",Tropical,,,,,,
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,FAGR,,Beech,Fagus,grandifolia,531,0.56,3,66,3 – 66,,,,,,,decid,WG_75,forest,WG_75
+SMS,,,,Oleaceae,FOAC,FOAC,,Forestiera,acuminata,,,,,,,,,,genus not in Zanne et al 2009,yes,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rhamnaceae,FRPU7,,Cascara buckthorn,Frangula,purshiana,,0.501,,,,,118,"BS, spg added from Zanne et al. Global wood density database. Listed under synonym Rhamnus purshiana there.",,,,,,,
+WG_75,H16,hardwood,Oleaceae >= 0.55 spg,Oleaceae,FRAM2,,"Ash, white",Fraxinus,americana,541,0.55,3,55,3 – 55,,,,,,,,,,
+SMS,,,,Oleaceae,FRAM2/FRPE,FRAM2/FRPE,,Fraxinus,americana/pennsylvanica,,0.55,3,55,3 – 55,,,,,Zanne et al 2009,yes,,,,
+WG_75,H15,hardwood,Oleaceae < 0.55 spg,Oleaceae,FRNI,,"Ash, black",Fraxinus,nigra,543,0.45,3,43,3 – 43,,,,,,,,,,
+WG_75,H15,hardwood,Oleaceae < 0.55 spg,Oleaceae,FRPE,,"Ash, green",Fraxinus,pennsylvanica,544,0.53,3,42,3 – 42,,,,,,,,,,
+WG_75,H15,hardwood,Oleaceae < 0.55 spg,Oleaceae,FRAXI,,Ash,Fraxinus,sp.,540,0.51,4,32,4 – 32,,,,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Sterculiaceae,FRCA6,,California flannelbush,Fremontodendron,californicum,,,,,,,,"kj assigned, spg not known",,,,,,,
+SMS,H9,,,Fabaceae,GAST2,GAST2,,Galactia,striata,,,,,,,,,,,no,,,woodland,http://usnvc.org/explore-classification/
+WG_75,H9,hardwood,"Fabaceae/Juglandaceae, other",Fabaceae,GLTR,,Honeylocust,Gleditsia,triacanthos,,0.6,,,,,6,"JG, Spg added from Zanne et al. Global wood density database. ",,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Theaceae,GOLA,,,Gordonia,lasianthus,,0.37,,,,,,"SR-SPG from Jenkins, Chojnacky, et all 2004; H7 used due to family not represented in other groups",,,,,,,
+WG_75,,,,Zygophyllaceae,GUOF,,Roughbark lignum-vitae,Guaiacum,officinale,,1.2,,,,,110,"JG, spg added from Zanne et al. Global wood density database. South American Value, near mean of 3 spg values.","Tropical, Florida and Puerto Rico only",,,,,,
+WG_75,,,,Zygophyllaceae,GUSA,,Holywood,Guaiacum,sanctum,,1.1,,,,,111,"JG, spg added from Zanne et al. Global wood density database. Central Amercia Value","Tropical, Florida and Puerto Rico only",,,,,,
+WG_75,,,,Nyctaginaceae,GUOB,,,Guapira,obtusata,,,,,,,,SR- SPG not known,Tropical,,,,,,
+WG_75,,,,Rubiaceae,GUKR,,,Guettarda,krugii,,0.743,,,,,,SR- SPG not known,Puerto Rico,Zanne et al – average of 9 other Guettarda species,,,,,
+WG_75,H9,hardwood,"Fabaceae/Juglandaceae, other",Fabaceae,GYDI,,Kentucky coffeetree ,Gymnocladus,dioicus,,0.53,,,,,,"JG, spg added from Zanne et al. Global wood density database. ",,,,,,forest,WG_75
+SMS,H9,,,Fabaceae,HACA2,HACA2,,Haematoxylum,campechianum,,0.78,,,,,7858,,,Zanne et al 2009,no,,,woodland,http://usnvc.org/explore-classification/
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Styracaceae,HATE3,,,Halesia,tetraptera,,,,,,,,SR- spg not known for species though Jenkins 2004 lists genus as 0.42; allometry assigned based on not fitting with other taxonomy assignments,,,,,,,
+WG_75,H12,hardwood,Hamamelidaceae,Hamamelidaceae,HAVI4,,American witch-hazel,Hamamelis,virginiana,,0.56,,,,,,"kj assigned, spg from Zanne et al. 2009",,,,,,,
+SMS,H7,,,Rubiaceae,HETE21,HETE21,,Hedyotis,terminalis,,0.38,,,,,,,,Asner et al 2011 FEE field data,,,,,
+SMS,,,,Rosaceae,HODI,HODI,,Holodiscus,discolor,,,,,,,,,,,,,,forest,14 of 15 associations forested in http://usnvc.org/explore-classification/ 
+WG_75,,,,Aquifoliaceae,ILAN,,,Ilex,anomala,,0.48,,,,,,SR- SPG not known,Hawaii,Asner et al 2011 FEE field data,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Aquifoliaceae,ILCA,,,Ilex,cassine,,,,,,,,SR- SPG not known; H7 chosen due to family not represented in other group,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Aquifoliaceae,ILDE,,,Ilex,decidua,,,,,,,,SR- SPG not known; H7 chosen due to family not represented in other group,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Aquifoliaceae,ILMO,,,Ilex,montana,,,,,,,,SR- SPG not known; H7 chosen due to family not represented in other group,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Aquifoliaceae,ILMY,,,Ilex,myrtifolia,,,,,,,,SR- SPG not known; H7 chosen due to family not represented in other group,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Aquifoliaceae,ILOP,,American holly,Ilex,opaca,,0.5,,,,,,"kj assigned, spg from Zanne et al. 2009",,,,,,,
+WG_75,,,,Theophrastaceae,JABE,,,Jacquinia,berteroi,,0.77,,,,,,SR- SPG not known,Puerto Rico,Zanne et al – average of 2 other Jacquinia species,,,,,
+SMS,,,,Oleaceae,JAFL,JAFL,,Jasminum,fluminense,,,,,,,,,,genus not in Zanne et al 2009,yes,,,,
+WG_75,H9,hardwood,"Fabaceae/Juglandaceae, other",Juglandaceae,JUCI,,Butternut,Juglans,cinerea,,0.36,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned based on family.",,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,H9,hardwood,"Fabaceae/Juglandaceae, other",Juglandaceae,JUNI,,Black walnut ,Juglans,nigra,,0.51,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned based on family.",,,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Juglandaceae,JUGLA,JUGLA,,Juglans,sp.,,0.467,,,,,,,,average of 3 NA species in Zanne et al 2009,yes,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Cupressaceae,JUCO6,JUCO6,,Juniperus,communis,,0.517,,,,,28,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned based on SPG.",,Zanne et al 2009,yes,,,forest,10 of 19 associations forested in http://usnvc.org/explore-classification/ 
+WG_75,C5,conifer,Cupressaceae >= 0.40 spg,Cupressaceae,JUCOD,,Common juniper ,Juniperus,communis var. depressa,,0.517,,,,,28,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned based on SPG.",,Zanne et al 2009,yes,,,forest,WG_75
+WG_75,W1,woodland,Cupressaceae,Cupressaceae,JUMO,,"Juniper, oneseed",Juniperus,monosperma,69,0.58,5,45,5 – 45,,,,,,,,,woodland,WG_75
+WG_75,W1,woodland,Cupressaceae,Cupressaceae,JUOC,,"Juniper, western",Juniperus,occidentalis,64,0.45,5,87,5 – 87,,,,,,,,,woodland,WG_75
+WG_75,W1,woodland,Cupressaceae,Cupressaceae,JUOS,,"Juniper, Utah",Juniperus,osteosperma,65,0.54,8,85,8 – 85,,,,,,,,,woodland,WG_75
+SMS,,,,Cupressaceae,JUSC2,JUSC2,,Juniperus,scopulorum,,0.447,,,,,,,,average of 3 NA species in Zanne et al 2009,yes,,,woodland,http://usnvc.org/explore-classification/
+SMS,,,,Cupressaceae,JUNIP,JUNIP,,Juniperus,sp.,,0.447,,,,,,,,average of 3 NA species in Zanne et al 2009,yes,,,woodland,http://usnvc.org/explore-classification/
+WG_75,C5,conifer,Cupressaceae >= 0.40 spg,Cupressaceae,JUVI,,"Juniper, eastern redcedar",Juniperus,virginiana,68,0.44,3,43,3 – 43,,7,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned based on SPG.",,,,,,forest,WG_75
+WG_75,C5,conifer,Cupressaceae >= 0.40 spg,Cupressaceae,JUVIV,,Eastern redcedar ,Juniperus,virginiana var. virginiana,,0.44,3,43,3 – 43,,7,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned based on SPG.",,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ericaceae,KALA,,Mountain laurel,Kalmia,latifolia,,0.62,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned based on family.",,,,,,,
+WG_75,,,,Rhamnaceae,KRFE,,Leadwood,Krugiodendron,ferreum,,1.35,,,,,111,"AQ, spg added from Zanne et al. Global wood density database. 2 spg values, Central American value assigned.","Tropical, only occur in Florida and Puerto Rico",,,,,,
+WG_75,C6,conifer,Larix,Pinaceae,LALA,,Tamarack,Larix,larcina,71,0.49,3,51,3 – 51,,,,,,,,,forest,WG_75
+WG_75,C6,conifer,Larix,Pinaceae,LAOC,,"Tamarack, western larch",Larix,occidentalis,73,0.48,3,98,3 – 98,,,,,,,,,forest,WG_75
+WG_75,C6,conifer,Larix,Pinaceae,LARIX,,"Tamarack, larch (introduced)",Larix,sp.,70,0.49,6,35,6 – 35,,,,,,,,,forest,WG_75
+SMS,H9,,,Fabaceae,LAJAM,LAJAM,,Lathyrus,japonicus,,,,,,,,,,,no,,,woodland,http://usnvc.org/explore-classification/
+SMS,H9,,,Fabaceae,LEBI2,LEBI2,,Lespedeza,bicolor,,,,,,,,,,,no,,,woodland,http://usnvc.org/explore-classification/
+WG_75,H9,hardwood,"Fabaceae/Juglandaceae, other",Fabaceae,LELE10,,White leadtree,Leucaena,leucocephala,,0.84,,,,,23,"AQ, spg added from Zanne et al. Global wood density database. 3 spg values, assigned value from Mexico",Introduced,,,,,forest,WG_75
+SMS,,,,Oleaceae,LIJA,LIJA,,Ligustrum,japonicum,,,,,,,,,,genus not in Zanne et al 2009,yes,,,,
+SMS,,,,Oleaceae,LISI,LISI,,Ligustrum,sinense,,,,,,,,,,genus not in Zanne et al 2009,yes,,,,
+SMS,,,,Oleaceae,LIVU,LIVU,,Ligustrum,vulgare,,0.805,,,,,,,,Zanne et al 2009,yes,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Lauraceae,LIBE3,,,Lindera,benzoin,,,,,,,,SR- SPG not known,,,,,,,
+WG_75,H12,hardwood,Hamamelidaceae,Hamamelidaceae,LIST2,,Sweetgum,Liquidambar,styraciflua,611,0.46,3,53,3 – 53,,,,,,,,,,
+WG_75,H14,hardwood,Magnoliaceae,Magnoliaceae,LITU,,Tulip poplar,Liriodendron,tulipifera,621,0.4,3,65,3 – 65,,,,,,,,,,
+SMS,H9,,,Fabaceae,LUAL4,LUAL4,,Lupinus,albifrons,,,,,,,,,,,no,,,woodland,http://usnvc.org/explore-classification/
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Moraceae,MAPO,,Osage-orange,Maclura,pomifera,,0.76,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. ",,,,,,,
+WG_75,H14,hardwood,Magnoliaceae,Magnoliaceae,MAAC,,Cucumber tree,Magnolia,acuminata,,0.44,,,,,6,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned based on family.",,,,,,,
+WG_75,H14,hardwood,Magnoliaceae,Magnoliaceae,MAFR,,"Magnolia, Fraser",Magnolia,fraseri,655,0.4,5,13,5 – 13,,,,,,,,,,
+WG_75,H14,hardwood,Magnoliaceae,Magnoliaceae,MAMA2,,Bigleaf magnolia,Magnolia,macrophylla,,,,,,,,"SR- originally listed as H7, but H14 seems to fit better",,,,,,,
+SMS,H14,,,Magnoliaceae,MAGNO,MAGNO,,Magnolia,sp.,,,,,,,,,,,no,,,,
+WG_75,H14,hardwood,Magnoliaceae,Magnoliaceae,MATR,,,Magnolia,tripetala,,,,,,,,SR- spg not known for species,,,,,,,
+WG_75,H14,hardwood,Magnoliaceae,Magnoliaceae,MAVI2,,"Magnolia, sweetbay",Magnolia,virginiana,653,0.42,3,19,3 – 19,,,,,,,,,,
+SMS,,,,Rosaceae,MALUS,MALUS,,Malus,sp.,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,,,,Anacardiaceae,MAIN3,,Mango,Mangifera,indica,,0.552,,,,,182,"AQ, spg added from Zanne et al. Global wood density database. 6 spg values, value closest to average assigned.","Introduced, Tropical, Only occurs in Florida and Puerto Rico",,,,,,
+SMS,H7,,,Celastraceae,MAPO5,MAPO5,,Maytenus,ponceana,,0.719,,,,,,,,Average of 16 species from the Americas in Zanne et al 2009,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Meliaceae,MEAZ,,Chinaberrytree ,Melia,azedarach,,0.42,,,,,119,"AQ, spg added from Zanne et al. Global wood density database. 9 values, median value assigned.",Introduced,,,,,,
+WG_75,,,,Sapindaceae,MEBI,,,Melicoccus,bijugatus,,,,,,,,SR- SPG not known; non-native,non-native,,,,,,
+SMS,H7,,,Rutaceae,MECL,MECL,,Melicope,clusiifolia,,0.5,,,,,,,,Asner et al 2011 FEE – citing Chave et al 2009,,,,,
+SMS,H7,,,Rutaceae,MERA2,MERA2,,Melicope,radiata,,0.482,,,,,,,,,,,,,
+SMS,H7,,,Rutaceae,MELIC3,MELIC3,,Melicope,sp.,,0.482,,,,,,,,,,,,,
+WG_75,,,,Myrtaceae,MEPO5,,,Metrosideros,polymorpha,,0.69,,,,,,SR- SPG not known,Hawaii,Asner et al 2011 FEE field data,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Myricaceae,MOCE2,,,Morella,cerifera,,,,,,,,SR- SPG not known; H7 chosen due to family not represented in other group,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Moraceae,MOAL,,White mulberry,Morus,alba,,0.578,,,,,33,"AQ, spg added from Zanne et al. Global wood density database. 9 values, median value assigned.",Introduced,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Moraceae,MORU2,,,Morus,rubra,,0.59,,,,,,"SR - SPG from Jenkins, Chojnacky, et al 2004; allometry chosen based on family not represented in other categories",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Moraceae,MORUS,,,Morus,sp.,,0.59,,,,,,"SR - SPG from Jenkins, Chojnacky, et al 2004; allometry chosen based on family not represented in other categories",,,,,,,
+WG_75,,,,Myoporaceae,MYSA,,,Myoporum,sandwicense,,0.88,,,,,,SR- SPG not known,Hawaii,Asner et al 2011 FEE - citing Chave et al 2009,,,,,
+WG_75,,,,Myrsinaceae,MYLE2,,,Myrsine,lessertiana,,0.53,,,,,,SR- SPG not known,Hawaii,Asner et al 2011 FEE field data,,,,,
+WG_75,,,,Myrsinaceae,MYSA2,,,Myrsine,sandwicensis,,0.53,,,,,,SR- SPG not known,Hawaii,Asner et al 2011 FEE field data,,,,,
+WG_75,H11,hardwood,"Fagaceae, evergreen",Fagaceae,NODE3,,Tanoak,Notholithocarpus,densiflorus,631,0.58,3,66,3 – 66,formerly LIDE3 Lithocarpus densiflorus,,NB: USDA currently recognizes this as Notholithocarpus densiflorus (NODE3),,,,ever,WG_75,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Cornaceae,NYAQ2,,"Tupelo, water",Nyssa,aquatica,691,0.46,3,25,3 – 25,,,,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Cornaceae,NYBI,,,Nyssa,biflora,,0.46,,,,,,"SR - SPG from Jenkins, Chojnacky, et al 2004 syn: N. sylvatica var. biflora; allometry assignef based on Cornaceae",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Cornaceae,NYSSA,,,Nyssa,sp.,,,,,,,,Allometry assigned using family.,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Cornaceae,NYSY,,"Tupelo, blackgum",Nyssa,sylvatica,693,0.46,3,50,3 – 50,,,,,,,,,,
+SMS,,,,Rosaceae,OECE,OECE,,Oemleria,cerasiformis,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,H6,hardwood,Betulaceae  >= 0.60 spg,Betulaceae,OSVI,,Hophornbeam,Ostrya,virginiana,701,0.63,3,21,3 – 21,,,,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ericaceae,OXAR,,Sourwood,Oxydendrum,arboreum,711,0.5,4,35,4 – 35,,,,,,,,,,
+WG_75,W2,woodland,Fabaceae/Rosaceae,Fabaceae,PAFL6,,,Parkinsonia,florida,,,,,,,,SR - SPG not known; Woodland allometry based on classifcation of other palo verde,,,,,,woodland,WG_75
+WG_75,W2,woodland,Fabaceae/Rosaceae,Fabaceae,PAMI5,,"Paloverde, yellow",Parkinsonia,microphylla,none,0.6,10,25,10 – 25,formerly CEMI6 Cercidium microphyllum,,NB: USDA currently recognizes this as Parkinsonia microphylla (PAMI5) ,,,,,,woodland,WG_75
+SMS,H9,,,Fabaceae,PARKI2,PARKI2,,Parkinsonia,sp.,,,,,,,,,,,no,,,forest,http://usnvc.org/explore-classification/
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Scrophulariaceae,PATO2,,Princesstree,Paulownia,tomentosa,,0.28,,,,,32,"AQ, spg added from Zanne et al. Global wood density database. ",Introduced,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Lauraceae,PEBO,,,Persea,borbonia,,0.51,,,,,,"SR-SPG from Jenkins, Chojnacky, et al 2004",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Lauraceae,PEPA37,,,Persea,palustris,,,,,,,,SR- SPG not known,,,,,,,
+SMS,,,,Rosaceae,PHPY4,PHPY4,,Photinia,pyrifolia,,,,,,,,,,,,,,woodland,http://usnvc.org/explore-classification/
+SMS,H7,,,Euphorbiaceae,PHEP,PHEP,,Phyllanthus,epiphyllanthus,,0.6,,,,,12013,,,Used value for Phyllanthus acidus which is only species from Americas in Zanne et al 2009,,,,,
+WG_75,C8,conifer,Picea >= 0.35 spg,Pinaceae,PIAB,,"Spruce, Norway",Picea,abies,91,0.36,6,44,6 – 44,,,,,,,,,forest,WG_75
+WG_75,C7,conifer,Picea < 0.35 spg,Pinaceae,PIEN,,"Spruce, Engelmann",Picea,engelmannii,93,0.33,3,90,3 – 90,,,,,,,,,forest,WG_75
+WG_75,C8,conifer,Picea >= 0.35 spg,Pinaceae,PIGL,,"Spruce, white",Picea,glauca,94,0.37,3,8,3–58,,,,,,,,,forest,WG_75
+WG_75,C8,conifer,Picea >= 0.35 spg,Pinaceae,PIMA,,"Spruce, black",Picea,mariana,,0.38,,,,,,Added by kj - based on worldagroforstr.org,,,,,,forest,WG_75
+WG_75,C8,conifer,Picea >= 0.35 spg,Pinaceae,PIRU,,Red spruce,Picea,rubens,,0.37,,,,,7,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,forest,WG_75
+WG_75,C7,conifer,Picea < 0.35 spg,Pinaceae,PISI,,"Spruce, Sitka",Picea,sitchensis,98,0.33,5,83,5 – 283,,,,,,,,,forest,WG_75
+WG_75,C8,conifer,Picea >= 0.35 spg,Pinaceae,PICEA,,,Picea,sp.,,0.366,,,,,,"SR - SPG from Jenkins, Chojnacky, et al 2004. Allometry assigned using this SPG ",,,,,,forest,WG_75
+WG_75,,,,Fabaceae,PIAC,,Fustic,Pictetia,aculeata,,0.8,,,,,111,"AQ, spg added from Zanne et al. Global wood density database. Puerto Rico",Puerto Rico,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PIAL,,"Pine, whitebark",Pinus,albicaulis,101,0.43,3,50,3 – 50,,,,,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PIAR5,,"Pine, Arizona",Pinus,arizonica,135,0.43,10,45,10– 45,PIARA and PIARS2 also this species,,,,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PIBA2,,"Pine, jack",Pinus,banksiana,105,0.4,3,41,3 – 41,,,,,,,,,forest,WG_75
+WG_75,W4,woodland,Pinaceae,Pinaceae,PICE,,"Pine, pinyon",Pinus,cembroides,140,0.51,4,19,4 – 19,,,,,,,,,woodland,WG_75
+SMS,,,,Pinaceae,PICL,PICL,,Pinus,clausa,,0.46,,,,,,,,Zanne et al 2009,yes,,,woodland,6 of 9 associations woodland in http://usnvc.org/explore-classification/ 
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PICO,,"Pine, lodgepole",Pinus,contorta,108,0.38,3,60,3 – 60,,,,,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PICOL,,"Pine, lodgepole",Pinus,contorta var. latifolia,,0.38,3,60,3 – 60,syn PICOL2,,SR- spg from P. contorta used,,,,,,forest,WG_75
+WG_75,C10,conifer,Pinus >= 0.45 spg,Pinaceae,PIEC2,,"Pine, shortleaf",Pinus,echinata,110,0.47,4,50,4 – 50,,,,,,,,,forest,WG_75
+WG_75,W4,woodland,Pinaceae,Pinaceae,PIED,,"Pine, pinyon",Pinus,edulis,106,0.51,5,45,5 – 45,,,,,,,,,woodland,WG_75
+WG_75,C10,conifer,Pinus >= 0.45 spg,Pinaceae,PIEL,,"Pine, slash",Pinus,elliottii,111,0.54,3,53,3 – 53,,,,,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PIFL2,,"Pine, limber",Pinus,flexilis,,0.37,,,,,,SR- spg from Zanne et al. Global wood density database. ,,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PIGL2,,Spruce pine,Pinus,glabra,,0.41,,,,,7,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PIJE,,"Pine, Jeffrey",Pinus,jeffreyi,116,0.37,3,33,3 – 133,,,,,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PILA,,"Pine, sugar",Pinus,lambertiana,117,0.34,3,80,3 – 180,,,,,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PILE,,"Pine, Chihuahua",Pinus,leiophylla,118,0.43,10,35,10– 35,,,,,,,,,forest,WG_75
+WG_75,W4,woodland,Pinaceae,Pinaceae,PIMO,,"Pine, pinyon singleleaf",Pinus,monophylla,133,0.51,3,75,3 – 75,,,,,,,,,woodland,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PIMO3,,"Pine, western white",Pinus,monticola,119,0.36,4,15,4 – 115,,,,,,,,,forest,WG_75
+WG_75,C10,conifer,Pinus >= 0.45 spg,Pinaceae,PIPA2,,"Pine, longleaf",Pinus,palustris,121,0.54,15,48,15– 48,,,,,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PIPO,,"Pine, ponderosa",Pinus,ponderosa,122,0.38,3,18,3 – 118,,,,,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PIPOS,,"Pine, ponderosa",Pinus,ponderosa,122,0.38,3,18,3 – 118,,,,,,,,,forest,WG_75
+WG_75,C10,conifer,Pinus >= 0.45 spg,Pinaceae,PIPU5,,Table Mountain pine,Pinus,pungens,,0.49,,,,,7,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PIRE,,"Pine, red",Pinus,resinosa,125,0.41,3,55,3 – 55,,,,,,,,,forest,WG_75
+WG_75,C10,conifer,Pinus >= 0.45 spg,Pinaceae,PIRI,,"Pine, pitch",Pinus,rigida,126,0.47,3,31,3 – 31,,,,,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PISA2,,"Pine, California foothill",Pinus,sabiniana,,0.433,,,,,,SR- spg not known,,average of 20 NA species in Zanne et al 2009,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PINACE,,"Pine, ponderosa- lodgepole-sugar",Pinus,sp.,100,0.37,16,80,16– 80,,,,,,,,,,
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PINUS,,"Pine, ponderosa- lodgepole-sugar",Pinus,sp.,100,0.37,16,80,16– 80,,,,,,,,,forest,WG_75
+WG_75,C9,conifer,Pinus < 0.45 spg,Pinaceae,PIST,,"Pine, eastern white",Pinus,strobus,129,0.34,3,69,3 – 69,,,,,,,,,forest,WG_75
+WG_75,C10,conifer,Pinus >= 0.45 spg,Pinaceae,PITA,,"Pine, loblolly",Pinus,taeda,131,0.47,3,56,3 – 56,,,,,,,,,forest,WG_75
+WG_75,C10,conifer,Pinus >= 0.45 spg,Pinaceae,PIVI2,,Virginia pine,Pinus,virginiana ,,0.45,,,,,7,"AQ, spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.",,,,,,forest,WG_75
+WG_75,,,,Nyctaginaceae,PIAL3,,,Pisonia,albida,,0.344,,,,,,SR - SPG not known; Puerto Rico,Puerto Rico,Zanne et al – average of 9 other Pisonia species,,,,,
+WG_75,H9,hardwood,"Fabaceae/Juglandaceae, other",Fabaceae,PIDU,,Monkeypod,Pithecellobium,dulce,,0.64,,,,,26,"AQ, spg added from Zanne et al. Global wood density database. 6 spg values, value closest to average assigned. Allometry assigned based on distribution. Could also be W2.",Introduced,,,,,forest,WG_75
+SMS,H9,,,Fabaceae,PIUN,PIUN,,Pithecellobium,unguis-cati,,,,,,,,,,,no,,,forest,http://usnvc.org/explore-classification/
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Platanaceae,PLOC,,Sycamore,Platanus,occidentalis,731,0.46,3,50,3 – 50,,,,,,,,,,
+SMS,H7,,,Apocynaceae,PLAL,PLAL,,Plumeria,alba,,0.8,,,,,12348,,,Zanne et al 2009,,,,,
+SMS,H9,,,Fabaceae,POFL20,POFL20,,Poitea,florida,,,,,,,,,,,no,,,forest,http://usnvc.org/explore-classification/
+SMS,H9,,,Fabaceae,POPA34,POPA34,,Poitea,paucifolia,,,,,,,,,,,no,,,forest,http://usnvc.org/explore-classification/
+WG_75,H17,hardwood,Salicaceae < 0.35 spg,Salicaceae,POBA2,,"Populus, balasm poplar",Populus,balsamifera,741,0.31,3,53,3 – 53,,,,,,,,,,
+WG_75,H17,hardwood,Salicaceae < 0.35 spg,Salicaceae,POBAT,,"Populus, black Cottonwood",Populus,balsamifera. ssp. trichocarpa,747,0.31,5,32,5 – 32,,,,,,,,,,
+WG_75,H18,hardwood,Salicaceae >= 0.35 spg,Salicaceae,PODE3,,"Populus, cottonwood eastern",Populus,deltoides,742,0.37,3,7,3–27,,,,,,,,,,
+WG_75,H18,hardwood,Salicaceae >= 0.35 spg,Salicaceae,POGR4,,"Populus, aspen bigtooth",Populus,grandidentata,743,0.36,3,5,3–55,,,,,,,,,,
+WG_75,H17,hardwood,Salicaceae < 0.35 spg,Salicaceae,POPUL,,"Populus, cottonwood",Populus,sp.,740,0.34,3,40,3 – 40,,,,,,,,,,
+WG_75,H18,hardwood,Salicaceae >= 0.35 spg,Salicaceae,POTR5,,"Populus, aspen quaking",Populus,tremuloides,746,0.35,3,0,3–70,,,,,,,,,,
+WG_75,W2,woodland,Fabaceae/Rosaceae,Fabaceae,PRGL2,,Honey mesquite,Prosopis,glandulosa,,0.705,,,,,6,SM - spg added from Zanne et al. Global wood density database. Assigned North American value SR- allometry assigned based on multiple stem growth form and desert distribution. Could also be H9,,,,,,woodland,WG_75
+WG_75,W2,woodland,Fabaceae/Rosaceae,Fabaceae,PROSO,,Mesquite,Prosopis,sp.,755,0.78,3,60,3 – 60,,,,,,,,,woodland,WG_75
+WG_75,W2,woodland,Fabaceae/Rosaceae,Fabaceae,PRVE,,,Prosopis,velutina,,,,,,,,"SR - SPG not specifically known, but suggest using the PROSO value. Woodland allometry based on dryland distribution",,,,,,woodland,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PRAM,,,Prunus,americana,,0.47,,,,,,"SR - SPG from Jenkins, Chojnacky, et al 2004; allometry assigned based on Rosaceae",,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PRAN3,,,Prunus,angustifolia,,,,,,,,SR - SPG not known,,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PRAV,,Sweet cherry ,Prunus,avium,,0.474,,,,,28,"AQ, spg added from Zanne et al. Global wood density database. ",Introduced,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PREM,,,Prunus,emarginata,,0.47,,,,,,"SR - SPG from Jenkins, Chojnacky, et al 2004; this paper indicates this could be covered under woodland allometry W2",,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PRME,,,Prunus,mexicana,,,,,,,,SR - SPG not known; allometry assigned based on Rosaceae,,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PRPE2,,"Cherry, pin",Prunus,pensylvanica,761,0.36,3,42,3 – 42,,118,SM - spg added from Zanne et al. Global wood density database,,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PRPEP,,Pin cherry,Prunus,pensylvanica var. pensylvanica,,0.36,3,42,3 – 42,,118,SM - spg added from Zanne et al. Global wood density database,,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PRSE2,,"Cherry, black",Prunus,serotina,762,0.47,3,50,3 – 50,,6,SM - spg added from Zanne et al. Global wood density database,,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PRSES,,Black cherry,Prunus,serotina var. serotina,,0.47,3,50,3 – 50,,6,SM - spg added from Zanne et al. Global wood density database,,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PRUNU,,,Prunus,sp.,,0.47,,,,,,"SR- spg from Jenkins, Chojnacky, et al 2004; allometry assigned based on Family",,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PRUM,,,Prunus,umbellata,,,,,,,,SR - SPG not known; allometry assigned based on Rosaceae,,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PRVI,,"Cherry, Chokecherry",Prunus,virginiana,763,0.47,3,15,3 – 15,,,,,,,,,forest,WG_75
+WG_75,C11,conifer,Pseudotsuga,Pinaceae,PSME,,Douglas-fir,Pseudotsuga,menziesii,202,0.45,3,15,3 – 215,,,,,,,,,forest,WG_75
+WG_75,C11,conifer,Pseudotsuga,Pinaceae,PSMEM,,Douglas-fir,Pseudotsuga,menziesii var. menziesii,202,0.45,3,15,3 – 215,,,,,,,,,forest,WG_75
+WG_75,W2,woodland,Fabaceae/Rosaceae,Rosaceae,PUST,,,Purshia,stansburiana,,,,,,,,SR- SPG not known; W2 chosen due to distribution in arid regions and similarity of growth form to Cercocarpus spp.,,,,,,woodland,WG_75
+SMS,,,,Rosaceae,PUTR2,PUTR2,,Purshia,tridentata,,,,,,,,,,,,,,woodland,http://usnvc.org/explore-classification/
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PYCA80,,Callery pear,Pyrus,calleryana,,,,,,,,SR - SPG not known; allometry assigned based on Rosaceae,Introduced,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,PYRUS,,,Pyrus,sp.,,,,,,,,SR - SPG not known; allometry assigned based on Rosaceae,,,,,,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUHE,,Bartram oak,Quercus,× heterophylla,,0.56,,,,,6,"BS, spg for this hybrid's parents (Q. phellos x rubra) added from Zanne et al. Global wood density database. ",,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUAL,,"Oak, white",Quercus,alba,802,0.6,3,74,3 – 74,,,,,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUCH,,Chapman oak,Quercus,chapmanii,,0.78,,,,,29,"BS, spg added from Zanne et al. Global wood density database. Deciduous or subevergreen (FNA), could also fit H11 category.",,,,decid,WG_75,forest,WG_75
+WG_75,W3,woodland,Fagaceae,Fagaceae,QUCH2,,"Oak, evergreen spp. (**Oak, canyon live)",Quercus,chrysolepis,850,0.58,9,74,9 – 74,,,"assumes drc, may require dbh to drc conversion",,,,,,woodland,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUCO2,,"Oak, scarlet",Quercus,coccinea,806,0.6,3,56,3 – 56,,,,,,,decid,WG_75,forest,WG_75
+WG_75,W3,woodland,Fagaceae,Fagaceae,QUDO,,"Oak, blue",Quercus,douglasii,807,0.59,15,50,15 – 50,,,,,,,,,woodland,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUEL,,"Oak, pin",Quercus,ellipsoidalis,809,0.59,3,50,3 – 50,,,,,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUFA,,"Oak, red southern",Quercus,falcata,812,0.52,3,56,3 – 56,,,,,,,decid,WG_75,forest,WG_75
+WG_75,H11,hardwood,"Fagaceae, evergreen",Fagaceae,QUFU,,,Quercus,fusiformis,,,,,,,,"SR - SPG not known; allometry based on evergreen character, slight chance it could fit under W3",,,,ever,WG_75,forest,WG_75
+WG_75,W3,woodland,Fagaceae,Fagaceae,QUGA,,"Oak, Gambel",Quercus,gambelii,814,0.61,3,32,3 – 32,,,,,,,,,woodland,WG_75
+WG_75,H11,hardwood,"Fagaceae, evergreen",Fagaceae,QUGE2,,sand live oak,Quercus,geminata,,0.872,,,,,29,"BS, spg added from Zanne et al. Global wood density database. Subevergreen (FNA).",,,,ever,WG_75,forest,WG_75
+WG_75,H11,hardwood,"Fagaceae, evergreen",Fagaceae,QUHE2,,Darlington oak,Quercus,hemisphaerica,,0.69,,,,,29,"BS, spg added from Zanne et al. Global wood density database. Allometry H11 assigned because it is evergreen or tardily deciduous (FNA), could also fit H10 category.",,,,ever,WG_75,forest,WG_75
+WG_75,W3,woodland,Fagaceae,Fagaceae,QUHY,,"Oak, silverleaf",Quercus,hypoleucoides,843,0.59,4,37,4 – 37,,,,,,,,,woodland,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUIN,,bluejack oak,Quercus,incana,,0.71,,,,,29,"BS, spg added from Zanne et al. Global wood density database. Allometry H10 assigned because it is deciduous (FNA).",,,,decid,WG_75,forest,WG_75
+SMS,,,,Fagaceae,QUIN7,QUIN7,,Quercus,inopina,,,,,,,,,,,no,ever,www.efloras.org ,woodland,http://usnvc.org/explore-classification/
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUKE,,"Oak, California black",Quercus,kelloggii,812,0.51,3,56,3 – 56,,,kj assigned,,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QULA,,,Quercus,laceyi,,,,,,,,"SR - SPG not known; allometry assigned based on deciduous phenology, remote chance this could fit under W3 as well",,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QULA2,,turkey oak,Quercus,laevis,,0.639,,,,,29,"BS, spg added from Zanne et al. Global wood density database. Allometry H10 assigned because it is deciduous (FNA).",,,,decid,WG_75,forest,WG_75
+WG_75,H11,hardwood,"Fagaceae, evergreen",Fagaceae,QULA3,,"Oak, laurel",Quercus,laurifolia,820,0.56,3,44,3 – 44,,,,,,,ever,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QULY,,overcup oak,Quercus,lyrata,,0.57,,,,,6,"BS, spg added from Zanne et al. Global wood density database. Allometry H10 assigned because it is deciduous (FNA).",,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUMA2,,"Oak, bur",Quercus,macrocarpa,823,0.58,6,25,6 – 25,,,,,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUMA13,,"Oak, sand post",Quercus,margaretta,,,,,,syn QUMA6,,kj assigned based on synonomy with Q. steallata varieties,,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUMA3,,"Oak, blackjack",Quercus,marilandica,,0.56,,,,,,"kj assigned; SR- spg from Jenkins, Chojnacky et al 2004",,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUMI,,swamp chestnut oak,Quercus,michauxii ,,0.6,,,,,6,"BS, spg added from Zanne et al. Global wood density database. Randomly chose one of two spg values. Allometry H10 assigned because it is deciduous (FNA).",,,,decid,WG_75,forest,WG_75
+WG_75,H11,hardwood,"Fagaceae, evergreen",Fagaceae,QUMI2,,"Oak, dwarf live",Quercus,minima,841,0.59,3,3,3 – 3,,,,,,,ever,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUMU,,,Quercus,muehlenbergii,,0.6,,,,,,"SR - SPG from Jenkins, Chojnacky, et al 2004; allometry based on deciduous phenology",,,,decid,WG_75,forest,WG_75
+WG_75,H11,hardwood,"Fagaceae, evergreen",Fagaceae,QUMY,,myrtle oak,Quercus,myrtifolia,,0.807,,,,,29,"BS, spg added from Zanne et al. Global wood density database. Allometry H11 assigned because it is evergreen (FNA).",,,,ever,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUNI,,"Oak, water",Quercus,nigra,827,0.56,3,51,3 – 51,,,,,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUPA5,,cherrybark oak,Quercus,pagoda,,0.61,,,,,6,"BS, spg for Quercus falcata var. pagodifolia from Alden, H. 1995. Hardwoods of North America. United States Department of Agriculture, Forest Service, Forest Products Laboratory. Gen. Tech. Report FPL-GTR-83. 136 pp. https://www.fpl.fs.fed.us/documnts/fplgtr/fplgtr83.pdf. Allometry H10 assigned becauase it is deciduous (FNA).",,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUPH,,Willow oak,Quercus,phellos,,0.56,,,,,6,SM - spg added from Zanne et al. Global wood density database. Allometry H10 assigned because it is deciduous (FNA).,,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUMO4,,"Oak, chestnut",Quercus,prinus,832,0.57,3,58,3 – 58,,,synonym,,,,decid,WG_75,forest,WG_75
+SMS,,,,Fagaceae,QUPU80,QUPU80,,Quercus,pumila,,,,,,,,,,,no,decid,www.efloras.org ,woodland,http://usnvc.org/explore-classification/
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QURU,,"Oak, red northern",Quercus,rubra,833,0.56,3,73,3 – 73,,,,,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUSH,,Shumard's oak,Quercus,shumardii,,0.644,,,,,29,SM - spg added from Zanne et al. Global wood density database. Allomtery H10 assigned because it is deciduous (FNA).,,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUERC,,Oaks,Quercus,sp.,800,0.59,3,73,3 – 73,,,"SR -This allometry assignment would be highly dependent on where the oak occurs and whether it is evergreen, deciduous, or scrub oak",,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUST,,"Oak, post",Quercus,stellata,835,0.6,3,53,3 – 53,,,,,,,decid,WG_75,forest,WG_75
+WG_75,H10,hardwood,"Fagaceae, deciduous",Fagaceae,QUVE,,"Oak, black",Quercus,velutina,837,0.56,3,89,3 – 89,,,,,,,decid,WG_75,forest,WG_75
+WG_75,H11,hardwood,"Fagaceae, evergreen",Fagaceae,QUVI,,Live oak,Quercus,virginiana,,0.8,,,,,6,SM - spg added from Zanne et al. Global wood density database. Assigned first value. Allomtery H11 assigned because it is subevergreen (FNA).,,,,ever,WG_75,forest,WG_75
+WG_75,W3,woodland,Fagaceae,Fagaceae,QUWI2,,"Oak, evergreen spp. (**Oak, interior live)",Quercus,wislizeni,850,0.58,9,74,9 – 74,,,"assumes drc, may require dbh to drc conversion",,,,,,woodland,WG_75
+SMS,H7,,,Rubiaceae,RAAC,RAAC,,Randia,aculeata,,0.668,,,,,Average of 2 records in Americas in Zanne et al 2009,,,,,,,,
+SMS,H7,,,Rubiaceae,RAPO2,RAPO2,,Randia,portoricensis,,0.668,,,,,Average of 2 records in Americas in Zanne et al 2009,,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rhamnaceae,RHDA,,Dahurian buckthorn,Rhamnus,davurica,,0.551,,,,,33,SM - spg added from Zanne et al. Global wood density database,Introduced,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ericaceae,RHMA4,,Great laurel,Rhododendron,maximum,,0.5,,,,,118,SM - spg added from Zanne et al. Global wood density database. Allometry assigned based on family.,,,,,,,
+SMS,,,,Rosaceae,RHSC3,RHSC3,,Rhodotypos,scandens,,,,,,,,,,,,,,forest,USDA plants range distribution
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Anacardiaceae,RHCO,,,Rhus,copallinum,,,,,,,,SR- SPG not known; H7 chosen due to family not represented in other group,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Anacardiaceae,RHGL,,,Rhus,glabra,,,,,,,,SR- SPG not known; H7 chosen due to family not represented in other group,,,,,,,
+WG_75,H9,hardwood,"Fabaceae/Juglandaceae, other",Fabaceae,ROPS,,"Locust, black",Robinia,pseudoacacia,901,0.66,4,42,4 – 42,,,,,,,,,forest,WG_75
+SMS,H7,,,Rubiaceae,ROIN4,ROIN4,,Rondeletia,inermis,,0.5,,,,,13651,,,Used value for Rondeletia galeottii which is only species in Zanne et al 2009,,,,,
+SMS,,,,Rosaceae,ROAR3,ROAR3,,Rosa,arkansana,,,,,,,,,,,,,,woodland,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,ROGY,ROGY,,Rosa,gymnocarpa,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,ROMU,ROMU,,Rosa,multiflora,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,RUAL,RUAL,,Rubus,allegheniensis,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,RUAR9,RUAR9,,Rubus,armeniacus,,,,,,,,,,,,,,woodland,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,RUHA,RUHA,,Rubus,hawaiensis,,0.35,,,,,13668,,,Used value for Rubus alceifolius which is only species in Zanne et al 2009,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,RULA,RULA,,Rubus,laciniatus,,,,,,,,,,,,,,forest,USDA plants range distribution
+SMS,,,,Rosaceae,RULE,RULE,,Rubus,leucodermis,,,,,,,,,,,,,,forest,calflora.org
+SMS,,,,Rosaceae,RUOC,RUOC,,Rubus,occidentalis,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,RUOK,RUOK,,Rubus,oklahomus,,,,,,,,,,,,,,woodland,https://biosurvey.ou.edu/shrub/rubu-okl.htm  
+SMS,,,,Rosaceae,RUPA,RUPA,,Rubus,parviflorus,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,RUPE3,RUPE3,,Rubus,pensilvanicus,,,,,,,,,,,,,,woodland,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,RUPH,RUPH,,Rubus,phoenicolasius,,,,,,,,,,,,,,forest,5 of 6 associations forested in http://usnvc.org/explore-classification/ 
+SMS,,,,Rosaceae,RUBUS,RUBUS,,Rubus,sp.,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,RUSP,RUSP,,Rubus,spectabilis,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+SMS,H7,,,Blechnaceae,SACY3,SACY3,,Sadleria,cyatheoides,,0.5,,,,,,,,Asner et al 2011 FEE – default value,,,,,
+SMS,,,,Salicaceae,SAAL,SAAL,,Salix,alaxensis,,0.375,,,,,,,,average of 2 NA species in Zanne et al 2009,yes,,,,
+WG_75,H18,hardwood,Salicaceae >= 0.35 spg,Salicaceae,SAAL2,,"Willow, white",Salix,alba,927,0.36,3,4,3 – 4,,,,,,,,,,
+WG_75,H18,hardwood,Salicaceae >= 0.35 spg,Salicaceae,SABE2,,"Willow, Bebb",Salix,bebbiana,,0.375,,,,,,"SR- SPG not known, allometry chosen based on other Salix spp.",,Zanne et al – average of the 2 other North American species,,,,,
+SMS,,,,Salicaceae,SACA4,SACA4,,Salix,candida,,0.375,,,,,,,,average of 2 NA species in Zanne et al 2009,yes,,,,
+SMS,,,,Salicaceae,SAGL,SAGL,,Salix,glauca,,0.375,,,,,,,,average of 2 NA species in Zanne et al 2009,yes,,,,
+SMS,,,,Salicaceae,SAMY,SAMY,,Salix,myrtillifolia,,0.375,,,,,,,,average of 2 NA species in Zanne et al 2009,yes,,,,
+WG_75,H18,hardwood,Salicaceae >= 0.35 spg,Salicaceae,SANI,,Black willow,Salix,nigra,,0.36,,,,,6,SM - spg added from Zanne et al. Global wood density database,,,,,,,
+SMS,,,,Salicaceae,SAPE5,SAPE5,,Salix,petiolaris,,0.375,,,,,,,,average of 2 NA species in Zanne et al 2009,yes,,,,
+SMS,,,,Salicaceae,SAPU15,SAPU15,,Salix,pulchra,,0.375,,,,,,,,average of 2 NA species in Zanne et al 2009,yes,,,,
+SMS,,,,Salicaceae,SARI4,SARI4,,Salix,richardsonii,,0.375,,,,,,,,average of 2 NA species in Zanne et al 2009,yes,,,,
+WG_75,H18,hardwood,Salicaceae >= 0.35 spg,Salicaceae,SASC,,,Salix,scouleriana,,0.375,,,,,,"SR - SPG not known; allometry chosen based on Jenkins, Chojnacky 2004 reporting Salix spp specic gravity to be 0.36. Used this general assumption.",,Zanne et al – average of the 2 other North American species,,,,,
+WG_75,H18,hardwood,Salicaceae >= 0.35 spg,Salicaceae,SALIX,,Willow,Salix,sp.,920,0.36,3,23,3 – 23,,,,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Lauraceae,SAAL5,,Sassafras,Sassafras,albidum,931,0.42,3,15,3 – 15,,,,,,,,,,
+WG_75,,,,Fabaceae,SESI3,,Siamese cassia,Senna,siamea,,0.65,,,,,204,"SM - spg added from Zanne et al. Global wood density database. Assigned South America value vs South-East Asia values, Ref 204",Puerto Rico Only,,,,,woodland,
+WG_75,C4,conifer,Cupressaceae 0.30 – 0.39 spg,Cupressaceae,SEGI2,,"Sequoia, giant",Sequoiadendron,giganteum,212,0.34,,,97-614,,,,,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Sapotaceae,SILA20,,,Sideroxylon,lanuginosum,,,,,,,,SR- SPG not known; H7 chosen due to family not represented in other group,,,,,,,
+WG_75,,,,Sapotaceae,SIOB,,Breakbill,Sideroxylon,obovatum,,0.86,,,,,44,SM - spg added from Zanne et al. Global wood density database,Puerto Rico Only,,,,,,
+WG_75,,,,Sapotaceae,SISA6,,White bully,Sideroxylon,salicifolium,,0.86,,,,,118,"SM - spg added from Zanne et al. Global wood density database. Assigned North America value, Ref 118.",Tropical,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rosaceae,SOAM3,,"Sorbus, mtn. ash",Sorbus,americana,935,0.6,7,26,7 – 26,,,,,,,,,forest,WG_75
+SMS,,,,Rosaceae,SORBU,SORBU,,Sorbus,sp.,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,SPALL,SPALL,,Spiraea,alba,,,,,,,,,,,,,,woodland,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,SPDOD,SPDOD,,Spiraea,douglasii,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+SMS,,,,Rosaceae,SPST3,SPST3,,Spiraea,stevenii,,,,,,,,,,,,,,forest,http://usnvc.org/explore-classification/
+WG_75,,,,Epacridaceae,STTA,,,Styphelia,tameiameiae,,0.5,,,,,,SR- SPG not known,Hawaii,Asner et al 2011 FEE – default value,,,,,
+WG_75,,,,Meliaceae,SWMA2,,West indian mahogany,Swietenia,mahagoni,,0.75,,,,,111,"SM - spg added from Zanne et al. Global wood density database. Assigned Central America value vs South-East Asia value, Ref 111.",Tropical,,,,,,
+WG_75,,,,Bignoniaceae,TAHE,,White cedar,Tabebuia,heterophylla,,0.58,,,,,141,SM - spg added from Zanne et al. Global wood density database. There are 3 spg values from the Global wood density database for this species.,Tropical,,,,,,
+WG_75,C5,conifer,Cupressaceae >= 0.40 spg,Cupressaceae,TADI2,,Bald cypress,Taxodium,distichum,,0.42,,,,,7,SM - spg added from Zanne et al. Global wood density database. Allometry assigned using SPG.,,,,,,forest,WG_75
+WG_75,C11,conifer,Pseudotsuga,Pinaceae,TABR2,,"Yew, Pacific",Taxus,brevifolia,,0.6,,,,,,Chojnacky et. al suggest using PSME for taxus spp.  SR- spg from Zanne et al. Global wood density database. ,,,,,,forest,WG_75
+WG_75,,,,Rutaceae,TEDA,,,Tetradium,daniellii,,,,,,,,SR- SPG not known; non-native,non-native,,,,,,
+SMS,H7,,,Sapindaceae,THSTP,THSTP,,Thouinia,striata,,0.9,,,,,15594,,,Zanne et al 2009,,,,,
+WG_75,C3,conifer,Cupressaceae < 0.30 spg,Cupressaceae,THOC2,,"Cedar, northern white",Thuja,occidentalis,241,0.29,3,66,3 – 66,,,,,,,,,forest,WG_75
+WG_75,C4,conifer,Cupressaceae 0.30 – 0.39 spg,Cupressaceae,THPL,,"Cedar, western red",Thuja,plicata,242,0.31,3,69,3 – 169,,,,,,,,,forest,WG_75
+SMS,,,,Cupressaceae,THUJA,THUJA,,Thuja,sp.,,0.3,,,,,,,,average of 2 NA species in Zanne et al 2009,yes,,,forest,http://usnvc.org/explore-classification/
+WG_75,H13,hardwood,Hippocastanaceae/Tiliaceae,Tiliaceae,TIAM,,buckeye Basswood,Tilia,americana,951,0.32,3,55,3 – 55,,,,,,,,,,
+WG_75,H13,hardwood,Hippocastanaceae/Tiliaceae,Tiliaceae,TIAMH,,"Basswood, white",Tilia,americana. var. heterophylla,952,0.32,8,33,8 – 33,,,,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Anacardiaceae,TODI,,Pacific poison oak,Toxicodendron,diversilobum,,0.63,,,,,,"kj assigned, spg from Zanne et al. 2009",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Anacardiaceae,TORA2,,Poison ivy,Toxicodendron,radicans,,,,,,,,"kj assigned, spg not known",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Anacardiaceae ,TOVE,,,Toxicodendron,vernix,,,,,,,,SR- SPG not known; H7 chosen due to family not represented in other group,,,,,,,
+WG_75,,,,Euphorbiaceae,TRSE6,,,Triadica,sebifera,,,,,,,,SR- SPG not known; non-native,non-native,,,,,,
+WG_75,C12,conifer,Tsuga < 0.40 spg,Pinaceae,TSCA,,"Hemlock, eastern",Tsuga,canadensis,261,0.38,3,85,3 – 85,,,,,,,,,forest,WG_75
+WG_75,C13,conifer,Tsuga  >= 0.40 spg,Pinaceae,TSHE,,"Hemlock, western",Tsuga,heterophylla,263,0.42,3,72,3 – 172,,,,,,,,,forest,WG_75
+WG_75,C13,conifer,Tsuga  >= 0.40 spg,Pinaceae,TSME,,"Hemlock, mountain",Tsuga,mertensiana,264,0.42,,,9-126,,,,,,,,,forest,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ulmaceae,ULAL,,Winged elm,Ulmus,alata,,0.6,,,,,6,SM - spg added from Zanne et al. Global wood density database. Allometry assigned using family.,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ulmaceae,ULAM,,Elm,Ulmus,americana,972,0.46,3,55,3 – 55,,,,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ulmaceae,ULCR,,Cedar elm,Ulmus,crassifolia,,0.59,,,,,6,SM - spg added from Zanne et al. Global wood density database. Allometry assigned using family.,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ulmaceae,ULPU,,Siberian elm,Ulmus,pumila,,0.55,,,,,33,SM - spg added from Zanne et al. Global wood density database. There are 2 spg values from the Global wood density database for this species. Allometry assigned based on family.,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ulmaceae,ULRU,,Slippery elm,Ulmus,rubra,,0.48,,,,,6,SM - spg added from Zanne et al. Global wood density database. Allometry assigned based on family.,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ulmaceae,ULMUS,,Elm,Ulmus,sp.,970,0.54,3,27,3 – 27,,,,,average of 5 NA species in Zanne et al 2009,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ulmaceae,ULMUSSPP,,,Ulmus,sp.,,0.5,,,,,,"SR - SPG from Jenkins, Chojnacky, et al 2004",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ericaceae,UMCA,,California bay laurel,Umbellularia,californica,981,0.51,8,61,8 – 61,,,,,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ericaceae,VAAR,,Farkleberry,Vaccinium,arboreum,,,,,,,,"kj assigned, based on Family, spg not known",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Ericaceae,VAST,,Deerberry,Vaccinium,stamineum,,,,,,,,"kj assigned, based on Family, spg not known",,,,,,,
+WG_75,W2,woodland,Fabaceae/Rosaceae,Fabaceae,VACO9,,"Acacia, whitethorn",Vachellia,constricta,,,,,,,,SR - SPG not known; Woodland allometry assigned based on multi bole growth and desert distribution. Could potentially be H9,,,,,,woodland,WG_75
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Caprifoliaceae,VINU,,Possumhaw,Viburnum,nudum,,,,,,,,"kj assigned, spg not known ",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Vitaceae,VIRO3,,Muscadine,Vitis,rotundifolia,,,,,,,,"kj assigned, based on Order, spg not known; SR - not a tree, remove?",,,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Vitaceae,VITIS,,,Vitis,sp.,,,,,,,,"kj assigned, based on Order, spg not known; SR - not a tree, remove?",,,,,,,
+SMS,H9,,,Fabaceae,WISTE,WISTE,,Wisteria,sp.,,,,,,,,,,,no,,,forest,http://usnvc.org/explore-classification/
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,Rutaceae,ZAAM,,,Zanthoxylum,americanum,,,,,,,,SR- SPG not known; H7 chosen due to family not represented in other group,,,,,,,
+SMS,H9,,,Fabaceae,ZAPO2,ZAPO2,,Zapoteca,portoricensis,,,,,,,,,,,no,,,woodland,http://usnvc.org/explore-classification/
+SMS,H7,,,Rhamnaceae,ZIRE,ZIRE,,Ziziphus,reticulata,,0.863,,,,,,,,Average of 8 species from Americas in Zanne et al 2009,,,,,
+WG_75,H7,hardwood,Cornaceae/Ericaceae/Lauraceae/Platanaceae/Rosaceae/Ulmaceae/other,,2PLANT,,,,,,,,,,,,,,,,,,,
+SMS,H7,,,,2PLANT-H,2PLANT-H,,,,,,,,,,,,,,,,,,
+SMS,,,,,2PLANT-S,2PLANT-S,,,,,,,,,,,,,,,,,,
+SMS,H9,,,Fabaceae,FABACE,FABACE,,,,,,,,,,,,,,no,,,,
+SMS,H7,,,,OTHE,OTHE,,,,,,,,,,,,,,,,,,

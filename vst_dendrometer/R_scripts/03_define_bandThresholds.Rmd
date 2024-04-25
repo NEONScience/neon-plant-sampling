@@ -16,13 +16,30 @@ if (file.exists(
 
 source(paste(wdir, "vst_dendrometer/R_scripts/02_load_dendroObjects.R", sep='/'))
 
+## remove dead trees from WREF INC0050440
+dead <- c("NEON.PLA.D12.YELL.01988",
+          "NEON.PLA.D19.DEJU.00771",
+          "NEON.PLA.D12.YELL.01849",
+          "NEON.PLA.D19.BONA.00973",
+          "NEON.PLA.D13.NIWO.00891", 
+          "NEON.PLA.D19.BONA.00720",
+          "NEON.PLA.D12.YELL.01897",
+          "NEON.PLA.D16.WREF.04402",
+          "NEON.PLA.D16.WREF.04416", 
+          "NEON.PLA.D16.WREF.02213",
+          "NEON.PLA.D19.BONA.00720",
+          "NEON.PLA.D16.WREF.04437",
+          "NEON.PLA.D16.WREF.03461",
+          "NEON.PLA.D19.BONA.00443") 
+
+df <- df[!df$individualid%in%dead,]
+
 ```
 
 
 ```{r load allometry lookups, echo=FALSE, message=FALSE, warning=FALSE}
 
 ## having trouble with relative paths
-
 
 equations <- read.csv(paste(wdir, 'vst_allometries/SourceData/allometries/chojnacky_assignment.csv', sep='/'),
                       stringsAsFactors = F)
