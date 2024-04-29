@@ -1,0 +1,158 @@
+---
+title: "CDW maximum probable diameter by site"
+author: "Courtney Meier", rev for D12 by "Sam Simkin"
+date: "09 September 2019", rev "29 Apr 2024"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+
+# Load required libraries
+library(tidyverse)
+library(knitr)
+
+
+# Load required functions
+
+source("cdwDlimAndRDFunctions.R")
+
+if (file.exists("/Users/cmeier")){
+  source("~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis/cdwDlimAndRDFunctions.R")
+}
+
+vst <- neonUtilities::loadByProduct(dpID = "DP1.10098.001",
+                                    site = "YELL",
+                                    startdate = "2012-01",
+                                    enddate = "2023-12",
+                                    package = "basic",
+                                    release = "LATEST",
+                                    tabl = "all",
+                                    include.provisional = TRUE,
+                                    check.size = FALSE,
+                                    token = Sys.getenv("NEON_PAT"))
+
+
+
+##  Extract tables from list to global environment
+list2env(vst, envir = .GlobalEnv)
+
+plotType <- vst_perplotperyear %>% select(plotID, plotType) %>% distinct(plotID, plotType)
+```
+
+# Background
+- Field Operations technicians requested a standardized procedure for determining the length of transects for CDW tally sampling. To support this request, I have analyzed Vegetation Structure / Vegetation Characterization DBH data on a per domain basis. 
+- For most sites, datasets are filtered to remove stems with DBH <= 10cm; filtered stem DBH data are then analyzed visually with histogram plots, and the 95th percentile of DBH was also calculated. The initial assumption is that the 95th percentile of DBH will correspond to the maximum likely DBH encountered.
+- The choice of F-value for each site is initially based on the maximum expected size of the particles, as well as qualitative estimates of particle density at the site. The F-value may be revised iteratively with feedback from Field Operations technicians.
+- Results are documented in NEON-2474 (https://neoninc.atlassian.net/browse/NEON-2474).
+
+
+##  D12 YELL Distributed Plots: Pull VST data from Fulcrum database
+```{r d12YellDistLoadData, eval=FALSE, include=FALSE}
+domainID <- "D12 D"
+
+# Define siteID
+siteID <- "YELL"
+
+# Define working filepath
+lidsPath <- "C:/GitHub/neonPlantSampling/cdw_transectLengthAnalysis"
+
+# Get VST Apparent Individual data
+vst_mappingandtagging <- vst_mappingandtagging %>% select(individualID, taxonID)
+
+yellVst <- merge(vst_apparentindividual, vst_mappingandtagging, by = "individualID", all.x = TRUE)
+yellVst <- merge(yellVst, plotType, by = "plotID", all.x = TRUE)
+yellVst <- yellVst %>% filter(stemDiameter!="NA") %>%
+  select(siteID, eventID, date, plotID, plotType, individualID, taxonID, growthForm, stemDiameter, basalStemDiameter, plantStatus)
+# yellVst <- yellVst %>% filter(plotType == "distributed")
+
+# Check per plot sampling effort
+yellVst %>% count(plotID) #%>% kable
+length(unique(yellVst$plotID))
+
+```
+
+``` {r d12YellDistDupCheck, eval=FALSE, include=FALSE}
+# Check for and remove duplicates in input dataframe using dplyr::distinct()
+yellDupNum <- nrow(yellVst)-nrow(dplyr::distinct(yellVst)) # -> No duplicates
+
+# Determine number of likely bouts in which data were collected
+dates <- sort(unique(yellVst$date))
+
+# Write out Distributed Plot data used for analysis
+#rmnpVst %>% filter(plottype=="distributed") -> rmnpVst
+#write.csv(dplyr::distinct(yellVst), file = paste(lidsPath, "vst_D12_YELL_cleanData_distributed.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+
+```
+
+**_Summary of YELL Distributed Plot Fulcrum Data_**
+
+- 1640 records in L0 for which a **stemDiameter** was recorded
+- 320 records for individuals with DBH >= 10 cm
+
+
+
+```{r yellDistDBHAnalysis, include=FALSE}
+siteID <- "YELL"
+fVal <- 8
+# if (file.exists("/Users/cmeier")){
+#   inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
+# }
+# 
+# yellVst <- read.csv(paste(inputPath, "vst_D12_YELL_cleanData_distributed.csv", sep = "/"), header=T, stringsAsFactors = F)
+
+# YELL: Check input data to determine whether trees with DBH >=10 cm exist in dataset
+hist(yellVst$stemDiameter, breaks = 30) # -> Most trees have DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
+
+yellVst %>% filter(stemDiameter >=10) -> tempVst
+#yellVst %>% filter(stemDiameter >=10 & (eventID == "vst_YELL_2018" | eventID == "vst_YELL_2019")) -> tempVst
+#yellVst %>% filter(stemDiameter >=10 & (eventID == "vst_YELL_2021" | eventID == "vst_YELL_2022" | eventID == "vst_YELL_2023")) -> tempVst
+#yellVst %>% filter(stemDiameter >=10 & (eventID == "vst_YELL_2020" | eventID == "vst_YELL_2021")) -> tempVst
+
+
+# Calculate maxLikelystemDiameter, and maxstemDiameter, rounding up to nearest cm
+count <- nrow(tempVst)
+maxLikelySD <- ceiling(quantile(tempVst$stemDiameter, probs=c(0.95), na.rm = TRUE))[[1]]
+ tempVst %>% group_by(eventID) %>% summarise( maxLikelyStd = ceiling(quantile(stemDiameter, probs=c(0.95) )), count = n())
+
+maxSD <- max(tempVst$stemDiameter, na.rm = TRUE)
+limDist <- signif(dlim(maxLikelySD, 3, fVal), digits=2)
+
+# Add calculated parameters to existing dlim.df
+dlim.df <- data.frame(domainID, siteID, fVal, count, maxLikelySD, maxSD, limDist)
+colnames(dlim.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam", "maxStemDiam", "Dlim")
+
+```
+
+
+**_YELL: Results of stem diameter analysis in Distributed Plots_**
+
+``` {r d12YellDistHistPlot, echo=FALSE} 
+titleText <- paste(domainID, siteID, "YELL Distributed Plot stemDiameter distribution", sep=" ")
+ggplot(tempVst, aes(x=stemDiameter)) +
+  geom_histogram(binwidth=1) +
+  geom_vline(xintercept = maxLikelySD, col="blue") +
+  labs(title=titleText, x="stemDiameter (cm)", y="Count")
+
+```
+
+- Histogram: Most individuals encountered have DBH <= 55 cm
+- maxLikelystemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
+- Max `stemDiameter` = `r maxSD` cm
+- Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
+
+
+
+
+
+
+\pagebreak
+
+# Summary
+##  CDW F-values and transect length (Dlim) by site
+Desired transect lengths (`Dlim`, meters) associated with the `maxLikelyStemDiameter` (cm) at each site. The maximum likely stemDiameter is calculated as the 95th percentile for stemDiameter as recorded in 2014 and 2015 Vegetation Structure data from both Distributed and Tower Plots, and `count` indicates the total number of individuals with DBH >= 10 cm used for the analysis; exception(s) are HEAL, where individuals with DBH >= 2 cm were used for the analysis. Transect lengths are based on F-values specific to each site, and will change if a new F-value is chosen for a site.
+``` {r tableOutput, echo=FALSE}
+dlim.df %>% kable
+```
