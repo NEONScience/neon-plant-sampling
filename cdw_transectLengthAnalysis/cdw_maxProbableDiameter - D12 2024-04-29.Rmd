@@ -1,10 +1,16 @@
 ---
 title: "CDW maximum probable diameter by site"
-author: "Courtney Meier", rev for D12 by "Sam Simkin"
-date: "09 September 2019", rev "29 Apr 2024"
-output: 
-  pdf_document: 
+author:
+- Courtney Meier, 
+- Sam Simkin
+date:
+- 09 September 2019, 
+- rev. 29 Apr 2024
+output:
+  pdf_document:
     latex_engine: xelatex
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
@@ -49,12 +55,8 @@ plotType <- vst_perplotperyear %>% select(plotID, plotType) %>% distinct(plotID,
 - Results are documented in NEON-2474 (https://neoninc.atlassian.net/browse/NEON-2474).
 
 
-##  D12 YELL Distributed Plots: Pull VST data from Fulcrum database
+##  D12 YELL Plots: Pull VST data from L0 database
 ```{r d12YellDistLoadData, eval=FALSE, include=FALSE}
-domainID <- "D12 D"
-
-# Define siteID
-siteID <- "YELL"
 
 # Define working filepath
 lidsPath <- "C:/GitHub/neonPlantSampling/cdw_transectLengthAnalysis"
@@ -66,7 +68,6 @@ yellVst <- merge(vst_apparentindividual, vst_mappingandtagging, by = "individual
 yellVst <- merge(yellVst, plotType, by = "plotID", all.x = TRUE)
 yellVst <- yellVst %>% filter(stemDiameter!="NA") %>%
   select(siteID, eventID, date, plotID, plotType, individualID, taxonID, growthForm, stemDiameter, basalStemDiameter, plantStatus)
-# yellVst <- yellVst %>% filter(plotType == "distributed")
 
 # Check per plot sampling effort
 yellVst %>% count(plotID) #%>% kable
@@ -81,32 +82,36 @@ yellDupNum <- nrow(yellVst)-nrow(dplyr::distinct(yellVst)) # -> No duplicates
 # Determine number of likely bouts in which data were collected
 dates <- sort(unique(yellVst$date))
 
-# Write out Distributed Plot data used for analysis
-#rmnpVst %>% filter(plottype=="distributed") -> rmnpVst
-#write.csv(dplyr::distinct(yellVst), file = paste(lidsPath, "vst_D12_YELL_cleanData_distributed.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
+# Write out data used for analysis
+write.csv(dplyr::distinct(yellVst), file = paste("vst_D12_YELL_cleanData.csv", sep = "/"), fileEncoding = "UTF-8", row.names = FALSE)
 
 ```
 
-**_Summary of YELL Distributed Plot Fulcrum Data_**
+**_Summary of YELL Plot L0 Data_**
 
-- 1640 records in L0 for which a **stemDiameter** was recorded
-- 320 records for individuals with DBH >= 10 cm
+- 1640 records in L0 for which a **stemDiameter** was recorded (578 after filtering to the most recent eventID for each plotID)
+- 407 records for individuals with DBH >= 10 cm
 
 
 
 ```{r yellDistDBHAnalysis, include=FALSE}
+domainID <- "D12 D"
 siteID <- "YELL"
 fVal <- 8
 # if (file.exists("/Users/cmeier")){
 #   inputPath <- "~/Documents/gitRepositories/neonPlantSampling/cdw_transectLengthAnalysis"
 # }
 # 
-# yellVst <- read.csv(paste(inputPath, "vst_D12_YELL_cleanData_distributed.csv", sep = "/"), header=T, stringsAsFactors = F)
+ yellVst <- read.csv(paste("vst_D12_YELL_cleanData.csv", sep = "/"), header=T, stringsAsFactors = F)
 
 # YELL: Check input data to determine whether trees with DBH >=10 cm exist in dataset
 hist(yellVst$stemDiameter, breaks = 30) # -> Most trees have DBH >= 10 cm, so filter out stems < 10 cm diameter as for other sites
 
-yellVst %>% filter(stemDiameter >=10) -> tempVst
+plot_event <- yellVst %>% distinct(plotID, eventID) %>% group_by(plotID) %>% top_n(1, eventID) # identify unique plot by event combos and retain only the latest eventID for each plotID
+   
+tempVst <- merge(yellVst, plot_event, by = c("plotID","eventID"), all.y = TRUE) # filter to just the most recent eventID for each plotID
+
+tempVst  %>% filter(stemDiameter >=10) -> tempVst
 #yellVst %>% filter(stemDiameter >=10 & (eventID == "vst_YELL_2018" | eventID == "vst_YELL_2019")) -> tempVst
 #yellVst %>% filter(stemDiameter >=10 & (eventID == "vst_YELL_2021" | eventID == "vst_YELL_2022" | eventID == "vst_YELL_2023")) -> tempVst
 #yellVst %>% filter(stemDiameter >=10 & (eventID == "vst_YELL_2020" | eventID == "vst_YELL_2021")) -> tempVst
@@ -127,10 +132,10 @@ colnames(dlim.df) <- c("domain", "site", "fValue", "count", "maxLikelyStemDiam",
 ```
 
 
-**_YELL: Results of stem diameter analysis in Distributed Plots_**
+**_YELL: Results of stem diameter analysis _**
 
 ``` {r d12YellDistHistPlot, echo=FALSE} 
-titleText <- paste(domainID, siteID, "YELL Distributed Plot stemDiameter distribution", sep=" ")
+titleText <- paste(domainID, siteID, "YELL stemDiameter distribution", sep=" ")
 ggplot(tempVst, aes(x=stemDiameter)) +
   geom_histogram(binwidth=1) +
   geom_vline(xintercept = maxLikelySD, col="blue") +
@@ -138,7 +143,6 @@ ggplot(tempVst, aes(x=stemDiameter)) +
 
 ```
 
-- Histogram: Most individuals encountered have DBH <= 55 cm
 - maxLikelystemDiameter = 95th percentile for `stemDiameter` --> `r maxLikelySD` cm
 - Max `stemDiameter` = `r maxSD` cm
 - Dlim for maxLikelyStemDiameter = `r limDist` m @ F=`r fVal`
@@ -152,7 +156,7 @@ ggplot(tempVst, aes(x=stemDiameter)) +
 
 # Summary
 ##  CDW F-values and transect length (Dlim) by site
-Desired transect lengths (`Dlim`, meters) associated with the `maxLikelyStemDiameter` (cm) at each site. The maximum likely stemDiameter is calculated as the 95th percentile for stemDiameter as recorded in 2014 and 2015 Vegetation Structure data from both Distributed and Tower Plots, and `count` indicates the total number of individuals with DBH >= 10 cm used for the analysis; exception(s) are HEAL, where individuals with DBH >= 2 cm were used for the analysis. Transect lengths are based on F-values specific to each site, and will change if a new F-value is chosen for a site.
+Desired transect lengths (`Dlim`, meters) associated with the `maxLikelyStemDiameter` (cm) at each site. The maximum likely stemDiameter is calculated as the 95th percentile for stemDiameter as recorded in Vegetation Structure data from both Distributed and Tower Plots in the most recent eventID for each plot, and `count` indicates the total number of individuals with DBH >= 10 cm used for the analysis; exception(s) are HEAL, where individuals with DBH >= 2 cm were used for the analysis. Transect lengths are based on F-values specific to each site, and will change if a new F-value is chosen for a site.
 ``` {r tableOutput, echo=FALSE}
-dlim.df %>% kable
+dlim.df
 ```
