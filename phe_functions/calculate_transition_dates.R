@@ -1,3 +1,29 @@
+##############################################################################################
+#' @title Calculate Phenologic Transition Dates
+
+#' @author Katie Jones \email{kjones@battelleecology.org} \cr
+
+#' @description Function to 
+
+#' @param df Data frame containing phenophase status observations. [data frame]
+
+#' @return This function returns a new data frame with **transition dates**, calculated as the 
+#' mid-point between two consecutive dates with different phenophase status values, **transition_type**, 
+#' indicating the phenophase status values of the transition, **sampling interval**,
+#' the number of days between observations, **uncertainty** = sampling interval/2 and **nth tranition**, 
+#' assigns a count of onset events per individualID, phenophase name, within a given calendar year. 
+
+#' @examples
+#' \dontrun{
+#'out <- calculate_transition_dates(df=phe_statusintensity)
+#' }
+
+#' @export degrees
+
+
+##############################################################################################
+
+
 calculate_transition_dates <- function(df) {
   if (!require("tidyverse")) {
     install.packages("tidyverse")
@@ -15,7 +41,11 @@ calculate_transition_dates <- function(df) {
     mutate(transition_date = as.Date(date_lag + (date - date_lag) / 2),
            uncertainty = as.numeric(difftime(date, date_lag, units = "days"))/2,
            samplingInterval = as.numeric(difftime(date, date_lag, units = "days"))) %>%
-    select(year, siteID, individualID, phenophaseName, transitionType, date, date_lag, 
+    group_by(year,individualID, phenophaseName)%>%
+    mutate(nth_transition = cumsum(status_lag == "no" & phenophaseStatus == "yes"))%>%
+    select(year, siteID, individualID, phenophaseName, transitionType, nth_transition, date, date_lag, 
            samplingInterval, transition_date, uncertainty)%>%
     arrange(year, phenophaseName, individualID)
 }
+
+

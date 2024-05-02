@@ -1,47 +1,52 @@
 library(tidyverse)
 library(neonUtilities)
 
-source(paste0(getwd(), "/phe_functions/calculate_transition_dates.R"))
 
+# load function
+#source(paste0(getwd(), "/phe_functions/calculate_transition_dates.R")) #load locally from relative path
+devtools::source_url("https://raw.githubusercontent.com/NEONScience/neon-plant-sampling/main/phe_functions/calculate_transition_dates.R")
+
+# download data from neon data portal
 dat <- loadByProduct(dpID="DP1.10055.001",
-                     #tabl="phe_statusintensity", 
-                     site = c("MOAB", "ONAQ"),
-                     #startdate = "2022-01",
-                     #enddate = "2016-10",
-                     #package = "basic",
-                     release = "LATEST",
+                     site = "ONAQ",
+                     startdate = "2022-01",
+                     enddate = "2024-05",
                      check.size = FALSE, 
                      include.provisional = T,
-                     token = Sys.getenv('latestTok')) 
-#token = Sys.getenv('NEON_KEY'))
+                     token = Sys.getenv('NEON_KEY')) 
 
 # unlist all data frames
 list2env(dat ,.GlobalEnv)
 
+# de-dupe and refine perindividual df to fields of interest
 loc <- phe_perindividual%>%
   group_by(individualID)%>%
   filter(editedDate==max(editedDate))%>%
   select(individualID, taxonID, growthForm, transectMeter)%>%
   distinct()
 
+
 df <- phe_statusintensity
 
+# calculate transitions and attach loc variables
 out <- df%>% #
   calculate_transition_dates()%>%
   left_join(loc, by="individualID")
 
+
 # create dfs to plot, subset or filter as needed
 
-a <- out[#out$siteID=="ONAQ" &
-           out$date>"2023-10-01 GMT" & 
-           out$transitionType%in%c("no-yes") &
-           out$phenophaseName%in%c('Initial growth', 'Young leaves'),]#
+# df with transition dates and uncertainties
+a <- out[out$date>"2023-10-01 GMT" & 
+         out$transitionType%in%c("no-yes") &
+         out$phenophaseName%in%c('Initial growth', 'Young leaves'),] # spring phenophases in example 
+
 
 # set factor order
 a$phenophaseName <- factor(a$phenophaseName, c("Breaking leaf buds", "Initial growth",
  "Young leaves", "Leaves", "Colored leaves", "Falling leaves", "Open flowers", "Fruits", "Ripe fruits"))
 
-
+# subseted df with phenophase status values from original download, joined with location
 b <- df%>%
   filter(date>"2023-10-01 GMT" & phenophaseName%in%c("Initial growth", "Young Leaves"))%>%
   left_join(loc)
@@ -52,13 +57,6 @@ b$phenophaseName <- factor(b$phenophaseName, c("Breaking leaf buds", "Initial gr
                                                "Young leaves", "Leaves", "Colored leaves", "Falling leaves", "Open flowers", "Fruits", "Ripe fruits"))
 
 ##### Plot it #####
-
-p <- ggplot(a, aes(x=transition_date, y=reorder(individualID, transectMeter), color=phenophaseName))+
-  geom_errorbarh(aes(xmin=transition_date - uncertainty, xmax=transition_date + uncertainty), color='black')+
-  geom_point(size=1)
-
-p
-
 
 g <- ggplot()+
   geom_point(data=b[!b$phenophaseStatus=='uncertain',], 
@@ -77,7 +75,7 @@ g <- ggplot()+
                      color='onset uncertainty window')
                  )+ #preferred color = black & overlaped on 
   labs(x = "date", y = "IndividualID (ordered by transectMeter)", 
-       #title = "Initial Growth and Young Leaves phenology", 
+       title = paste0(unlist(unique(b$phenophaseName)), " phenology at ", unlist(unique(b$siteID))), 
        subtitle = paste0(min(b$date), " through ", max(b$date)))+
   facet_grid(siteID~phenophaseName)+
   scale_color_brewer(palette = "Paired")
@@ -90,5 +88,5 @@ g
 c <- out%>%
   filter(year%in%c(2023,2024) & phenophaseName%in%c("Initial growth", "Young leaves", "Leaves") & 
            transitionType=="no-yes")%>%
-  group_by(year,  phenophaseName, transitionType)%>% #taxonID,
+  group_by(year,  phenophaseName, transitionType, nth_transition)%>% #taxonID,
   summarise(count=n(), meanUncertainty=mean(uncertainty), meanDate=mean(transition_date), meanInterval=mean(samplingInterval))
