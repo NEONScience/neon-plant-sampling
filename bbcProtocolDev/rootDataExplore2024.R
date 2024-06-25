@@ -1,4 +1,4 @@
-####  Download and analysis of NEON Plant Belowground Biomass data for 2024 pre-season seminar ####
+###  Download and analysis of NEON Plant Belowground Biomass data for 2024 pre-season seminar ####
 
 ### Setup
 #   Load required libraries
@@ -334,3 +334,116 @@ bbc_massSummary <- bbc_allmass %>%
                                   digits = 2),
                    count = n())
 
+
+
+### Explore variance partitioning for a single site ############################################
+#   Load additional libraries
+library(lme4)
+library(lmerTest)
+
+
+
+### Retrieve BBC data from Portal for HARV 2018
+bbc <- neonUtilities::loadByProduct(dpID = "DP1.10067.001",
+                                    site = "HARV",
+                                    startdate = "2018-01",
+                                    enddate = "2018-12",
+                                    tabl = "all",
+                                    check.size = FALSE,
+                                    include.provisional = TRUE,
+                                    token = Sys.getenv("NEON_TOKEN"))
+
+bbc_percore <- bbc$bbc_percore
+bbc_rootmass <- bbc$bbc_rootmass
+
+
+
+### Remove qaDryMass = "Y" and calculate total_mass per area
+bbc_totalmass <- bbc_rootmass %>%
+  dplyr::group_by(sampleID) %>%
+  dplyr::filter(qaDryMass == "N") %>%
+  dplyr::summarise(totalMass = sum(dryMass))
+
+bbc_percore <- bbc_percore %>%
+  dplyr::left_join(bbc_totalmass,
+                   by = "sampleID") %>%
+  dplyr::relocate(totalMass, .before = rootSampleArea) %>%
+  dplyr::mutate(totalMassArea = round(totalMass/rootSampleArea,
+                                      digits = 2),
+                .before = rootSampleArea)
+
+
+
+### Mass filter: Identify clipIDs with 2 cores
+fullSamples <- bbc_percore %>%
+  dplyr::group_by(clipID) %>%
+  dplyr::summarise(count = n())
+
+#--> all clipIDs have two cores
+  
+
+
+### Model1: All relevant spatial terms
+m1 <- lme4::lmer(totalMassArea ~ (1|coreID:clipID:plotID),
+                 data = bbc_percore)
+#--> Error: number of levels of each grouping factor must be < number of observations (problems: coreID:clipID:plotID)
+
+m1 <- lme4::lmer(totalMassArea ~ (1|plotID),
+                 data = bbc_percore)
+
+summary(m1)
+
+
+
+### Model2: Separated spatial terms
+m2 <- lme4::lmer(totalMassArea ~ (1|clipID:plotID) + (1|plotID),
+                 data = bbc_percore)
+
+summary(m2)
+# Linear mixed model fit by REML ['lmerMod']
+# Formula: totalMassArea ~ (1 | clipID:plotID) + (1 | plotID)
+# Data: bbc_percore <- <- 
+# 
+# REML criterion at convergence: 1200.5
+# 
+# Scaled residuals: 
+#   Min      1Q  Median      3Q     Max 
+# -1.9537 -0.5677 -0.1048  0.5950  2.8596 
+# 
+# Random effects:
+#   Groups        Name        Variance Std.Dev.
+# clipID:plotID (Intercept)  18936   137.6   
+# plotID        (Intercept)  45463   213.2   
+# Residual                  171961   414.7   
+# Number of obs: 80, groups:  clipID:plotID, 40; plotID, 20
+# 
+# Fixed effects:
+#   Estimate Std. Error t value
+# (Intercept)  1142.99      69.97   16.34
+
+
+
+### Data explore: How different are cores within a clipID?
+diffTotalMass <- bbc_percore %>%
+  tidyr::pivot_wider(id_cols = clipID,
+                     names_from = coreID,
+                     values_from = totalMassArea) %>%
+  dplyr::mutate(meanTotalMass = (North + South)/2,
+                relDiffMass = round((abs(North - South)/meanTotalMass)*100,
+                                    digits = 1))
+
+diffPlot <- ggplot2::ggplot(data = diffTotalMass,
+                            mapping = aes(x = clipID,
+                                          y = relDiffMass)) +
+  ggplot2::geom_col() +
+  ggplot2::theme(axis.text.x = element_text(angle = 90, 
+                                            vjust = 0.5, 
+                                            hjust=1)) +
+  ggplot2::ylab("ABS(North-South)/mean(North+South) * 100") +
+  ggplot2::labs(title = "Root mass variation within clipIDs")
+
+#--> Bootstrap approach: Use full data set and generate a site-level mean and std error; then sample n=1000 times to generate a data set where one of two cores per clipID is randomly chosen per site. Compare site-level mean with mean from full data set. Would want difference to be significant > 80% of the time if replicate within clipID is important to understanding site-level mean.
+
+#--> Sites with multiple years: Add (1|year) to model. But only want data sets for years with full sampling (2 cores per clipID)
+  
+  
