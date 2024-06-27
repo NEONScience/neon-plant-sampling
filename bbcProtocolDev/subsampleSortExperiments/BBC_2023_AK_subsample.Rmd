@@ -8,7 +8,7 @@ output:
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ##  Goal
@@ -48,7 +48,7 @@ To determine the efficacy of subsampling BBC core samples at the D18 TOOL and D1
     
 ## Data Summary
 
-``` {r load-packages}
+``` {r load-packages, include = FALSE}
 
 library(dplyr)
 library(ggplot2)
@@ -58,7 +58,7 @@ library(openxlsx)
 
 ```
 
-``` {r data-preparation}
+``` {r data-preparation, include = FALSE}
 
 ### Read in data collected by D18/19
 if (file.exists("/Users/cmeier")) {
@@ -78,7 +78,12 @@ df <- df %>%
                                               treatment == "ss25" ~ dryMass/0.25,
                                               treatment == "ss50" ~ dryMass/0.5,
                                               TRUE ~ dryMass)) %>%
-  dplyr::mutate(estDryMass = round(estDryMass, digits = 4))
+  dplyr::mutate(estDryMass = round(estDryMass, digits = 4)) %>%
+  dplyr::mutate(treatment = dplyr::case_when(treatment == "wholeCore" ~ "compCore",
+                                             TRUE ~ treatment)) %>%
+  dplyr::mutate(sizeCategory = stringr::str_replace(sizeCategory,
+                                                    pattern = "_",
+                                                    replacement = "-"))
 
 
 
@@ -90,8 +95,8 @@ summaryDF <- df %>%
   dplyr::summarise(N = n(),
                    mean = mean(estDryMass),
                    sd = sd(estDryMass),
-                   se = sd/sqrt(N)) %>%
-  dplyr::ungroup()
+                   se = sd/sqrt(N),
+                   .groups = "drop")
 
 
 ```
@@ -122,22 +127,97 @@ ggplot2::ggplot(data = summaryDF,
 
 ## Results: Mixed-effects model analysis
 
-Approach: For each site, construct a model with `sizeCategory` as the sole fixed effect where the mean is allowed to vary randomly by `sampleID`. Next, construct a model with an additional `treatment` fixed effect, with the mean similarly allowed to vary randomly by `sampleID`. Theoretically, if subsampling has no effect on estimated dryMass the model with `treatment` will not be significantly better according to AIC than the simpler model that only has `sizeCategory`. 
+Approach: For each site, construct a model with `sizeCategory` as the sole fixed effect where the mean is allowed to vary randomly by `sampleID`. Next, construct a model with an additional `treatment` fixed effect, with the mean similarly allowed to vary randomly by `sampleID`. Theoretically, if subsampling has no effect on estimated dryMass the model with `treatment` will not be significantly better according to AIC or p-value than the simpler model that only has `sizeCategory`. 
 
 
 ### DEJU results
 
-``` {r DEJU-mixed-effects}
+``` {r DEJU-mixed-effects, echo = TRUE}
 
-#   Simple mixed-effects model for DEJU
+#   DEJU simplest mixed-effects model
 m1DEJU <- lmerTest::lmer(formula = estDryMass ~ sizeCategory + (1|sampleID),
                          data = df %>% dplyr::filter(siteID == "DEJU"),
                          REML = FALSE)
 
+#   DEJU mixed-effects model with subsampling 'treatment'
+m2DEJU <- lmerTest::lmer(formula = estDryMass ~ treatment + sizeCategory + (1|sampleID),
+                         data = df %>% dplyr::filter(siteID == "DEJU"),
+                         REML = FALSE)
+
+#   DEJU mixed-effects model with treatment*sizeCategory interaction
+m3DEJU <- lmerTest::lmer(formula = estDryMass ~ treatment*sizeCategory + (1|sampleID),
+                         data = df %>% dplyr::filter(siteID == "DEJU"),
+                         REML = FALSE)
+
+#   Model comparison
+anova(m1DEJU, m2DEJU, m3DEJU)
+anova(m2DEJU, m3DEJU)
 
 ```
 
+-   The addition of `treatment` to the `m2DEJU` model adds significant explanatory value compared to `sizeCategory` alone (lower AIC and p < 0.005 compared to `m1DEJU`).
+-   Takehome from `m2DEJU`: With `sizeCategory` accounted for, the estimated dryMass is not the same across all subsampling treatments.
+-   Overall: The `m3DEJU` model is significantly better than the `m2DEJU` model --> effects of subsampling treatment are not the same across sizeCategory.
+-   Need to determine which `treatments` are not significantly different from the dryMass for the complete core.
 
+``` {r DEJU-best-model-summary}
+
+#   Summary of best model output
+anova(m3DEJU)
+summary(m3DEJU)
+
+```
+
+-   Across `sizeCategory`, the `ss10` treatment generates significantly lower estimated `dryMass` compared to the complete core.
+-   Visually, the 2-10 mm `sizeCategory` for the 15% subsample is much more variable and has higher average mass than the 2-10 mm roots in the complete core. However, across all sizeCategories the 15% subsample is not significantly different from the complete core.
+-   Conservatively, subsampling at 25% is supported by the data and appears most similar to the complete core.
+
+
+## TOOL results
+
+``` {r TOOL-mixed-effects, echo = TRUE}
+
+#   TOOL simplest mixed-effects model
+m1TOOL <- lmerTest::lmer(formula = estDryMass ~ sizeCategory + (1|sampleID),
+                         data = df %>% dplyr::filter(siteID == "TOOL"),
+                         REML = FALSE)
+
+#   TOOL mixed-effects model with subsampling 'treatment'
+m2TOOL <- lmerTest::lmer(formula = estDryMass ~ treatment + sizeCategory + (1|sampleID),
+                         data = df %>% dplyr::filter(siteID == "TOOL"),
+                         REML = FALSE)
+
+#   TOOL mixed-effects model with treatment*sizeCategory interaction
+m3TOOL <- lmerTest::lmer(formula = estDryMass ~ treatment*sizeCategory + (1|sampleID),
+                         data = df %>% dplyr::filter(siteID == "TOOL"),
+                         REML = FALSE)
+
+m4TOOL <- lmerTest::lmer(formula = estDryMass ~ treatment + sizeCategory -1 + (1|sampleID),
+                         data = df %>% dplyr::filter(siteID == "TOOL"),
+                         REML = FALSE)
+
+#   Model comparison
+anova(m1TOOL, m2TOOL, m3TOOL)
+anova(m2TOOL, m3TOOL)
+
+```
+
+-   The addition of `treatment` to the `m2TOOL` model adds significant explanatory value compared to `sizeCategory` alone (lower AIC and p < 0.05 compared to `m1TOOL`).
+-   Takehome from `m2TOOL`: With `sizeCategory` accounted for, the estimated dryMass is not the same across all subsampling treatments.
+-   The interaction term is not significant in the `m3TOOL` model --> subsampling has similar effects across all sizeCategories.
+-   Need to determine which subsampling treatments are not different from the complete core dryMass.
+
+``` {r TOOL-best-model-summary}
+
+#   Summary of best model output
+anova(m2TOOL)
+summary(m2TOOL)
+
+```
+
+-   The 10% subsample treatment has on average significantly lower dryMass compared to the complete core.
+-   Similar to DEJU, the 2-10 mm `sizeCategory` for the 15% subsample is much more variable and has higher average mass than the 2-10 mm roots in the complete core. Across all sizeCategories, the 15% subsample is not significantly different than the complete core.
+-   Conservatively, subsampling at 25% is supported by the data and appears most similar to the complete core.
 
 
 
