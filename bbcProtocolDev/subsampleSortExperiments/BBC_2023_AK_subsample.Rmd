@@ -84,7 +84,8 @@ df <- df %>%
 
 ### Generate summary data frame for ggplot2
 summaryDF <- df %>%
-  dplyr::group_by(treatment, 
+  dplyr::group_by(siteID,
+                  treatment, 
                   sizeCategory) %>%
   dplyr::summarise(N = n(),
                    mean = mean(estDryMass),
@@ -98,6 +99,8 @@ summaryDF <- df %>%
 ``` {r results-plot}
 
 ### Create ggplot from summaryDF and display
+#--> Want to create these separately for DEJU vs TOOL with a facet wrap
+
 ggplot2::ggplot(data = summaryDF,
                 mapping = aes(x = treatment,
                               y = mean,
