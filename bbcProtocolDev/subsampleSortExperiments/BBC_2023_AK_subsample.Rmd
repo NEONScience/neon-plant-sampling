@@ -1,0 +1,116 @@
+---
+title: "BBC 2023 Alaska Subsample Experiment"
+author: "Courtney Meier"
+date: "2024-06-26"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##  Goal
+To determine the efficacy of subsampling BBC core samples at the D18 TOOL and D19 DEJU sites to reduce time required to sort roots into size categories. 
+
+
+##  Experimental Setup and Analyses
+
+* Select n=10 cores for each plot site. Cores are sampled from random spatially-balanced plot locations, and locations of clipIDs within plots are also random. The sampling design provides an unbiased estimate of root biomass throughout the Tower airshed.
+
+* For each `sampleID` collected in the field, test subsampling efficiency at various levels of sorting by creating subsamples with the following percentages of the total core mass:
+    - 10%
+    - 15%
+    - 25%
+    - 50%
+    
+    The sum of all the subsamples = 100%; that is, the mass of the entire core sample.
+
+* When subsampling is employed, estimated `dryMass` is calculated as follows: `dM = ssDM/X`, where:
+    - *dM* = estimated root dryMass for a given level of subsampling
+    - *X* = the proportion of the total core sample represented by the subsample (ranging from 0-1)
+    
+* Compare `dryMass` results calculated via subsampling with `dryMass` obtained with no subsampling, and use mixed effects models to analyze results.
+
+
+##  Procedure
+
+1.  Soil cores (6.65 cm diameter x 30 cm max depth) were collected in the field and frozen in plastic bags for processing at a later date. To generate subsamples, thaw frozen core sample and homogenize soil/root mixture in a plastic bag or tub. 
+
+1.  Weigh the whole core and create subsamples at desired percentages (above) based on the fresh mass of the total core (roots + soil).
+
+1.  Sort subsamples separately into root sizeCategory (0-1, 1-2, 2-10 mm) following the normal procedure in the BBC protocol, and dry and weigh sorted subsamples separately for each sizeCategory.
+
+1.  Record the dryMass of each sorted subsample by sizeCategory for a given core sample, then recombine all subsamples within a sizeCategory and weigh to obtain the "whole core" dryMass.
+    a.  Enter the "whole core" dryMass for each sizeCategory into Fulcrum for ingest as normal.
+    
+    
+## Data Summary
+
+``` {r load-packages}
+
+library(dplyr)
+library(ggplot2)
+library(glue)
+library(lmerTest)
+library(openxlsx)
+
+```
+
+``` {r data-preparation}
+
+### Read in data collected by D18/19
+if (file.exists("/Users/cmeier")) {
+  inputPath <- "~/Documents/gitRepositories/neon-plant-sampling/bbcProtocolDev/subsampleSortExperiments"
+}
+
+df <- openxlsx::read.xlsx(xlsxFile = glue::glue(inputPath, "2023_BBC_subsampling_D1819.xlsx", .sep = "/"),
+                          sheet = "R_input",
+                          colNames = TRUE)
+
+
+
+### Calculate estimated dryMass for subsamples
+df <- df %>%
+  dplyr::mutate(estDryMass = dplyr::case_when(treatment == "ss10" ~ dryMass/0.1,
+                                              treatment == "ss15" ~ dryMass/0.15,
+                                              treatment == "ss25" ~ dryMass/0.25,
+                                              treatment == "ss50" ~ dryMass/0.5,
+                                              TRUE ~ dryMass)) %>%
+  dplyr::mutate(estDryMass = round(estDryMass, digits = 4))
+
+
+
+### Generate summary data frame for ggplot2
+summaryDF <- df %>%
+  dplyr::group_by(treatment, 
+                  sizeCategory) %>%
+  dplyr::summarise(N = n(),
+                   mean = mean(estDryMass),
+                   sd = sd(estDryMass),
+                   se = sd/sqrt(N)) %>%
+  dplyr::ungroup()
+
+
+```
+
+``` {r results-plot}
+
+### Create ggplot from summaryDF and display
+ggplot2::ggplot(data = summaryDF,
+                mapping = aes(x = treatment,
+                              y = mean,
+                              fill = sizeCategory)) +
+  ggplot2::geom_bar(position = "dodge",
+                    stat = "identity") +
+  ggplot2::geom_errorbar(mapping = aes(ymin = mean - se,
+                                       ymax = mean + se),
+                         width = 0.2,
+                         position = position_dodge(0.9)) +
+  ggplot2::labs(x = "Subsampling treatment",
+                y = "Dry mass (g)",
+                title = "Alaska BBC subsampling")
+
+
+```
