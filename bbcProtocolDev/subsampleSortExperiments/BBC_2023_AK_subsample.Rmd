@@ -99,7 +99,6 @@ summaryDF <- df %>%
 ``` {r results-plot}
 
 ### Create ggplot from summaryDF and display
-#--> Want to create these separately for DEJU vs TOOL with a facet wrap
 
 ggplot2::ggplot(data = summaryDF,
                 mapping = aes(x = treatment,
@@ -113,7 +112,33 @@ ggplot2::ggplot(data = summaryDF,
                          position = position_dodge(0.9)) +
   ggplot2::labs(x = "Subsampling treatment",
                 y = "Dry mass (g)",
-                title = "Alaska BBC subsampling")
+                title = "Alaska BBC subsampling") +
+  ggplot2::facet_wrap(~siteID,
+                      scales = "free")
 
 
 ```
+
+
+## Results: Mixed-effects model analysis
+
+Approach: For each site, construct a model with `sizeCategory` as the sole fixed effect where the mean is allowed to vary randomly by `sampleID`. Next, construct a model with an additional `treatment` fixed effect, with the mean similarly allowed to vary randomly by `sampleID`. Theoretically, if subsampling has no effect on estimated dryMass the model with `treatment` will not be significantly better according to AIC than the simpler model that only has `sizeCategory`. 
+
+
+### DEJU results
+
+``` {r DEJU-mixed-effects}
+
+#   Simple mixed-effects model for DEJU
+m1DEJU <- lmerTest::lmer(formula = estDryMass ~ sizeCategory + (1|sampleID),
+                         data = df %>% dplyr::filter(siteID == "DEJU"),
+                         REML = FALSE)
+
+
+```
+
+
+
+
+
+
