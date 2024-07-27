@@ -54,7 +54,7 @@ bbc_percore <- bbc_percore %>%
 spatialTable <- "eb10727b-bb4d-4778-9a74-8ee03465417e"
 spatialColumns <- "plotid, nlcdclass"
 
-spatialQuery <- URLencode(glue::glue('SELECT {spatialColumns} FROM "{spatialTable}" WHERE subtype=', "'basePlot' AND plottype='tower' AND applicablemodules LIKE '%|bbc|%' ORDER BY _record_id", .sep = " "))
+spatialQuery <- URLencode(glue::glue('SELECT {spatialColumns} FROM "{spatialTable}" WHERE subtype=', "'basePlot' AND plottype='tower' ORDER BY _record_id", .sep = " "))
 
 spatialDF <- neonOSTools::get_fulcrum_data(api_token = Sys.getenv("FULCRUM_PAT"),
                                            sql = spatialQuery)
@@ -181,7 +181,7 @@ bbc_allmass <- rbind(bbc_newmass,
                  sampleID,
                  sizeCategory)
 
-#   Create boxplot by sizeCategory for each domainID
+#   Create jitter plot by sizeCategory for each domainID
 massPlot <- ggplot2::ggplot(bbc_allmass %>%
                               dplyr::filter(!is.na(nlcdClass)),
                             aes(x = rootMassArea,
@@ -193,14 +193,63 @@ massPlot <- ggplot2::ggplot(bbc_allmass %>%
                       ncol = 3,
                       scales = "free")
 
-#   Mass on average by sizeCategory
-bbc_massSummary <- bbc_allmass %>%
-  dplyr::group_by(sizeCategory) %>%
-  dplyr::summarise(meanMass = round(mean(dryMass, na.rm = TRUE),
-                                    digits = 2),
-                   sdMass = round(sd(dryMass, na.rm = TRUE),
-                                  digits = 2),
-                   count = n())
+
+
+### Plot average mass within sizeCategory by siteID against MAP, MAT
+#   Calculate average mass within sizeCategory by siteID
+bbc_summarymass <- bbc_allmass %>%
+  dplyr::group_by(siteID,
+                  #nlcdClass,
+                  sizeCategory) %>%
+  dplyr::summarise(repNum = n(),
+                   meanDryMass = round(mean(dryMass, na.rm = TRUE),
+                                   digits = 2),
+                   seDryMass = round(sd(dryMass, na.rm = TRUE)/sqrt(repNum),
+                                     digits = 2),
+                   .groups = "drop")
+
+#   Retrieve MAP, MAT and join with summary mass data
+neonClimateDF <- read.csv(file = "NEON_Site_Metadata_20240725.csv",
+                          header = TRUE) %>%
+  dplyr::rename(siteID = field_site_id,
+                meanAnnualTemp = field_mean_annual_temperature_C,
+                meanAnnualPrecip = field_mean_annual_precipitation_mm) %>%
+  dplyr::select(siteID,
+                meanAnnualTemp,
+                meanAnnualPrecip) %>%
+  dplyr::mutate(meanAnnualTemp = dplyr::case_when(meanAnnualTemp == "" ~ NA,
+                                                  TRUE ~ stringr::str_extract(meanAnnualTemp, pattern = "^[^°]*")),
+                meanAnnualTemp = as.numeric(meanAnnualTemp))
+
+#   Join climate data to bbc_summarymass
+bbc_summarymass <- bbc_summarymass %>%
+  dplyr::left_join(neonClimateDF,
+                   by = "siteID")
+
+#   Plot mass vs MAT by sizeCategory 
+massMAT <- ggplot2::ggplot(bbc_summarymass %>%
+                             dplyr::filter(sizeCategory != "frag"),
+                           aes(x = meanAnnualTemp,
+                               y = meanDryMass)) +
+  ggplot2::geom_point() +
+  ggplot2::facet_wrap(~sizeCategory,
+                      ncol = 3,
+                      scales = "free")
+
+#   Plot mass vs MAP by sizeCategory
+massMAP <- ggplot2::ggplot(bbc_summarymass %>%
+                             dplyr::filter(sizeCategory != "frag"),
+                           aes(x = meanAnnualPrecip,
+                               y = meanDryMass)) +
+  ggplot2::geom_point() +
+  ggplot2::facet_wrap(~sizeCategory,
+                      ncol = 3,
+                      scales = "free")
+
+
+
+
+
 
 
 
