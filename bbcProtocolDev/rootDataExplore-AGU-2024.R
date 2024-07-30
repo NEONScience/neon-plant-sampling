@@ -2,11 +2,8 @@
 
 ### Setup
 #   Load required libraries
-library(dplyr)
-library(ggplot2)
 library(neonUtilities)
-library(stringr)
-library(tidyr)
+library(tidyverse)
 
 
 
@@ -202,9 +199,9 @@ bbc_summarymass <- bbc_allmass %>%
                   #nlcdClass,
                   sizeCategory) %>%
   dplyr::summarise(repNum = n(),
-                   meanDryMass = round(mean(dryMass, na.rm = TRUE),
+                   meanDryMass = round(mean(rootMassArea, na.rm = TRUE),
                                    digits = 2),
-                   seDryMass = round(sd(dryMass, na.rm = TRUE)/sqrt(repNum),
+                   seDryMass = round(sd(rootMassArea, na.rm = TRUE)/sqrt(repNum),
                                      digits = 2),
                    .groups = "drop")
 
@@ -232,9 +229,15 @@ massMAT <- ggplot2::ggplot(bbc_summarymass %>%
                            aes(x = meanAnnualTemp,
                                y = meanDryMass)) +
   ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm",
+                       se = TRUE,
+                       color = "blue",
+                       formula = y ~ x) +
   ggplot2::facet_wrap(~sizeCategory,
                       ncol = 3,
-                      scales = "free")
+                      scales = "fixed") +
+  ggplot2::labs(x = "Mean annual temp (°C)",
+                y = "Mean dry mass (g/m2)")
 
 #   Plot mass vs MAP by sizeCategory
 massMAP <- ggplot2::ggplot(bbc_summarymass %>%
@@ -242,9 +245,15 @@ massMAP <- ggplot2::ggplot(bbc_summarymass %>%
                            aes(x = meanAnnualPrecip,
                                y = meanDryMass)) +
   ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm",
+                       se = TRUE,
+                       color = "blue",
+                       formula = y ~ x) +
   ggplot2::facet_wrap(~sizeCategory,
                       ncol = 3,
-                      scales = "free")
+                      scales = "fixed") +
+  ggplot2::labs(x = "Mean annual precip (mm)",
+                y = "Mean dry mass (g/m2)")
 
 
 
@@ -291,14 +300,32 @@ bbc_rootchem <- bbc$bbc_rootChemistry
 #   Calculate mean for analytical replicates
 bbc_rootchem <- bbc_rootchem %>%
   dplyr::group_by(cnSampleID) %>%
-  dplyr::summarise(nitrogenPercent = mean(nitrogenPercent),
-                   carbonPercent = mean(carbonPercent),
-                   CNratio = mean(CNratio),
+  dplyr::summarise(nitrogenPercent = round(mean(nitrogenPercent, na.rm = TRUE),
+                                           digits = 2),
+                   carbonPercent = round(mean(carbonPercent, na.rm = TRUE),
+                                         digits = 2),
+                   CNratio = round(mean(CNratio, na.rm = TRUE),
+                                   digits = 1),
                    .groups = "drop")
 
 #   Join with bbc_chempool to get subsampleID, which enables join with bbc_rootmass to get sizeCategory;
 #   filter out 'dead' roots with no chemistry --> presents some difficulties comparing older chemistry 
 #   values with new ones derived from material that is a mix of live/dead
+bbc_rootmass <- bbc$bbc_rootmass
+
+bbc_rootmass <- bbc_rootmass %>%
+  dplyr::filter(sampleID %in% bbc_percore$sampleID,
+                qaDryMass == "N") %>%
+  dplyr::select(domainID,
+                siteID,
+                plotID,
+                collectDate,
+                sampleID,
+                subsampleID,
+                sizeCategory,
+                rootStatus,
+                dryMass)
+
 bbc_rootchem <- bbc_chempool %>%
   dplyr::left_join(bbc_rootchem,
                    by = "cnSampleID")
@@ -341,9 +368,12 @@ olderFine <- bbc_masschem %>%
                   siteID,
                   plotID,
                   sampleID) %>%
-  dplyr::summarise(nitrogenPercent = sum(partialN, na.rm = TRUE),
-                   carbonPercent = sum(partialC, na.rm = TRUE),
-                   CNratio = sum(partialCN, na.rm = TRUE),
+  dplyr::summarise(nitrogenPercent = round(sum(partialN, na.rm = TRUE),
+                                           digits = 2),
+                   carbonPercent = round(sum(partialC, na.rm = TRUE),
+                                         digits = 2),
+                   CNratio = round(sum(partialCN, na.rm = TRUE),
+                                   digits = 1),
                    .groups = "drop") %>%
   dplyr::mutate(subsampleID = paste(sampleID, "0-1.LIVE", sep = "."),
                 sizeCategory = "0-1",
@@ -379,34 +409,88 @@ bbc_masschem <- rbind(newerFine,
 #   for constructed 0-1 sizeCategory for these samples.
 bbc_masschem <- bbc_masschem %>%
   dplyr::left_join(bbc_percore %>%
-                     dplyr::select(sampleID,
+                     dplyr::select(nlcdClass,
+                                   sampleID,
                                    clipID),
                    by = "sampleID") %>%
-  dplyr::relocate(clipID,
+  dplyr::relocate(nlcdClass,
+                  clipID,
                   .after = plotID) %>%
   dplyr::group_by(domainID,
                   siteID,
                   plotID,
+                  nlcdClass,
                   clipID,
                   sizeCategory) %>%
-  dplyr::summarise(nitrogenPercent = mean(nitrogenPercent, na.rm = TRUE),
-                   carbonPercent = mean(carbonPercent, na.rm = TRUE),
-                   CNratio = mean(CNratio, na.rm = TRUE),
+  dplyr::summarise(nitrogenPercent = round(mean(nitrogenPercent, na.rm = TRUE),
+                                           digits = 2),
+                   carbonPercent = round(mean(carbonPercent, na.rm = TRUE),
+                                         digits = 2),
+                   CNratio = round(mean(CNratio, na.rm = TRUE),
+                                   digits = 1),
                    .groups = "drop")
+
+#   Join with site-specific MAT, MAP
+bbc_masschem <- bbc_masschem %>%
+  dplyr::left_join(neonClimateDF,
+                   by = "siteID")
 
 
 
 ### Construct chemistry ggplots by sizeCategory with siteID panels
 #   Create CN Ratio by sizeCategory plot
 cnPlot <- ggplot2::ggplot(bbc_masschem, 
-                          ggplot2::aes(x = sizeCategory, 
-                                       y = CNratio)) +
-  ggplot2::geom_boxplot(width = 0.7) +
-  ggplot2::ylab("Root C:N ratio") +
-  ggplot2::xlab("Size category (mm diameter)") +
-  ggplot2::facet_wrap(~domainID, 
-                      ncol = 6, 
-                      scales = "free_x") 
+                          ggplot2::aes(x = CNratio,
+                                       y = sizeCategory)) +
+  ggplot2::geom_jitter() +
+  ggplot2::ylab("Size category (mm diameter)") +
+  ggplot2::xlab("Root C:N ratio") +
+  ggplot2::facet_wrap(~nlcdClass, 
+                      ncol = 3, 
+                      scales = "free") 
+
+#   Create summarychem table with mean CN ratio by sizeCategory by site
+bbc_summarychem <- bbc_masschem %>%
+  dplyr::group_by(siteID,
+                  meanAnnualPrecip,
+                  meanAnnualTemp,
+                  sizeCategory) %>%
+  dplyr::summarise(repNum = n(),
+                   meanCN = round(mean(CNratio, na.rm = TRUE),
+                                       digits = 1),
+                   seCN = round(sd(CNratio, na.rm = TRUE)/sqrt(repNum),
+                                     digits = 2),
+                   .groups = "drop")
+
+#   Plot CNratio vs MAT by sizeCategory 
+cnMAT <- ggplot2::ggplot(bbc_summarychem,
+                           aes(x = meanAnnualTemp,
+                               y = meanCN)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm",
+                       se = TRUE,
+                       color = "blue",
+                       formula = y ~ x) +
+  ggplot2::facet_wrap(~sizeCategory,
+                      ncol = 3,
+                      scales = "fixed") +
+  ggplot2::labs(x = "Mean annual temp (°C)",
+                y = "Mean C:N ratio")
+
+#   Plot CNratio vs MAP by sizeCategory
+cnMAP <- ggplot2::ggplot(bbc_summarychem,
+                         aes(x = meanAnnualPrecip,
+                             y = meanCN)) +
+  ggplot2::geom_point() +
+  ggplot2::geom_smooth(method = "lm",
+                       se = TRUE,
+                       color = "blue",
+                       formula = y ~ x) +
+  ggplot2::facet_wrap(~sizeCategory,
+                      ncol = 3,
+                      scales = "fixed") +
+  ggplot2::labs(x = "Mean annual precip (mm)",
+                y = "Mean C:N ratio")
 
   
   
