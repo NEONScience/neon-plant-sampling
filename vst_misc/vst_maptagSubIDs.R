@@ -115,12 +115,12 @@ temp <- affectedIndiv %>%
 
 temp <- affectedIndiv %>%
   dplyr::filter(subplotid == "32_100" & plotType == "lgTower")
-#--> most have "23_400" as one of the randomSubplots, a few do not; for those that don't, select randomSubplotA
+#--> most have "23_400" as one of the randomSubplots, a few do not; for those that don't, set to NA
 
 temp <- affectedIndiv %>%
   dplyr::filter(subplotid == "40_100" & plotType == "lgTower")
 #--> All are tagOnly records from UKFS_043; most of these do not exist in vst_apparentindividual or have unknown subplotID
-#--> subplotid = "40_100" is illogical, so select randomSubplotA
+#--> subplotid = "40_100" is illogical, so set to NA
 
 
 #--> Most of errors are when subplotid == "41_100" (> 8000)
@@ -132,7 +132,7 @@ temp <- affectedIndiv %>%
 temp <- affectedIndiv %>%
   dplyr::filter(subplotid == "41_100" & randomSubplotB != "41_400") #--> 305 records
 #--> All are from HARV 2014 (305 records), and majority of these are "tag only" records
-#--> Spot checking multiple records from each plot, none exist in vst_apparentindividual, so select randomSubplotA
+#--> Spot checking multiple records from each plot, none exist in vst_apparentindividual, so set to NA
 
 temp <- affectedIndiv %>%
   dplyr::filter(is.na(subplotid) & plotType == "lgTower") #--> 208 records
@@ -143,14 +143,14 @@ temp <- affectedIndiv %>%
 affectedIndiv <- affectedIndiv %>%
   dplyr::mutate(fixSubplotID = dplyr::case_when(plotType == "distributed" | plotType == "smTower" ~ "31_400",
                                                 plotType == "lgTower" & subplotid == "31_100" & randomSubplotA == "21_400" ~ "21_400",
-                                                plotType == "lgTower" & subplotid == "31_100" & randomSubplotA != "21_400" ~ randomSubplotA,
+                                                plotType == "lgTower" & subplotid == "31_100" & randomSubplotA != "21_400" ~ NA,
                                                 plotType == "lgTower" & subplotid == "32_100" & 
                                                   (randomSubplotA == "23_400" | randomSubplotB == "23_400") ~ "23_400",
                                                 plotType == "lgTower" & subplotid == "32_100" & randomSubplotA != "23_400" &
-                                                  randomSubplotB != "23_400" ~ randomSubplotA,
-                                                plotType == "lgTower" & subplotid == "40_100" ~ randomSubplotA,
+                                                  randomSubplotB != "23_400" ~ NA,
+                                                plotType == "lgTower" & subplotid == "40_100" ~ NA,
                                                 plotType == "lgTower" & subplotid == "41_100" & randomSubplotB == "41_400" ~ "41_400",
-                                                plotType == "lgTower" & subplotid == "41_100" & randomSubplotB != "41_400" ~ randomSubplotA,
+                                                plotType == "lgTower" & subplotid == "41_100" & randomSubplotB != "41_400" ~ NA,
                                                 TRUE ~ NA),
                 .after = subplotid)
 
