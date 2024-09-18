@@ -36,15 +36,16 @@ calculate_transition_dates <- function(df) {
     group_by(individualID, phenophaseName) %>%
     filter(phenophaseStatus!="uncertain") %>%
     mutate(status_lag = lag(phenophaseStatus),
-           date_lag = lag(date), transitionType = paste0(status_lag, "-", phenophaseStatus)) %>%
+           date_lag = lag(date), doy_lag = lag(dayOfYear), transitionType = paste0(status_lag, "-", phenophaseStatus)) %>%
     filter(!is.na(status_lag), phenophaseStatus != status_lag) %>%
     mutate(transition_date = as.Date(date_lag + (date - date_lag) / 2),
+           doy_transition = yday(transition_date),
            uncertainty = as.numeric(difftime(date, date_lag, units = "days"))/2,
            samplingInterval = as.numeric(difftime(date, date_lag, units = "days"))) %>%
     group_by(year,individualID, phenophaseName)%>%
     mutate(nth_transition = cumsum(status_lag == "no" & phenophaseStatus == "yes"))%>%
     select(year, siteID, individualID, phenophaseName, transitionType, nth_transition, date, date_lag, 
-           samplingInterval, transition_date, uncertainty)%>%
+           doy_lag, samplingInterval, transition_date, doy_transition, uncertainty)%>%
     arrange(year, phenophaseName, individualID)
 }
 

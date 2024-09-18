@@ -8,7 +8,7 @@ devtools::source_url("https://raw.githubusercontent.com/NEONScience/neon-plant-s
 
 # download data from neon data portal
 dat <- loadByProduct(dpID="DP1.10055.001",
-                     site = "ONAQ",
+                     site = "PUUM",
                      startdate = "2022-01",
                      enddate = "2024-05",
                      check.size = FALSE, 
@@ -48,7 +48,7 @@ a$phenophaseName <- factor(a$phenophaseName, c("Breaking leaf buds", "Initial gr
 
 # subseted df with phenophase status values from original download, joined with location
 b <- df%>%
-  filter(date>"2023-10-01 GMT" & phenophaseName%in%c("Initial growth", "Young Leaves"))%>%
+  filter(date>"2022-01-01 GMT" & phenophaseName%in%c("Initial growth", "Young Leaves"))%>%
   left_join(loc)
           
 #set factor order
@@ -86,7 +86,7 @@ g
 ##### Summarize it #####
 
 c <- out%>%
-  filter(year%in%c(2023,2024) & phenophaseName%in%c("Initial growth", "Young leaves", "Leaves") & 
-           transitionType=="no-yes")%>%
+  filter(year%in%c(2022, 2023,2024) &  
+           transitionType=="no-yes")%>% #phenophaseName%in%c("Initial growth", "Young leaves", "Leaves")
   group_by(year,  phenophaseName, transitionType, nth_transition)%>% #taxonID,
   summarise(count=n(), meanUncertainty=mean(uncertainty), meanDate=mean(transition_date), meanInterval=mean(samplingInterval))

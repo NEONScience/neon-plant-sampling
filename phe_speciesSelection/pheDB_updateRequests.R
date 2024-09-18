@@ -31,6 +31,25 @@ pheDb <- get.fulcrum.data(api_token = api_token,
 
 
 ##create a new record/s
+
+inc0077445_new <- data.frame(`_status`= 'unedited', 
+                           project= 'D12',
+                             domainid= 'D12',
+                           siteid='YELL',
+                           taxonid = 'SHCA',
+                           scientificname = find.scientific.name(taxonID="SHCA", 
+                                                                 type = "PLANT"),
+                           preferredstatus = "", 
+                           remarks = 'added 2024-08-19 by request of FS staff')
+
+
+write.csv(inc0077445_new, 'C:/Users/kjones/Desktop/temp/phe_db_updateRequests/yell_inc0077445_new.csv', 
+          row.names=F)
+
+
+
+
+
 INC0074170 <- data.frame()
 
 add <- c("POAR7", "JUCO6", "PICO", "SHCA", "BERE", "RISE2", "ARCO9")
@@ -83,6 +102,23 @@ write.csv(INC0067119, 'C:/Users/kjones/Desktop/temp/phe_db_updateRequests/nogp_I
 
 
 ########## update a record
+
+inc0077445_update <- pheDb%>%
+  filter(siteid=="YELL" & taxonid%in%c("ANTEN", "PHLOX"))%>%
+  select(fulcrum_id, taxonid, scientificname, remarks)
+
+inc0077445_update$taxonid[1] <- "PHMU3"
+inc0077445_update$scientificname[1] <- find.scientific.name("PHMU3", type="PLANT")
+inc0077445_update$remarks[1] <- 'changed taxonID to PHMU3 from PHLOX, per FS feedback, inc0077445. 2024-08-19'
+
+inc0077445_update$taxonid[2] <- "ANRO2"
+inc0077445_update$scientificname[2] <- find.scientific.name("ANRO2", type="PLANT")
+inc0077445_update$remarks[2] <- 'changed taxonID to ANRO2 from ANTEN, per FS feedback, inc0077445. 2024-08-19'
+
+write.csv(inc0077445_update, 'C:/Users/kjones/Desktop/temp/phe_db_updateRequests/yell_inc0077445_update.csv', 
+          row.names=F)
+
+
 
 itask0021932_update <- pheDb%>%
   filter(siteid=="OAES" & taxonid=="HECO26")%>%
