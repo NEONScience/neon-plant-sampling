@@ -1,0 +1,217 @@
+---
+title: "CDW Tally Analysis: D17 SOAP"
+author: ["Sam Simkin", "Courtney Meier"]
+date: "2 May 2024"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+# Status
+
+```{r setup,  warning=FALSE, message=FALSE}
+library(tidyverse)
+# library(plyr)
+# library(httr)
+# library(glue)
+library(neonUtilities) # functions to download portal data
+
+##  Define paths and other inputs
+domain <- "D17"
+site <- "SOAP"
+
+# Define required paths and functions
+if (file.exists("~/Documents/workDocuments")){
+  outpath <- paste("~/Documents/workDocuments/gitRepositories/neon-plant-sampling/cdw_tallyAnalysis/", domain, sep="")
+  source("~/Documents/workDocuments/gitRepositories/neon-plant-sampling/plant_tools/get_fulcrum_pageLim.R")
+}
+
+if (file.exists("/Users/cmeier")){
+  outpath <- paste("~/Documents/gitRepositories/neon-plant-sampling/cdw_tallyAnalysis/", domain, sep="")
+  source("~/Documents/gitRepositories/neon-plant-sampling/plant_tools/get_fulcrum_pageLim.R")
+}
+
+if (file.exists("C:/GitHub")){
+  outpath <- paste("C:/GitHub/neon-plant-sampling/cdw_tallyAnalysis/", domain, sep="")
+  source("C:/GitHub/neon-plant-sampling/plant_tools/get_fulcrum_pageLim.R")
+}
+
+
+```
+
+```{r downloadData, results='hold', warning=FALSE, message=FALSE}
+## Import data from Fulcrum
+# Define CDW Fulcrum query for site
+# cdwQuery <- URLencode(glue::glue('SELECT domainid, siteid, plotid_parent, tallydate, eventid, volumefactor,
+#                                  samplingprotocolversion, lidsazimuth, targettaxapresent, logdistance, logmaxdiameter, minorlogdiameter,
+#                                  logid, loglength, taxonid, scientificname, decayclass FROM "4487b90c-51b3-495a-873b-16f6b6d0abf7"
+#                                  AS parent JOIN "4487b90c-51b3-495a-873b-16f6b6d0abf7/cdw_transect" AS child ON
+#                                  (parent._record_id = child._parent_id) WHERE siteid =', "'{site}' ORDER BY _child_record_id", .sep = " "))
+# 
+# ##  Get data from Fulcrum
+# fulcrumCDW <- get_fulcrum_pageLim(apiToken = Sys.getenv("FULCRUM_PAT"), sql = cdwQuery)
+
+# Courtney manually annotated Fulcrum download of 2023 data to incorporate as best as possible the log remarks into the new charExtent and charDepth fields
+library(openxlsx)
+ fulcrumCDW <- openxlsx::read.xlsx(xlsxFile = "D17-SOAP-2023_cdw_tally_prod_child.xlsx", sheet = "cdw_tally_prod_cdw_transect", colNames = TRUE)
+
+
+#   Set data types and rename variables to match Portal data
+fulcrumCDW$volumefactor <- as.integer(fulcrumCDW$volumefactor)
+#fulcrumCDW$tallydate <- as.Date(fulcrumCDW$tallydate)
+
+fulcrumCDW <- fulcrumCDW %>%
+   dplyr::rename(
+     domainID = "_record_project",
+  #   siteID = siteid,
+  #   plotID = plotid_parent,
+  #   date = tallydate,
+  #   eventID = eventid,
+     volumeFactor = volumefactor,
+     samplingProtocolVersion = samplingprotocolversion_ingest,
+     lidsAzimuth = lidsazimuth,
+     targetTaxaPresent = targettaxapresent,
+     logDistance = logdistance,
+     logMaxDiameter = logmaxdiameter,
+     logMinorDiameter = minorlogdiameter,
+     logID = logid,
+     logLength = loglength,
+     taxonID = taxonid,
+     scientificName = scientificname,
+     decayClass = decayclass
+  ) %>% mutate(siteID = substr(plotid_child, 1,4), plotID = substr(plotid_child, 1,8), eventID = "CDW.2023.SOAP")
+
+# fulcrumCDW$plotType <- "tower"
+
+
+##  Get CDW Tally data from Portal
+cdwTallyDat <- neonUtilities::loadByProduct(dpID = "DP1.10010.001",
+                                            check.size = FALSE,
+                                            site = "SOAP",
+                                            enddate = "2022-12",
+                                            release = "LATEST",
+                                            include.provisional = TRUE,
+                                            package = "expanded",
+                                            token = Sys.getenv("NEON_PAT"))
+portalCDW <- cdwTallyDat$cdw_fieldtally
+
+portalCDW <- portalCDW %>%
+  dplyr::select(
+    domainID,
+    siteID,
+    plotID,
+    plotType,
+#    date,
+    eventID,
+    volumeFactor,
+    samplingProtocolVersion,
+    lidsAzimuth,
+    targetTaxaPresent,
+    logDistance,
+    logMaxDiameter,
+    logMinorDiameter,
+    logID,
+    logLength,
+    taxonID,
+    scientificName,
+    decayClass
+  )
+portalCDW$volumeFactor <- as.integer(portalCDW$volumeFactor)
+
+#cdw <- dplyr::bind_rows(fulcrumCDW, portalCDW)
+
+cdw <- fulcrumCDW %>%
+  dplyr::arrange(plotID, logID)
+
+```
+
+```{r data_processing, results='hold'}
+
+plot_event <- cdw %>% distinct(plotID, eventID) %>% group_by(plotID) %>% top_n(1, eventID) # identify unique plot by event combos and retain only the latest eventID for each plotID
+   
+cdw<- merge(cdw, plot_event, by = c("plotID","eventID"), all.y = TRUE) # filter to just the most recent eventID for each plotID
+
+
+## Create diameter class factor
+cdw <- cdw %>%
+  dplyr::mutate(diameterClass = dplyr::case_when(
+    is.na(logMaxDiameter) ~ NA,
+    logMaxDiameter >= 10 ~ ">=10cm",
+    logMaxDiameter < 5 ~ "2-5cm",
+    TRUE ~ "5-10cm"
+  ),
+  .before = decayClass)
+
+
+##  Create decayClass number
+cdw <- cdw %>%
+  dplyr::mutate(decayClassNum = as.numeric(stringr::str_extract(decayClass, "^[1-5]{1}")),
+                .after = decayClass)
+
+
+##  Convert '2PLANT' to '2PLANT-S' --> '2PLANT' was used against protocol guidance and Unlikely that hardwoods exist at site
+# cdw <- cdw %>% 
+#   mutate(taxonID = case_when(
+#     taxonID=="2PLANT" ~ "2PLANT-S",
+#     TRUE ~ taxonID
+#   ))
+
+
+## Write data file
+write.csv(cdw, file = paste(outpath, paste(domain, site, "merged","cdw_rawdata.csv", sep="_"), sep = "/"))
+
+```
+
+```{r summary_table, results='hold', echo=FALSE}
+## Filter out 'blank' transects where TTP = NO
+cdw_fil <- cdw %>% 
+  dplyr::filter(targetTaxaPresent == "Y",
+                !is.na(taxonID))
+
+
+##  Create count summary by DST and arrange by descending count, diameterClass
+dstSummary <- cdw_fil %>%
+  dplyr::group_by(siteID, taxonID, decayClassNum, diameterClass, charextent, chardepth) %>%
+  dplyr::summarise(
+    counts = n()
+  ) %>%
+  dplyr::ungroup() %>%
+  dplyr::arrange(desc(counts), desc(diameterClass), decayClassNum)
+
+
+## Calculate relative abundances
+dstSummary <- dstSummary %>%
+  dplyr::mutate(totalLogs = nrow(cdw_fil),
+                relativeAbundance = round(counts/totalLogs*100, digits = 2),
+                cumulativeAbundance = round(cumsum(relativeAbundance), digits = 2))
+
+
+##  Determine required sample size per DST combo, and cumulative sample size
+dstSummary <- dstSummary %>%
+  dplyr::mutate(
+    sampledDiskNum = dplyr::case_when(
+      diameterClass == ">=10cm" ~ 10,
+      TRUE ~ 5
+    ),
+    cumulativeDiskNum = cumsum(sampledDiskNum))
+
+```
+
+`r knitr::kable(dstSummary)`
+
+
+
+### Write out
+
+```{r write_files, echo=FALSE}
+
+##  Prepare 'dstSummary' for output to protocol appendix
+write.csv(dstSummary %>%
+            dplyr::select(-counts, -totalLogs) %>%
+            dplyr::rename(decayClass = decayClassNum,
+                          sizeCategory = diameterClass),
+          file = paste(outpath, paste(domain, site, "tally_abundance.csv", sep = "_"), sep = "/"),
+          row.names = FALSE)
+
+```
+

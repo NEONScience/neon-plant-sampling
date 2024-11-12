@@ -182,7 +182,7 @@ anova(m1ME)
 
 **_Model: Data from eventID = "HBP.2023.CLBJ.34" only_**
 
-``` {r me-treatement-event34, echo = FALSE}
+``` {r me-treatment-event34, echo = FALSE}
 
 #   Mixed effects model for eventID = "HBP.2023.CLBJ.34" alone
 m2ME <- lmerTest::lmer(formula = estDryMass ~ treatment + (1|clipID),

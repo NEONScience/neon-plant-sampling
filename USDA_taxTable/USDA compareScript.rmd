@@ -1,0 +1,1188 @@
+---
+title: "masterTOSPlants"
+author: "Katie"
+date: "Tuesday, August 12, 2014"
+output: pdf_document
+---
+
+Code to generate Master Taxonomy for TOS Plants
+
+Code Started by K.Jones 8/11/2014
+modified by S. Elmendorf 8/12/2014
+modified by K.Jones 8/26/2014
+
+Note: Running rmarkdown code requires the new version of RStudio (v0.98.932),
+which includes everything you need to use R Markdown v2 
+(including pandoc and the rmarkdown package)
+
+The overall goal is to get from USDA plants (https://plants.usda.gov/) to
+formatted data for NEON.DOC.XXX Master taxon list for TOS plants
+
+ToDOs:
+
+5. Add spp. and sp. codes
+  #KJ - if genus is non null AND Species is null, enter 'sp.' in species column
+        ssp. is the subspecies indicator
+
+
+``` {r clean workspace and set dirs}
+rm(list=ls())
+if (file.exists('~/GitHub/organismalIPT')){
+  mypathtorepo<- '~/GitHub/organismalIPT'
+}
+#mypathtorepo<-'C:/Users/selmendorf/Documents/ATBDS/ATBDgit/organismalIPT'
+#mypathtorepo<- 'C:/Users/kjones/Documents/GitHub/organismalIPT'
+#mypathtorepo<- 'C:/Users/kthibault/Documents/GitHub/organismalIPT'
+#the stripping packages breaks rmarkdown.  Not sure why. Commented out for now
+#pkgs = names(sessionInfo()$otherPkgs)
+#pkgs = paste('package:', pkgs, sep = "")
+#lapply(pkgs, detach, character.only = TRUE, unload = TRUE)
+```
+
+#Download the table from the USDA
+
+``` {r get table}
+library(reshape)
+#disable internet timeout
+#SCE doesn't understand why you set this as NA then FALSE then NA?
+#as KJ understands it, NA#1 tests default setting (R=False, Rstudio=True), FALSE switches setting, second NA, verifies # the setting was changed
+setInternet2(use=NA)
+setInternet2(use=FALSE)
+setInternet2(use=NA)
+
+
+#Original url: Can be used as test case, fewer rows
+#'http://plants.usda.gov/java/AdvancedSearchServlet?pfa=l48&pfa=ak&pfa=hi&pfa=pr&family=Acanthaceae&dsp_vernacular=on&dsp_statefips=on&dsp_genus=on&dsp_family=on&dsp_orders=on&dsp_class=on&dsp_division=on&dsp_kingdom=on&dsp_itis_tsn=on&dsp_dur=on&dsp_grwhabt=on&dsp_nativestatuscode=on&dsp_fed_nox_status_ind=on&dsp_state_nox_status=on&dsp_invasive_pubs=on&dsp_fed_te_status=on&dsp_state_te_status=on&dsp_nat_wet_ind=on&includeAuthors=on&Synonyms=all&dsp_synonyms=on&dsp_authorname_separate=on&viewby=sciname'
+
+##test with one family##
+q1<-read.table('http://plants.usda.gov/java/AdvancedSearchServlet?pfa=l48&pfa=ak&pfa=hi&pfa=pr&family=Fagaceae&dsp_familySym=on&dsp_vernacular=on&dsp_statefips=on&dsp_genus=on&dsp_family=on&dsp_orders=on&dsp_class=on&dsp_division=on&dsp_kingdom=on&dsp_itis_tsn=on&dsp_dur=on&dsp_grwhabt=on&dsp_nativestatuscode=on&dsp_fed_nox_status_ind=on&dsp_state_nox_status=on&dsp_invasive_pubs=on&dsp_fed_te_status=on&dsp_state_te_status=on&dsp_nat_wet_ind=on&includeAuthors=on&Synonyms=all&dsp_synonyms=on&dsp_authorname_separate=on&viewby=sciname&download=on',
+#                fill= TRUE,header=TRUE, sep=',',encoding='UTF-8')
+
+#KJ added 'dsp_familySym=on&' to generate new row for family level ID, if we want to keep this field, will need to update the full table download url as well
+#SCE has no idea what KJ's comment here means, but ignoring it and moving on
+
+
+##This is the full table download 
+#q1<-read.table('http://plants.usda.gov/java/AdvancedSearchServlet?pfa=l48&pfa=ak&pfa=hi&pfa=pr&dsp_vernacular=on&dsp_statefips=on&dsp_genus=on&dsp_family=on&dsp_familySym=on&dsp_orders=on&dsp_class=on&dsp_division=on&dsp_kingdom=on&dsp_itis_tsn=on&dsp_dur=on&dsp_grwhabt=on&dsp_nativestatuscode=on&dsp_fed_nox_status_ind=on&dsp_state_nox_status=on&dsp_invasive_pubs=on&dsp_fed_te_status=on&dsp_state_te_status=on&dsp_nat_wet_ind=on&includeAuthors=on&Synonyms=all&dsp_synonyms=on&dsp_authorname_separate=on&viewby=sciname&download=on',
+               fill= TRUE,header=TRUE, sep=',',encoding='UTF-8')
+      #Don't forget to add '&download=on' to the end of the url, remove '&family=Acanthaceae'
+      # This is only important to know if our search criteria change and a new url is used
+
+
+```
+#Rename some fields to match NEON names
+
+```{r rename fields}
+
+#rename fields  
+
+usda <- rename(q1, c(Accepted.Symbol='acceptedTaxonID',
+                     Synonym.Symbol='taxonID',
+                     Kingdom='kingdom',
+                     Division='phylum',  Order= 'order',  
+                     Family='family', 
+                     Genus='genus',
+                     Species='specificEpithet',
+                     Scientific.Name='scientificName',
+                     Common.Name='vernacularName', 
+                     Species='specificEpithet',
+                     Class='class'))
+
+##this next line can probably be removed once we have completed script?
+cat(names(usda))
+```
+
+#Generate the infraspecifiEpithet.
+This is done here by concatenating fields.  We should check this is giving us
+exactly what we want, SCE is not sure for instance that we want the hybrid
+variety indicator in there formally? 
+
+KJ - I think we do want this as there is no other way (that I am familiar with) 
+to distinguish between hybrids, subspecies, variety... without the indicator
+
+KT - the only concern might be want can fit in the display on the PDA? And whether
+we need this level of detail (i.e., if techs will use it)
+
+SCE - Ok, let's try to keep it and hope it fits on the screen?? possibly hale will need to make a big box or a wrap or we train the techs to hold the PDA sideways if they have a long infraspecific epithet
+
+```{r generate infraspecificEpithet}
+#generate infraspecificEpithet
+usda$infraspecificEpithet <- paste(usda$subspecies.Prefix,
+                                   usda$Hybrid.Subspecies.Indicator,
+                                   usda$Subspecies, usda$Variety.Prefix,
+                                   usda$Hybrid.Variety.Indicator, 
+                                   usda$Variety, usda$Subvariety.Prefix,
+                                   usda$Subvariety, 
+                                   usda$Forma.Prefix, usda$Forma,
+                                   sep=' ')
+
+usda$infraspecificEpithet<-gsub('NA', '', usda$infraspecificEpithet)
+
+#Tidy up whitespace issues
+#define function to get rid of double whitespaces.
+whitespaceFix<-function(x){
+  while (length(grep('  ', x) > 0)){
+    x<-gsub('  ', ' ', x)    
+  }
+  return (x) 
+}
+
+# define function to return string w/o leading or trailing whitespace
+trim <- function (x) gsub("^\\s+|\\s+$", "", x)
+
+usda$infraspecificEpithet<-whitespaceFix(usda$infraspecificEpithet)
+usda$infraspecificEpithet<-trim(usda$infraspecificEpithet)
+
+```
+
+#Generate the scientificName Authorship.
+Per Michael Denslow's instructions (https://github.com/NEONdps/organismalIPT/issues/21#issuecomment-53504305), we use only the authorship for the terminal taxon rank for each record.  
+
+```{r generate scientificNameAuthorship}
+#generate scientificNameAuthorship
+
+#LOWEST rank author
+#Does this work?
+#cycles through author list, starting at lowest blank, and fills
+#any remaining blank cells with the next highest rank author
+
+usda$scientificNameAuthorship <- as.character(usda$Quadranomial.Author)
+usda$scientificNameAuthorship <- whitespaceFix(usda$scientificNameAuthorship)
+
+usda$scientificNameAuthorship[usda$scientificNameAuthorship == '']<-
+  as.character(usda$Trinomial.Author[usda$scientificNameAuthorship==''])
+usda$scientificNameAuthorship <- whitespaceFix(usda$scientificNameAuthorship)
+
+usda$scientificNameAuthorship[usda$scientificNameAuthorship==''] <-
+  as.character(usda$Genera.Binomial.Author[usda$scientificNameAuthorship==''])
+usda$scientificNameAuthorship <- whitespaceFix(usda$scientificNameAuthorship)
+
+usda$scientificNameAuthorship <- trim(usda$scientificNameAuthorship)
+
+#only generating scientificNameAuthorship for quadrinomial.Author
+#SCE thinks this is fixed now.   
+
+
+#view what this gives you
+#print (head(unique (usda$scientificNameAuthorship)))
+
+# KT: I am happy with MD's guidance on this. However, this is not providing 
+# authorship at the genus level, despite the fact that it is contained with 
+# the scientificName (e.g., Acanthus L. ends up with no value in authorship) 
+# - NEEDS FIXING
+# - SCE THINKS THIS IS AN ERROR WITH THE UNDERLYING USDA DOWNLOAD.  Sometimes they seem
+# to be missing the scientificName authorship in that column, even though it is parsed into
+#the name.  If you are really sure any time there is a space in the scientificName for something
+#with genus only, the bit after the space is the authorship, we can split it out this way.
+#or we can leave it.
+
+# KJ: Bring in table of genera authors
+genAuthor<-read.csv(paste(mypathtorepo,'scienceDev/lookupTablesShared/USDA_generaAuthors.csv', sep='/'),na.strings=FALSE)
+#cut extra columns from genAuthor
+genAuthorCut<-names(genAuthor) %in% c('genus','acceptedTaxonID')
+genAuthor<-genAuthor[!genAuthorCut]
+
+#usdaTest<-merge(usda, genAuthor, by=c('scientificName'), all.x=TRUE, incomparables=TRUE)
+#because merge adds NAs rather than leaving fields blank , an extra field is added, scientificNameAuthorship.y
+#these two columns can be merged, there should be no conflicts.
+
+# usdaTest$scientificNameAuthorship.x[usdaTest$scientificNameAuthorship.x==''|is.na(usdaTest$scientificNameAuthorship.x)] <-as.character(usdaTest$scientificNameAuthorship.y[usdaTest$scientificNameAuthorship.x==''|is.na(usdaTest$scientificNameAuthorship.x)])
+
+###  Need help here, these attempts to merge columns don't work. Produces no reslult for genera present in the one family test case and gibberish #'s for the additional genera ###
+# I think this is fixed
+#cut extra column once successfully merged
+
+usda<-merge(usda, genAuthor, by=c('scientificName'), all.x=TRUE, incomparables=TRUE)
+usda$scientificNameAuthorship.x[usda$scientificNameAuthorship.x==''|is.na(usda$scientificNameAuthorship.x)] <-as.character(usda$scientificNameAuthorship.y[usda$scientificNameAuthorship.x==''|is.na(usda$scientificNameAuthorship.x)])
+skipme<-which(names(usda)=='scientificNameAuthorship.y')
+usda<-usda[,-skipme]
+
+names(usda)[names(usda)=='scientificNameAuthorship.x']<- 'scientificNameAuthorship'
+write.csv (usda, '~/testOutput/usdaChunk5.csv', row.names=F)
+
+```
+
+#Determine taxonRank
+Here defined as the lowest filled (i.e. non-NULL) rank in the taxonomic
+hierarchy.  Does this seem right?
+```{r determine taxonRank}
+usda<-read.csv('~/testOutput/usdaChunk5.csv')
+#some probs already here
+sum(duplicated(usda$taxonID[!is.na(usda$taxonID)&
+                              usda$taxonID!='']))
+sum(duplicated(usda$scientificName))
+
+#determine taxonRank by assigning value='fieldName' of finest taxonomy field.
+
+#we should probably move this whole thing up and just get rid of the extra
+#whitespaces in all fields in the table at the beginning, if there are any...
+cleanAllWhite<-function(df, fieldnames){
+  for (i in fieldnames){
+    dat<-df[,which(names(df)==i)]
+    dat<-whitespaceFix(dat)
+    dat<-trim(dat)
+    df[,which(names(df)==i)]<-dat
+  }
+  return(df)
+}
+
+#define set of relevant taxon ranks
+orderedRanks=c('kingdom', 'phylum', 'order', 'class', 'family',
+               'genus', 'specificEpithet', 'Subspecies', 'Variety',
+               'Subvariety', 'Forma')
+usda<-cleanAllWhite(usda, orderedRanks)
+
+maxColFilled <- function(x){
+  names(x)[max(which(x!=''))]
+}
+
+rankme <- usda[,orderedRanks]
+usda$taxonRank <- apply(rankme, 1, maxColFilled)
+rm(rankme) #cleanup
+
+usda$taxonRank <- gsub('specificEpithet', 'species', usda$taxonRank)
+usda$taxonRank <- tolower(usda$taxonRank)
+write.csv (usda, '~/testOutput/usdaChunk6.csv', row.names=F)
+```
+
+#Fill out NativeStatusCodes.
+
+KJ- I have a csv of all genus authors, added to lookupTablesShared
+
+```{r add Presence/Absence Codes}
+
+#Assign l48, ak, hi and pr NativeStatusCodes
+
+domainIDs <- paste('d', '0', c(1:9), sep='')
+domainIDs <- c(domainIDs, paste('d', c(10:20), sep=''))
+
+states <- c('AK', 'AL', 'AR', 'AZ', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA', 'HI', 
+          'IA', 'ID', 'IL', 'IN', 'KS', 'KY', 'LA', 'MA', 'MD', 'ME', 'MI', 
+          'MN', 'MO', 'MS', 'MT', 'NC', 'ND', 'NE', 'NH', 'NJ', 'NM', 'NV', 
+          'NY', 'OH', 'OK', 'OR', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT', 
+          'VA', 'VT', 'WA', 'WI', 'WV', 'WY', 'PR')
+
+#statesInDomains <- list()
+#for (i in domainIDs){
+  #statesInDomains[[i]]<-sample (states, 3, replace=T)
+#}
+#KJ commented out SCE code, replaced with domain specific list, below
+
+##changed to accommodate current reality that D04 only includes PR
+
+statesInDomains <- list(d01=c('CT', 'DE', 'ME', 'MD', 'MA', 'NH', 'NJ', 'NY', 
+                              'PA', 'RI', 'VT', 'WV'),
+                      d02=c('DC', 'GA', 'NJ', 'NC', 'PA', 'SC', 'VA'),
+                      d03=c('FL', 'GA', 'LA', 'MS', 'SC', 'TX'),
+                      d04=c('PR'),
+                      d05=c('IL', 'IN', 'MI', 'MN', 'OH', 'WI'),
+                      d06=c('IL', 'IA', 'KS', 'MN', 'MO', 'NE', 'WI'),
+                      d07=c('GA', 'IL', 'IN', 'KY', 'OH', 'TN', 'VA', 'WV'),
+                      d08=c('AL', 'AR', 'GA', 'KS', 'LA', 'MS', 'TN', 'TX'),
+                      d09=c('MT', 'ME', 'ND', 'SD', 'WY'),
+                      d10=c('CO', 'KS', 'NE', 'NM', 'OK', 'TX'),
+                      d11=c('OK', 'TX'),
+                      d12=c('ID', 'MT', 'WY'),
+                      d13=c('AZ', 'CO', 'NM', 'UT', 'WY'),
+                      d14=c('AZ', 'NM', 'TX'),
+                      d15=c('ID', 'NV', 'OR', 'UT', 'WA', 'WY'),
+                      d16=c('AK', 'CA', 'OR', 'WA'),
+                      d17=c('CA'),
+                      d18=c('AK'),
+                      d19=c('AK'),
+                      d20=c('HI'))
+
+
+#Generate a list of states each taxonID is present in
+#figure out which taxa are in which states for Presence/Absence
+#this takes a ridiculously long time to run not parallel
+#but I left the code here just in case people can't get the
+#parallel set up
+
+#the slow way
+# taxaInStates<-list()
+# for (i in 1:nrow(usda)){
+#   inStates<-NULL
+#   for (j in states){
+#     if(max(grepl (j, usda$State.and.Province[i]))){
+#       inStates<-c(inStates, j)
+#     }
+#   }
+#   taxaInStates[[paste(usda$taxonID[i])]]<-inStates
+# }
+
+#the slightly less painfully slow
+library(doParallel) #to speed up the loops
+cl <- makeCluster(3) #the number of cores to run - you can use detectCores() to count how many cores your machine has
+registerDoParallel(cl)
+
+#updating this algorithm to address the duplicate entries for acceptedTaxonId 
+#that result from inclusion of synonyms
+
+#first, get all non-Null unique combinations of acceptedTaxonID & StatenProvince
+library(stringr)              
+uTaxa <- unique(subset(usda, str_length(usda$State.and.Province) > 0, select = c("acceptedTaxonID","State.and.Province")))
+
+system.time(
+  taxaInStates <- foreach(i=1:nrow(uTaxa))%dopar% {
+    inStates <- NULL
+    for (j in states){
+      if(max(grepl(j, uTaxa$State.and.Province[i]))){
+        inStates <- c(inStates, j)
+      }
+    }
+    return(inStates)
+  }
+)
+
+names(taxaInStates) <- uTaxa$acceptedTaxonID
+
+#generates columns of Presence/Absence
+system.time(taxaInDomains <- foreach(i=1:nrow(uTaxa))%dopar%{
+  states <- taxaInStates[[i]]
+  inDomains <- NULL
+  for (j in domainIDs){
+    if (length(which(states%in%statesInDomains[[j]])) > 0){
+      inDomains <- c(inDomains, 'P')
+    } else {inDomains <- c(inDomains, 'A')}
+  }
+  return(inDomains)
+})
+
+taxaInDomains <- data.frame(matrix(unlist(taxaInDomains), ncol=20, byrow=T))
+names(taxaInDomains) <- domainIDs
+taxaInDomains$acceptedTaxonID <- uTaxa$acceptedTaxonID
+
+write.csv (usda, '~/testOutput/usdaChunk7.csv', row.names=F)
+
+#see where we are so far
+#print (head(taxaInDomains))
+
+````
+
+#next repeat for Native/Introduced/ETC
+#then leave absences as A, but overwrite presences with nativeStatus
+
+```{r replace Presence data with Native Status Codes}
+usda<-read.csv('~/testOutput/usdaChunk7.csv')
+#some probs already here
+sum(duplicated(usda$taxonID[!is.na(usda$taxonID)&
+                              usda$taxonID!='']))
+sum(duplicated(usda$scientificName))
+
+## locales indicates the spatial resolutions at which usda reports nativity status
+## KT I think we only need to deal with locales that are within NEON's realm
+
+#locales <- c('L48', 'AK', 'HI', 'PR', 'VI','CAN','GL', 'SPM', 'NA')
+locales <- c('L48', 'AK', 'HI', 'PR')
+localesInDomains <- list(d01=c('L48'),
+                      d02=c('L48'),
+                      d03=c('L48'),
+                      d04=c('PR'),##in 2014, all sites in D04 are in PR - 
+                      ##no sites yet in the FL portion of the domain
+                      d05=c('L48'),
+                      d06=c('L48'),
+                      d07=c('L48'),
+                      d08=c('L48'),
+                      d09=c('L48'),
+                      d10=c('L48'),
+                      d11=c('L48'),
+                      d12=c('L48'),
+                      d13=c('L48'),
+                      d14=c('L48'),
+                      d15=c('L48'),
+                      d16=c('L48'),
+                      d17=c('L48'),
+                      d18=c('AK'),
+                      d19=c('AK'),
+                      d20=c('HI'))  
+
+# pull out acceptedTaxonIDs where nativity status data are provided by the usda
+uTaxaNativity <- unique(subset(usda, str_length(usda$Native.Status) > 0, 
+                               select = c("acceptedTaxonID","Native.Status")))
+
+#need to convert taxaInDomains to character from factors, so that the Ps can be 
+##updated and not cause an invalid factor level error
+taxaInDomains <- data.frame(lapply(taxaInDomains, as.character), 
+                            stringsAsFactors=FALSE)
+
+#then need to convert the uTaxaNatviity$acceptedTaxonID to character to all
+##comparison with taxaInDomains$acceptedTaxonID
+uTaxaNativity$acceptedTaxonID <- as.character(uTaxaNativity$acceptedTaxonID)
+
+#could not get the parallel foreach function to work here, I think because 
+#"foreach differs from a for loop in that its return is a list of values, 
+#whereas a for loop has no value and uses side effects to convey its result."
+
+#Here are the rules for defining Nativity Codes:
+#For Domains 1-3 and 5-17 where P/A = 'P', and Native.Status = L48(x),
+  # replace 'P' with 'x' (That is, whatever is between the parentheses following 'L48')
+  # acceptable values for 'x' = N, N?, GP, GP?, I, I?, W, W?
+
+# this function extracts the value from within a parentheses#
+  # gsub("[\\(\\)]", "", regmatches(usda$Native.Status, gregexpr("\\(.*?\\)", usda$Native.Status)))#
+  
+#For Domain 4 where P/A = 'P', if Native.Status = L48(x), and/or PR(y)
+  # replace 'P' with 'y'
+  # else replace 'P' with 'x'
+
+#For Domains 18-19 where P/A = 'P', and Native.Status = AK(x)
+# replace 'P' with 'x'
+
+#For Domain 20 where P/A = 'P', and Native.Status = HI(x)
+  # replace 'P' with 'x'
+
+
+system.time(
+  for (i in 1:nrow(uTaxaNativity)){
+    for (a in 1:nrow(taxaInDomains)){
+      #work with records in taxaInDomains for relevant taxon:
+      if (taxaInDomains$acceptedTaxonID[a] == uTaxaNativity$acceptedTaxonID[i]){
+        #extract native status code for each region (locale)
+        for (b in locales) {
+          if(max(grepl(b, uTaxaNativity$Native.Status[i]))){
+            k <- paste(b, '\\(.*?\\)', sep = ' ')
+            l <- gsub("[\\(\\)]", "", 
+                      regmatches(uTaxaNativity$Native.Status[i],
+                                 regexpr(k, uTaxaNativity$Native.Status[i])))
+            print (nativeStatus <- strsplit(l, " ")[[1]][2])
+            #replace 'P's in relevant region with correct native status code
+            for (j in 1:length(domainIDs)){
+              if (length(which(b%in%localesInDomains[[j]])) > 0){
+                if (taxaInDomains[a,j] == 'P'){
+                  taxaInDomains[a,j] <- nativeStatus
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+)
+
+usda <- merge(usda, taxaInDomains, by = "acceptedTaxonID")
+write.csv (usda, '~/testOutput/usdaChunk8.csv', row.names=F)
+
+```
+
+#now need to address the fact that USDA does not provide native status data for 
+##all acceptedTaxonIDs. Assumptions implemented below: (1) if a rank below 
+##subspecies is assigned a status of native in a given locale, all records for 
+##that species will be assigned a status of native in that locale; (2) if a 
+##species is assigned a status of introduced in a given locale, records for 
+##taxa at a lower rank will be assigned a status of introduced in that locale.
+
+#Also need to run similar algorithms for T&E species, and replace 'P's with 
+#native status codes where available for that species or with 'UNK' for 
+#unknown status, if needed
+
+```{r assign FEDERAL status}
+usda<-read.csv('~/testOutput/usdaChunk8.csv')
+#some probs already here
+sum(duplicated(usda$taxonID[!is.na(usda$taxonID)&
+                              usda$taxonID!='']))
+sum(duplicated(usda$scientificName))
+#start with federal status and P replacement
+# For all taxonID where StatusCode = N, 
+  #if 'Federal.T.E.Status' is non-null # !is.na #
+    #replace 'N' with 'Federal'
+#for genus only records, use codes from all member of that genus present in a domain
+#if there is >1 codes, just assign 'UNK'; otherwise use the shared value
+
+for (i in 1:nrow(usda)){
+  for (j in domainIDs){
+    a <- which(names(usda) == j)
+    if (usda[i,a] != 'A'){
+      if (nchar(as.character(usda$Federal.T.E.Status[i])) > 0){
+        usda[i,a] <- "FEDERAL"
+        } else if (usda[i,a] == 'P'){
+            if (usda$taxonRank[i] == 'genus'){
+              temp <- subset(usda, ((usda$genus == usda$genus[i]) 
+                                    & (usda$taxonID == '')))
+              nativeStatus <- unique(temp[,a][temp[,a]!="A" & temp[,a]!="P"])
+              if (length(which(!is.na(nativeStatus))) == 1) {
+                usda[i,a] <- nativeStatus[!is.na(nativeStatus)]
+              } else {
+                  usda[i,a] <- "UNK"
+              }
+            } else {
+              temp <- subset(usda, ((usda$genus == usda$genus[i]) & 
+                                (usda$specificEpithet == usda$specificEpithet[i])
+                                & (usda$taxonID == '')))
+              nativeStatus <- unique(temp[,a][temp[,a]!="A" & temp[,a]!="P"])
+              if (length(which(!is.na(nativeStatus))) == 1) {
+                usda[i,a] <- nativeStatus[!is.na(nativeStatus)]
+              } else {
+                  usda[i,a] <- "UNK"
+              }
+          }  
+        }  
+    }
+  }
+}
+write.csv (usda, '~/testOutput/usdaChunk9.csv', row.names=F)
+```
+
+
+# Fill State Statuses
+```{r assign STATE to spp with status in states}
+usda<-read.csv('~/testOutput/usdaChunk9.csv')
+#some probs already here
+sum(duplicated(usda$taxonID[!is.na(usda$taxonID)&
+                              usda$taxonID!='']))
+sum(duplicated(usda$scientificName))
+#create list of states which have a status for each species
+system.time(
+  taxaStateStati <- foreach(i=1:nrow(usda))%dopar% {
+    stateStati <- NULL
+    for (j in states){
+      if(max(grepl(j, usda$State.T.E.Status[i]))){
+        stateStati <- c(stateStati, j)
+      }
+    }
+    return(stateStati)
+  }
+)
+
+names(taxaStateStati) <- usda$acceptedTaxonID
+
+#if 'Federal.T.E.Status' is null AND 'State.T.E.Status' is non-null
+#replace 'N' with 'State'
+#else, do nothing
+
+for (i in 1:nrow(usda)){
+  states <- taxaStateStati[[i]]
+  for (j in domainIDs){
+    a <- which(names(usda) == j)
+    if (length(which(states%in%statesInDomains[[j]])) > 0){
+      usda[i,a] <- "STATE"
+    }
+  }
+}
+write.csv (usda, '~/testOutput/usdaChunk10.csv', row.names=F)
+```
+
+# Fill in locale nativity
+```{r populate floristic area nativity according to algorithm applied above for domain nativity}
+usda<-read.csv('~/testOutput/usdaChunk10.csv')
+#some probs already here
+sum(duplicated(usda$taxonID[!is.na(usda$taxonID)&
+                              usda$taxonID!='']))
+sum(duplicated(usda$scientificName))
+
+system.time(
+  taxaInLocales <- foreach(i=1:nrow(uTaxaNativity))%dopar% {
+    inLocales <- NULL
+    for (j in locales){
+      if(max(grepl(j, uTaxaNativity$Native.Status[i]))){
+        inLocales <- c(inLocales, j)
+      }
+    }
+    return(inLocales)
+  })
+
+names(taxaInLocales) <- uTaxaNativity$acceptedTaxonID
+## this list is = to taxaInStates #
+## No examples for AK #
+
+
+#generates columns of Presence/Absence
+
+localesList<-list('l48NativeStatusCode'=c('L48'),
+                  'akNativeStatusCode'=c('AK'),
+                  'hiNativeStatusCode'=c('HI'),
+                  'prNativeStatusCode'=c('PR')
+                  )
+
+floristicArea<-list('L48', 'AK', 'HI', 'PR')
+
+  
+system.time(taxaInLocales2 <- foreach(i=1:nrow(uTaxaNativity))%dopar%{
+  floristicArea <- taxaInLocales[[i]]
+  inLocales <- NULL
+  for (j in localesList){
+    if (length(which(j %in% floristicArea)) > 0){
+      inLocales <- c(inLocales, 'P')
+    } else {inLocales <- c(inLocales, 'A')}
+  }
+  return(inLocales)
+})
+
+# floristArea and locales are lists of exactly the same thing, the arguments were circular if not
+## written this way
+
+names(taxaInLocales2) <- uTaxaNativity$acceptedTaxonID
+
+#produces a list of P/A (only 'A') with columns (un-named) for each locale
+
+taxaInLocales2 <- data.frame(matrix(unlist(taxaInLocales2), ncol=4, byrow=TRUE))  
+names(taxaInLocales2) <- locales
+taxaInLocales2$acceptedTaxonID <- uTaxaNativity$acceptedTaxonID
+
+taxaInLocales2 <- data.frame(lapply(taxaInLocales2, as.character), 
+                            stringsAsFactors=FALSE)
+
+system.time(
+  for (i in 1:nrow(uTaxaNativity)){
+    for (a in 1:nrow(taxaInLocales2)){
+      #work with records in taxaInLocales2 for relevant taxon:
+      if (taxaInLocales2$acceptedTaxonID[a] == uTaxaNativity$acceptedTaxonID[i]){
+        #extract native status code for each region (locale)
+        for (b in locales) {
+          if(max(grepl(b, uTaxaNativity$Native.Status[i]))){
+            k <- paste(b, '\\(.*?\\)', sep = ' ')
+            l <- gsub("[\\(\\)]", "", 
+                      regmatches(uTaxaNativity$Native.Status[i],
+                                 regexpr(k, uTaxaNativity$Native.Status[i])))
+            print (nativeStatus <- strsplit(l, " ")[[1]][2])
+            #replace 'P's in relevant region with correct native status code
+            for (j in 1:length(locales)){
+              if (length(which(b%in%localesList[[j]])) > 0){
+                if (taxaInLocales2[a,j] == 'P'){
+                  taxaInLocales2[a,j] <- nativeStatus
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+)
+
+#and now for the genus only taxa:
+
+temp <- (uTaxa$acceptedTaxonID %in% uTaxaNativity$acceptedTaxonID)
+uTaxaTemp <- uTaxa$acceptedTaxonID[temp == 'FALSE']
+
+## failed somewhere here 20140911##
+
+for (a in 1:length(uTaxaTemp)) {
+  i <- which(usda$acceptedTaxonID == uTaxaTemp[a] & usda$taxonID == '')
+  l48codes <- as.character(usda[i,c(45:47,49:61)])
+  ifelse((length(unique(l48codes[l48codes != 'A'])) > 1),
+         taxaInLocales2[(nrow(uTaxaNativity)+a), 1] <- 'UNK',
+         ifelse((length(unique(l48codes[l48codes != 'A'])) == 1),
+                taxaInLocales2[(nrow(uTaxaNativity)+a), 1] <- unique(l48codes[l48codes != 'A']),
+                taxaInLocales2[(nrow(uTaxaNativity)+a), 1] <- 'A'))
+  taxaInLocales2[(nrow(uTaxaNativity)+a),2] <- unique(as.character(usda[i,62:63]))
+  taxaInLocales2[(nrow(uTaxaNativity)+a),3] <- as.character(usda[i,64]) # issue is here?
+  taxaInLocales2[(nrow(uTaxaNativity)+a),4] <- as.character(usda[i,48])
+  taxaInLocales2[(nrow(uTaxaNativity)+a),5] <- as.character(uTaxaTemp[a])
+}
+
+usda <- merge(usda, taxaInLocales2, by = "acceptedTaxonID", all = T)
+write.csv (usda, '~/testOutput/usdaChunk11.csv', row.names=F)
+
+## rename fields
+```
+
+```{r populate startUseDate / endUseDate}
+#note this is now wrong, misinterpretation of
+#the use of the synonymies
+usda$startUseDate<-'20120501'
+usda$endUseDate<- ifelse(!usda$taxonID=='','20140909',NA)
+write.csv (usda, '~/testOutput/usdaChunk12.csv', row.names=F)
+```
+
+# Fill in nulls in taxonID field with values from acceptedTaxonID
+```{r populate null values of taxonID}
+usda<-read.csv('~/testOutput/usdaChunk12.csv')
+#some probs already here
+sum(duplicated(usda$taxonID[!is.na(usda$taxonID)&
+                              usda$taxonID!='']))
+sum(duplicated(usda$scientificName))
+
+usda$taxonID<-as.character(usda$taxonID)
+usda$taxonID[usda$taxonID==''|is.na(usda$taxonID)] <-as.character(usda$acceptedTaxonID[usda$taxonID==''|is.na(usda$taxonID)])
+write.csv (usda, '~/testOutput/usdaChunk13.csv', row.names=F)
+
+```
+
+# Fill in nulls in higher level taxonomy fields (i.e., kingdom) 
+# with values from acceptedTaxonID
+```{r populate kingdom field where null}
+
+usda$kingdom<-as.character(usda$kingdom)
+usda$kingdom[usda$kingdom==''|is.na(usda$kingdom)] <-as.character('Plantae')
+write.csv (usda, '~/testOutput/usdaChunk14.csv', row.names=F)
+
+```
+#Add spp. and sp. codes
+
+
+```{r add sp. codes to each level of genus and family}
+usda<-read.csv('~/testOutput/usdaChunk14.csv')
+#some probs already 14 and 16 records
+sum(duplicated(usda$taxonID))
+sum(duplicated(usda$scientificName))
+
+#there are no individual records for family only in the database, 
+#these records will have to be generated. genus only do already exist.
+#KJ: added column 'FamilySymbol' Can generate list of unique families from this 
+#and create new records family only ID
+
+#generate records of unique families and populate sciName with sp.
+
+families<-unique(usda[,c('family', 'Family.Symbol', 'order', 'phylum', 'class', 'kingdom')])
+
+families<-families[families$family!='',]
+
+#no redundancy in here which is good
+length(unique (families$Family.Symbol))
+length(unique (families$family))
+
+families <- rename(families, c(Family.Symbol='acceptedTaxonID')) #This is what we want for PDA utility, correct? yep
+families$taxonID <- families$acceptedTaxonID
+
+families$taxonRank<- 'family'
+families$scientificName<-paste(families$family,'sp.', sep=' ')
+families$specificEpithet <- 'sp.'
+
+#no overlap here with usda taxonIDs
+which(families$taxonID%in%usda$taxonID)
+
+#11/6/2014 I think this line is the problem
+#you don't want to merge you want to smartbind
+
+# usda<-merge(usda, families, by=c('acceptedTaxonID', 'taxonID', 'family', 'order', 'phylum', 'class','kingdom', 'taxonRank', 'scientificName', 'specificEpithet'), all=TRUE)
+
+library (gtools)
+usda$scientificName<-as.character(usda$scientificName)
+usda$specificEpithet<-as.character(usda$specificEpithet)
+usda$taxonRank<-as.character(usda$taxonRank)
+usda<-smartbind(usda, families)
+
+#identify records of unique genera and populate sciName with sp.
+
+
+#assign locality data to these spuh records
+#indexing based on the fact that the locality fields are the last 24 fields 
+#in the usda table
+#logic: if >1 taxa in a family in a given domain or locale is present,
+#then the family sp. gets assigned UNK for that domain or locale
+#if one or fewer taxon in a family are indicated as present in a domain or locale, the
+#family is presumed absent as well
+for (a in (ncol(usda)-25):(ncol(usda)-2)) {
+  for (b in families$family) {
+    temp <- subset(usda, usda$family == b)
+    codes <- (temp[,a])
+    subcodes <- subset(codes, (codes != 'A') & !is.na(codes))
+    i <- which(usda$family == b & usda$taxonRank == 'family')
+    if (length(subcodes) > 1) {
+        if (length(unique(subcodes)) == 1) {
+          usda[i,a] <- unique(subcodes)
+          } else usda[i,a] <- 'UNK'
+    } else usda[i,a] <- 'A'
+  }  
+}  
+
+##below is code for testing that all genera have a genus entry - only one family
+#tested, but test passed - so assuming USDA provides all necessary records
+ugenera <- unique(usda$genus[(usda$taxonID)==''])
+# temp <- subset(usda, usda$taxonRank == 'genus')
+
+# generates 'sp.'s for genus-level records
+usda$specificEpithet[usda$taxonRank == 'genus'] <- 'sp.'
+
+#re-assign value of sciName for genus-level taxa to remove authority
+usda$scientificName <- as.character(usda$scientificName)
+
+for (i in 1:nrow(usda)) {
+  if (usda$taxonRank[i] == 'genus') {
+    usda$scientificName[i] <- paste(usda$genus[i], 'sp.', sep = ' ')
+    }
+  }
+
+#some probs already 15 and 18 records
+sum(duplicated(usda$taxonID))
+sum(duplicated(usda$scientificName))
+
+write.csv (usda, '~/testOutput/usdaChunk15.csv', row.names=F)
+```
+
+```{r add spp. codes to each level of genus and family}
+usda<-read.csv('~/testOutput/usdaChunk15.csv')
+#some probs already here
+sum(duplicated(usda$taxonID[!is.na(usda$taxonID)&
+                              usda$taxonID!='']))
+sum(duplicated(usda$scientificName))
+
+fix<-c(which(duplicated(usda$taxonID)), which(duplicated(usda$taxonID, fromLast=T)))
+
+fixme<-usda[fix,]
+
+#this deleted all rows - why? commented out for now
+#usda<-usda[-fix,]
+fixme<-fixme[order(fixme$taxonID),]
+
+#SCE manually fixed these here before they grow 
+#after this chunk
+
+#no explanation for what this is doing in here
+skipme<-which(fixme$taxonID=='RHAMNA' &fixme$scientificName==	'Celastraceae sp.')
+fixme<-fixme[-skipme,]
+
+#rest appear to be pure duplicates
+fixme<-fixme[!duplicated(fixme),]
+sum(duplicated(fixme$taxonID))
+
+#add them back in
+usda<-rbind(usda, fixme)
+
+fix<-c(which(duplicated(usda$scientificName)), which(duplicated(usda$scientificName, fromLast=T)))
+
+fixme<-usda[fix,]
+usda<-usda[-fix,]
+
+#this is a half of a hybrid, ditch it
+skipme<-which(fixme$taxonID=='CYPER2')
+fixme<-fixme[-skipme,]
+
+#2 records of this, keep the one that resolves to QUMI
+skipme<-which(fixme$acceptedTaxonID=='QUMO4')
+fixme<-fixme[-skipme,]
+
+#same here
+skipme<-which(fixme$acceptedTaxonID=='URPL2')
+fixme<-fixme[-skipme,]
+
+usda<-rbind(usda, fixme)
+#duplicate sp. records but change to spp. and add 'SPP' to taxonIDs for new records
+
+#fixed
+sum(duplicated(usda$taxonID))
+sum(duplicated(usda$scientificName))
+
+
+#SCE changed, this works only for genera
+#sppList<-usda[which(usda$specificEpithet=='sp.'),]
+#sppList<-usda[which(usda$taxonRank=='genus'),]
+sppList$acceptedTaxonID <- paste(sppList$acceptedTaxonID,'SPP',sep='')
+#SCE added this line, before ony the accepted was changed
+sppList$taxonID <- paste(sppList$taxonID,'SPP',sep='')
+
+sppList$scientificName <- paste(sppList$genus, 'spp.', sep = ' ')
+sppList$specificEpithet <- 'spp.'
+
+#looks ok, no dups introduced here
+which (sppList$taxonID%in%usda$taxonID)
+sum(duplicated(sppList$taxonID))
+usda<-rbind(usda,sppList)
+
+#sce repeat for family sp.
+sppList<-usda[which(usda$taxonRank=='family'),]
+sppList$acceptedTaxonID <- paste(sppList$acceptedTaxonID,'SPP',sep='')
+#SCE added this line, before ony the accepted was changed
+sppList$taxonID <- paste(sppList$taxonID,'SPP',sep='')
+
+sppList$scientificName <- paste(sppList$family, 'spp.', sep = ' ')
+sppList$specificEpithet <- 'spp.'
+
+#looks ok, no dups introduced here
+which (sppList$taxonID%in%usda$taxonID)
+sum(duplicated(sppList$taxonID))
+usda<-rbind(usda,sppList)
+
+sum(duplicated(usda$scientificName))
+sum(duplicated(usda$taxonID))
+
+write.csv (usda, '~/testOutput/usdaChunk16.csv', row.names=F)
+
+```
+
+# Assign source fields and extra regional columns
+```{r cut columns and assign values to source fields}
+usda<-read.csv('~/testOutput/usdaChunk16.csv')
+# cut extra columns
+usdaCut<-names(usda) %in% c('Hybrid.Genus.Indicator', 'Hybrid.Species.Indicator', 
+             'Subspecies.Prefix', 'Hybrid.Subspecies.Indicator','Subspecies', 
+             'Variety.Prefix', 'Hybrid.Variety.Indicator', 'Variety',
+             'Subvariety.Prefix', 'Subvariety','Forma.Prefix','Forma',
+             'Genera.Binomial.Author','Trinomial.Author','Quadranomial.Author',
+             'Questionable.Taxon.Indicator','Parents', 'State.and.Province', 
+             'Genus.1', 'Duration', 'Growth.Habit','Native.Status', 
+             'Federal.Noxious.Status', 'State.Noxious.Status', 
+             'Invasive','Federal.T.E.Status', 'State.T.E.Status', 'ITIS.TSN',
+             'National.Wetland.Indicator.Status','Family.Symbol','scientificNameAuthorship.x')
+usda2<-usda[!usdaCut]
+
+usda2 <- rename(usda2, c(d01='d01NativeStatusCode',
+                         d02='d02NativeStatusCode',
+                         d03='d03NativeStatusCode',
+                         d04='d04NativeStatusCode',
+                         d05='d05NativeStatusCode',
+                         d06='d06NativeStatusCode',
+                         d07='d07NativeStatusCode',
+                         d08='d08NativeStatusCode',
+                         d09='d09NativeStatusCode',
+                         d10='d10NativeStatusCode',
+                         d11='d11NativeStatusCode',
+                         d12='d12NativeStatusCode',
+                         d13='d13NativeStatusCode',
+                         d14='d14NativeStatusCode',
+                         d15='d15NativeStatusCode',
+                         d16='d16NativeStatusCode',
+                         d17='d17NativeStatusCode',
+                         d18='d18NativeStatusCode',
+                         d19='d19NativeStatusCode',
+                         d20='d20NativeStatusCode', 
+                         L48='l48NativeStatusCode',
+                         AK='akNativeStatusCode',
+                         HI='hiNativeStatusCode',
+                         PR='prNativeStatusCode',
+                         scientificNameAuthorship.y='scientificNameAuthorship'))
+cat(names(usda2))
+
+
+#add placeholders for new columns
+
+usda2$speciesGroup<-NA
+
+usda2$tribe<-NA
+usda2$subgenus<-NA
+usda2$speciesGroup<-NA
+usda2$subfamily<-NA
+
+
+# KJ adding new columns 20140825
+usda2$nameAccordingTo<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$nameAccordingToID<-'usdaPLANTS'
+
+## read in lookup table of phenology species
+## adjust to 'mypathtorepo'... wasn't working for me so I cheated
+phenSpecies<-read.csv(paste(mypathtorepo, 'scienceDev/lookupTablesShared/phenologySpeciesList.csv', sep = '/'))
+phenSciName<-names(phenSpecies) %in% c('scientificName') 
+phenSpecies<-phenSpecies[!phenSciName]
+#add taxonProtocolCategory
+# usda2$taxonProtocolCategory<-NA  #resolved
+#merge usda2 and phenSpecies to populate taxonProtocolCategory
+#usda2$taxonProtocolCategory<-phenSpecies$growthForm #...for a given taxonID
+usda2<- merge(usda2,phenSpecies, by='acceptedTaxonID', all = TRUE)
+
+
+##TODO: populate: l48NativeStatusCode based on unique status values for set of 
+# domains {1,2,3,5-17}, akNativeStatusCode based on unique status values for 
+#set of domains {18, 19}, hiNativeStatusCode based on d20NSC, 
+#prNativeStatusCode based on d04NSC
+# KJ did this above using P/A routine from domain specific algorithm
+
+# usda2$l48NativeStatusCode<-NA   # Resolved (mostly)
+usda2$l48NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$l48LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+# usda2$akNativeStatusCode<-NA   # Resolved (mostly)
+usda2$akNativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$akLocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+# usda2$hiNativeStatusCode<-NA    # Resolved (mostly)
+usda2$hiNativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$hiLocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+# usda2$prNativeStatusCode<-NA   # Resolved (mostly)
+usda2$prNativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$prLocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+  
+usda2$d01NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d01LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d02NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d02LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d03NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d03LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d04NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d04LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d05NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d05LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d06NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d06LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d07NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d07LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d08NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d08LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d09NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d09LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d10NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d10LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d11NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d11LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d12NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d12LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d13NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d13LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d14NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d14LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d15NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d15LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d16NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d16LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d17NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d17LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d18NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d18LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d19NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d19LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+
+usda2$d20NativeStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+usda2$d20LocalityStatusSource<- 'USDA, NRCS. 2014. The PLANTS Database (http://plants.usda.gov, 25 August 2014). National Plant Data Team, Greensboro, NC 27401-4901 USA.'
+```
+
+# Reorganize fields
+
+```{r reorganize fields to match NEON taxon template}
+
+
+reorder<- c('taxonID', 'acceptedTaxonID', 'startUseDate', 'endUseDate',
+            'kingdom', 'phylum', 
+                  'class', 'order', 'family', 'subfamily', 'tribe', 'genus', 
+            'subgenus', 'speciesGroup', 
+                  'specificEpithet', 'infraspecificEpithet', 'scientificName', 
+                  'scientificNameAuthorship', 'taxonRank', 'vernacularName',
+            'nameAccordingTo', 'nameAccordingToID', 'taxonProtocolCategory',
+            'l48NativeStatusCode', 'l48NativeStatusSource', 'l48LocalityStatusSource',
+            'akNativeStatusCode', 'akNativeStatusSource','akLocalityStatusSource',
+            'hiNativeStatusCode','hiNativeStatusSource','hiLocalityStatusSource',
+            'prNativeStatusCode', 'prNativeStatusSource','prLocalityStatusSource',
+            'd01NativeStatusCode','d01NativeStatusSource','d01LocalityStatusSource',
+            'd02NativeStatusCode','d02NativeStatusSource','d02LocalityStatusSource',
+            'd03NativeStatusCode','d03NativeStatusSource','d03LocalityStatusSource',
+            'd04NativeStatusCode','d04NativeStatusSource','d04LocalityStatusSource',
+            'd05NativeStatusCode','d05NativeStatusSource','d05LocalityStatusSource',
+            'd06NativeStatusCode','d06NativeStatusSource','d06LocalityStatusSource',
+            'd07NativeStatusCode','d07NativeStatusSource','d07LocalityStatusSource',
+            'd08NativeStatusCode','d08NativeStatusSource','d08LocalityStatusSource',
+            'd09NativeStatusCode','d09NativeStatusSource','d09LocalityStatusSource',
+            'd10NativeStatusCode','d10NativeStatusSource','d10LocalityStatusSource',
+            'd11NativeStatusCode','d11NativeStatusSource','d11LocalityStatusSource',
+            'd12NativeStatusCode','d12NativeStatusSource','d12LocalityStatusSource',
+            'd13NativeStatusCode','d13NativeStatusSource','d13LocalityStatusSource',
+            'd14NativeStatusCode','d14NativeStatusSource','d14LocalityStatusSource',
+            'd15NativeStatusCode','d15NativeStatusSource','d15LocalityStatusSource',
+            'd16NativeStatusCode','d16NativeStatusSource','d16LocalityStatusSource',
+            'd17NativeStatusCode','d17NativeStatusSource','d17LocalityStatusSource',
+            'd18NativeStatusCode','d18NativeStatusSource','d18LocalityStatusSource',
+            'd19NativeStatusCode','d19NativeStatusSource','d19LocalityStatusSource',
+            'd20NativeStatusCode','d20NativeStatusSource','d20LocalityStatusSource')
+
+```
+
+# Replace '?' with 'Q' in all native status codes
+```{r replace question marks}
+
+usda2[usda2=='?']<- 'Q'
+```
+
+# add 'other' and 'unknown' record
+```{r add other and 2PLANT record}
+other<-read.csv(paste(mypathtorepo,'scienceDev/lookupTablesShared/plant_other_record.csv', sep='/'), stringsAsFactors=F)
+
+usda2 <- data.frame(lapply(usda2, as.character), 
+                            stringsAsFactors=FALSE)
+
+usda2<-smartbind(usda2, other)
+```
+
+#For the full list
+```{r write final csv}
+usda2 <- usda2[, reorder]
+
+#patch 1 add the last phenology species
+usda2$taxonProtocolCategory[usda2$acceptedTaxonID=='JUNI']<-'Deciduous broadleaf'
+usda2$taxonProtocolCategory[usda2$acceptedTaxonID=='QUFA']<-'Deciduous broadleaf'
+usda2$taxonProtocolCategory[usda2$acceptedTaxonID=='QUMO4']<-'Deciduous broadleaf'
+usda2$taxonProtocolCategory[usda2$acceptedTaxonID=='VAPA4']<-'Deciduous broadleaf'
+
+#patch 2 - no nulls allowed in taxonProtocolCategory
+usda2$taxonProtocolCategory[is.na(usda2$taxonProtocolCategory)]<-'notYetDetermined'
+unique (usda2$taxonProtocolCategory)
+
+#patch 3 fill in the remaining startUseDates and setting all endUseDates to NULL.  
+
+usda2$startUseDate<-'20120501'
+usda2$endUseDate<-NA
+
+#null checks for Sherry
+sum (is.na(usda2$taxonID))
+sum (is.na(usda2$acceptedTaxonID))
+sum (is.na(usda2$startUseDate))
+sum (is.na(usda2$endUseDate))
+sum (is.na(usda2$nameAccordingTo))
+sum (is.na(usda2$nameAccordingToID))
+nativeCodeCols<-grep('NativeStatusCode',names(usda2))
+sum(is.na(usda2[,nativeCodeCols]))
+
+
+# write.csv(usda2[, reorder], na='', 'N:/common/TOS/ATBDs/Lookups/USDA_final.csv',
+#                                    quote = T, row.names=FALSE)
+
+
+# #write locally, then save to N, if working 
+# #off a non NEON computer
+# write.csv (usda2[, reorder], '~/testOutput/pla_names_status_list.csv', row.names=F)
+# 
+# 
+# write.table(usda2[,reorder], '~/testOutput/pla_names_status_list.txt',
+#         col.names = F, row.names = F, quote = T, na = '', sep = '\t')
+
+#changed path to N drive -- will need to set to a local drive if you do not have write access#
+
+
+
+usda2$nameAccordingToID[usda2$taxonID=='2PLANT']<-
+  usda2$nameAccordingToID[nrow(usda2)-3]
+
+usda2$nameAccordingToID[usda2$taxonID=='OTHE']<-
+  usda2$nameAccordingToID[nrow(usda2)-3]
+
+usda2$nameAccordingTo[usda2$taxonID=='OTHE']<-
+  usda2$nameAccordingTo[nrow(usda2)-3]
+
+#break by lenght of taxonID for Sherry
+usda2_8char<-usda2[nchar(usda2$taxonID)<9,]
+usda2_9char<-usda2[nchar(usda2$taxonID)>8,]
+
+
+ write.table(usda2_8char[,reorder], '~/testOutput/pla_names_status_list_8char_utf8.txt',
+         col.names = F, row.names = F, quote = T, na = '', sep = '\t', fileEncoding='UTF-8')
+ 
+ write.table(usda2_9char[,reorder], '~/testOutput/pla_names_status_list_9char_utf8.txt',
+         col.names = F, row.names = F, quote = T, na = '', sep = '\t', fileEncoding='UTF-8')
+
+
+write.csv (usda2[, reorder], '~/testOutput/20141219_pla_names_status_list.csv', row.names=F, fileEncoding='UTF-8')
+
+# write.table(usda2[,reorder], '~/testOutput/pla_names_status_list.txt',
+#          col.names = F, row.names = F, quote = T, na = '', sep = '\t')
+# 
+# 
+# write.table(usda2[usda2$taxonID=='ACBL',reorder], '~/testOutput/ACBL.txt',
+#          col.names = F, row.names = F, quote = T, na = '', sep = '\t')
+# 
+# write.table(usda2[usda2$taxonID=='ACBL',reorder], '~/testOutput/ACBL_utf8.txt',
+#          col.names = F, row.names = F, quote = T, na = '', sep = '\t', fileEncoding='UTF-8')
+# 
+# 
+# write.table(usda2[usda2$taxonID=='ACBL',reorder], '~/testOutput/ACBL_ASCII.txt',
+#          col.names = F, row.names = F, quote = T, na = '', sep = '\t', fileEncoding='ASCII')
+
+
+
+```
+
+
+
