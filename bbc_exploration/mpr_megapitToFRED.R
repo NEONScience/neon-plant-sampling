@@ -96,6 +96,13 @@ mprDF <- dplyr::right_join(profileDF,
   dplyr::select(-sampleMethod)
 
 
+##  Write out for FRED
+write.csv(mprDF,
+          file = "NEON_megapit_roots_FRED.csv",
+          row.names = FALSE,
+          fileEncoding = "UTF-8")
+
+
 
 
 
