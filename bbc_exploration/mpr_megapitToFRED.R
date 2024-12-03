@@ -92,7 +92,7 @@ mprDF <- dplyr::right_join(profileDF,
   dplyr::arrange(domainID,
                  siteID,
                  pitProfileID,
-                 depthIncrementID) %>%
+                 topDepth) %>%
   dplyr::select(-sampleMethod)
 
 
