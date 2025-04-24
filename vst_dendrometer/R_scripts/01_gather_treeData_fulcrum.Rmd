@@ -10,12 +10,16 @@ header includes:
  - \usepackage{ltablex}
 ---
 
+## combine portal (using neonArrow) and Fulcrum (load_status = NONE, don't need to resolve dupes)
+
+
 ```{r loadLibraries, echo=FALSE, message=FALSE, warning=FALSE}
 
 #library(devtools)
 #install_github('NEONScience/NEON-geolocation/geoNEON', dependencies=TRUE)
 
 
+library(httr)
 library(rmarkdown)
 library(scales)
 library(tidyverse)
@@ -24,6 +28,10 @@ library(knitr)
 library(pander)
 library(restR)
 library(geoNEON)
+library(neonArrow)
+library(gargle)
+library(neonUtilities)
+library(fulcrumAPI)
 
 options(stringsAsFactors = FALSE)
 
@@ -34,18 +42,53 @@ options(stringsAsFactors = FALSE)
 
 if (file.exists(
   'C:/Users/kjones')){
-  wdir <- "C:/Users/kjones/Documents/GitHub/neon-plant-sampling"
+  wdir <- "C:/Users/kjones/Documents/GitHub/neon-plant-sampling/vst_dendrometer"
   # myPathToSharepoint <- "C:/Users/kjones/National Ecological Observatory Network, Inc/FSU Only - Plant Docs/protocols/vst_vegetationStructure/dendro_prototype"
   # myPathToTeams <- "C:/Users/kjones/National Ecological Observatory Network, Inc/OS Team - OS Protocol Revision/protocols_SOPs/TOS-VST_vegetationStructure/dendrometerDevelopment/kj_dendroFiles"
 }
 
 ```
 
+```{r set script parameters}
 
-```{r pull fulcrum data, echo=FALSE, warning=FALSE}
- library(httr)
-# 
+api_token = Sys.getenv("FULCRUM_KEY")
+
+my_gcs_token = readRDS(Sys.getenv("PATH_TO_GCS_TOKEN"))
+
+# list sites to query
+tSites <- T #set to T if running for sub of sites, F if not
+
+if(tSites==T){
+  targetSites <- c("RMNP", "YELL", "NIWO", "MOAB", "JORN", 
+                 "SRER", "ONAQ", "WREF", "SJER", "SOAP",
+                 "TEAK", "BONA", "DEJU", "HEAL")
+}
+
+allSites <- ifelse(tSites==T, F, T)
+
+# Current year in which analyses run - sets folder for output
+year <- '2025'
+
+my_dpid <- "DP1.10098.001"
+
+if(dir.exists(file.path(wdir, year))==F){
+  dir.create(file.path(wdir, year), recursive = TRUE)
+
+  newSubs <- c('outputFiles', 'sourceData')
+
+  for(i in newSubs){
+    dir.create(path=paste(wdir,  year, i, sep='/'), recursive = TRUE)
+  }
+}
+
+
+```
+
+
+```{r fulcrum data function, echo=FALSE, warning=FALSE}
+
 # # K. LeVan function for getting Fulcrum data
+#
 get_Fulcrum_data <- function(api_token, sql){
   require(httr)
   url = paste0("https://api.fulcrumapp.com/api/v2/query?token=",
@@ -56,65 +99,139 @@ get_Fulcrum_data <- function(api_token, sql){
   return(content$rows)
 }
 
+```
 
-api_token = Sys.getenv("FULCRUM_KEY")
+```{r pull data - site subset, eval=tsites}
 
+# format site string for SQL query
+sites <- paste0("'", paste(targetSites, collapse = "', '"), "')")
 
 vstwoodyQuery = paste(URLencode('SELECT eventid, siteid, plotid, subplotid,
-                                individualid, taxonid, stemdiameter, growthform,
-plantstatus FROM "VST: Apparent Individuals [PROD]" AS Parent'),
-                    URLencode('JOIN "VST: Apparent Individuals [PROD]/vst_woody_stems" AS child'),
-                    URLencode('On (parent._record_id=child._record_id)'),
-                    URLencode("WHERE plottype LIKE 'tower'"),
-                    URLencode("AND eventid LIKE 'vst_WREF_2020'"),
-                              #siteid IN ('BONA', 'DEJU', 'HEAL', 'NIWO', 'RMNP', 'SJER', 'SOAP', 'SRER', 'TEAK', 'YELL', 'WREF')"),
-                    URLencode("AND stemdiameter IS NOT NULL"), sep = "%20")
-                   # URLencode("AND growthform IN ('smt', 'sbt', 'mbt')"), sep = "%20")
+                                individualid,  stemdiameter, growthform,
+plantstatus FROM "VST: Apparent Individuals [PROD]" AS Parent'), #taxonid,
+                      URLencode('JOIN "VST: Apparent Individuals [PROD]/vst_woody_stems" AS child'),
+                      URLencode('On (parent._record_id=child._record_id)'),
+                      URLencode("WHERE plottype LIKE 'tower'"),
+                      URLencode(paste0("AND siteid IN (", sites)), 
+                      URLencode("AND stemdiameter IS NOT NULL"),
+                      URLencode("AND load_status like 'NONE'"), 
+                      URLencode("AND growthform IN ('smt', 'sbt', 'mbt')"),
+                      sep = "%20")
+
+#do we want to limit growth forms? This was commented out in previous run
 
 
-vstMapQuery <- paste(URLencode('SELECT eventid, domainid, siteid, plotid, subplotid, pointid, stemazimuth, stemdistance, taxonid, individualid FROM "VST: Mapping and Tagging [PROD]"'),
-                     URLencode("WHERE eventid LIKE 'vst_WREF_2020'"), 
-                               #siteid IN ('BONA', 'DEJU', 'HEAL', 'NIWO', 'RMNP', 'SJER', 'SOAP', 'SRER', 'TEAK', 'YELL', 'WREF')"),
+vstMapQuery <- paste(URLencode('SELECT eventid, domainid, siteid, plottype, plotid, subplotid, pointid, stemazimuth, stemdistance, taxonid, individualid, initialbandstemdiameter FROM "VST: Mapping and Tagging [PROD]"'),
+                     URLencode(paste0("WHERE siteid IN (", sites)),
+                     URLencode("AND plottype LIKE 'tower'"),
+                     sep = "%20")
+
+
+spatialQuery <- paste(URLencode('SELECT domainid, siteid, plottype, plotid, annualtowervst FROM "TOS Spatial Data"'),
+                     URLencode(paste0("WHERE siteid IN (", sites)),
                      URLencode("AND plottype LIKE 'tower'"),
                      sep = "%20")
 
 # 
-# ### Generate dataframes for each of the tables in vst ###
-# 
-# 
-df = get_Fulcrum_data(api_token = api_token, sql = vstwoodyQuery)
-# 
-# write.csv(df, paste(myPathToSharepoint, "vst_data_yell.csv", sep="/"), row.names = FALSE )
+# Generate dataframes for each of the tables in vst ###
+ 
+ai = get_Fulcrum_data(api_token = api_token, sql = vstwoodyQuery)
 
 mt = get_Fulcrum_data(api_token, sql = vstMapQuery)
-# 
-# roundOneSites <- c('BONA', 'DEJU', 'HEAL', 'NIWO', 'RMNP', 'SJER', 'SOAP', 'SRER', 'TEAK', 'YELL', 'WREF')
-# 
-# mt <- filter(mt, siteid%in%roundOneSites)
 
-# write.csv()  ## change read.csv below to new file
+pt = get_Fulcrum_data(api_token, sql = spatialQuery)
+
+```
+
+```{r pull data - site all, eval=allSites}
+
+# format site string for SQL query
+
+vstwoodyQuery = paste(URLencode('SELECT eventid, siteid, plotid, subplotid,
+                                individualid,  stemdiameter, growthform,
+plantstatus FROM "VST: Apparent Individuals [PROD]" AS Parent'), #taxonid,
+                      URLencode('JOIN "VST: Apparent Individuals [PROD]/vst_woody_stems" AS child'),
+                      URLencode('On (parent._record_id=child._record_id)'),
+                      URLencode("WHERE plottype LIKE 'tower'"),
+                      URLencode("AND stemdiameter IS NOT NULL"),
+                      URLencode("AND load_status like 'NONE'"), 
+                      URLencode("AND growthform IN ('smt', 'sbt', 'mbt')"),
+                      sep = "%20")
+
+#do we want to limit growth forms? This was commented out in previous run
+
+
+vstMapQuery <- paste(URLencode('SELECT eventid, domainid, siteid, plottype, plotid, subplotid, pointid, stemazimuth, stemdistance, taxonid, individualid, initialbandstemdiameter FROM "VST: Mapping and Tagging [PROD]"'),
+                     URLencode("WHERE plottype LIKE 'tower'"),
+                     sep = "%20")
+
+
+spatialQuery <- paste(URLencode('SELECT domainid, siteid, plottype, plotid, annualtowervst FROM "TOS Spatial Data"'),
+                     URLencode("AND plottype LIKE 'tower'"),
+                     sep = "%20")
+
+# 
+# Generate dataframes for each of the tables in vst ###
  
-#source("/vst_dendrometer/R_scripts/get_fulcrum_vstMT.R")
- ## gets all current Fulcrum map data
+ai = get_Fulcrum_data(api_token = api_token, sql = vstwoodyQuery)
 
-#mt2 <- get_fulcrum_vstMT(apiToken = api_token)
+mt = get_Fulcrum_data(api_token, sql = vstMapQuery)
 
-# df <- read.csv(paste(wdir, "vst_dendrometer/SourceData/vst_data_d.csv", sep='/'), 
-#                stringsAsFactors = F)
+pt = get_Fulcrum_data(api_token, sql = spatialQuery)
 
-
-# labor <- read.csv(paste(myPathToSharepoint, "laborEstimates.csv", sep="/"),stringsAsFactors=F )
-# labor$siteid <- trimws(labor$siteid)
 
 
 ```
 
 
-```{r subset stem data}
+```{r pull portal data}
 
+# data product table
+my_tabl <- "vst_apparentindividual"
+
+# sites to try
+# my_site_list <- "MLBS"
+# other options to try:
+if(tSites==T){
+  my_site_list <- targetSites
+}else{
+  my_site_list <- "all"
+}
+
+
+# create active binding for dataset
+ds <- open_neon_dataset(
+  dpID = my_dpid,
+  site = my_site_list,
+  release = "LATEST",
+  package = "basic",
+  tabl = my_tabl,
+  partitioning_fields = c("siteID","collectDate"),
+  token = Sys.getenv("NEON_PAT"),
+  gcs_token = my_gcs_token)
+
+# view names
+ds %>% names()
+
+# collect the full dataset to compare against neonUtilities download
+dat_arrow <- ds |> collect()
+
+
+```
+
+```{r merge portal and fulcrum recs, subset}
+
+names(dat_arrow) <- tolower(names(dat_arrow))
+
+#merge
+df <- dat_arrow%>%
+  select(any_of(names(ai)))%>%
+  bind_rows(ai)%>%
+  filter(plotid%in%pt$plotid)
+
+# create value combining plot and event
 df$plotEvent <- paste(df$plotid, df$eventid, sep="_")
 
-lowMorton <- NULL
 maxEvent <- NULL
 
 plots <- sort(unique(df$plotid))
@@ -125,23 +242,44 @@ for (i in 1:length(plots)){
   rm(sub)
 }
 
+## subset
 df_sub <- df%>%
   filter(plantstatus%in%c("1", "4", "5", "6", "7", "9", 
-                                           "Live", "Live, disease damaged", "Live, insect damaged", "Live, other damage", "Live, physically damaged") & !growthform%in%c("single shrub", "small shrub"), plotEvent%in%maxEvent)%>% 
+                                           "Live", "Live, disease damaged", "Live, insect damaged", "Live, other damage", "Live, physically damaged") & 
+           growthform%in%c("single bole tree", "sbt", "multi-bole tree", "mbt", "small tree", "smt") &
+           plotEvent%in%maxEvent)%>% 
   arrange(plotid, desc(eventid))
 
-### suspect stem diameter at BONA, reset
-df_sub$stemdiameter[df_sub$siteid=='BONA'& df_sub$stemdiameter==120] <- 12.0
+
 df_sub <- df_sub[!duplicated(df_sub$individualid), ]
 
 ```
 
+```{r look for obvious outliers}
+
+#boxplot(df_sub$stemdiameter~df_sub$siteid)
+
+#if something looks strange
+#max(df_sub$stemdiameter[!is.na(df_sub$stemdiameter)&df_sub$siteid=="SITE"])
+#summary(df_sub$stemdiameter[df_sub$siteid=="SITE"])
+
+
+### suspect stem diameter at BONA, reset
+#df_sub$stemdiameter[df_sub$siteid=='BONA'& df_sub$stemdiameter==120] <- 12.0
+
+
+## 2025
+# 2 stems in YELL >200 cm diameter #
+# NEON.PLA.D12.YELL.01603 & NEON.PLA.D12.YELL.01603B
+
+```
 
 
 ```{r subset map data}
 
 map <- mt%>%
   arrange(individualid, desc(eventid))%>%
+  filter(individualid%in%df_sub$individualid)%>%
   distinct(individualid, .keep_all = TRUE)%>%
   select(-eventid, -subplotid)
 
@@ -149,18 +287,35 @@ map <- mt%>%
 
 ```{r join stem with map}
 
+### SHOULD WE PULL THIS FROM PORTAL INSTEAD? RUN SAME MERGE?
+
 df_out <- df_sub%>%
   left_join(map)%>%
-  select(domainid, siteid, plotid, subplotid, pointid, stemazimuth, stemdistance, taxonid, individualid, growthform, stemdiameter)%>%
-  arrange(domainid, plotid, subplotid, desc(stemdiameter))
+  select(domainid, siteid, plotid, subplotid, pointid, stemazimuth, stemdistance, taxonid, individualid, growthform, stemdiameter, initialbandstemdiameter)%>%
+  arrange(domainid, plotid, subplotid, desc(stemdiameter))%>%
+  filter(!is.na(stemdiameter))
 
 ```
 
 
-```{r write cleaned df}
+```{r write dfs}
+# Fulcrum download
 
-# write.csv(df_out, paste(wdir, "/vst_dendrometer/SourceData/vst_WREF_20211227_data.csv", sep='/'), row.names=FALSE)
-#                         #data_d_cleaned.csv"), row.names=FALSE)
+## Apparent Individual
+saveRDS(df_sub, paste(wdir, year, 'sourceData', 'vst_ai_data.rds', sep='/'))
+
+## Mapping & Tagging
+saveRDS(mt, paste(wdir, year, 'sourceData', 'vst_mt_data.rds', sep='/'))
+
+## Merged
+saveRDS(df_out, paste(wdir, year, 'sourceData', 'vst_merged_data.rds', sep='/'))
+
+## Spatial
+saveRDS(pt, paste(wdir, year, 'sourceData', 'plot_data.rds', sep='/'))
+
+
+# Merged and cleaned dataset - analysis ready
+                      #data_d_cleaned.csv"), row.names=FALSE)
 
 ```
 

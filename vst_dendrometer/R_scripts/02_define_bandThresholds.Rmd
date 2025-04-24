@@ -6,33 +6,37 @@ output: html_document
 ---
 
 ```{r load libraries and files, echo=FALSE}
+rm(list = ls())
+
 library(tidyverse)
 library(png)
 
 if (file.exists(
   'C:/Users/kjones')){
-  wdir <- "C:/Users/kjones/Documents/GitHub/neon-plant-sampling"
+  wdir <- "C:/Users/kjones/Documents/GitHub/neon-plant-sampling/vst_dendrometer"
 }
 
-source(paste(wdir, "vst_dendrometer/R_scripts/02_load_dendroObjects.R", sep='/'))
+year <- "2025"
+
+df <-  readRDS(paste(wdir, year, "sourceData/vst_merged_data.rds", sep='/'))
 
 ## remove dead trees from WREF INC0050440
-dead <- c("NEON.PLA.D12.YELL.01988",
-          "NEON.PLA.D19.DEJU.00771",
-          "NEON.PLA.D12.YELL.01849",
-          "NEON.PLA.D19.BONA.00973",
-          "NEON.PLA.D13.NIWO.00891", 
-          "NEON.PLA.D19.BONA.00720",
-          "NEON.PLA.D12.YELL.01897",
-          "NEON.PLA.D16.WREF.04402",
-          "NEON.PLA.D16.WREF.04416", 
-          "NEON.PLA.D16.WREF.02213",
-          "NEON.PLA.D19.BONA.00720",
-          "NEON.PLA.D16.WREF.04437",
-          "NEON.PLA.D16.WREF.03461",
-          "NEON.PLA.D19.BONA.00443") 
-
-df <- df[!df$individualid%in%dead,]
+# dead <- c("NEON.PLA.D12.YELL.01988",
+#           "NEON.PLA.D19.DEJU.00771",
+#           "NEON.PLA.D12.YELL.01849",
+#           "NEON.PLA.D19.BONA.00973",
+#           "NEON.PLA.D13.NIWO.00891", 
+#           "NEON.PLA.D19.BONA.00720",
+#           "NEON.PLA.D12.YELL.01897",
+#           "NEON.PLA.D16.WREF.04402",
+#           "NEON.PLA.D16.WREF.04416", 
+#           "NEON.PLA.D16.WREF.02213",
+#           "NEON.PLA.D19.BONA.00720",
+#           "NEON.PLA.D16.WREF.04437",
+#           "NEON.PLA.D16.WREF.03461",
+#           "NEON.PLA.D19.BONA.00443") 
+# 
+# df <- df[!df$individualid%in%dead,]
 
 ```
 
@@ -41,10 +45,13 @@ df <- df[!df$individualid%in%dead,]
 
 ## having trouble with relative paths
 
-equations <- read.csv(paste(wdir, 'vst_allometries/SourceData/allometries/chojnacky_assignment.csv', sep='/'),
+## pull from Sam's spreadsheet in neonplants repo
+
+
+equations <- read.csv(paste(wdir, 'allometries/chojnacky_assignment.csv', sep='/'),
                       stringsAsFactors = F)
 
-parameters <- read.csv(paste(wdir, 'vst_allometries/SourceData/allometries/chojnacky_parameters.csv', sep='/'),
+parameters <- read.csv(paste(wdir, 'allometries/chojnacky_parameters.csv', sep='/'),
                        stringsAsFactors = F)
 
 ```
@@ -64,12 +71,13 @@ pm <- select(parameters, allometry_ID, b0, b1, minDiameter, maxDiameter)
 
 df$agb <- NA
 
-#i=49
+# # replace this with neonPlants? # #
 
 for(i in 1:nrow(df)){
-  ch_allID <- ifelse(is.na(df$taxonid[i])|df$taxonid[i]=='', "H7", eq$allometry_ID[eq$taxonid==df$taxonid[i]])
+  ch_allID <- ifelse(is.na(df$taxonid[i])|df$taxonid[i]==''|!df$taxonid[i]%in%eq$taxonid, "H7", eq$allometry_ID[eq$taxonid==df$taxonid[i]])
   temp.b0 <- pm$b0[pm$allometry_ID==ch_allID]
   temp.b1 <- pm$b1[pm$allometry_ID==ch_allID]
+
   df$agb[i] <- round(exp(temp.b0 + temp.b1*log(df$stemdiameter[i])), digits=1)
 }
 
@@ -106,8 +114,8 @@ dbh_agb_thresh <- thresh%>%
 
 ```{r write threshold file, echo=FALSE, message=FALSE, warning=FALSE}
 
-#write.csv(dbh_agb_thresh, paste(myPathToTeams, 'SourceData/dbh_abg_thresholds.csv', 
-#                                sep='/'), row.names=FALSE)
+write.csv(dbh_agb_thresh, paste(wdir, year, 'sourceData/dbh_abg_thresholds.csv', 
+                                sep='/'), row.names=FALSE)
 
 ```
 
