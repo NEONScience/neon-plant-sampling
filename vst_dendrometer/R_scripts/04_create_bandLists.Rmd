@@ -15,9 +15,11 @@ if (file.exists(
   wdir <- "C:/Users/kjones/Documents/GitHub/neon-plant-sampling/vst_dendrometer"
 }
 
+year <- "2025"
+
 source(paste(wdir, "R_scripts/03_load_dendroObjects.R", sep='/'))
 
-year <- "2025"
+
 
 ```
 
@@ -90,13 +92,6 @@ bandList$springSize <- ifelse(bandList$stemdiameter < 50, "76mm", "127mm")
 # indicate new trees to band
 bandList <- rename(bandList, existing_band=initialbandstemdiameter)
 bandList$existing_band <- ifelse(is.na(bandList$existing_band), "N", "Y")
-
-# # subset to selected trees 
-# df_out <- df_sub%>%
-#   filter(plotid%in%lowMorton & banded_sub=="Y" | banded_all=="Y")%>%
-#   left_join(map)%>%
-#   select(domainid, siteid, plotid, subplotid, pointid, stemazimuth, stemdistance, taxonid, individualid, growthform, stemdiameter, templateSize, springLength)%>%
-#   arrange(domainid, plotid, subplotid, desc(stemdiameter))
 
 # write files for each site
 

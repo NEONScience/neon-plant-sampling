@@ -4,8 +4,6 @@ if (file.exists(
   wdir <- "C:/Users/kjones/Documents/GitHub/neon-plant-sampling/vst_dendrometer"
 }
 
-year <- '2025'
-
 df <-  readRDS(paste(wdir, year, "sourceData/vst_merged_data.rds", sep='/'))
 
 plots <- readRDS(paste(wdir, year, "sourceData/plot_data.rds", sep='/'))

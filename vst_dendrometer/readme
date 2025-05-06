@@ -1,1 +1,19 @@
 # Dendromter Analysis File Directory
+- 2020, 2025 - folders for holding source data and output files or run every 5 years
+
+- allometries - includes csvs with allometry equation and parameters. 
+        - Sam Simkin has maintained and added to this list over time. Once allometries are available in neonPlants, update r scripts to reference that repo to have a single location for managing allometries. 
+
+- R_scripts - steps to run each time we need new list of trees
+        - 01_gather_treeData.rmd - uses combo of portal and unloaded fulcrum data to get and merge data into single df. Run on either target sites (based on protocol) or can be run on all sites (possible future enhancement). Output is saved to neon-plant-sampling/vst_dendrometer/year/sourceData folder
+        - 02_define_bandThresholds.rmd - set year, read in merged df from 01, determine biomass and band thresholds by site. Read allometry equations from neonPlants when available.
+        - 03_load_dendroObjects.r - should not need to interact with this script, sourced from 04_create_bandLists.rmd, helper script to load source data files created in 01 and 02 scripts
+        -04_create_bandLists.rmd - generates allSite summary and site specific band lists. Writes files to neon-plant-sampling/vst_dendrometer/year/outputFiles folder
+        
+        - prototype/ - files from dendroband development and IPT review. these will need modifying to run successfully in the current repo structure
+                - Dendrometer_Prototype_reboot4nlcd.rmd - includes some code to create plots and organizes cost for budgeting purposes.
+                - plot_sizeDistributions.rmd - same plotting code from dendrometer_prototype
+                - prototype_final_IPTreview.rmd - script for report submitted to IPT. 
+
+
+See ~ OneDrive - National Ecological Observatory Network\OS Protocol Revision\protocols_SOPs\TOS-VST_vegetationStructure\dendrometerDevelopment for additional files supporting dendrometer development and deployment
