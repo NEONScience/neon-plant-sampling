@@ -4,12 +4,19 @@ library(neonUtilities)
 library(neonOS)
 library(restR2)
 
+# if edits are necessary
 
 l0Box <- 'C:/Users/kjones/Box/L0dataEditing'
 
 newFolder <- 'phe_2025releaseClean'
 
-gsheet <- read.csv('H:/Phenology/Species selection/NPN-NEONspecies_20240918.csv', stringsAsFactors = F)
+###
+#crosswalk file - download from 
+#(https://docs.google.com/spreadsheets/d/1siKL8Oi3ArzNQXLWdaQuADo6Q0BcB5BFN2GvkPUxxCw/edit?gid=1061307607#gid=1061307607)
+
+gsheet <- read.csv('C:/Users/kjones/Downloads/NPN-NEONspecies_20240918.csv', stringsAsFactors = F)
+
+# Download all tags
 
 dat <- loadByProduct(dpID="DP1.10055.001",
                      tabl="phe_perindividual",
@@ -19,33 +26,14 @@ dat <- loadByProduct(dpID="DP1.10055.001",
 
 l1_ind <- dat$phe_perindividual
 
-##too big to download through restR2  
 
+# L0 -------------------------------------------------
 l0_ind <- par.get.os.l0.data(stack='prod',
                    dpID = 'DP0.10002.001',
                    startDate = '2013-01-01',
-                   endDate = '2024-10-01',
+                   endDate = '2025-05-01',
                    ingestTable='phe_perindividual_in',
                    format_for_L0_editor=TRUE)
-
-
-# interlude for ind dupes -------------------------------------------------
-
-dupes <- l0_ind$individualID[duplicated(l0_ind$individualID)]
-look <- l0_ind[l0_ind$individualID%in%dupes,]
-
-del_l0_ind <- look[look$growthForm=="EF", ]
-
-write.csv(del_l0_ind, paste(l0Box, newFolder, 'originalL0download/phe_ind_MIRE_todelete.csv', sep='/'), row.names = FALSE)
-
-uuid_only <- select(del_l0_ind, uuid=uid)
-
-write.table(uuid_only, 
-            paste(l0Box, "/", newFolder, "/editedL0upload/phe_ind_mire_uuidOnly.txt", sep=''), 
-            sep="\t", row.names = FALSE, col.names="uuid", na='')
-
-sapply(X = del_l0_ind$fulcrumID, FUN = fulcrumAPI::delete_record, 
-       api_token = Sys.getenv('FULCRUM_KEY'))
 
 #####
 
@@ -93,9 +81,9 @@ toAdd <- neonList%>%
   distinct()%>%
   arrange(NEON.taxonID)
 
-alreadyAdded <- c('JUCOD')
+#alreadyAdded <- c('JUCOD')
 
-toAdd <- toAdd[!toAdd$NEON.taxonID%in%alreadyAdded,]
+#toAdd <- toAdd[!toAdd$NEON.taxonID%in%alreadyAdded,]
 
 write.csv(toAdd, 'H:/Phenology/Species selection/new_Neon_Species_20240918.csv', row.names=F, na="")
 
@@ -103,9 +91,9 @@ write.csv(toAdd, 'H:/Phenology/Species selection/new_Neon_Species_20240918.csv',
 ###check fulcrum ###
 api_token = Sys.getenv('FULCRUM_KEY')
 
-db_req <-get.fulcrum.data(api_token = Sys.getenv('FULCRUM_KEY'),
+db_req <-get.fulcrum.data(apiToken = Sys.getenv('FULCRUM_KEY'),
                          appName="Phenology DB", 
-                         fulcFields_oi = c('siteid', 'taxonid', 'scientificname', 'selectionstatus'),
+                         fulcrumFields = c('siteid', 'taxonid', 'scientificname', 'selectionstatus'),
                          queryField = 'selectionstatus',
                          queryValues=c('accepted - Phase I', 'accepted - Phase II'))
 
@@ -123,17 +111,17 @@ setdiff(toAdd$NEON.taxonID, db_req$taxonid)
 look <- filter(db_req, c(db_req$siteid, db_req$taxonid)%in%c(phe_ind$siteID, phe_ind$taxonID))
 
 
-ful_df <- restR::get.fulcrum.data(api_token = Sys.getenv('FULCRUM_KEY'),
-                           appName="PHE: Field Setup [PROD]", 
-                           repeatable='phe_pertag',
-                           fulcFields_oi = c('siteid', 'taxonid_pull', 'growthform'),
-                           createdDateStart = '2017-01-01',
-                           createdDateEnd ='2024-12-01')
+ful_df <- restR2::get.fulcrum.data(apiToken = Sys.getenv('FULCRUM_KEY'),
+                           appName="PHE: Per Individual INGEST [PROD]", 
+                           #repeatableName='phe_pertag',
+                           fulcrumFields = c('siteid', 'taxonid', 'growthform'), #'siteid', restR2 can't handle fields from parent & child tables
+                           startCreatedDate = '2017-01-01',
+                           endCreatedDate ='2025-05-01')
 
 ful_df <- ful_df%>%
-  select(, -fulcrum_id, -`_child_record_id`, taxonID = taxonid_pull, 
-         siteID = siteid, growthForm = growthform)%>%
-  filter(!siteID%in%c('KONA', 'NOGP', 'STEI', 'STER'))%>%
+  select(, -`_record_id`, siteID = siteid, taxonID = taxonid, 
+         growthForm = growthform)%>%  
+  filter(!siteID%in%c('KONA', 'NOGP', 'STEI', 'STER'))%>% # deprecated sites
   distinct()
 
 lovLookup <- get.lov(lovName='phe.growthForm')
@@ -149,14 +137,6 @@ for(i in 1:nrow(ful_df)){
                                       ful_df$gf[i])
   }
 }
-
-phe_ind <- phe_ind%>%
-  #filter(taxonRank!="genus")%>%
-  select(taxonID,   growthForm)%>% #taxonRank, scientificName,
-  distinct()
-
-missingFromFulcrum<- setdiff(phe_ind$taxonID, ful_df$taxonid_pull)
-
 
 write.csv(ful_df, 'H:/Phenology/Species selection/allNEONspecies_202409.csv', row.names=F, na="")
 

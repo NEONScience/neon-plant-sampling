@@ -1,0 +1,129 @@
+
+
+```{r libraries, include=FALSE}
+
+##load libraries
+library(tidyverse)
+library(neonUtilities)
+
+
+```
+
+
+
+```{r load temp data}
+
+dpid <- as.character('DP1.00002.001')  ##single aspirated air temperature
+
+tempDat <- loadByProduct(dpID=dpid,
+                        site = "SCBI", #or whichever you choose
+                        startdate = "2017-01",
+                        enddate="2017-12",
+                        avg=30,
+                        package = "basic",
+                        check.size = FALSE)
+
+df <- tempDat$SAAT_30min
+
+# keep only records with Final Quality Flag == 0
+df <- filter(df, finalQF==0)
+```
+
+```{r format data}
+
+#need to set TZ to local time
+#see TZ options
+OlsonNames()[grepl(pattern="US", x=OlsonNames())]  
+
+
+##### ***Should convert dateTime to local TZ first!*** #####
+  
+df$startDateTimeLocal <- df$startDateTime
+  
+# Convert from GMT (Greenwich Mean Time) to Hawai'i Standard Time
+# https://stackoverflow.com/questions/1395117/how-do-you-convert-dates-times-from-one-time-zone-to-another-in-r
+  attributes(df$startDateTimeLocal)$tzone 
+
+## double check this, not sure if it's working correctly
+df$date <- as.POSIXct(df$startDateTimeLocal, tz="US/Eastern")
+
+
+# GDD typically reported in F
+# define function to convert temp c to f 
+c_to_f <- function(x)  (x * 1.8 + 32)
+
+# convert df temps
+df$meanTempF <- c_to_f(df$tempSingleMean)
+
+#pull date value from dateTime
+df$date <- substr(df$endDateTime, 1, 10)
+
+# group data and summarize values
+# Here, we will group the 30-minute temperature averages by data (to get daily values)
+
+# You will want to consider which vertical position is most appropriate to use for your analysis.
+  
+# You can view the sensor position data in the sensor_positions table downloaded above,
+# where HOR.VER are the horizontal and vertical position indices (separated by a period),
+# and zOffset is in meters above the ground
+  select(tempDat$sensor_positions_00002, c(HOR.VER, zOffset))
+  
+# (you can also view all of the sensor position info with the following line:)
+# View(tempDat$sensor_positions_00002)
+  
+# For example, the lowest position sensor (verticalPosition == 010) may be most appropriate for 
+# comparison with the phenological state of very short plants, while the highest verticalPosition
+# may be better for comparison with canopy trees. Selected level 1 for demonstration
+  
+day_temp <- df%>%
+  filter(verticalPosition=="010")%>%
+  group_by(siteID, date)%>%
+  mutate(dayMaxTemp=max(meanTempF), dayMinTemp=min(meanTempF),
+         dayMeanTemp=mean(meanTempF))%>%
+  select(siteID, date, dayMaxTemp, dayMinTemp, dayMeanTemp)%>%
+  distinct()
+
+##alternative, simplified mean, consistent with many GDD calculations 
+### does accumulation differ for true mean vs. simplified mean?
+day_temp$mean2 <- (day_temp$dayMinTemp + day_temp$dayMaxTemp)/2
+
+#caluculate daily GDD for true mean
+## 50 degrees F is a common base temperature used to calculate plant specific GDD. When might you select a differnt base temp?
+
+day_temp$GDD <- ifelse(day_temp$dayMeanTemp-50 < 0, 0, round(day_temp$mean2-50, 0))
+
+# define year
+day_temp$year <- substr(day_temp$date, 1, 4)
+
+#function to add daily GDD values
+sumr.2 <- function(x) {
+	sapply(1:length(x), function(i) sum(x[1:i]))
+}
+
+#calculate Accumlated GDD
+day_temp$AGDD <- sumr.2(x=day_temp$GDD)
+
+day_temp <- ungroup(day_temp)
+
+```
+
+
+```{r plot AGDD data}
+
+# define year of interest, if > 1 year downloaded in dataset 
+year <- 2017
+
+# subset data to specified year
+data <- day_temp%>%
+  filter(date >= paste(year, '01-01', sep='-') & date <= paste(year, '12-31', sep='-')
+         & siteID=="SCBI")
+
+#plot it
+ggplot(data=data, aes(x=date, y=AGDD, group=1)) +
+  geom_point()+
+  geom_smooth()
+
+
+## 
+
+```

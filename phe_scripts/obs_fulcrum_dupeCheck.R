@@ -167,26 +167,6 @@ sapply(X = out$del_fulc,
 
 ## out$flag - set status = "record error",  if load_status = "PARSE_FAIL" or "NONE", set load_status=SKIP,
                       
-## out$keep - do nothing, this is a verification                 
-
-
-
-###### 
-#delete l0 recs - temporary till magpie workflow
-# 
-# l0 <- get.os.l0.by.query(stack='prod',
-#                          tab = 'DP0.10002.001:phe_statusintensity_in',
-#                          fieldDataSearchStrings = out$del_pdr,
-#                          fieldName="fulcrumID")
-# 
-# uuid_only <- select(l0, uuid=uid)
-# 
-# l0Box <- 'C:/Users/kjones/Box/L0dataEditing'
-# newFolder <- 'phe_magpieRequests_20250206'
-# 
-# write.table(uuid_only, 
-#             paste(l0Box, "/", newFolder, "/editedL0upload/obs_duplicate_delete_uuidOnly.txt", sep=''), 
-#             sep="\t", row.names = FALSE, col.names="uuid", na='')
-
+## out$keep - do nothing, this is a verification                      
                       
                       

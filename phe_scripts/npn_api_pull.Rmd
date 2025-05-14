@@ -1,0 +1,41 @@
+---
+title: "Untitled"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+#install.packages("devtools")
+#library('devtools')
+#devtools::install_github("usa-npn/rnpn")
+
+library('rnpn')
+
+```
+
+
+```{r}
+species_list <- npn_species()
+
+library('rnpn')
+
+df <- npn_download_status_data(request_source = 'KatieJ',
+                               years=c('2013', '2014', '2015', '2016', '2017', '2018', '2019', '2020', '2021'),
+                              network_ids = 77)
+
+
+df <- npn_download_magnitude_phenometrics(request_source='KatieJ',
+                                          period_frequency = '7',
+                                          years=c('2015', '2016', '2017'), 
+                                          #station_ids=c(35924), 
+                                          network_ids = 77
+                                          )
+
+
+site <- npn_stations()
+
+neon <- filter(site, network_id==77 & station_id%in%df$site_id)
+neon$siteID <- substr(neon$station_name, 1, 4)
+
+
+```
+
