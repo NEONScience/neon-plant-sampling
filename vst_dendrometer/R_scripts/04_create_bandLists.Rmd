@@ -26,7 +26,8 @@ source(paste(wdir, "R_scripts/03_load_dendroObjects.R", sep='/'))
 
 ```{r select sites}
 
-sites <- unique(df$siteid)
+sites <- "YELL"
+  #unique(df$siteid)
   #c( "SCBI", "TALL")
   #c("WREF", "BONA", "YELL", "NIWO")
 
