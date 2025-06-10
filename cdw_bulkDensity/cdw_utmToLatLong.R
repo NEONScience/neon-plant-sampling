@@ -1,8 +1,6 @@
 ### CDW bulk density: Convert log locations from UTM to decimal degrees ####
 library(glue)
 library(httr)
-library(jsonlite)
-library(neonOSqc)
 library(neonUtilities)
 library(sf)
 library(tidyverse)
