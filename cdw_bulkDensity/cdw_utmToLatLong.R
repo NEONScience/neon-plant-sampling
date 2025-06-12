@@ -8,11 +8,13 @@ library(tidyverse)
 
 
 ### Input variables
-#   List sites
-theSites <- c("TREE", "UNDE")
+##  List sites
+# theSites <- c("TREE", "UNDE")
+theSites <- "BONA"
 
-#   Define UTM zone for sites
-utmSites <- 16
+##  Define UTM zone for sites
+# utmSites <- 16 #--> D05 TREE, UNDE
+utmSites <- 6 #--> D19 BONA
 
 
 
@@ -52,17 +54,18 @@ pointsDF <- pointsDF %>%
 
 #   Join logDF and pointsDF and filter to mapped logs
 logDF <- dplyr::left_join(logDF,
-                         pointsDF %>%
-                           dplyr::select(plotID,
-                                         pointID,
-                                         pointEasting,
-                                         pointNorthing),
-                         by = c("plotID", "pointID")) %>%
+                          pointsDF %>%
+                            dplyr::select(plotID,
+                                          pointID,
+                                          pointEasting,
+                                          pointNorthing),
+                          by = c("plotID", "pointID"))
+
+logDF <- logDF %>%
   dplyr::filter(mappingMethod %in% c("Relative", "GPS"))
 
 #   Calculate 'correctedAzimuth' to account for mapping direction from log back to pointID
-#   then calculate mapped log location, filter records missing easting/northing, and remove 
-#   records with 'sampleNorthing' data entry errors
+#   then calculate mapped log location
 logDF <- logDF %>%
   dplyr::mutate(correctedAzimuth = logAzimuth + 180,
                 sampleEasting = dplyr::case_when(mappingMethod == "Relative" ~ 
@@ -72,9 +75,15 @@ logDF <- logDF %>%
                 sampleNorthing = dplyr::case_when(mappingMethod == "Relative" ~ 
                                                     round(pointNorthing + logDistance*cos(radians(correctedAzimuth)),
                                                           digits = 2),
-                                                  TRUE ~ sampleNorthing)) %>%
-  dplyr::filter(!if_all(c(sampleEasting, sampleNorthing), is.na),
-                sampleNorthing > 5000000)
+                                                  TRUE ~ sampleNorthing))
+
+#   Filter records missing easting/northing
+logDF <- logDF %>%
+  dplyr::filter(!if_all(c(sampleEasting, sampleNorthing), is.na))
+
+#   D05 specific: Remove sampleNorthing data entry errors
+logDF <- logDF %>%
+  dplyr::filter(sampleNorthing > 5000000)
 
 
 
@@ -104,29 +113,44 @@ logSF <- logSF %>%
   dplyr::mutate(logLon = sf::st_coordinates(.)[,1],
                 logLat = sf::st_coordinates(.)[,2])
 
+#   D05 file output
+# fileOut <- "~/Desktop/D05_CDW_BD_latLong.csv"
+
+#   D19 file output
+fileOut <- "~/Desktop/D19_BONA_CDW_BD_latLong.csv"
+
+#   Write out spreadsheet
 write.csv(logSF %>%
             as.data.frame() %>%
             dplyr::select(-geometry),
-          file = "~/Desktop/D05_CDW_BD_latLong.csv",
+          file = fileOut,
           row.names = FALSE,
           fileEncoding = "UTF-8")
 
 
 
 ### Create plots of mapped logs
-#   Plot TREE logs
-plot(logSF %>%
-       dplyr::filter(grepl("TREE", plotID)) %>%
-       dplyr::select(plotID,
-                     geometry),
-     main = "TREE CDW BD mapped logs")
+##  D05 log maps
+# #   Plot TREE logs
+# plot(logSF %>%
+#        dplyr::filter(grepl("TREE", plotID)) %>%
+#        dplyr::select(plotID,
+#                      geometry),
+#      main = "TREE CDW BD mapped logs")
+# 
+# #   Plot UNDE logs
+# plot(logSF %>%
+#        dplyr::filter(grepl("UNDE", plotID)) %>%
+#        dplyr::select(plotID,
+#                      geometry),
+#      main = "UNDE CDW BD mapped logs")
 
-#   Plot UNDE logs
+
+##  D19 log map
 plot(logSF %>%
-       dplyr::filter(grepl("UNDE", plotID)) %>%
        dplyr::select(plotID,
                      geometry),
-     main = "UNDE CDW BD mapped logs")
+     main = "BONA CDW BD mapped logs")
 
 
 
