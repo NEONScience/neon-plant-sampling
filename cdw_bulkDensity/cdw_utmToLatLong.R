@@ -9,12 +9,14 @@ library(tidyverse)
 
 ### Input variables
 ##  List sites
-# theSites <- c("TREE", "UNDE")
+theSites <- c("TREE", "UNDE")
 theSites <- "BONA"
+theSites <- "NIWO"
 
 ##  Define UTM zone for sites
-# utmSites <- 16 #--> D05 TREE, UNDE
+utmSites <- 16 #--> D05 TREE, UNDE
 utmSites <- 6 #--> D19 BONA
+utmSites <- 13 #--> D13 NIWO
 
 
 
