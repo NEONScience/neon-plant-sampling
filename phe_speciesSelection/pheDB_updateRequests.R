@@ -12,6 +12,7 @@
 #   YOUR NAME (YYYY-MM-DD)
 #     original creation
 ##############################################################################################
+rm(list = ls())
 
 library(devtools)
 library(tidyverse)
@@ -20,17 +21,45 @@ library(restR2)
 library(restR)
 library(fulcrumAPI)
 
-api_token = Sys.getenv('FULCRUM_KEY')
+api_token = Sys.getenv('FULCRUM_PAT')
 
-pheDb <- get.fulcrum.data(api_token = api_token,
+pheDb <- restR::get.fulcrum.data(api_token = api_token,
                           appName = "Phenology DB",
                           createdDateStart = "2015-01-01",
                           return_format = "dataframe")
+
 
 ###############################################################################################
 
 
 ##create a new record/s
+#db #1
+
+d17NewELEL5 <- data.frame(`_status`= 'unedited', 
+                          project= 'D17',
+                          domainid= 'D17',
+                          siteid='TEAK',
+                          taxonid = 'ELEL5',
+                          scientificname = find.scientific.name(taxonID="ELEL5", 
+                                                                type = "PLANT"),
+                          preferredstatus = "", 
+                          remarks = 'added 2025-06-07 by request of FS staff')
+
+write.csv(d17NewELEL5, 'C:/Users/dbarnett/Documents/gitStash/d17NewELEL5.csv', 
+          row.names=F)
+
+d17NewACMI2 <- data.frame(`_status`= 'unedited', 
+                          project= 'D17',
+                          domainid= 'D17',
+                          siteid='TEAK',
+                          taxonid = 'ACMI2',
+                          scientificname = find.scientific.name(taxonID="ACMI2", 
+                                                                type = "PLANT"),
+                          preferredstatus = "", 
+                          remarks = 'added 2025-06-07 by request of FS staff')
+
+write.csv(d17NewACMI2, 'C:/Users/dbarnett/Documents/gitStash/d17NewACMI2.csv', 
+          row.names=F)
 
 inc0077445_new <- data.frame(`_status`= 'unedited', 
                            project= 'D12',
