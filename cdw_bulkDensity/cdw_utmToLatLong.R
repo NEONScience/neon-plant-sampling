@@ -2,6 +2,7 @@
 library(glue)
 library(httr)
 library(neonUtilities)
+library(openxlsx)
 library(sf)
 library(tidyverse)
 
@@ -40,21 +41,24 @@ logDF <- cdwbd$cdw_densitylog
 
 
 ### Data prep: Calculate positions of logs with mappingMethod == "Relative"
-#   Retrieve pointSpatialData from Github
-pointsURL <- "https://raw.githubusercontent.com/gitbarnitt/NEON-OS-spatial-data/main/TOS/data/pointSpatialData.csv"
+##  Retrieve pointSpatialData from Github
+pointsURL <- "https://raw.githubusercontent.com/NEONScience/NEON-OS-spatial-data/main/TOS/data/pointSpatialData.csv"
 
-response <- httr::GET(pointsURL, httr::authenticate(Sys.getenv("GITHUB_PAT"), ''))
+response <- httr::GET(pointsURL, 
+                      httr::authenticate(Sys.getenv("GITHUB_PAT"), ''))
 
-pointsDF <- httr::content(response, type = 'text/csv', encoding = 'UTF-8')
+pointsDF <- httr::content(response, 
+                          type = "text/csv", 
+                          encoding = "UTF-8")
 
-#   Filter to CDW points for joining with logDF data
+#   Filter to base plots for joining with logDF data
 pointsDF <- pointsDF %>%
-  dplyr::filter(grepl("cdw", applicableModules),
-                plotStatus == "current") %>%
   dplyr::rename(pointEasting = easting,
-                pointNorthing = northing)
+                pointNorthing = northing) %>%
+  dplyr::filter(subtype == "basePlot")
 
-#   Join logDF and pointsDF and filter to mapped logs
+
+##  Join logDF and pointsDF and filter to mapped logs
 logDF <- dplyr::left_join(logDF,
                           pointsDF %>%
                             dplyr::select(plotID,
@@ -63,6 +67,8 @@ logDF <- dplyr::left_join(logDF,
                                           pointNorthing),
                           by = c("plotID", "pointID"))
 
+
+##  Filter to logs with mapping data
 logDF <- logDF %>%
   dplyr::filter(mappingMethod %in% c("Relative", "GPS"))
 
@@ -116,23 +122,27 @@ logSF <- logSF %>%
                 logLat = sf::st_coordinates(.)[,2])
 
 #   D05 file output
-# fileOut <- "~/Desktop/D05_CDW_BD_latLong.csv"
+# fileOut <- "~/Desktop/D05_CDW_BD_latLong.xlsx"
+
+#   D13 file output
+fileOut <- "~/Desktop/D13_NIWO_CDW_BD_latLong.xlsx"
 
 #   D19 file output
-fileOut <- "~/Desktop/D19_BONA_CDW_BD_latLong.csv"
+# fileOut <- "~/Desktop/D19_BONA_CDW_BD_latLong.xlsx"
 
 #   Write out spreadsheet
-write.csv(logSF %>%
-            as.data.frame() %>%
-            dplyr::select(-geometry),
-          file = fileOut,
-          row.names = FALSE,
-          fileEncoding = "UTF-8")
+openxlsx::write.xlsx(logSF %>%
+                       as.data.frame() %>%
+                       dplyr::select(-geometry),
+                     file = fileOut,
+                     colNames = TRUE,
+                     rowNames = FALSE,
+                     firstRow = TRUE)
 
 
 
 ### Create plots of mapped logs
-##  D05 log maps
+# ##  D05 log maps
 # #   Plot TREE logs
 # plot(logSF %>%
 #        dplyr::filter(grepl("TREE", plotID)) %>%
@@ -148,11 +158,16 @@ write.csv(logSF %>%
 #      main = "UNDE CDW BD mapped logs")
 
 
-##  D19 log map
+# ##  D19 log map
+# plot(logSF %>%
+#        dplyr::select(plotID,
+#                      geometry),
+#      main = "BONA CDW BD mapped logs")
+
+
+##  D13 log map
 plot(logSF %>%
        dplyr::select(plotID,
                      geometry),
-     main = "BONA CDW BD mapped logs")
-
-
+     main = "NIWO CDW BD mapped logs")
 
