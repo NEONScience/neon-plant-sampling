@@ -13,11 +13,13 @@ library(tidyverse)
 theSites <- c("TREE", "UNDE")
 theSites <- "BONA"
 theSites <- "NIWO"
+theSites <- "UKFS"
 
 ##  Define UTM zone for sites
 utmSites <- 16 #--> D05 TREE, UNDE
 utmSites <- 6 #--> D19 BONA
 utmSites <- 13 #--> D13 NIWO
+utmSites <- 15 #--> D06 UKFS
 
 
 
@@ -89,9 +91,13 @@ logDF <- logDF %>%
 logDF <- logDF %>%
   dplyr::filter(!if_all(c(sampleEasting, sampleNorthing), is.na))
 
-#   D05 specific: Remove sampleNorthing data entry errors
+# #   D05 specific: Remove sampleNorthing data entry errors
+# logDF <- logDF %>%
+#   dplyr::filter(sampleNorthing > 5000000)
+
+#   D06 specific: Remove potential data entry error and investigate
 logDF <- logDF %>%
-  dplyr::filter(sampleNorthing > 5000000)
+  dplyr::filter(sampleID != "CDW.2019.UKFS_044.0891")
 
 
 
@@ -124,8 +130,11 @@ logSF <- logSF %>%
 #   D05 file output
 # fileOut <- "~/Desktop/D05_CDW_BD_latLong.xlsx"
 
+#   D06 file output
+fileOut <- "~/Desktop/D06_UKFS_CDW_BD_latLong.xlsx"
+
 #   D13 file output
-fileOut <- "~/Desktop/D13_NIWO_CDW_BD_latLong.xlsx"
+# fileOut <- "~/Desktop/D13_NIWO_CDW_BD_latLong.xlsx"
 
 #   D19 file output
 # fileOut <- "~/Desktop/D19_BONA_CDW_BD_latLong.xlsx"
@@ -157,6 +166,17 @@ openxlsx::write.xlsx(logSF %>%
 #                      geometry),
 #      main = "UNDE CDW BD mapped logs")
 
+#   D06 UKFS log map
+plot(logSF %>%
+       dplyr::select(plotID,
+                     geometry),
+     main = "UKFS CDW BD mapped logs")
+
+# ##  D13 log map
+# plot(logSF %>%
+#        dplyr::select(plotID,
+#                      geometry),
+#      main = "NIWO CDW BD mapped logs")
 
 # ##  D19 log map
 # plot(logSF %>%
@@ -165,9 +185,5 @@ openxlsx::write.xlsx(logSF %>%
 #      main = "BONA CDW BD mapped logs")
 
 
-##  D13 log map
-plot(logSF %>%
-       dplyr::select(plotID,
-                     geometry),
-     main = "NIWO CDW BD mapped logs")
+
 
