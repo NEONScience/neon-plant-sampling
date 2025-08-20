@@ -172,11 +172,11 @@ plot(logSF %>%
                      geometry),
      main = "UKFS CDW BD mapped logs")
 
-# ##  D13 log map
-# plot(logSF %>%
-#        dplyr::select(plotID,
-#                      geometry),
-#      main = "NIWO CDW BD mapped logs")
+##  D13 log map
+plot(logSF %>%
+       dplyr::select(plotID,
+                     geometry),
+     main = "NIWO CDW BD mapped logs")
 
 # ##  D19 log map
 # plot(logSF %>%
