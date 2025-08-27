@@ -20,8 +20,17 @@ year <- "2025"
 
 df <-  readRDS(paste(wdir, year, "sourceData/vst_merged_data.rds", sep='/'))
 
-df <- df%>%
-  filter(!individualid%in%c("NEON.PLA.D12.YELL.01603B", "NEON.PLA.D12.YELL.01603"))
+#get the two error trees
+# to_fix <- which(df$individualid %in% c("NEON.PLA.D12.YELL.01603B", "NEON.PLA.D12.YELL.01603"))
+# #diameters from past data
+# b = 45.6
+# a = 50.3
+# #fix diameters
+# df[to_fix[1],'stemdiameter'] = b
+# df[to_fix[2],'stemdiameter'] = a
+
+#df <- df%>%
+#  filter(!individualid%in%c("NEON.PLA.D12.YELL.01603B", #"NEON.PLA.D12.YELL.01603"))
 
 ## remove dead trees from WREF INC0050440
 # dead <- c("NEON.PLA.D12.YELL.01988",
