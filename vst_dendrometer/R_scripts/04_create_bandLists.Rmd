@@ -26,15 +26,14 @@ source(paste(wdir, "R_scripts/03_load_dendroObjects.R", sep='/'))
 
 ```{r select sites}
 
-sites <- "YELL"
-  #unique(df$siteid)
+sites <- unique(df$siteid)
   #c( "SCBI", "TALL")
   #c("WREF", "BONA", "YELL", "NIWO")
 
 df_sub <- df[df$siteid%in%sites,]
 
 # assign domains and  group by DSF
-df_sub$domainid <- substr(df_sub$individualid, 10, 12)
+#df_sub$domainid <- substr(df_sub$individualid, 10, 12)
 df_sub$domainid <- ifelse(df_sub$domainid%in%c("D10", "D13"), "D10/13", 
                           ifelse(df_sub$domainid%in%c("D18", "D19"), "D18/19", df_sub$domainid))
 

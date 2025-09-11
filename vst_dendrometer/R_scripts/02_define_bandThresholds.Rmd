@@ -20,8 +20,8 @@ year <- "2025"
 
 df <-  readRDS(paste(wdir, year, "sourceData/vst_merged_data.rds", sep='/'))
 
-df <- df%>%
-  filter(!individualid%in%c("NEON.PLA.D12.YELL.01603B", "NEON.PLA.D12.YELL.01603"))
+#df <- df%>%
+#  filter(!individualid%in%c("NEON.PLA.D12.YELL.01603B", #"NEON.PLA.D12.YELL.01603"))
 
 ## remove dead trees from WREF INC0050440
 # dead <- c("NEON.PLA.D12.YELL.01988",
