@@ -11,6 +11,7 @@ library(tidyverse)
 ### Input variables
 ##  List sites
 theSites <- c("TREE", "UNDE")
+theSites <- "TREE"
 theSites <- "BONA"
 theSites <- "NIWO"
 theSites <- "UKFS"
