@@ -1,7 +1,7 @@
 ---
-title: "BBC 2023 Alaska Subsample Experiment"
+title: "BBC 2025 BARR Subsample Experiment"
 author: "Courtney Meier"
-date: "2024-06-26"
+date: "2026-03-10"
 output: 
   pdf_document: 
     latex_engine: xelatex
@@ -12,12 +12,12 @@ knitr::opts_chunk$set(echo = FALSE)
 ```
 
 ##  Goal
-To determine the efficacy of subsampling BBC core samples at the D18 TOOL and D19 DEJU sites to reduce time required to sort roots into size categories. 
+To determine the efficacy of subsampling BBC core samples at the D18 BARR site to reduce time required to sort roots into size categories. 
 
 
 ##  Experimental Setup and Analyses
 
-* Select n=10 cores for each plot site. Cores are sampled from random spatially-balanced plot locations, and locations of clipIDs within plots are also random. The sampling design provides an unbiased estimate of root biomass throughout the Tower airshed.
+* Fifteen (n = 15) cores were selected for the subsampling analysis. Cores are sampled from random spatially-balanced plot locations, and locations of clipIDs within plots are also random. The sampling design provides an unbiased estimate of root biomass throughout the Tower airshed.
 
 * For each `sampleID` collected in the field, test subsampling efficiency at various levels of sorting by creating subsamples with the following percentages of the total core mass:
     - 10%
@@ -36,14 +36,14 @@ To determine the efficacy of subsampling BBC core samples at the D18 TOOL and D1
 
 ##  Procedure
 
-1.  Soil cores (6.65 cm diameter x 30 cm max depth) were collected in the field and frozen in plastic bags for processing at a later date. To generate subsamples, thaw frozen core sample and homogenize soil/root mixture in a plastic bag or tub. 
+1.  Soil cores (6.65 cm diameter x 30 cm max depth) were collected in the field and frozen in plastic bags for processing at a later date. To generate subsamples, frozen cores were thawed and processed to remove mineral soil. Mixtures of roots and organic material (OM) were then blotted to remove excess moisture, and were then subsampled.
 
-1.  Weigh the whole core and create subsamples at desired percentages (above) based on the fresh mass of the total core (roots + soil).
+1.  The total fresh mass (root + OM) was then weighted and this mass was used to create subsamples at desired percentages (above).
 
-1.  Sort subsamples separately into root sizeCategory (0-1, 1-2, 2-10 mm) following the normal procedure in the BBC protocol, and dry and weigh sorted subsamples separately for each sizeCategory.
+1.  Subsamples were then sorted separately into root sizeCategory (0-1, 1-2, 2-10 mm) following the normal procedure in the BBC protocol, and sorted roots were dried and weighed separately for each sizeCategory within a subsample.
 
-1.  Record the dryMass of each sorted subsample by sizeCategory for a given core sample, then recombine all subsamples within a sizeCategory and weigh to obtain the "whole core" dryMass.
-    a.  Enter the "whole core" dryMass for each sizeCategory into Fulcrum for ingest as normal.
+1.  The dryMass of each sorted subsample by sizeCategory was recorded for a given core sample, then the mass from all subsamples within a sizeCategory was combined to obtain the "whole core" dryMass for each sizeCategory.
+    a.  T "whole core" dryMass for each sizeCategory was then entered into Fulcrum for ingest as normal.
     
     
 ## Data Summary
@@ -62,33 +62,46 @@ library(openxlsx)
 
 ### Read in data collected by D18/19
 if (file.exists("/Users/cmeier")) {
-  inputPath <- "~/Documents/gitRepositories/neon-plant-sampling/bbcProtocolDev/subsampleSortExperiments"
+  inputPath <- "~/Documents/gitRepositories/neon-plant-sampling/bbc_subsampleExperiments"
 }
 
-df <- openxlsx::read.xlsx(xlsxFile = glue::glue(inputPath, "2023_BBC_subsampling_D1819.xlsx", .sep = "/"),
+df <- openxlsx::read.xlsx(xlsxFile = glue::glue(inputPath, "2025_BBC_subsampling_BARR.xlsx", .sep = "/"),
                           sheet = "R_input",
                           colNames = TRUE)
 
 
 
+
+### Calculate mass for the whole core and merge to 'df'
+coreDF <- df %>%
+  dplyr::group_by(siteID,
+                  sampleID,
+                  sizeCategory) %>%
+  dplyr::summarise(treatment = "compCore",
+                   dryMass = sum(dryMass, na.rm = TRUE),
+                   .groups = "drop")
+
+inputDF <- dplyr::full_join(df,
+                         coreDF) %>%
+  dplyr::arrange(siteID,
+                 sampleID,
+                 treatment,
+                 sizeCategory)
+
+
 ### Calculate estimated dryMass for subsamples
-df <- df %>%
+inputDF <- inputDF %>%
   dplyr::mutate(estDryMass = dplyr::case_when(treatment == "ss10" ~ dryMass/0.1,
                                               treatment == "ss15" ~ dryMass/0.15,
                                               treatment == "ss25" ~ dryMass/0.25,
                                               treatment == "ss50" ~ dryMass/0.5,
                                               TRUE ~ dryMass)) %>%
-  dplyr::mutate(estDryMass = round(estDryMass, digits = 4)) %>%
-  dplyr::mutate(treatment = dplyr::case_when(treatment == "wholeCore" ~ "compCore",
-                                             TRUE ~ treatment)) %>%
-  dplyr::mutate(sizeCategory = stringr::str_replace(sizeCategory,
-                                                    pattern = "_",
-                                                    replacement = "-"))
+  dplyr::mutate(estDryMass = round(estDryMass, digits = 4))
 
 
 
 ### Generate summary data frame for ggplot2
-summaryDF <- df %>%
+summaryDF <- inputDF %>%
   dplyr::group_by(siteID,
                   treatment, 
                   sizeCategory) %>%
@@ -117,7 +130,7 @@ ggplot2::ggplot(data = summaryDF,
                          position = position_dodge(0.9)) +
   ggplot2::labs(x = "Subsampling treatment",
                 y = "Dry mass (g)",
-                title = "Alaska BBC subsampling") +
+                title = "D18 BARR BBC subsampling 2025") +
   ggplot2::facet_wrap(~siteID,
                       scales = "free")
 
@@ -130,95 +143,44 @@ ggplot2::ggplot(data = summaryDF,
 Approach: For each site, construct a model with `sizeCategory` as the sole fixed effect where the mean is allowed to vary randomly by `sampleID`. Next, construct a model with an additional `treatment` fixed effect, with the mean similarly allowed to vary randomly by `sampleID`. Theoretically, if subsampling has no effect on estimated dryMass the model with `treatment` will not be significantly better according to AIC or p-value than the simpler model that only has `sizeCategory`. 
 
 
-### DEJU results
+### BARR results
 
-``` {r DEJU-mixed-effects, echo = TRUE}
+``` {r BARR-mixed-effects, echo = TRUE}
 
-#   DEJU simplest mixed-effects model
-m1DEJU <- lmerTest::lmer(formula = estDryMass ~ sizeCategory + (1|sampleID),
-                         data = df %>% dplyr::filter(siteID == "DEJU"),
+#   BARR simplest mixed-effects model
+m1BARR <- lmerTest::lmer(formula = estDryMass ~ sizeCategory + (1|sampleID),
+                         data = inputDF,
                          REML = FALSE)
 
-#   DEJU mixed-effects model with subsampling 'treatment'
-m2DEJU <- lmerTest::lmer(formula = estDryMass ~ treatment + sizeCategory + (1|sampleID),
-                         data = df %>% dplyr::filter(siteID == "DEJU"),
+#   BARR mixed-effects model with subsampling 'treatment'
+m2BARR <- lmerTest::lmer(formula = estDryMass ~ treatment + sizeCategory + (1|sampleID),
+                         data = inputDF,
                          REML = FALSE)
 
-#   DEJU mixed-effects model with treatment*sizeCategory interaction
-m3DEJU <- lmerTest::lmer(formula = estDryMass ~ treatment*sizeCategory + (1|sampleID),
-                         data = df %>% dplyr::filter(siteID == "DEJU"),
-                         REML = FALSE)
-
-#   Model comparison
-anova(m1DEJU, m2DEJU, m3DEJU)
-anova(m2DEJU, m3DEJU)
-
-```
-
--   The addition of `treatment` to the `m2DEJU` model adds significant explanatory value compared to `sizeCategory` alone (lower AIC and p < 0.005 compared to `m1DEJU`).
--   Takehome from `m2DEJU`: With `sizeCategory` accounted for, the estimated dryMass is not the same across all subsampling treatments.
--   Overall: The `m3DEJU` model is significantly better than the `m2DEJU` model --> effects of subsampling treatment are not the same across sizeCategory.
--   Need to determine which `treatments` are not significantly different from the dryMass for the complete core.
-
-``` {r DEJU-best-model-summary}
-
-#   Summary of best model output
-anova(m3DEJU)
-summary(m3DEJU)
-
-```
-
--   Across `sizeCategory`, the `ss10` treatment generates significantly lower estimated `dryMass` compared to the complete core.
--   Visually, the 2-10 mm `sizeCategory` for the 15% subsample is much more variable and has higher average mass than the 2-10 mm roots in the complete core. However, across all sizeCategories the 15% subsample is not significantly different from the complete core.
--   Conservatively, subsampling at 25% is supported by the data and appears most similar to the complete core.
-
-
-## TOOL results
-
-``` {r TOOL-mixed-effects, echo = TRUE}
-
-#   TOOL simplest mixed-effects model
-m1TOOL <- lmerTest::lmer(formula = estDryMass ~ sizeCategory + (1|sampleID),
-                         data = df %>% dplyr::filter(siteID == "TOOL"),
-                         REML = FALSE)
-
-#   TOOL mixed-effects model with subsampling 'treatment'
-m2TOOL <- lmerTest::lmer(formula = estDryMass ~ treatment + sizeCategory + (1|sampleID),
-                         data = df %>% dplyr::filter(siteID == "TOOL"),
-                         REML = FALSE)
-
-#   TOOL mixed-effects model with treatment*sizeCategory interaction
-m3TOOL <- lmerTest::lmer(formula = estDryMass ~ treatment*sizeCategory + (1|sampleID),
-                         data = df %>% dplyr::filter(siteID == "TOOL"),
-                         REML = FALSE)
-
-m4TOOL <- lmerTest::lmer(formula = estDryMass ~ treatment + sizeCategory -1 + (1|sampleID),
-                         data = df %>% dplyr::filter(siteID == "TOOL"),
+#   BARR mixed-effects model with treatment*sizeCategory interaction
+m3BARR <- lmerTest::lmer(formula = estDryMass ~ treatment*sizeCategory + (1|sampleID),
+                         data = inputDF,
                          REML = FALSE)
 
 #   Model comparison
-anova(m1TOOL, m2TOOL, m3TOOL)
-anova(m2TOOL, m3TOOL)
+anova(m1BARR, m2BARR, m3BARR)
+anova(m2BARR, m3BARR)
 
 ```
 
--   The addition of `treatment` to the `m2TOOL` model adds significant explanatory value compared to `sizeCategory` alone (lower AIC and p < 0.05 compared to `m1TOOL`).
--   Takehome from `m2TOOL`: With `sizeCategory` accounted for, the estimated dryMass is not the same across all subsampling treatments.
--   The interaction term is not significant in the `m3TOOL` model --> subsampling has similar effects across all sizeCategories.
--   Need to determine which subsampling treatments are not different from the complete core dryMass.
+-   The addition of `treatment` to the `m2BARR` model does not add significant explanatory value compared to `sizeCategory` alone (higher AIC and p = 0.88 compared to `m1BARR`).
+-   Takehome from `m2BARR`: With `sizeCategory` accounted for, the estimated dryMass is statistically similar across all subsampling treatments.
+-   Overall: The `m3BARR` model is no different than the `m1BARR` or `m2BARR` models --> effects of subsampling treatment similar across sizeCategory.
 
-``` {r TOOL-best-model-summary}
 
-#   Summary of best model output
-anova(m2TOOL)
-summary(m2TOOL)
+``` {r BARR-best-model-summary}
+
+#   Summary of best model output that includes 'treatment'
+anova(m2BARR)
+summary(m2BARR)
 
 ```
 
--   The 10% subsample treatment has on average significantly lower dryMass compared to the complete core.
--   Similar to DEJU, the 2-10 mm `sizeCategory` for the 15% subsample is much more variable and has higher average mass than the 2-10 mm roots in the complete core. Across all sizeCategories, the 15% subsample is not significantly different than the complete core.
+-   Visually, the 0-1 mm `sizeCategory` for the 15% subsample has higher average mass than the 0-1 mm roots in the complete core.
 -   Conservatively, subsampling at 25% is supported by the data and appears most similar to the complete core.
-
-
-
 
