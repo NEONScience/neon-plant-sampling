@@ -5,22 +5,25 @@ library(neonUtilities)
 library(openxlsx)
 library(sf)
 library(tidyverse)
+library(ggrepel)
 
 
 
 ### Input variables
 ##  List sites
-theSites <- c("TREE", "UNDE")
-theSites <- "TREE"
-theSites <- "BONA"
-theSites <- "NIWO"
-theSites <- "UKFS"
+# theSites <- c("TREE", "UNDE")
+# theSites <- "TREE"
+# theSites <- "BONA"
+# theSites <- "NIWO"
+# theSites <- "UKFS"
+theSites <- "ORNL"
 
 ##  Define UTM zone for sites
-utmSites <- 16 #--> D05 TREE, UNDE
-utmSites <- 6 #--> D19 BONA
-utmSites <- 13 #--> D13 NIWO
-utmSites <- 15 #--> D06 UKFS
+# utmSites <- 16 #--> D05 TREE, UNDE
+# utmSites <- 6 #--> D19 BONA
+# utmSites <- 13 #--> D13 NIWO
+# utmSites <- 15 #--> D06 UKFS
+utmSites <- 16 #--> D07 ORNL
 
 
 
@@ -39,7 +42,8 @@ cdwbd <- neonUtilities::loadByProduct(dpID = "DP1.10014.001",
                                       check.size = FALSE,
                                       token = Sys.getenv("NEON_TOKEN"))
 
-logDF <- cdwbd$cdw_densitylog
+logDF <- cdwbd$cdw_densitylog %>% 
+  filter(sizeCategory == ">= 10 cm diameter")
 
 
 
@@ -96,9 +100,16 @@ logDF <- logDF %>%
 # logDF <- logDF %>%
 #   dplyr::filter(sampleNorthing > 5000000)
 
-#   D06 specific: Remove potential data entry error and investigate
-logDF <- logDF %>%
-  dplyr::filter(sampleID != "CDW.2019.UKFS_044.0891")
+# #   D06 specific: Remove potential data entry error and investigate
+# logDF <- logDF %>%
+#   dplyr::filter(sampleID != "CDW.2019.UKFS_044.0891")
+
+#   D07 specific: Correct typo with likely intended value
+logDF <- logDF %>% 
+  mutate(
+    sampleNorthing = ifelse(
+      sampleID == "CDW.2019.ORNL_036.431", 3983481, sampleNorthing
+    ))
 
 
 
@@ -132,13 +143,16 @@ logSF <- logSF %>%
 # fileOut <- "~/Desktop/D05_CDW_BD_latLong.xlsx"
 
 #   D06 file output
-fileOut <- "~/Desktop/D06_UKFS_CDW_BD_latLong.xlsx"
+# fileOut <- "~/Desktop/D06_UKFS_CDW_BD_latLong.xlsx"
 
 #   D13 file output
 # fileOut <- "~/Desktop/D13_NIWO_CDW_BD_latLong.xlsx"
 
 #   D19 file output
 # fileOut <- "~/Desktop/D19_BONA_CDW_BD_latLong.xlsx"
+
+#   D07 file output
+fileOut <- "D07_ORNL_CDW_BD_latLong.xlsx"
 
 #   Write out spreadsheet
 openxlsx::write.xlsx(logSF %>%
@@ -166,25 +180,68 @@ openxlsx::write.xlsx(logSF %>%
 #        dplyr::select(plotID,
 #                      geometry),
 #      main = "UNDE CDW BD mapped logs")
-
-#   D06 UKFS log map
-plot(logSF %>%
-       dplyr::select(plotID,
-                     geometry),
-     main = "UKFS CDW BD mapped logs")
-
-##  D13 log map
-plot(logSF %>%
-       dplyr::select(plotID,
-                     geometry),
-     main = "NIWO CDW BD mapped logs")
-
+# 
+# ##   D06 UKFS log map
+# plot(logSF %>%
+#        dplyr::select(plotID,
+#                      geometry),
+#      main = "UKFS CDW BD mapped logs")
+# 
+# ##  D13 log map
+# plot(logSF %>%
+#        dplyr::select(plotID,
+#                      geometry),
+#      main = "NIWO CDW BD mapped logs")
+# 
 # ##  D19 log map
 # plot(logSF %>%
 #        dplyr::select(plotID,
 #                      geometry),
 #      main = "BONA CDW BD mapped logs")
 
+#   D07 ORNL log map
+plot(logSF %>%
+       dplyr::select(plotID,
+                     geometry),
+     main = "ORNL CDW BD mapped logs")
 
+## Create pdf with individual plot maps
+# Create empty list for plots
+p_all <- list()
 
+# Create log location 'map' for each plot
+for(plot in unique(logSF$plotID)){
+  
+  # print(
+  p <- ggplot(
+    data = logSF %>% filter(plotID == plot),
+    aes(x = logLon, y = logLat)) +
+    # ptID labels
+    geom_label(
+      data = pointsDF %>% filter(plotID == plot),
+      aes(x = decimalLongitude, y = decimalLatitude, label = pointID),
+      border.colour = "dimgrey", text.colour = "black", size = 3) +
+    # Log locations
+    geom_point(
+      size = 3, color = "brown", shape = 1, stroke = 2) +
+    # logID labels
+    geom_text_repel(
+      aes(label = logID),
+      size = 4, fontface = "bold") +
+    # Fixed aspect ratio
+    coord_fixed() +
+    theme_bw() +
+    theme(
+      axis.text.y = element_text(angle = 90, vjust = 0.5, hjust = 0.5)) +
+    labs(
+      title = plot)
+  # )
+  
+  # Append plot to list
+  p_all <- append(p_all, p)
+}
 
+# Save pdf with all plot maps
+pdf("D07_ORNL_CDW_BD_plotMaps.pdf", width = 11, height = 8.5)
+for(i in p_all) print(i)
+dev.off()
