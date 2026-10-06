@@ -1,0 +1,186 @@
+---
+title: "BBC 2025 BARR Subsample Experiment"
+author: "Courtney Meier"
+date: "2026-03-10"
+output: 
+  pdf_document: 
+    latex_engine: xelatex
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+##  Goal
+To determine the efficacy of subsampling BBC core samples at the D18 BARR site to reduce time required to sort roots into size categories. 
+
+
+##  Experimental Setup and Analyses
+
+* Fifteen (n = 15) cores were selected for the subsampling analysis. Cores are sampled from random spatially-balanced plot locations, and locations of clipIDs within plots are also random. The sampling design provides an unbiased estimate of root biomass throughout the Tower airshed.
+
+* For each `sampleID` collected in the field, test subsampling efficiency at various levels of sorting by creating subsamples with the following percentages of the total core mass:
+    - 10%
+    - 15%
+    - 25%
+    - 50%
+    
+    The sum of all the subsamples = 100%; that is, the mass of the entire core sample.
+
+* When subsampling is employed, estimated `dryMass` is calculated as follows: `dM = ssDM/X`, where:
+    - *dM* = estimated root dryMass for a given level of subsampling
+    - *X* = the proportion of the total core sample represented by the subsample (ranging from 0-1)
+    
+* Compare `dryMass` results calculated via subsampling with `dryMass` obtained with no subsampling, and use mixed effects models to analyze results.
+
+
+##  Procedure
+
+1.  Soil cores (6.65 cm diameter x 30 cm max depth) were collected in the field and frozen in plastic bags for processing at a later date. To generate subsamples, frozen cores were thawed and processed to remove mineral soil. Mixtures of roots and organic material (OM) were then blotted to remove excess moisture, and were then subsampled.
+
+1.  The total fresh mass (root + OM) was then weighted and this mass was used to create subsamples at desired percentages (above).
+
+1.  Subsamples were then sorted separately into root sizeCategory (0-1, 1-2, 2-10 mm) following the normal procedure in the BBC protocol, and sorted roots were dried and weighed separately for each sizeCategory within a subsample.
+
+1.  The dryMass of each sorted subsample by sizeCategory was recorded for a given core sample, then the mass from all subsamples within a sizeCategory was combined to obtain the "whole core" dryMass for each sizeCategory.
+    a.  T "whole core" dryMass for each sizeCategory was then entered into Fulcrum for ingest as normal.
+    
+    
+## Data Summary
+
+``` {r load-packages, include = FALSE}
+
+library(dplyr)
+library(ggplot2)
+library(glue)
+library(lmerTest)
+library(openxlsx)
+
+```
+
+``` {r data-preparation, include = FALSE}
+
+### Read in data collected by D18/19
+if (file.exists("/Users/cmeier")) {
+  inputPath <- "~/Documents/gitRepositories/neon-plant-sampling/bbc_subsampleExperiments"
+}
+
+df <- openxlsx::read.xlsx(xlsxFile = glue::glue(inputPath, "2025_BBC_subsampling_BARR.xlsx", .sep = "/"),
+                          sheet = "R_input",
+                          colNames = TRUE)
+
+
+
+
+### Calculate mass for the whole core and merge to 'df'
+coreDF <- df %>%
+  dplyr::group_by(siteID,
+                  sampleID,
+                  sizeCategory) %>%
+  dplyr::summarise(treatment = "compCore",
+                   dryMass = sum(dryMass, na.rm = TRUE),
+                   .groups = "drop")
+
+inputDF <- dplyr::full_join(df,
+                         coreDF) %>%
+  dplyr::arrange(siteID,
+                 sampleID,
+                 treatment,
+                 sizeCategory)
+
+
+### Calculate estimated dryMass for subsamples
+inputDF <- inputDF %>%
+  dplyr::mutate(estDryMass = dplyr::case_when(treatment == "ss10" ~ dryMass/0.1,
+                                              treatment == "ss15" ~ dryMass/0.15,
+                                              treatment == "ss25" ~ dryMass/0.25,
+                                              treatment == "ss50" ~ dryMass/0.5,
+                                              TRUE ~ dryMass)) %>%
+  dplyr::mutate(estDryMass = round(estDryMass, digits = 4))
+
+
+
+### Generate summary data frame for ggplot2
+summaryDF <- inputDF %>%
+  dplyr::group_by(siteID,
+                  treatment, 
+                  sizeCategory) %>%
+  dplyr::summarise(N = n(),
+                   mean = mean(estDryMass),
+                   sd = sd(estDryMass),
+                   se = sd/sqrt(N),
+                   .groups = "drop")
+
+
+```
+
+``` {r results-plot}
+
+### Create ggplot from summaryDF and display
+
+ggplot2::ggplot(data = summaryDF,
+                mapping = aes(x = treatment,
+                              y = mean,
+                              fill = sizeCategory)) +
+  ggplot2::geom_bar(position = "dodge",
+                    stat = "identity") +
+  ggplot2::geom_errorbar(mapping = aes(ymin = mean - se,
+                                       ymax = mean + se),
+                         width = 0.2,
+                         position = position_dodge(0.9)) +
+  ggplot2::labs(x = "Subsampling treatment",
+                y = "Dry mass (g)",
+                title = "D18 BARR BBC subsampling 2025") +
+  ggplot2::facet_wrap(~siteID,
+                      scales = "free")
+
+
+```
+
+
+## Results: Mixed-effects model analysis
+
+Approach: For each site, construct a model with `sizeCategory` as the sole fixed effect where the mean is allowed to vary randomly by `sampleID`. Next, construct a model with an additional `treatment` fixed effect, with the mean similarly allowed to vary randomly by `sampleID`. Theoretically, if subsampling has no effect on estimated dryMass the model with `treatment` will not be significantly better according to AIC or p-value than the simpler model that only has `sizeCategory`. 
+
+
+### BARR results
+
+``` {r BARR-mixed-effects, echo = TRUE}
+
+#   BARR simplest mixed-effects model
+m1BARR <- lmerTest::lmer(formula = estDryMass ~ sizeCategory + (1|sampleID),
+                         data = inputDF,
+                         REML = FALSE)
+
+#   BARR mixed-effects model with subsampling 'treatment'
+m2BARR <- lmerTest::lmer(formula = estDryMass ~ treatment + sizeCategory + (1|sampleID),
+                         data = inputDF,
+                         REML = FALSE)
+
+#   BARR mixed-effects model with treatment*sizeCategory interaction
+m3BARR <- lmerTest::lmer(formula = estDryMass ~ treatment*sizeCategory + (1|sampleID),
+                         data = inputDF,
+                         REML = FALSE)
+
+#   Model comparison
+anova(m1BARR, m2BARR, m3BARR)
+anova(m2BARR, m3BARR)
+
+```
+
+-   The addition of `treatment` to the `m2BARR` model does not add significant explanatory value compared to `sizeCategory` alone (higher AIC and p = 0.88 compared to `m1BARR`).
+-   Takehome from `m2BARR`: With `sizeCategory` accounted for, the estimated dryMass is statistically similar across all subsampling treatments.
+-   Overall: The `m3BARR` model is no different than the `m1BARR` or `m2BARR` models --> effects of subsampling treatment similar across sizeCategory.
+
+
+``` {r BARR-best-model-summary}
+
+#   Summary of best model output that includes 'treatment'
+anova(m2BARR)
+summary(m2BARR)
+
+```
+
+-   Visually, the 0-1 mm `sizeCategory` for the 15% subsample has higher average mass than the 0-1 mm roots in the complete core.
+-   Conservatively, subsampling at 25% is supported by the data and appears most similar to the complete core.
+
