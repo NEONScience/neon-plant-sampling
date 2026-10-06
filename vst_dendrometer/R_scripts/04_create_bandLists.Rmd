@@ -76,11 +76,11 @@ for (i in unique(df_sub$siteid)){
 }  
 
 
-bandList$addDBH <- ifelse(bandList$stemdiameter<10, 2.5,
-                        ifelse(bandList$stemdiameter < 50, 4, 7.5))
+bandList$addDBH <- ifelse(bandList$stemdiameter<10, 3,
+                        ifelse(bandList$stemdiameter < 50, 4.5, 8))
 
 
-bandList$bandLength <- ceiling((bandList$stemdiameter+bandList$addDBH)*3.14)
+bandList$bandLength <- ceiling((bandList$stemdiameter+bandList$addDBH))
 
 bandList$springSize <- ifelse(bandList$stemdiameter < 50, "76mm", "127mm")
 
