@@ -11,6 +11,7 @@ predictStemDiameter <- function(flaggedData) {
                   -c("scientificName":"family"),
                   -"measurementStrategy",
                   -"plantStatus",
+                  -"incrementFlag",
                   -"agb_kg",
                   -c("baseCrownHeight":"bandStemDiameter"),
                   -"recordedBy",
@@ -87,7 +88,7 @@ predictStemDiameter <- function(flaggedData) {
       anomaly_idx <- which.max(.x$rateDev)
       
       .x %>%
-        dplyr::mutate(diameterFlag = row_number() == anomaly_idx,
+        dplyr::mutate(estimatedDiamFlag = row_number() == anomaly_idx,
                       .after = "stemDiameter") %>%
         dplyr::select(-"rateBack",
                       -"rateForward",
@@ -104,7 +105,7 @@ predictStemDiameter <- function(flaggedData) {
     dplyr::arrange(year, .by_group = TRUE) %>%
     
     dplyr::mutate(
-      modelInputStemDiameter = dplyr::if_else(diameterFlag == TRUE, NA_real_, stemDiameter),
+      modelInputStemDiameter = dplyr::if_else(estimatedDiamFlag == TRUE, NA_real_, stemDiameter),
       
       predictedDiam = tryCatch(
         broom::augment(lm(.data$modelInputStemDiameter ~ .data$predictedDate), 
@@ -119,12 +120,16 @@ predictStemDiameter <- function(flaggedData) {
   
   
   
-  ### Clean up columns for output and return data
+  ### Clean up columns for output and return data for estimatedDiamFlag == TRUE
   flaggedDF <- flaggedDF %>%
+    dplyr::ungroup() %>%
     dplyr::select(-c("plotType":"totalSampledAreaTrees"),
                   -"tempStemID",
                   -"tagStatus",
-                  -c("estimatedDiamFlag":"remarks"))
+                  -"modelInputStemDiameter",
+                  -c("measurementHeight":"dataEntryRecordID")) %>%
+    
+    dplyr::filter(estimatedDiamFlag == TRUE)
   
   return(flaggedDF)
   

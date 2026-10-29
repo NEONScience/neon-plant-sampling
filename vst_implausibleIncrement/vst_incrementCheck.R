@@ -4,7 +4,7 @@ library(neonUtilities)
 library(broom)
 devtools::load_all() #--> setwd() to neonPlants
 
-source("predictStemDiameter.R")
+source("vst_implausibleIncrement/predictStemDiameter.R")
 
 ##  Process steps in predictStemDiameter function:
 #--> Get 'flagged' table from estimateWoodProd; has all records for an individualID if any record is incrementFlag == TRUE
