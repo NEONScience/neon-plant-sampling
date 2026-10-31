@@ -117,6 +117,8 @@ prodOut <- neonPlants::estimateWoodProd(inputDataList = tempInput)
 write.csv(prodOut$vst_ANPP_duplicates, file = glue::glue("~/Desktop/vst_ANPP_treedupes_D03{theSite}.csv"), 
           row.names = FALSE, fileEncoding = "UTF-8")
 
+#--> Generated error for DSNY: call to lm() in calculateTransitions function fails when NA handling not explicit; need to update to use logic like in predictStemDiam function
+
 #   JERC site
 
 

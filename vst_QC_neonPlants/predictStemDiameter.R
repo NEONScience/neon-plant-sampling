@@ -69,9 +69,9 @@ predictStemDiameter <- function(flaggedData) {
         #   For each record, calculate lag/lead rates of stemDiameter change compared to neighboring rows
         dplyr::mutate(
           rateBack = (stemDiameter - lag(stemDiameter)) / 
-            lubridate::time_length(predictedDate - lag(predictedDate), unit = "year"),
+            lubridate::time_length(estimatedDate - lag(estimatedDate), unit = "year"),
           rateForward = (lead(stemDiameter) - stemDiameter) / 
-            lubridate::time_length(lead(predictedDate) - predictedDate, unit = "year")
+            lubridate::time_length(lead(estimatedDate) - estimatedDate, unit = "year")
         )
       
       #   Calculate a "deviation" metric: determine how much adjacent rates differ; a high deviation suggests the current row is an outlier. For edge rows: use the available rate; for middle rows: use the deviation
@@ -108,7 +108,7 @@ predictStemDiameter <- function(flaggedData) {
       modelInputStemDiameter = dplyr::if_else(estimatedDiamFlag == TRUE, NA_real_, stemDiameter),
       
       predictedDiam = tryCatch(
-        broom::augment(lm(.data$modelInputStemDiameter ~ .data$predictedDate), 
+        broom::augment(lm(.data$modelInputStemDiameter ~ .data$estimatedDate), 
                        newdata = dplyr::pick(dplyr::everything()))$.fitted,
         error = function(e) NA_real_
       ),
