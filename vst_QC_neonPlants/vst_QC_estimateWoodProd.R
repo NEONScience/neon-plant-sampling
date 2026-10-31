@@ -15,7 +15,10 @@ source("vst_neonPlantsQC/predictStemDiameter.R")
 
 
 ### Productivity QC testing: Run all data through estimateWoodProd function ####
-###---> Correct "flagged" output where possible
+#--> Note: Phase 1 -- output from "duplicates" table is saved for resolution. As many as possible to be corrected by 2026-11-20.
+#--> Note: Phase 2 -- output in "flagged" table is corrected when possible using predictStemDiameter function.
+
+
 
 ### D01 prod output checks ####
 vstD01 <- neonUtilities::loadByProduct(dpID = "DP1.10098.001",
@@ -24,23 +27,7 @@ vstD01 <- neonUtilities::loadByProduct(dpID = "DP1.10098.001",
                                        check.size = FALSE,
                                        token = Sys.getenv("NEON_TOKEN"))
 
-#   Wood mass check
-massD01 <- neonPlants::estimateWoodMass(inputDataList = vstD01)
-indiv <- massD01$vst_AGB_indiv
-plot <- massD01$vst_AGB_plot
-site <- massD01$vst_AGB_site
-downed <- massD01$vst_lost_downed
-dupes <- massD01$vst_AGB_duplicates
-
-write.csv(dupes, file = "~/Desktop/vst_AGB_dupes_D01.csv", row.names = FALSE, fileEncoding = "UTF-8")
-
-#--> Dupes: 96 records; output accurate
-#--> Indiv: 8823 records with "noAllometry"; 8760 are ferns. Output plausible.
-#--> Downed: Output plausible
-#--> Plot-level: Unexpected jump in mass for HARV_040 from 2015 to 2016; nothing systematically wrong
-#--> Site-level: Output plausible
-
-#   Wood prod check
+#   BART site
 theSite <- "BART"
 tempPP <- vstD01$vst_perplotperyear %>% dplyr::filter(siteID == theSite)
 tempMap <- vstD01$vst_mappingandtagging %>% dplyr::filter(siteID == theSite)
@@ -51,15 +38,8 @@ prodOut <- neonPlants::estimateWoodProd(inputDataList = tempInput)
 
 write.csv(prodOut$vst_ANPP_duplicates, file = glue::glue("~/Desktop/vst_ANPP_treedupes_D01{theSite}.csv"), 
           row.names = FALSE, fileEncoding = "UTF-8")
-write.csv(prodOut$vst_ANPP_flagged, file = glue::glue("~/Desktop/vst_ANPP_flagged_D01{theSite}.csv"), 
-          row.names = FALSE, fileEncoding = "UTF-8")
 
-site <- prodOut$vst_ANPP_site
-plot <- prodOut$vst_ANPP_plot
-
-#--> Site-level: towerSubset years relatively low ANPP compared to when more plots sampled
-#--> Plot-level: A number of plot-years with negative productivity --> stemDiameter data entry errors? E.g., BART_034-2018, BART_041-2016, BART_047-2016
-
+#   HARV site
 theSite <- "HARV"
 tempPP <- vstD01$vst_perplotperyear %>% dplyr::filter(siteID == theSite)
 tempMap <- vstD01$vst_mappingandtagging %>% dplyr::filter(siteID == theSite)
@@ -70,46 +50,17 @@ prodOut <- neonPlants::estimateWoodProd(inputDataList = tempInput)
 
 write.csv(prodOut$vst_ANPP_duplicates, file = glue::glue("~/Desktop/vst_ANPP_treedupes_D01{theSite}.csv"), 
           row.names = FALSE, fileEncoding = "UTF-8")
-write.csv(prodOut$vst_ANPP_flagged, file = glue::glue("~/Desktop/vst_ANPP_flagged_D01{theSite}.csv"), 
-          row.names = FALSE, fileEncoding = "UTF-8")
-
-site <- prodOut$vst_ANPP_site
-plot <- prodOut$vst_ANPP_plot
-
-#--> Site-level: 2022 very low compared to other years
-#--> Plot-level: Substantial negative productivity --> HARV_025-2019, HARV_035-2019, HARV_051-2016; some years very positive --> HARV_001-2016, HARV_038-2021, HARV_042-2016, HARV_044-2016
 
 
 
-### D02 output checks
+### D02 prod output checks ####
 vstD02 <- neonUtilities::loadByProduct(dpID = "DP1.10098.001",
                                        site = c("BLAN", "SCBI", "SERC"),
                                        release = "LATEST",
                                        check.size = FALSE,
                                        token = Sys.getenv("NEON_TOKEN"))
 
-#   Wood mass check
-massD02 <- neonPlants::estimateWoodMass(inputDataList = vstD02)
-indiv <- massD02$vst_AGB_indiv
-plot <- massD02$vst_AGB_plot
-site <- massD02$vst_AGB_site
-downed <- massD02$vst_lost_downed
-dupes <- massD02$vst_AGB_duplicates
-
-indivSummary <- indiv %>%
-  dplyr::filter(source == "noAllometry") %>%
-  dplyr::group_by(taxonID) %>%
-  dplyr::summarise(count = n())
-
-write.csv(dupes, file = "~/Desktop/vst_AGB_dupes_D02.csv", row.names = FALSE, fileEncoding = "UTF-8")
-
-#--> Dupes: 38 records, output accurate.
-#--> Indiv: 2581 records with "noAllometry": e.g., Asimina triloba (paw paw), Tetradium daniellii, Lonicera maackii. Most are Asimina triloba (1842 records). Output plausible.
-#--> Downed: Output plausible.
-#--> Plot-level: Drop in biomass for SCBI_052, 058 from 2020 to 2025; SERC_022 from 2019 to 2024 --> loss of ash?
-#--> Site-level: Output plausible
-
-#   Wood prod check
+#   BLAN site
 theSite <- "BLAN"
 tempPP <- vstD02$vst_perplotperyear %>% dplyr::filter(siteID == theSite)
 tempMap <- vstD02$vst_mappingandtagging %>% dplyr::filter(siteID == theSite)
@@ -120,15 +71,8 @@ prodOut <- neonPlants::estimateWoodProd(inputDataList = tempInput)
 
 write.csv(prodOut$vst_ANPP_duplicates, file = glue::glue("~/Desktop/vst_ANPP_treedupes_D02{theSite}.csv"), 
           row.names = FALSE, fileEncoding = "UTF-8")
-write.csv(prodOut$vst_ANPP_flagged, file = glue::glue("~/Desktop/vst_ANPP_flagged_D02{theSite}.csv"), 
-          row.names = FALSE, fileEncoding = "UTF-8")
 
-site <- prodOut$vst_ANPP_site
-plot <- prodOut$vst_ANPP_plot
-
-#--> Site-level: Output plausible
-#--> Plot-level: BLAN_063-2016 & 2018, BLAN_017-2019, BLAN_047-2025 unexpectedly high; BLAN_063-2017 negative
-
+#   SCBI site
 theSite <- "SCBI"
 tempPP <- vstD02$vst_perplotperyear %>% dplyr::filter(siteID == theSite)
 tempMap <- vstD02$vst_mappingandtagging %>% dplyr::filter(siteID == theSite)
@@ -139,15 +83,8 @@ prodOut <- neonPlants::estimateWoodProd(inputDataList = tempInput)
 
 write.csv(prodOut$vst_ANPP_duplicates, file = glue::glue("~/Desktop/vst_ANPP_treedupes_D02{theSite}.csv"), 
           row.names = FALSE, fileEncoding = "UTF-8")
-write.csv(prodOut$vst_ANPP_flagged, file = glue::glue("~/Desktop/vst_ANPP_flagged_D02{theSite}.csv"), 
-          row.names = FALSE, fileEncoding = "UTF-8")
 
-site <- prodOut$vst_ANPP_site
-plot <- prodOut$vst_ANPP_plot
-
-#--> Site-level: Unexpectedly low ANPP in 2017
-#--> Plot-level: SCBI_045-2016 & 2017, SCBI_050-2018, SCBI_061-2018, SCBI_062-2017, SCBI_063-2016 substantially negative; also substantially positive plot years --> SCBI_066-2016 & 2017 and 5-6 others.
-
+#   SERC site
 theSite <- "SERC"
 tempPP <- vstD02$vst_perplotperyear %>% dplyr::filter(siteID == theSite)
 tempMap <- vstD02$vst_mappingandtagging %>% dplyr::filter(siteID == theSite)
@@ -158,46 +95,17 @@ prodOut <- neonPlants::estimateWoodProd(inputDataList = tempInput)
 
 write.csv(prodOut$vst_ANPP_duplicates, file = glue::glue("~/Desktop/vst_ANPP_treedupes_D02{theSite}.csv"), 
           row.names = FALSE, fileEncoding = "UTF-8")
-write.csv(prodOut$vst_ANPP_flagged, file = glue::glue("~/Desktop/vst_ANPP_flagged_D02{theSite}.csv"), 
-          row.names = FALSE, fileEncoding = "UTF-8")
-
-site <- prodOut$vst_ANPP_site
-plot <- prodOut$vst_ANPP_plot
-
-#--> Site-level: Negative ANPP in 2016, then more positive than expected in 2017 --> likely data entry errors
-#--> Plot-level: Negative ANPP for SERC_044-2016 & 2018, SERC_045-2016, SERC_049-2016, SERC_050-2016, SERC_052-2016 & 2018, SERC_060-2016, SERC_061-2016, SERC_062-2016, SERC_067-2018, 
 
 
 
-### D03 output checks
+### D03 prod output checks ####
 vstD03 <- neonUtilities::loadByProduct(dpID = "DP1.10098.001",
                                        site = c("DSNY", "JERC", "OSBS"),
                                        release = "LATEST",
                                        check.size = FALSE,
                                        token = Sys.getenv("NEON_TOKEN"))
 
-#   Wood mass check
-massD03 <- neonPlants::estimateWoodMass(inputDataList = vstD03)
-indiv <- massD03$vst_AGB_indiv
-plot <- massD03$vst_AGB_plot
-site <- massD03$vst_AGB_site
-downed <- massD03$vst_lost_downed
-dupes <- massD03$vst_AGB_duplicates
-
-indivSummNoMass <- indiv %>%
-  dplyr::filter(source == "noAllometry") %>%
-  dplyr::group_by(taxonID) %>%
-  dplyr::summarise(count = n())
-
-write.csv(dupes, file = "~/Desktop/vst_AGB_dupes_D03.csv", row.names = FALSE, fileEncoding = "UTF-8")
-
-#--> Dupes: 726 records, output accurate
-#--> Indiv: 1422 records with "noAllometry"; 500+ are Yucca record, another 218 are Opuntia, another 200+ are Diospyros virginiana L.
-#--> Downed: Output plausible
-#--> Plot-level: Drop in biomass for JERC_055 from 2016 to 2017; JERC_062, OSBS_007 from 2015 to 2016; OSBS_005 from 2020 to 2025
-#--> Site-level: Output plausible
-
-#   Wood prod check
+#   DSNY site
 theSite <- "DSNY"
 tempPP <- vstD03$vst_perplotperyear %>% dplyr::filter(siteID == theSite)
 tempMap <- vstD03$vst_mappingandtagging %>% dplyr::filter(siteID == theSite)
@@ -208,11 +116,12 @@ prodOut <- neonPlants::estimateWoodProd(inputDataList = tempInput)
 
 write.csv(prodOut$vst_ANPP_duplicates, file = glue::glue("~/Desktop/vst_ANPP_treedupes_D03{theSite}.csv"), 
           row.names = FALSE, fileEncoding = "UTF-8")
-write.csv(prodOut$vst_ANPP_flagged, file = glue::glue("~/Desktop/vst_ANPP_flagged_D03{theSite}.csv"), 
-          row.names = FALSE, fileEncoding = "UTF-8")
 
-site <- prodOut$vst_ANPP_site
-plot <- prodOut$vst_ANPP_plot
+#   JERC site
+
+
+
+
 
 
 
