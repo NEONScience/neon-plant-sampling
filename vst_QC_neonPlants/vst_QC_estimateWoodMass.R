@@ -180,7 +180,7 @@ write.csv(dupes, file = "~/Desktop/vst_AGB_dupes_D06.csv", row.names = FALSE, fi
 #--> Dupes: 161 records, output accurate
 #--> Indiv: 949 records with "noAllometry"; 456 are Maclura pomifera (Osage Orange), 267 are Morus rubra (Red Mulberry). Output looks plausible but some problems in the data, e.g. for NEON.PLA.D06.KONZ.01250, NEON.PLA.D06.KONZ.01252
 #--> Downed: Output accurate
-#--> Plot-level: KONZ_046 has implausibly high biomass in 2016 --> driven by NEON.PLA.D06.KONZ.01138 sapling with reported basalStemDiameter = 20 cm, height 1.6 m; had basalStemDiametet = 1.6 cm and height 0.7 m in 2015, reported "dead" both years.
+#--> Plot-level: KONZ_046 has implausibly high biomass in 2016 --> driven by NEON.PLA.D06.KONZ.01138 sapling basalStemDiameter = 20 cm, height 1.6 m; had basalStemDiametet = 1.6 cm and height 0.7 m in 2015, reported "dead" both years.
 #--> Site-level: Big jump in biomass from 2021 to 2022 at KONZ, odd. Seems driven by KONZ_061; data issues in 'indiv' table (see above), but output logical given data issues.
 
 
@@ -441,7 +441,7 @@ indivSummary <- indiv %>%
 write.csv(dupes, file = "~/Desktop/vst_AGB_dupes_D16.csv", row.names = FALSE, fileEncoding = "UTF-8")
 
 #--> Dupes: 120 records, output accurate
-#--> Indiv: 1018 records with "noAllometry"; 159 are a single species of fern, 833 are Frangula purshiana (Cascara)
+#--> Indiv: 1018 records with "noAllometry"; 159 are a single species of fern, 833 are Frangula purshiana (Cascara). Kirsch et al. 2012 Diversity paper use Alnus rubra for Cascara.
 #--> Downed: Output plausible
 #--> Plot-level: Some large swings in biomass for ABBY_007 (logging?), WREF_004, WREF_013; ABBY_067 very high in 2016 compared to other years (NEON.PLA.D16.ABBY.01003 with stemDiameter = 222 cm, diameter 111-138 in all subsequent years, unclear why it keeps "growing" if dead); ABBY_070 has hardly any biomass at all in 2016 but much higher in 2015 and all other years (only 29 individuals in 2016; 118 individuals in 2017, no changes in totalsampledareas). 
 #--> Site-leveL: Output plausible given plot-level issues noted.
