@@ -23,20 +23,36 @@ predictStemDiameter <- function(flaggedData) {
   ### Filter to individualIDs with all liveDeadStatus == "live" or individuals with mortality that show a "clean" transition
   flaggedDF <- flaggedDF %>%
     dplyr::group_by(individualID) %>%
-    dplyr::arrange(year,
-                   .by_group = TRUE) %>%
-    
+    dplyr::arrange(year, .by_group = TRUE) %>%
     dplyr::group_modify(~ {
-      transitions <- sum(diff(as.numeric(factor(.x$liveDeadStatus, levels = c("live", "dead")))) != 0)
       
-      if ((all(.x$liveDeadStatus == "live", na.rm = TRUE) |
-           (any(.x$transitionStatus == "mortality", na.rm = TRUE) & transitions == 1)) &
-          sum(!is.na(.x$stemDiameter)) >= 3) {
+      #   Remove NAs from liveDeadStatus group
+      s <- .x$liveDeadStatus[!is.na(.x$liveDeadStatus)]
+      
+      #   Find positions where the status changes between consecutive non-NA records (may be > 1)
+      changes <- which(head(s, -1) != tail(s, -1))
+      
+      #   Determine when all non-NA records are "live"
+      allLive <- length(s) > 0 && all(s == "live")
+      
+      #   Determine when there is a single "live" to "dead" transition
+      cleanLiveDead <- any(.x$transitionStatus == "mortality", na.rm = TRUE) && 
+        length(changes) == 1 &&
+        s[changes] == "live" &&
+        s[changes + 1] == "dead"
+      
+      #   Remove NAs from growthForm and determine when exactly one unique value remains
+      gf <- .x$growthForm[!is.na(.x$growthForm)]
+      singleGrowthForm <- length(unique(gf)) == 1
+      
+      #   Retain those groups meeting criteria and with a minimum of 3 stemDiameters (need 2 remaining once flagged stemDiam removed)
+      if (isTRUE(allLive || cleanLiveDead) && singleGrowthForm) {
         .x
       } else {
         .x[0, ]
       }
-    })
+    }) %>%
+    dplyr::relocate("individualID", .after = "taxonID")
   
   
   
@@ -47,13 +63,18 @@ predictStemDiameter <- function(flaggedData) {
     dplyr::arrange(year,
                    .by_group = TRUE) %>%
     
+    #   Find the "mortality" row in each group
     dplyr::mutate(
       mortalityRowNum = max(which(transitionStatus == "mortality"), 0),
       .after = "transitionStatus"
     ) %>%
     
+    #   Retain those rows less than or equal to the mortality row
     dplyr::filter(mortalityRowNum == 0 | dplyr::row_number() <= mortalityRowNum) %>%
-    dplyr::select(-"mortalityRowNum")
+    dplyr::select(-"mortalityRowNum") %>%
+    
+    #   For all groups, keep only those with 3 non-NA stemDiameters remaining (minimum needed for model prediction)
+    dplyr::filter(sum(!is.na(stemDiameter)) >= 3)
   
   
   
@@ -128,9 +149,8 @@ predictStemDiameter <- function(flaggedData) {
                   -"tagStatus",
                   -"modelInputStemDiameter",
                   -c("measurementHeight":"dataEntryRecordID")) %>%
-    
     dplyr::filter(estimatedDiamFlag == TRUE)
   
   return(flaggedDF)
   
-} # End vstIncrementCheck function
+} # End function

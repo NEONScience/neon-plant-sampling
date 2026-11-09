@@ -61,7 +61,7 @@ vstD02 <- neonUtilities::loadByProduct(dpID = "DP1.10098.001",
                                        release = "LATEST",
                                        check.size = FALSE)
 
-#   BLAN site
+##  BLAN site
 theSite <- "BLAN"
 tempPP <- vstD02$vst_perplotperyear %>% dplyr::filter(siteID == theSite)
 tempMap <- vstD02$vst_mappingandtagging %>% dplyr::filter(siteID == theSite)
@@ -73,7 +73,8 @@ prodOut <- neonPlants::estimateWoodProd(inputDataList = tempInput)
 write.csv(prodOut$vst_ANPP_duplicates, file = glue::glue("~/Desktop/vst_ANPP_treedupes_D02{theSite}.csv"), 
           row.names = FALSE, fileEncoding = "UTF-8")
 
-#   SCBI site
+
+##  SCBI site
 theSite <- "SCBI"
 tempPP <- vstD02$vst_perplotperyear %>% dplyr::filter(siteID == theSite)
 tempMap <- vstD02$vst_mappingandtagging %>% dplyr::filter(siteID == theSite)
@@ -82,10 +83,17 @@ tempInput <- list(vst_perplotperyear = tempPP, vst_mappingandtagging = tempMap, 
 
 prodOut <- neonPlants::estimateWoodProd(inputDataList = tempInput)
 
+#   Cache duplicate outputs
 write.csv(prodOut$vst_ANPP_duplicates, file = glue::glue("~/Desktop/vst_ANPP_treedupes_D02{theSite}.csv"), 
           row.names = FALSE, fileEncoding = "UTF-8")
 
-#   SERC site
+#   Check flagged output for corrections
+predictOut <- predictStemDiameter(flaggedData = prodOut$vst_ANPP_flagged)
+
+test <- flaggedDF %>% dplyr::filter(!individualID %in% predictOut$individualID)
+
+
+##  SERC site
 theSite <- "SERC"
 tempPP <- vstD02$vst_perplotperyear %>% dplyr::filter(siteID == theSite)
 tempMap <- vstD02$vst_mappingandtagging %>% dplyr::filter(siteID == theSite)
