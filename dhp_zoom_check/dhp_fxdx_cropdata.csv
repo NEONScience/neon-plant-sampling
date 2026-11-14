@@ -1,0 +1,17 @@
+﻿plotID,imageType,sensorCrop,PAI
+RMNP_045,overstory,FX,1.63
+RMNP_045,understory,FX,0.09
+RMNP_045,overstory,DX,1.17
+RMNP_045,understory,DX,0.027
+RMNP_046,overstory,FX,0.9
+RMNP_046,understory,FX,0.052
+RMNP_046,overstory,DX,0.74
+RMNP_046,understory,DX,0.023
+RMNP_047,overstory,FX,2.01
+RMNP_047,understory,FX,0.039
+RMNP_047,overstory,DX,1.08
+RMNP_047,understory,DX,0.024
+SJER_049,overstory,FX,0.54
+SJER_049,understory,FX,0.064
+SJER_049,overstory,DX,1
+SJER_049,understory,DX,0.038
