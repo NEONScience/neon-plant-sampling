@@ -20,8 +20,7 @@ source("vst_QC_neonPlants/predictStemDiameter.R")
 ### Productivity QC testing: Run all data through estimateWoodProd function ####
 #--> Note: Phase 1 -- output from "duplicates" table is saved for resolution. As many as possible to be corrected by 2026-11-20.
 #--> Note: Phase 2 -- output in "flagged" table is corrected when possible using predictStemDiameter function. All "corrDXXSITE" files bundled as final step and written out as single file.
-#--> Note: Phase 2 -- individualIDs with > 1 stemDiameter anomaly have only one addressed via this correction process.
-#--> Note: Phase 2 -- A number of flagged diameter increments cannot be corrected due to n=2 observations per individualID. Need to re-run this code annually
+#--> Note: Phase 2 -- A number of flagged diameter increments cannot be corrected due to n=2 observations per individualID. Need to re-run this code annually as more data are collected.
 
 
 

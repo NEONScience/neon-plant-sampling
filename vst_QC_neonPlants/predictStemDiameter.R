@@ -11,12 +11,22 @@ predictStemDiameter <- function(flaggedData) {
                   -c("scientificName":"family"),
                   -"measurementStrategy",
                   -"plantStatus",
-                  -"incrementFlag",
                   -"agb_kg",
                   -c("baseCrownHeight":"bandStemDiameter"),
                   -"recordedBy",
                   -"measuredBy") %>%
     dplyr::relocate("uid", .before = "domainID")
+  
+  
+  
+  ### Remove rows with lead(transitionStatus) == "recruitment" and estimatedDiamFlag == TRUE
+  #--> Note: These rows created for estimating "recruit" productivity, not real records; %in% syntax used to handle NAs properly
+  flaggedDF <- flaggedDF %>%
+    dplyr::group_by(individualID) %>%
+    dplyr::arrange(year, .by_group = TRUE) %>%
+    dplyr::filter(
+      !(dplyr::lead(transitionStatus) %in% "recruitment" & estimatedDiamFlag %in% TRUE)
+    )
   
   
   
@@ -57,6 +67,7 @@ predictStemDiameter <- function(flaggedData) {
   
   
   ### For mortality events, filter out all rows after the transitionStatus == "mortality" row
+  ### For all groups, keep those with >= 3 non-NA stemDiameters
   #--> Note: No need to correct any stemDiameter values after the tree has died and may be losing diameter in non-linear ways.
   flaggedDF <- flaggedDF %>%
     dplyr::group_by(individualID) %>%
@@ -73,50 +84,101 @@ predictStemDiameter <- function(flaggedData) {
     dplyr::filter(mortalityRowNum == 0 | dplyr::row_number() <= mortalityRowNum) %>%
     dplyr::select(-"mortalityRowNum") %>%
     
-    #   For all groups, keep only those with 3 non-NA stemDiameters remaining (minimum needed for model prediction)
+    #   For all groups, keep only those with >= 3 non-NA stemDiameters remaining (minimum needed for model prediction)
     dplyr::filter(sum(!is.na(stemDiameter)) >= 3)
   
   
   
-  ### Identify anomalous stemDiameter rows by comparing rates of stemDiameter change
-  #--> Note: This approach is robust when the anomalous row is either the first or last row in the group
+  ### Filter again to ensure prediction only occurs for groups that still have a record with incrementFlag == TRUE;
+  ### also filter to ensure prediction only occurs when the range of measurementHeights are all within 20 cm of each other
   flaggedDF <- flaggedDF %>%
     dplyr::group_by(individualID) %>%
-    dplyr::arrange(year, .by_group = TRUE) %>%
-    
-    dplyr::group_modify(~{
-      .x <- .x %>%
-        
-        #   For each record, calculate lag/lead rates of stemDiameter change compared to neighboring rows
-        dplyr::mutate(
-          rateBack = (stemDiameter - lag(stemDiameter)) / 
-            lubridate::time_length(estimatedDate - lag(estimatedDate), unit = "year"),
-          rateForward = (lead(stemDiameter) - stemDiameter) / 
-            lubridate::time_length(lead(estimatedDate) - estimatedDate, unit = "year")
-        )
-      
-      #   Calculate a "deviation" metric: determine how much adjacent rates differ; a high deviation suggests the current row is an outlier. For edge rows: use the available rate; for middle rows: use the deviation
-      .x <- .x %>%
-        dplyr::mutate(
-          rateDev = dplyr::case_when(
-            is.na(rateBack) & is.na(rateForward) ~ 0,
-            is.na(rateBack) ~ abs(rateForward),
-            is.na(rateForward) ~ abs(rateBack),
-            TRUE ~ abs(rateForward - rateBack)
-          )
-        )
-      
-      anomaly_idx <- which.max(.x$rateDev)
-      
-      .x %>%
-        dplyr::mutate(estimatedDiamFlag = row_number() == anomaly_idx,
-                      .after = "stemDiameter") %>%
-        dplyr::select(-"rateBack",
-                      -"rateForward",
-                      -"rateDev")
-    }) %>%
-    
-    dplyr::relocate("individualID", .before = "growthForm")
+    dplyr::arrange(year,
+                   .by_group = TRUE) %>%
+    dplyr::filter(any(.data$incrementFlag == TRUE),
+                  any(!is.na(.data$measurementHeight)),
+                  (max(.data$measurementHeight, na.rm = TRUE) - min(.data$measurementHeight, na.rm = TRUE)) <= 20)
+  
+  
+  
+  ### Identify greatest stemDiameter anomaly by comparing stemDiameter change rates, update estimatedDiamFlag to TRUE for detected rows
+  #--> Note: The flag_anomaly function iterates through and flags all anomalies > 3.5 cm/y within the group
+  #--> Note: This approach is robust when the anomalous row is either the first or last row in the group
+  # flaggedDF <- flaggedDF %>%
+  #   dplyr::group_by(individualID) %>%
+  #   dplyr::arrange(year, .by_group = TRUE) %>%
+  #   
+  #   dplyr::group_modify(~{
+  #     .x <- .x %>%
+  #       
+  #       #   For each record, calculate lag/lead rates of stemDiameter change compared to neighboring rows
+  #       dplyr::mutate(
+  #         rateBack = (stemDiameter - lag(stemDiameter)) / 
+  #           lubridate::time_length(estimatedDate - lag(estimatedDate), unit = "year"),
+  #         rateForward = (lead(stemDiameter) - stemDiameter) / 
+  #           lubridate::time_length(lead(estimatedDate) - estimatedDate, unit = "year")
+  #       )
+  #     
+  #     #   Calculate a "deviation" metric: determine how much adjacent rates differ; a high deviation suggests the current row is an outlier. For edge rows: use the available rate; for middle rows: use the deviation
+  #     .x <- .x %>%
+  #       dplyr::mutate(
+  #         rateDev = dplyr::case_when(
+  #           is.na(rateBack) & is.na(rateForward) ~ 0,
+  #           is.na(rateBack) ~ abs(rateForward),
+  #           is.na(rateForward) ~ abs(rateBack),
+  #           TRUE ~ abs(rateForward - rateBack)
+  #         )
+  #       )
+  #     
+  #     anomaly_idx <- which.max(.x$rateDev)
+  #     
+  #     .x %>%
+  #       dplyr::mutate(estimatedDiamFlag = row_number() == anomaly_idx,
+  #                     .after = "stemDiameter") %>%
+  #       dplyr::select(-"rateBack",
+  #                     -"rateForward",
+  #                     -"rateDev")
+  #   }) %>%
+  #   
+  #   dplyr::relocate("individualID", .before = "growthForm")
+  
+  ##  Define anomaly flagging function
+  # flag_anomalies <- function(df, threshold = 3.5) {
+  #   
+  #   repeat {
+  #     idx <- which(!df$estimatedDiamFlag)
+  #     if (length(idx) < 2) break
+  #     
+  #     d <- df[idx, ]
+  #     
+  #     rateOf <- function(x) {
+  #       yrs <- lubridate::time_length(x$estimatedDate - dplyr::lag(x$estimatedDate), unit = "year")
+  #       abs((x$stemDiameter - dplyr::lag(x$stemDiameter)) / yrs)
+  #     }
+  #     
+  #     absRate <- rateOf(d)
+  #     if (all(is.na(absRate)) || max(absRate, na.rm = TRUE) <= threshold) break
+  #     
+  #     #   Offending pair is (i - 1, i)
+  #     i <- which.max(absRate)
+  #     
+  #     #   Largest rate left after dropping a candidate; removal bridges the gap
+  #     worstAfterDrop <- function(drop) max(rateOf(d[-drop, ]), na.rm = TRUE)
+  #     
+  #     flagPos <- if (worstAfterDrop(i - 1) <= worstAfterDrop(i)) i - 1 else i
+  #     df$estimatedDiamFlag[idx[flagPos]] <- TRUE
+  #   }
+  #   
+  #   df
+  # } # end flag_anomalies function
+  
+  
+  ##  Flag anomalies
+  # flaggedDF <- flaggedDF %>%
+  #   dplyr::group_by(individualID) %>%
+  #   dplyr::arrange(year, .by_group = TRUE) %>%
+  #   dplyr::group_modify(~ flag_anomalies(.x, threshold = 3.5)) %>%
+  #   dplyr::relocate("individualID", .before = "growthForm")
   
   
   
@@ -126,7 +188,7 @@ predictStemDiameter <- function(flaggedData) {
     dplyr::arrange(year, .by_group = TRUE) %>%
     
     dplyr::mutate(
-      modelInputStemDiameter = dplyr::if_else(estimatedDiamFlag == TRUE, NA_real_, stemDiameter),
+      modelInputStemDiameter = dplyr::if_else(incrementFlag == TRUE, NA_real_, stemDiameter),
       
       predictedDiam = tryCatch(
         broom::augment(lm(.data$modelInputStemDiameter ~ .data$estimatedDate), 
@@ -144,11 +206,22 @@ predictStemDiameter <- function(flaggedData) {
   ### Clean up columns for output and return data for estimatedDiamFlag == TRUE
   flaggedDF <- flaggedDF %>%
     dplyr::ungroup() %>%
+    
+    dplyr::mutate(
+      
+      estimatedDiamFlag = dplyr::replace_when(
+        estimatedDiamFlag,
+        is.na(modelInputStemDiameter) & !is.na(predictedDiam) & incrementFlag == TRUE ~ TRUE
+      )
+      
+    ) %>%
+    
     dplyr::select(-c("plotType":"totalSampledAreaTrees"),
                   -"tempStemID",
                   -"tagStatus",
                   -"modelInputStemDiameter",
-                  -c("measurementHeight":"dataEntryRecordID")) %>%
+                  -c("changedMeasurementLocation":"dataEntryRecordID")) %>%
+    
     dplyr::filter(estimatedDiamFlag == TRUE)
   
   return(flaggedDF)
